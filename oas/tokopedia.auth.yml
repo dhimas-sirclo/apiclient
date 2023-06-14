@@ -1,0 +1,49 @@
+openapi: "3.0.2"
+info:
+  title: Tokopedia Auth
+  version: "1.0"
+  contact:
+    email: dev@sirclo.com
+    name: SIRCLO Tech
+    url: https://sirclo.com
+servers:
+  - url: https://accounts.tokopedia.com
+components:
+  schemas:
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: "LSPr7x7sRGaewzwZE6IcuA"
+        expires_in:
+          type: integer
+          format: int64
+          example: 2592000
+        token_type:
+          type: string
+          example: "Bearer"
+  securitySchemes:
+    basic:
+      type: http
+      scheme: basic
+security:
+  - basic: []
+paths:
+  /token:
+    post:
+      description: ""
+      parameters:
+        - name: grant_type
+          in: query
+          required: true
+          schema:
+            type: string
+            default: client_credentials
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"

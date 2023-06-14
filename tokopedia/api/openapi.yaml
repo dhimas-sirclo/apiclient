@@ -1,0 +1,653 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: dev@sirclo.com
+    name: SIRCLO Tech
+    url: https://sirclo.com
+  title: Tokopedia
+  version: "1.0"
+servers:
+- url: https://fs.tokopedia.net
+security:
+- bearer: []
+paths:
+  /inventory/v1/fs/{fs_id}/product/info:
+    get:
+      description: This method will retrieve single product information either by
+        product id as parameter (choose one of those two parameters to use) from related
+        fs_id.
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Can input more than one product_id (comma separated numeric string)
+        explode: true
+        in: query
+        name: product
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Default error
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductResponse'
+          description: OK
+  /inventory/v2/fs/{fs_id}/category/get_variant:
+    get:
+      description: This endpoint retrieves a list of variants related to a category_id.
+        Use this API as main source to retrieve the newest category variant data.
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Category unique identifier
+        explode: true
+        in: query
+        name: cat_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Default error
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVariantResponse'
+          description: OK
+components:
+  parameters:
+    fs_id:
+      description: Fulfillment service unique identifier
+      explode: false
+      in: path
+      name: fs_id
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
+  schemas:
+    Header:
+      properties:
+        process_time:
+          example: 5.871520385
+          format: float
+          type: number
+        messages:
+          example: Your request has been processed successfully
+          type: string
+      type: object
+    ErrorHeader:
+      allOf:
+      - $ref: '#/components/schemas/Header'
+      - $ref: '#/components/schemas/ErrorHeader_allOf'
+    BaseErrorResponse:
+      properties:
+        header:
+          $ref: '#/components/schemas/ErrorHeader'
+        data:
+          type: object
+          example: null
+      type: object
+    BaseResponse:
+      properties:
+        header:
+          $ref: '#/components/schemas/Header'
+      type: object
+    ProductBasic:
+      properties:
+        productID:
+          description: Product Unique Identifier
+          example: 15245228
+          format: int64
+          type: integer
+        shopID:
+          description: Shop Unique Identifier
+          example: 480829
+          format: int64
+          type: integer
+        status:
+          description: "Product Status (e.g., -2 for Banned, -1 for Pending, 0 for\
+            \ Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive\
+            \ (Warehouse))"
+          example: 1
+          format: int64
+          type: integer
+        Name:
+          description: Product Name
+          example: hxh wallpaper best la zzzz
+          type: string
+        condition:
+          description: "Product Condition (e.g., 1 for New, 2 for Used)"
+          example: 1
+          format: int64
+          type: integer
+        childCategoryID:
+          description: Product Category Unique Identifier
+          example: 1828
+          format: int64
+          type: integer
+        shortDesc:
+          description: Product Description
+          example: Best wallpaper for hxh
+          type: string
+      type: object
+    ProductPrice:
+      properties:
+        value:
+          description: Product Price Value
+          example: 3000
+          format: int64
+          type: integer
+        currency:
+          description: Product Price Currency
+          example: 1
+          format: int64
+          type: integer
+        LastUpdateUnix:
+          description: Product Price Last Updated timer
+          example: 1557981264
+          format: int64
+          type: integer
+        idr:
+          description: Price Value
+          example: 3000
+          format: int64
+          type: integer
+      type: object
+    ProductWeight:
+      properties:
+        value:
+          description: Product Weight Value
+          example: 5
+          format: int64
+          type: integer
+        unit:
+          description: "Weight (e.g., 1 for Gram, 2 for Kilogram)"
+          example: 1
+          format: int64
+          type: integer
+      type: object
+    ProductStock:
+      properties:
+        useStock:
+          example: true
+          type: boolean
+        value:
+          description: Product Total Stock
+          example: 10
+          format: int64
+          type: integer
+      type: object
+    ProductStockWording:
+      allOf:
+      - $ref: '#/components/schemas/ProductStock'
+      - $ref: '#/components/schemas/ProductStockWording_allOf'
+    ProductVariant:
+      properties:
+        isParent:
+          description: Is Product Variant Parent?
+          example: true
+          type: boolean
+        isVariant:
+          description: Is Product Has Variants?
+          example: true
+          type: boolean
+        childrenID:
+          description: List of Product Variant ID
+          example:
+          - 15245978
+          - 15245979
+          items:
+            type: integer
+          type: array
+      type: object
+    ProductMenu:
+      properties:
+        id:
+          description: Etalase Unique Identifier
+          example: 1405065
+          format: int64
+          type: integer
+        Name:
+          description: Etalase Name
+          example: Wallpapers
+          type: string
+      type: object
+    ProductPreOrder:
+      properties:
+        duration:
+          type: boolean
+        unit:
+          format: int64
+          type: integer
+        day:
+          format: int64
+          type: integer
+      type: object
+    ProductExtraAttribute:
+      properties:
+        minOrder:
+          description: Minimum Order
+          example: 1
+          format: int64
+          type: integer
+        lastUpdateCategory:
+          description: Product Category Last Updated time
+          example: 1554708202
+          format: int64
+          type: integer
+        isEligibleCOD:
+          description: Is Product Eligible for COD?
+          example: true
+          type: boolean
+        isOnCampaign:
+          description: Is Product on Campaign?
+          example: true
+          type: boolean
+      type: object
+    ProductWholesalePrice:
+      properties:
+        value:
+          description: Product Price Value
+          example: 10000
+          format: int64
+          type: integer
+        currency:
+          description: Product Price Currency
+          example: 1
+          format: int64
+          type: integer
+        idr:
+          description: Price Value
+          example: 10000
+          format: int64
+          type: integer
+      type: object
+    ProductWholesale:
+      properties:
+        price:
+          $ref: '#/components/schemas/ProductWholesalePrice'
+        minQuantity:
+          example: 2
+          format: int64
+          type: integer
+        maxQuantity:
+          example: 2
+          format: int64
+          type: integer
+      type: object
+    ProductCategoryTree:
+      properties:
+        id:
+          description: Category Unique Identifier
+          example: 1759
+          format: int64
+          type: integer
+        Name:
+          description: Category Name
+          example: Fashion Pria
+          type: string
+        title:
+          description: Category Title
+          example: Fashion Pria
+          type: string
+        breadcrumbURL:
+          description: Category URL
+          example: https://staging.tokopedia.com/p/fashion-pria
+          type: string
+      type: object
+    ProductPicture:
+      properties:
+        picID:
+          description: Image Unique Identifier
+          example: 21189631
+          format: int64
+          type: integer
+        fileName:
+          description: Image File Name
+          example: 5510908_a4b5f7a2-2451-45f2-8a83-979808fe28d3_1920_1080.jpg
+          type: string
+        filePath:
+          description: Image Path
+          example: product-1/2019/3/12/5510908
+          type: string
+        status:
+          description: Image Status
+          example: 2
+          format: int64
+          type: integer
+        OriginalURL:
+          description: Original Image URL
+          example: https://ecs7.tokopedia.net/img/cache/700/product-1/2019/3/12/5510908/5510908_a4b5f7a2-2451-45f2-8a83-979808fe28d3_1920_1080.jpg
+          type: string
+        ThumbnailURL:
+          description: Thumbnail Image URL
+          example: https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/3/12/5510908/5510908_a4b5f7a2-2451-45f2-8a83-979808fe28d3_1920_1080.jpg
+          type: string
+        width:
+          description: Image Width Size
+          example: 1920
+          format: int64
+          type: integer
+        height:
+          description: Image Height
+          example: 1080
+          format: int64
+          type: integer
+        URL300:
+          description: Image URL
+          example: https://ecs7.tokopedia.net/img/cache/300/product-1/2019/3/12/5510908/5510908_a4b5f7a2-2451-45f2-8a83-979808fe28d3_1920_1080.jpg
+          type: string
+      type: object
+    ProductGMStat:
+      properties:
+        transactionSuccess:
+          example: 3
+          format: int64
+          type: integer
+        transactionReject:
+          example: 69
+          format: int64
+          type: integer
+        countSold:
+          example: 3
+          format: int64
+          type: integer
+      type: object
+    ProductStats:
+      properties:
+        countView:
+          example: 163
+          format: int64
+          type: integer
+      type: object
+    ProductOther:
+      properties:
+        sku:
+          description: Product SKU Name
+          example: "12345"
+          type: string
+        url:
+          description: Product URL (website)
+          example: https://staging.tokopedia.com/mattleeshoppe/hxh-wallpaper-best-la-zzzz
+          type: string
+        mobileURL:
+          description: Product URL (mobile phone)
+          example: https://m-staging.tokopedia.com/mattleeshoppe/hxh-wallpaper-best-la-zzzz
+          type: string
+      type: object
+    ProductCampaign:
+      properties:
+        StartDate:
+          description: Campaign Start Date (if any)
+          example: 0001-01-01T00:00:00Z
+          type: string
+        EndDate:
+          description: Campaign End Date (if any)
+          example: 0001-01-01T00:00:00Z
+          type: string
+      type: object
+    ProductVolume:
+      properties:
+        length:
+          description: Product Length
+          type: integer
+        width:
+          description: Product Width
+          type: integer
+        height:
+          description: Product Height
+          type: integer
+      type: object
+    ProductBundle:
+      properties:
+        bundleID:
+          description: Bundle Unique Identifier
+          format: int64
+          type: integer
+        Name:
+          description: Bundle Name
+          type: string
+        Type:
+          description: Bundle Type
+          format: int64
+          type: integer
+        status:
+          description: Bundle Status
+          format: int64
+          type: integer
+        shopID:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        startTimeUnix:
+          description: Bundle Start Time
+          format: int64
+          type: integer
+        stopTimeUnix:
+          description: Bundle End Time
+          format: int64
+          type: integer
+      type: object
+    ProductWarehouse:
+      properties:
+        productID:
+          format: int64
+          type: integer
+        warehouseID:
+          format: int64
+          type: integer
+        price:
+          $ref: '#/components/schemas/ProductPrice'
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+        bundle:
+          $ref: '#/components/schemas/ProductBundle'
+      type: object
+    Product:
+      properties:
+        basic:
+          $ref: '#/components/schemas/ProductBasic'
+        price:
+          $ref: '#/components/schemas/ProductPrice'
+        weight:
+          $ref: '#/components/schemas/ProductWeight'
+        stock:
+          $ref: '#/components/schemas/ProductStockWording'
+        main_stock:
+          description: Product Stock (Not Reserved)
+          example: 7
+          format: int64
+          type: integer
+        reserve_stock:
+          description: "Product Stock that Reserved (ex: FlashSale)"
+          example: 3
+          format: int64
+          type: integer
+        variant:
+          $ref: '#/components/schemas/ProductVariant'
+        menu:
+          $ref: '#/components/schemas/ProductMenu'
+        preorder:
+          $ref: '#/components/schemas/ProductPreOrder'
+        extraAttribute:
+          $ref: '#/components/schemas/ProductExtraAttribute'
+        wholesale:
+          items:
+            $ref: '#/components/schemas/ProductWholesale'
+          type: array
+        categoryTree:
+          items:
+            $ref: '#/components/schemas/ProductCategoryTree'
+          type: array
+        pictures:
+          items:
+            $ref: '#/components/schemas/ProductPicture'
+          type: array
+        GMStats:
+          $ref: '#/components/schemas/ProductGMStat'
+        stats:
+          $ref: '#/components/schemas/ProductStats'
+        other:
+          $ref: '#/components/schemas/ProductOther'
+        campaign:
+          $ref: '#/components/schemas/ProductCampaign'
+        volume:
+          $ref: '#/components/schemas/ProductVolume'
+        warehouses:
+          items:
+            $ref: '#/components/schemas/ProductWarehouse'
+          type: array
+      type: object
+    GetProductResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - $ref: '#/components/schemas/GetProductResponse_allOf'
+    VariantUnitValue:
+      properties:
+        variant_unit_value_id:
+          format: int64
+          type: integer
+        status:
+          format: int64
+          type: integer
+        value:
+          type: string
+        equivalent_value_id:
+          format: int64
+          type: integer
+        english_value:
+          type: string
+        hex:
+          type: string
+        icon:
+          type: string
+      type: object
+    VariantUnit:
+      properties:
+        variant_unit_id:
+          format: int64
+          type: integer
+        status:
+          format: int64
+          type: integer
+        unit_name:
+          type: string
+        unit_short_name:
+          type: string
+        unit_values:
+          items:
+            $ref: '#/components/schemas/VariantUnitValue'
+          type: array
+      type: object
+    VariantDetail:
+      properties:
+        variant_id:
+          format: int64
+          type: integer
+        has_unit:
+          format: int64
+          type: integer
+        identifier:
+          type: string
+        name:
+          type: string
+        status:
+          format: int64
+          type: integer
+        units:
+          items:
+            $ref: '#/components/schemas/VariantUnit'
+          type: array
+        is_primary:
+          format: int64
+          type: integer
+      type: object
+    Variant:
+      properties:
+        category_id:
+          format: int64
+          type: integer
+        variant_id_combinations:
+          items:
+            items:
+              format: int64
+              type: integer
+            type: array
+          type: array
+        variant_details:
+          items:
+            $ref: '#/components/schemas/VariantDetail'
+          type: array
+      type: object
+    GetVariantResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - $ref: '#/components/schemas/GetVariantResponse_allOf'
+    ErrorHeader_allOf:
+      properties:
+        reason:
+          example: Error Convert number format into string
+          type: string
+        error_code:
+          example: PRD_USC_024
+          type: string
+      type: object
+      example: null
+    ProductStockWording_allOf:
+      properties:
+        stockWording:
+          description: Product Stock Wording (Description)
+          example: <b>Stok hampir habis!</b> Tersisa &lt;20
+          type: string
+      type: object
+      example: null
+    GetProductResponse_allOf:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Product'
+          type: array
+      type: object
+      example: null
+    GetVariantResponse_allOf:
+      properties:
+        data:
+          $ref: '#/components/schemas/Variant'
+      type: object
+      example: null
+  securitySchemes:
+    bearer:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

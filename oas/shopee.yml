@@ -1,0 +1,15 @@
+openapi: "3.0.2"
+info:
+  title: Shopee
+  version: "1.0"
+servers:
+  - url: https://fs.tokopedia.net
+
+paths:
+  /test:
+    get:
+      description: ""
+      parameters: []
+      responses:
+        "200":
+          description: OK
