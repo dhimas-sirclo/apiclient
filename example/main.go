@@ -13,6 +13,8 @@ const (
 	CLIENT_SECRET = "clientSecret"
 	FS_ID         = 12345
 	PRODUCT_ID    = "12345"
+	PRODUCT_SKU   = "SKU"
+	SHOP_ID       = 12345
 )
 
 func main() {
@@ -32,7 +34,49 @@ func main() {
 
 	client := tokopedia.NewAPIClient(tokopedia.NewConfiguration())
 	ctx = context.WithValue(context.Background(), tokopedia.ContextAccessToken, tokenRes.AccessToken)
-	res, httpRes, err := client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).Product(PRODUCT_ID).Execute()
+	// Get product by product id
+	res, httpRes, err := client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+		Product(PRODUCT_ID).
+		Execute()
+	if err != nil {
+		panic(err)
+	}
+	if httpRes.StatusCode >= 400 {
+		panic(httpRes.Status)
+	}
+	fmt.Println(res)
+
+	// Get product by product url
+	res, httpRes, err = client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+		ProductUrl(PRODUCT_ID).
+		Execute()
+	if err != nil {
+		panic(err)
+	}
+	if httpRes.StatusCode >= 400 {
+		panic(httpRes.Status)
+	}
+	fmt.Println(res)
+
+	// Get product by product sku
+	res, httpRes, err = client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+		Sku(PRODUCT_SKU).
+		Execute()
+	if err != nil {
+		panic(err)
+	}
+	if httpRes.StatusCode >= 400 {
+		panic(httpRes.Status)
+	}
+	fmt.Println(res)
+
+	// Get product by shop id
+	res, httpRes, err = client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+		ShopId(SHOP_ID).
+		Page(1).
+		PerPage(50).
+		LastSort("lastSort").
+		Execute()
 	if err != nil {
 		panic(err)
 	}

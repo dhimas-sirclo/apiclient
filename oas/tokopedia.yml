@@ -567,8 +567,47 @@ paths:
       parameters:
         - name: product
           in: query
-          required: true
-          description: "Can input more than one product_id (comma separated numeric string)"
+          required: false
+          description: "Can input more than one product_id"
+          schema:
+            type: string
+        - name: product_url
+          in: query
+          required: false
+          description: "Can input more than one product_url"
+          schema:
+            type: string
+        - name: sku
+          in: query
+          required: false
+          description: "Product’s SKU"
+          schema:
+            type: string
+        - name: shop_id
+          in: query
+          required: false
+          description: "Shop Identifier"
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: false
+          description: "Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled)"
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          required: false
+          description: "Page per item (required if shop_id is filled). Maximun items are 50 for 1 page"
+          schema:
+            type: integer
+            format: int64
+        - name: last_sort
+          in: query
+          required: false
+          description: "This parameter is required when the product exceeds 10.000 products"
           schema:
             type: string
       responses:

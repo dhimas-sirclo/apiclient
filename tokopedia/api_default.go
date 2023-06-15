@@ -62,11 +62,53 @@ type ApiInventoryV1FsFsIdProductInfoGetRequest struct {
 	ApiService DefaultApi
 	fsId int64
 	product *string
+	productUrl *string
+	sku *string
+	shopId *int64
+	page *int64
+	perPage *int64
+	lastSort *string
 }
 
-// Can input more than one product_id (comma separated numeric string)
+// Can input more than one product_id
 func (r ApiInventoryV1FsFsIdProductInfoGetRequest) Product(product string) ApiInventoryV1FsFsIdProductInfoGetRequest {
 	r.product = &product
+	return r
+}
+
+// Can input more than one product_url
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) ProductUrl(productUrl string) ApiInventoryV1FsFsIdProductInfoGetRequest {
+	r.productUrl = &productUrl
+	return r
+}
+
+// Product’s SKU
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) Sku(sku string) ApiInventoryV1FsFsIdProductInfoGetRequest {
+	r.sku = &sku
+	return r
+}
+
+// Shop Identifier
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) ShopId(shopId int64) ApiInventoryV1FsFsIdProductInfoGetRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled)
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) Page(page int64) ApiInventoryV1FsFsIdProductInfoGetRequest {
+	r.page = &page
+	return r
+}
+
+// Page per item (required if shop_id is filled). Maximun items are 50 for 1 page
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) PerPage(perPage int64) ApiInventoryV1FsFsIdProductInfoGetRequest {
+	r.perPage = &perPage
+	return r
+}
+
+// This parameter is required when the product exceeds 10.000 products
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) LastSort(lastSort string) ApiInventoryV1FsFsIdProductInfoGetRequest {
+	r.lastSort = &lastSort
 	return r
 }
 
@@ -112,11 +154,28 @@ func (a *DefaultApiService) InventoryV1FsFsIdProductInfoGetExecute(r ApiInventor
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.product == nil {
-		return localVarReturnValue, nil, reportError("product is required and must be specified")
-	}
 
-	parameterAddToHeaderOrQuery(localVarQueryParams, "product", r.product, "")
+	if r.product != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "product", r.product, "")
+	}
+	if r.productUrl != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "product_url", r.productUrl, "")
+	}
+	if r.sku != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sku", r.sku, "")
+	}
+	if r.shopId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	}
+	if r.page != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	}
+	if r.perPage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	}
+	if r.lastSort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "last_sort", r.lastSort, "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

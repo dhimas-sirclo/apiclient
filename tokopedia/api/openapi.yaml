@@ -26,11 +26,64 @@ paths:
           format: int64
           type: integer
         style: simple
-      - description: Can input more than one product_id (comma separated numeric string)
+      - description: Can input more than one product_id
         explode: true
         in: query
         name: product
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Can input more than one product_url
+        explode: true
+        in: query
+        name: product_url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Product’s SKU
+        explode: true
+        in: query
+        name: sku
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Shop Identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine which page the order list should start. The minimal
+          value is 1. Page (required if shop_id is filled)
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Page per item (required if shop_id is filled). Maximun items
+          are 50 for 1 page
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: This parameter is required when the product exceeds 10.000 products
+        explode: true
+        in: query
+        name: last_sort
+        required: false
         schema:
           type: string
         style: form

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## InventoryV1FsFsIdProductInfoGet
 
-> GetProductResponse InventoryV1FsFsIdProductInfoGet(ctx, fsId).Product(product).Execute()
+> GetProductResponse InventoryV1FsFsIdProductInfoGet(ctx, fsId).Product(product).ProductUrl(productUrl).Sku(sku).ShopId(shopId).Page(page).PerPage(perPage).LastSort(lastSort).Execute()
 
 
 
@@ -31,11 +31,17 @@ import (
 
 func main() {
     fsId := int64(789) // int64 | Fulfillment service unique identifier
-    product := "product_example" // string | Can input more than one product_id (comma separated numeric string)
+    product := "product_example" // string | Can input more than one product_id (optional)
+    productUrl := "productUrl_example" // string | Can input more than one product_url (optional)
+    sku := "sku_example" // string | Product’s SKU (optional)
+    shopId := int64(789) // int64 | Shop Identifier (optional)
+    page := int64(789) // int64 | Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled) (optional)
+    perPage := int64(789) // int64 | Page per item (required if shop_id is filled). Maximun items are 50 for 1 page (optional)
+    lastSort := "lastSort_example" // string | This parameter is required when the product exceeds 10.000 products (optional)
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.InventoryV1FsFsIdProductInfoGet(context.Background(), fsId).Product(product).Execute()
+    resp, r, err := apiClient.DefaultApi.InventoryV1FsFsIdProductInfoGet(context.Background(), fsId).Product(product).ProductUrl(productUrl).Sku(sku).ShopId(shopId).Page(page).PerPage(perPage).LastSort(lastSort).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.InventoryV1FsFsIdProductInfoGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -61,7 +67,13 @@ Other parameters are passed through a pointer to a apiInventoryV1FsFsIdProductIn
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **product** | **string** | Can input more than one product_id (comma separated numeric string) | 
+ **product** | **string** | Can input more than one product_id | 
+ **productUrl** | **string** | Can input more than one product_url | 
+ **sku** | **string** | Product’s SKU | 
+ **shopId** | **int64** | Shop Identifier | 
+ **page** | **int64** | Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled) | 
+ **perPage** | **int64** | Page per item (required if shop_id is filled). Maximun items are 50 for 1 page | 
+ **lastSort** | **string** | This parameter is required when the product exceeds 10.000 products | 
 
 ### Return type
 
