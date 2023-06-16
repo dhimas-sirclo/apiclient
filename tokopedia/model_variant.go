@@ -20,9 +20,12 @@ var _ MappedNullable = &Variant{}
 
 // Variant struct for Variant
 type Variant struct {
-	CategoryId *int64 `json:"category_id,omitempty"`
-	VariantIdCombinations [][]int64 `json:"variant_id_combinations,omitempty"`
-	VariantDetails []VariantDetail `json:"variant_details,omitempty"`
+	// Variant Parent Unique Identifier
+	ParentId *int64 `json:"parent_id,omitempty"`
+	// Variant Default Child Identifier
+	DefaultChild *int64 `json:"default_child,omitempty"`
+	Variant []VariantVariant `json:"variant,omitempty"`
+	Children []VariantChildren `json:"children,omitempty"`
 }
 
 // NewVariant instantiates a new Variant object
@@ -42,100 +45,132 @@ func NewVariantWithDefaults() *Variant {
 	return &this
 }
 
-// GetCategoryId returns the CategoryId field value if set, zero value otherwise.
-func (o *Variant) GetCategoryId() int64 {
-	if o == nil || IsNil(o.CategoryId) {
+// GetParentId returns the ParentId field value if set, zero value otherwise.
+func (o *Variant) GetParentId() int64 {
+	if o == nil || IsNil(o.ParentId) {
 		var ret int64
 		return ret
 	}
-	return *o.CategoryId
+	return *o.ParentId
 }
 
-// GetCategoryIdOk returns a tuple with the CategoryId field value if set, nil otherwise
+// GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Variant) GetCategoryIdOk() (*int64, bool) {
-	if o == nil || IsNil(o.CategoryId) {
+func (o *Variant) GetParentIdOk() (*int64, bool) {
+	if o == nil || IsNil(o.ParentId) {
 		return nil, false
 	}
-	return o.CategoryId, true
+	return o.ParentId, true
 }
 
-// HasCategoryId returns a boolean if a field has been set.
-func (o *Variant) HasCategoryId() bool {
-	if o != nil && !IsNil(o.CategoryId) {
+// HasParentId returns a boolean if a field has been set.
+func (o *Variant) HasParentId() bool {
+	if o != nil && !IsNil(o.ParentId) {
 		return true
 	}
 
 	return false
 }
 
-// SetCategoryId gets a reference to the given int64 and assigns it to the CategoryId field.
-func (o *Variant) SetCategoryId(v int64) {
-	o.CategoryId = &v
+// SetParentId gets a reference to the given int64 and assigns it to the ParentId field.
+func (o *Variant) SetParentId(v int64) {
+	o.ParentId = &v
 }
 
-// GetVariantIdCombinations returns the VariantIdCombinations field value if set, zero value otherwise.
-func (o *Variant) GetVariantIdCombinations() [][]int64 {
-	if o == nil || IsNil(o.VariantIdCombinations) {
-		var ret [][]int64
+// GetDefaultChild returns the DefaultChild field value if set, zero value otherwise.
+func (o *Variant) GetDefaultChild() int64 {
+	if o == nil || IsNil(o.DefaultChild) {
+		var ret int64
 		return ret
 	}
-	return o.VariantIdCombinations
+	return *o.DefaultChild
 }
 
-// GetVariantIdCombinationsOk returns a tuple with the VariantIdCombinations field value if set, nil otherwise
+// GetDefaultChildOk returns a tuple with the DefaultChild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Variant) GetVariantIdCombinationsOk() ([][]int64, bool) {
-	if o == nil || IsNil(o.VariantIdCombinations) {
+func (o *Variant) GetDefaultChildOk() (*int64, bool) {
+	if o == nil || IsNil(o.DefaultChild) {
 		return nil, false
 	}
-	return o.VariantIdCombinations, true
+	return o.DefaultChild, true
 }
 
-// HasVariantIdCombinations returns a boolean if a field has been set.
-func (o *Variant) HasVariantIdCombinations() bool {
-	if o != nil && !IsNil(o.VariantIdCombinations) {
+// HasDefaultChild returns a boolean if a field has been set.
+func (o *Variant) HasDefaultChild() bool {
+	if o != nil && !IsNil(o.DefaultChild) {
 		return true
 	}
 
 	return false
 }
 
-// SetVariantIdCombinations gets a reference to the given [][]int64 and assigns it to the VariantIdCombinations field.
-func (o *Variant) SetVariantIdCombinations(v [][]int64) {
-	o.VariantIdCombinations = v
+// SetDefaultChild gets a reference to the given int64 and assigns it to the DefaultChild field.
+func (o *Variant) SetDefaultChild(v int64) {
+	o.DefaultChild = &v
 }
 
-// GetVariantDetails returns the VariantDetails field value if set, zero value otherwise.
-func (o *Variant) GetVariantDetails() []VariantDetail {
-	if o == nil || IsNil(o.VariantDetails) {
-		var ret []VariantDetail
+// GetVariant returns the Variant field value if set, zero value otherwise.
+func (o *Variant) GetVariant() []VariantVariant {
+	if o == nil || IsNil(o.Variant) {
+		var ret []VariantVariant
 		return ret
 	}
-	return o.VariantDetails
+	return o.Variant
 }
 
-// GetVariantDetailsOk returns a tuple with the VariantDetails field value if set, nil otherwise
+// GetVariantOk returns a tuple with the Variant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Variant) GetVariantDetailsOk() ([]VariantDetail, bool) {
-	if o == nil || IsNil(o.VariantDetails) {
+func (o *Variant) GetVariantOk() ([]VariantVariant, bool) {
+	if o == nil || IsNil(o.Variant) {
 		return nil, false
 	}
-	return o.VariantDetails, true
+	return o.Variant, true
 }
 
-// HasVariantDetails returns a boolean if a field has been set.
-func (o *Variant) HasVariantDetails() bool {
-	if o != nil && !IsNil(o.VariantDetails) {
+// HasVariant returns a boolean if a field has been set.
+func (o *Variant) HasVariant() bool {
+	if o != nil && !IsNil(o.Variant) {
 		return true
 	}
 
 	return false
 }
 
-// SetVariantDetails gets a reference to the given []VariantDetail and assigns it to the VariantDetails field.
-func (o *Variant) SetVariantDetails(v []VariantDetail) {
-	o.VariantDetails = v
+// SetVariant gets a reference to the given []VariantVariant and assigns it to the Variant field.
+func (o *Variant) SetVariant(v []VariantVariant) {
+	o.Variant = v
+}
+
+// GetChildren returns the Children field value if set, zero value otherwise.
+func (o *Variant) GetChildren() []VariantChildren {
+	if o == nil || IsNil(o.Children) {
+		var ret []VariantChildren
+		return ret
+	}
+	return o.Children
+}
+
+// GetChildrenOk returns a tuple with the Children field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Variant) GetChildrenOk() ([]VariantChildren, bool) {
+	if o == nil || IsNil(o.Children) {
+		return nil, false
+	}
+	return o.Children, true
+}
+
+// HasChildren returns a boolean if a field has been set.
+func (o *Variant) HasChildren() bool {
+	if o != nil && !IsNil(o.Children) {
+		return true
+	}
+
+	return false
+}
+
+// SetChildren gets a reference to the given []VariantChildren and assigns it to the Children field.
+func (o *Variant) SetChildren(v []VariantChildren) {
+	o.Children = v
 }
 
 func (o Variant) MarshalJSON() ([]byte, error) {
@@ -148,14 +183,17 @@ func (o Variant) MarshalJSON() ([]byte, error) {
 
 func (o Variant) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CategoryId) {
-		toSerialize["category_id"] = o.CategoryId
+	if !IsNil(o.ParentId) {
+		toSerialize["parent_id"] = o.ParentId
 	}
-	if !IsNil(o.VariantIdCombinations) {
-		toSerialize["variant_id_combinations"] = o.VariantIdCombinations
+	if !IsNil(o.DefaultChild) {
+		toSerialize["default_child"] = o.DefaultChild
 	}
-	if !IsNil(o.VariantDetails) {
-		toSerialize["variant_details"] = o.VariantDetails
+	if !IsNil(o.Variant) {
+		toSerialize["variant"] = o.Variant
+	}
+	if !IsNil(o.Children) {
+		toSerialize["children"] = o.Children
 	}
 	return toSerialize, nil
 }

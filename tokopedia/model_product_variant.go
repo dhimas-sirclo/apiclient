@@ -25,7 +25,7 @@ type ProductVariant struct {
 	// Is Product Has Variants?
 	IsVariant *bool `json:"isVariant,omitempty"`
 	// List of Product Variant ID
-	ChildrenID []int32 `json:"childrenID,omitempty"`
+	ChildrenID []int64 `json:"childrenID,omitempty"`
 }
 
 // NewProductVariant instantiates a new ProductVariant object
@@ -110,9 +110,9 @@ func (o *ProductVariant) SetIsVariant(v bool) {
 }
 
 // GetChildrenID returns the ChildrenID field value if set, zero value otherwise.
-func (o *ProductVariant) GetChildrenID() []int32 {
+func (o *ProductVariant) GetChildrenID() []int64 {
 	if o == nil || IsNil(o.ChildrenID) {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.ChildrenID
@@ -120,7 +120,7 @@ func (o *ProductVariant) GetChildrenID() []int32 {
 
 // GetChildrenIDOk returns a tuple with the ChildrenID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductVariant) GetChildrenIDOk() ([]int32, bool) {
+func (o *ProductVariant) GetChildrenIDOk() ([]int64, bool) {
 	if o == nil || IsNil(o.ChildrenID) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *ProductVariant) HasChildrenID() bool {
 	return false
 }
 
-// SetChildrenID gets a reference to the given []int32 and assigns it to the ChildrenID field.
-func (o *ProductVariant) SetChildrenID(v []int32) {
+// SetChildrenID gets a reference to the given []int64 and assigns it to the ChildrenID field.
+func (o *ProductVariant) SetChildrenID(v []int64) {
 	o.ChildrenID = v
 }
 

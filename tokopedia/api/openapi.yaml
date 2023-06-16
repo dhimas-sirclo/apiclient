@@ -98,7 +98,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetProductResponse'
+                $ref: '#/components/schemas/GetProductInfoResponse'
           description: OK
   /inventory/v2/fs/{fs_id}/category/get_variant:
     get:
@@ -134,7 +134,42 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetVariantResponse'
+                $ref: '#/components/schemas/GetCategoryVariantResponse'
+          description: OK
+  /inventory/v1/fs/{fs_id}/product/variant/{product_id}:
+    get:
+      description: This endpoint retrieves a list of variants related to a product_id.
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Product unique identifier
+        explode: false
+        in: path
+        name: product_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Default error
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProductVariantResponse'
           description: OK
 components:
   parameters:
@@ -143,6 +178,16 @@ components:
       explode: false
       in: path
       name: fs_id
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
+    product_id:
+      description: Product unique identifier
+      explode: false
+      in: path
+      name: product_id
       required: true
       schema:
         format: int64
@@ -281,6 +326,7 @@ components:
           - 15245978
           - 15245979
           items:
+            format: int64
             type: integer
           type: array
       type: object
@@ -474,12 +520,15 @@ components:
       properties:
         length:
           description: Product Length
+          format: int64
           type: integer
         width:
           description: Product Width
+          format: int64
           type: integer
         height:
           description: Product Height
+          format: int64
           type: integer
       type: object
     ProductBundle:
@@ -582,11 +631,11 @@ components:
             $ref: '#/components/schemas/ProductWarehouse'
           type: array
       type: object
-    GetProductResponse:
+    GetProductInfoResponse:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
-      - $ref: '#/components/schemas/GetProductResponse_allOf'
-    VariantUnitValue:
+      - $ref: '#/components/schemas/GetProductInfoResponse_allOf'
+    CategoryVariantUnitValue:
       properties:
         variant_unit_value_id:
           format: int64
@@ -606,7 +655,7 @@ components:
         icon:
           type: string
       type: object
-    VariantUnit:
+    CategoryVariantUnit:
       properties:
         variant_unit_id:
           format: int64
@@ -620,10 +669,10 @@ components:
           type: string
         unit_values:
           items:
-            $ref: '#/components/schemas/VariantUnitValue'
+            $ref: '#/components/schemas/CategoryVariantUnitValue'
           type: array
       type: object
-    VariantDetail:
+    CategoryVariantDetail:
       properties:
         variant_id:
           format: int64
@@ -640,13 +689,13 @@ components:
           type: integer
         units:
           items:
-            $ref: '#/components/schemas/VariantUnit'
+            $ref: '#/components/schemas/CategoryVariantUnit'
           type: array
         is_primary:
           format: int64
           type: integer
       type: object
-    Variant:
+    CategoryVariant:
       properties:
         category_id:
           format: int64
@@ -660,13 +709,140 @@ components:
           type: array
         variant_details:
           items:
-            $ref: '#/components/schemas/VariantDetail'
+            $ref: '#/components/schemas/CategoryVariantDetail'
           type: array
       type: object
-    GetVariantResponse:
+    GetCategoryVariantResponse:
       allOf:
       - $ref: '#/components/schemas/BaseResponse'
-      - $ref: '#/components/schemas/GetVariantResponse_allOf'
+      - $ref: '#/components/schemas/GetCategoryVariantResponse_allOf'
+    VariantOption:
+      properties:
+        id:
+          format: int64
+          type: integer
+        value:
+          type: string
+        hex:
+          type: string
+      type: object
+    VariantVariant:
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+        unit_name:
+          type: string
+        position:
+          format: int64
+          type: integer
+        option:
+          items:
+            $ref: '#/components/schemas/VariantOption'
+          type: array
+      type: object
+    VariantPicture:
+      properties:
+        original:
+          type: string
+        thumbnail:
+          type: string
+      type: object
+    VariantCampaign:
+      properties:
+        is_active:
+          type: boolean
+        discounted_percentage:
+          format: int64
+          type: integer
+        discounted_price:
+          format: int64
+          type: integer
+        discounted_price_fmt:
+          type: string
+        campaign_type:
+          format: int64
+          type: integer
+        campaign_type_name:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+      type: object
+    VariantChildren:
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        product_id:
+          format: int64
+          type: integer
+        price:
+          format: int64
+          type: integer
+        price_fmt:
+          type: string
+        stock:
+          format: int64
+          type: integer
+        main_stock:
+          format: int64
+          type: integer
+        reserve_stock:
+          format: int64
+          type: integer
+        sku:
+          type: string
+        option_ids:
+          items:
+            format: int64
+            type: integer
+          type: array
+        enabled:
+          type: boolean
+        is_buyable:
+          type: boolean
+        is_wishlist:
+          type: boolean
+        picture:
+          $ref: '#/components/schemas/VariantPicture'
+        campaign:
+          $ref: '#/components/schemas/VariantCampaign'
+        always_available:
+          type: boolean
+        stock_wording:
+          type: string
+        other_variant_stock:
+          type: string
+        is_limited_stock:
+          type: boolean
+      type: object
+    Variant:
+      properties:
+        parent_id:
+          description: Variant Parent Unique Identifier
+          format: int64
+          type: integer
+        default_child:
+          description: Variant Default Child Identifier
+          format: int64
+          type: integer
+        variant:
+          items:
+            $ref: '#/components/schemas/VariantVariant'
+          type: array
+        children:
+          items:
+            $ref: '#/components/schemas/VariantChildren'
+          type: array
+      type: object
+    GetProductVariantResponse:
+      allOf:
+      - $ref: '#/components/schemas/BaseResponse'
+      - $ref: '#/components/schemas/GetProductVariantResponse_allOf'
     ErrorHeader_allOf:
       properties:
         reason:
@@ -685,7 +861,7 @@ components:
           type: string
       type: object
       example: null
-    GetProductResponse_allOf:
+    GetProductInfoResponse_allOf:
       properties:
         data:
           items:
@@ -693,7 +869,13 @@ components:
           type: array
       type: object
       example: null
-    GetVariantResponse_allOf:
+    GetCategoryVariantResponse_allOf:
+      properties:
+        data:
+          $ref: '#/components/schemas/CategoryVariant'
+      type: object
+      example: null
+    GetProductVariantResponse_allOf:
       properties:
         data:
           $ref: '#/components/schemas/Variant'

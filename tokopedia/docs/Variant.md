@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CategoryId** | Pointer to **int64** |  | [optional] 
-**VariantIdCombinations** | Pointer to **[][]int64** |  | [optional] 
-**VariantDetails** | Pointer to [**[]VariantDetail**](VariantDetail.md) |  | [optional] 
+**ParentId** | Pointer to **int64** | Variant Parent Unique Identifier | [optional] 
+**DefaultChild** | Pointer to **int64** | Variant Default Child Identifier | [optional] 
+**Variant** | Pointer to [**[]VariantVariant**](VariantVariant.md) |  | [optional] 
+**Children** | Pointer to [**[]VariantChildren**](VariantChildren.md) |  | [optional] 
 
 ## Methods
 
@@ -27,80 +28,105 @@ NewVariantWithDefaults instantiates a new Variant object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCategoryId
+### GetParentId
 
-`func (o *Variant) GetCategoryId() int64`
+`func (o *Variant) GetParentId() int64`
 
-GetCategoryId returns the CategoryId field if non-nil, zero value otherwise.
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
-### GetCategoryIdOk
+### GetParentIdOk
 
-`func (o *Variant) GetCategoryIdOk() (*int64, bool)`
+`func (o *Variant) GetParentIdOk() (*int64, bool)`
 
-GetCategoryIdOk returns a tuple with the CategoryId field if it's non-nil, zero value otherwise
+GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCategoryId
+### SetParentId
 
-`func (o *Variant) SetCategoryId(v int64)`
+`func (o *Variant) SetParentId(v int64)`
 
-SetCategoryId sets CategoryId field to given value.
+SetParentId sets ParentId field to given value.
 
-### HasCategoryId
+### HasParentId
 
-`func (o *Variant) HasCategoryId() bool`
+`func (o *Variant) HasParentId() bool`
 
-HasCategoryId returns a boolean if a field has been set.
+HasParentId returns a boolean if a field has been set.
 
-### GetVariantIdCombinations
+### GetDefaultChild
 
-`func (o *Variant) GetVariantIdCombinations() [][]int64`
+`func (o *Variant) GetDefaultChild() int64`
 
-GetVariantIdCombinations returns the VariantIdCombinations field if non-nil, zero value otherwise.
+GetDefaultChild returns the DefaultChild field if non-nil, zero value otherwise.
 
-### GetVariantIdCombinationsOk
+### GetDefaultChildOk
 
-`func (o *Variant) GetVariantIdCombinationsOk() (*[][]int64, bool)`
+`func (o *Variant) GetDefaultChildOk() (*int64, bool)`
 
-GetVariantIdCombinationsOk returns a tuple with the VariantIdCombinations field if it's non-nil, zero value otherwise
+GetDefaultChildOk returns a tuple with the DefaultChild field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVariantIdCombinations
+### SetDefaultChild
 
-`func (o *Variant) SetVariantIdCombinations(v [][]int64)`
+`func (o *Variant) SetDefaultChild(v int64)`
 
-SetVariantIdCombinations sets VariantIdCombinations field to given value.
+SetDefaultChild sets DefaultChild field to given value.
 
-### HasVariantIdCombinations
+### HasDefaultChild
 
-`func (o *Variant) HasVariantIdCombinations() bool`
+`func (o *Variant) HasDefaultChild() bool`
 
-HasVariantIdCombinations returns a boolean if a field has been set.
+HasDefaultChild returns a boolean if a field has been set.
 
-### GetVariantDetails
+### GetVariant
 
-`func (o *Variant) GetVariantDetails() []VariantDetail`
+`func (o *Variant) GetVariant() []VariantVariant`
 
-GetVariantDetails returns the VariantDetails field if non-nil, zero value otherwise.
+GetVariant returns the Variant field if non-nil, zero value otherwise.
 
-### GetVariantDetailsOk
+### GetVariantOk
 
-`func (o *Variant) GetVariantDetailsOk() (*[]VariantDetail, bool)`
+`func (o *Variant) GetVariantOk() (*[]VariantVariant, bool)`
 
-GetVariantDetailsOk returns a tuple with the VariantDetails field if it's non-nil, zero value otherwise
+GetVariantOk returns a tuple with the Variant field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetVariantDetails
+### SetVariant
 
-`func (o *Variant) SetVariantDetails(v []VariantDetail)`
+`func (o *Variant) SetVariant(v []VariantVariant)`
 
-SetVariantDetails sets VariantDetails field to given value.
+SetVariant sets Variant field to given value.
 
-### HasVariantDetails
+### HasVariant
 
-`func (o *Variant) HasVariantDetails() bool`
+`func (o *Variant) HasVariant() bool`
 
-HasVariantDetails returns a boolean if a field has been set.
+HasVariant returns a boolean if a field has been set.
+
+### GetChildren
+
+`func (o *Variant) GetChildren() []VariantChildren`
+
+GetChildren returns the Children field if non-nil, zero value otherwise.
+
+### GetChildrenOk
+
+`func (o *Variant) GetChildrenOk() (*[]VariantChildren, bool)`
+
+GetChildrenOk returns a tuple with the Children field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChildren
+
+`func (o *Variant) SetChildren(v []VariantChildren)`
+
+SetChildren sets Children field to given value.
+
+### HasChildren
+
+`func (o *Variant) HasChildren() bool`
+
+HasChildren returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

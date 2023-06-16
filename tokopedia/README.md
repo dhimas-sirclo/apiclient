@@ -79,6 +79,7 @@ All URIs are relative to *https://fs.tokopedia.net*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**InventoryV1FsFsIdProductInfoGet**](docs/DefaultApi.md#inventoryv1fsfsidproductinfoget) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
+*DefaultApi* | [**InventoryV1FsFsIdProductVariantProductIdGet**](docs/DefaultApi.md#inventoryv1fsfsidproductvariantproductidget) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
 *DefaultApi* | [**InventoryV2FsFsIdCategoryGetVariantGet**](docs/DefaultApi.md#inventoryv2fsfsidcategorygetvariantget) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 
 
@@ -86,12 +87,18 @@ Class | Method | HTTP request | Description
 
  - [BaseErrorResponse](docs/BaseErrorResponse.md)
  - [BaseResponse](docs/BaseResponse.md)
+ - [CategoryVariant](docs/CategoryVariant.md)
+ - [CategoryVariantDetail](docs/CategoryVariantDetail.md)
+ - [CategoryVariantUnit](docs/CategoryVariantUnit.md)
+ - [CategoryVariantUnitValue](docs/CategoryVariantUnitValue.md)
  - [ErrorHeader](docs/ErrorHeader.md)
  - [ErrorHeaderAllOf](docs/ErrorHeaderAllOf.md)
- - [GetProductResponse](docs/GetProductResponse.md)
- - [GetProductResponseAllOf](docs/GetProductResponseAllOf.md)
- - [GetVariantResponse](docs/GetVariantResponse.md)
- - [GetVariantResponseAllOf](docs/GetVariantResponseAllOf.md)
+ - [GetCategoryVariantResponse](docs/GetCategoryVariantResponse.md)
+ - [GetCategoryVariantResponseAllOf](docs/GetCategoryVariantResponseAllOf.md)
+ - [GetProductInfoResponse](docs/GetProductInfoResponse.md)
+ - [GetProductInfoResponseAllOf](docs/GetProductInfoResponseAllOf.md)
+ - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
+ - [GetProductVariantResponseAllOf](docs/GetProductVariantResponseAllOf.md)
  - [Header](docs/Header.md)
  - [Product](docs/Product.md)
  - [ProductBasic](docs/ProductBasic.md)
@@ -116,9 +123,11 @@ Class | Method | HTTP request | Description
  - [ProductWholesale](docs/ProductWholesale.md)
  - [ProductWholesalePrice](docs/ProductWholesalePrice.md)
  - [Variant](docs/Variant.md)
- - [VariantDetail](docs/VariantDetail.md)
- - [VariantUnit](docs/VariantUnit.md)
- - [VariantUnitValue](docs/VariantUnitValue.md)
+ - [VariantCampaign](docs/VariantCampaign.md)
+ - [VariantChildren](docs/VariantChildren.md)
+ - [VariantOption](docs/VariantOption.md)
+ - [VariantPicture](docs/VariantPicture.md)
+ - [VariantVariant](docs/VariantVariant.md)
 
 
 ## Documentation For Authorization

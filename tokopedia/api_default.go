@@ -35,8 +35,24 @@ type DefaultApi interface {
 	InventoryV1FsFsIdProductInfoGet(ctx context.Context, fsId int64) ApiInventoryV1FsFsIdProductInfoGetRequest
 
 	// InventoryV1FsFsIdProductInfoGetExecute executes the request
-	//  @return GetProductResponse
-	InventoryV1FsFsIdProductInfoGetExecute(r ApiInventoryV1FsFsIdProductInfoGetRequest) (*GetProductResponse, *http.Response, error)
+	//  @return GetProductInfoResponse
+	InventoryV1FsFsIdProductInfoGetExecute(r ApiInventoryV1FsFsIdProductInfoGetRequest) (*GetProductInfoResponse, *http.Response, error)
+
+	/*
+	InventoryV1FsFsIdProductVariantProductIdGet Method for InventoryV1FsFsIdProductVariantProductIdGet
+
+	This endpoint retrieves a list of variants related to a product_id.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@param productId Product unique identifier
+	@return ApiInventoryV1FsFsIdProductVariantProductIdGetRequest
+	*/
+	InventoryV1FsFsIdProductVariantProductIdGet(ctx context.Context, fsId int64, productId int64) ApiInventoryV1FsFsIdProductVariantProductIdGetRequest
+
+	// InventoryV1FsFsIdProductVariantProductIdGetExecute executes the request
+	//  @return GetProductVariantResponse
+	InventoryV1FsFsIdProductVariantProductIdGetExecute(r ApiInventoryV1FsFsIdProductVariantProductIdGetRequest) (*GetProductVariantResponse, *http.Response, error)
 
 	/*
 	InventoryV2FsFsIdCategoryGetVariantGet Method for InventoryV2FsFsIdCategoryGetVariantGet
@@ -50,8 +66,8 @@ type DefaultApi interface {
 	InventoryV2FsFsIdCategoryGetVariantGet(ctx context.Context, fsId int64) ApiInventoryV2FsFsIdCategoryGetVariantGetRequest
 
 	// InventoryV2FsFsIdCategoryGetVariantGetExecute executes the request
-	//  @return GetVariantResponse
-	InventoryV2FsFsIdCategoryGetVariantGetExecute(r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) (*GetVariantResponse, *http.Response, error)
+	//  @return GetCategoryVariantResponse
+	InventoryV2FsFsIdCategoryGetVariantGetExecute(r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) (*GetCategoryVariantResponse, *http.Response, error)
 }
 
 // DefaultApiService DefaultApi service
@@ -112,7 +128,7 @@ func (r ApiInventoryV1FsFsIdProductInfoGetRequest) LastSort(lastSort string) Api
 	return r
 }
 
-func (r ApiInventoryV1FsFsIdProductInfoGetRequest) Execute() (*GetProductResponse, *http.Response, error) {
+func (r ApiInventoryV1FsFsIdProductInfoGetRequest) Execute() (*GetProductInfoResponse, *http.Response, error) {
 	return r.ApiService.InventoryV1FsFsIdProductInfoGetExecute(r)
 }
 
@@ -134,13 +150,13 @@ func (a *DefaultApiService) InventoryV1FsFsIdProductInfoGet(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return GetProductResponse
-func (a *DefaultApiService) InventoryV1FsFsIdProductInfoGetExecute(r ApiInventoryV1FsFsIdProductInfoGetRequest) (*GetProductResponse, *http.Response, error) {
+//  @return GetProductInfoResponse
+func (a *DefaultApiService) InventoryV1FsFsIdProductInfoGetExecute(r ApiInventoryV1FsFsIdProductInfoGetRequest) (*GetProductInfoResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetProductResponse
+		localVarReturnValue  *GetProductInfoResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InventoryV1FsFsIdProductInfoGet")
@@ -238,6 +254,121 @@ func (a *DefaultApiService) InventoryV1FsFsIdProductInfoGetExecute(r ApiInventor
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiInventoryV1FsFsIdProductVariantProductIdGetRequest struct {
+	ctx context.Context
+	ApiService DefaultApi
+	fsId int64
+	productId int64
+}
+
+func (r ApiInventoryV1FsFsIdProductVariantProductIdGetRequest) Execute() (*GetProductVariantResponse, *http.Response, error) {
+	return r.ApiService.InventoryV1FsFsIdProductVariantProductIdGetExecute(r)
+}
+
+/*
+InventoryV1FsFsIdProductVariantProductIdGet Method for InventoryV1FsFsIdProductVariantProductIdGet
+
+This endpoint retrieves a list of variants related to a product_id.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @param productId Product unique identifier
+ @return ApiInventoryV1FsFsIdProductVariantProductIdGetRequest
+*/
+func (a *DefaultApiService) InventoryV1FsFsIdProductVariantProductIdGet(ctx context.Context, fsId int64, productId int64) ApiInventoryV1FsFsIdProductVariantProductIdGetRequest {
+	return ApiInventoryV1FsFsIdProductVariantProductIdGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+		productId: productId,
+	}
+}
+
+// Execute executes the request
+//  @return GetProductVariantResponse
+func (a *DefaultApiService) InventoryV1FsFsIdProductVariantProductIdGetExecute(r ApiInventoryV1FsFsIdProductVariantProductIdGetRequest) (*GetProductVariantResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetProductVariantResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InventoryV1FsFsIdProductVariantProductIdGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/product/variant/{product_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"product_id"+"}", url.PathEscape(parameterValueToString(r.productId, "productId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiInventoryV2FsFsIdCategoryGetVariantGetRequest struct {
 	ctx context.Context
 	ApiService DefaultApi
@@ -251,7 +382,7 @@ func (r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) CatId(catId int64) Api
 	return r
 }
 
-func (r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) Execute() (*GetVariantResponse, *http.Response, error) {
+func (r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) Execute() (*GetCategoryVariantResponse, *http.Response, error) {
 	return r.ApiService.InventoryV2FsFsIdCategoryGetVariantGetExecute(r)
 }
 
@@ -273,13 +404,13 @@ func (a *DefaultApiService) InventoryV2FsFsIdCategoryGetVariantGet(ctx context.C
 }
 
 // Execute executes the request
-//  @return GetVariantResponse
-func (a *DefaultApiService) InventoryV2FsFsIdCategoryGetVariantGetExecute(r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) (*GetVariantResponse, *http.Response, error) {
+//  @return GetCategoryVariantResponse
+func (a *DefaultApiService) InventoryV2FsFsIdCategoryGetVariantGetExecute(r ApiInventoryV2FsFsIdCategoryGetVariantGetRequest) (*GetCategoryVariantResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetVariantResponse
+		localVarReturnValue  *GetCategoryVariantResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DefaultApiService.InventoryV2FsFsIdCategoryGetVariantGet")
