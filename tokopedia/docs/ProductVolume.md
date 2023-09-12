@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Length** | Pointer to **int64** | Product Length | [optional] 
-**Width** | Pointer to **int64** | Product Width | [optional] 
-**Height** | Pointer to **int64** | Product Height | [optional] 
+**Length** | Pointer to **int32** | Product Length | [optional] 
+**Width** | Pointer to **int32** | Product Width | [optional] 
+**Height** | Pointer to **int32** | Product Height | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetLength
 
-`func (o *ProductVolume) GetLength() int64`
+`func (o *ProductVolume) GetLength() int32`
 
 GetLength returns the Length field if non-nil, zero value otherwise.
 
 ### GetLengthOk
 
-`func (o *ProductVolume) GetLengthOk() (*int64, bool)`
+`func (o *ProductVolume) GetLengthOk() (*int32, bool)`
 
 GetLengthOk returns a tuple with the Length field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLength
 
-`func (o *ProductVolume) SetLength(v int64)`
+`func (o *ProductVolume) SetLength(v int32)`
 
 SetLength sets Length field to given value.
 
@@ -54,20 +54,20 @@ HasLength returns a boolean if a field has been set.
 
 ### GetWidth
 
-`func (o *ProductVolume) GetWidth() int64`
+`func (o *ProductVolume) GetWidth() int32`
 
 GetWidth returns the Width field if non-nil, zero value otherwise.
 
 ### GetWidthOk
 
-`func (o *ProductVolume) GetWidthOk() (*int64, bool)`
+`func (o *ProductVolume) GetWidthOk() (*int32, bool)`
 
 GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWidth
 
-`func (o *ProductVolume) SetWidth(v int64)`
+`func (o *ProductVolume) SetWidth(v int32)`
 
 SetWidth sets Width field to given value.
 
@@ -79,20 +79,20 @@ HasWidth returns a boolean if a field has been set.
 
 ### GetHeight
 
-`func (o *ProductVolume) GetHeight() int64`
+`func (o *ProductVolume) GetHeight() int32`
 
 GetHeight returns the Height field if non-nil, zero value otherwise.
 
 ### GetHeightOk
 
-`func (o *ProductVolume) GetHeightOk() (*int64, bool)`
+`func (o *ProductVolume) GetHeightOk() (*int32, bool)`
 
 GetHeightOk returns a tuple with the Height field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeight
 
-`func (o *ProductVolume) SetHeight(v int64)`
+`func (o *ProductVolume) SetHeight(v int32)`
 
 SetHeight sets Height field to given value.
 

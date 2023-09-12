@@ -1,16 +1,16 @@
-# \DefaultApi
+# \AuthenticationAPI
 
-All URIs are relative to *https://accounts.tokopedia.com*
+All URIs are relative to *https://fs.tokopedia.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**TokenPost**](DefaultApi.md#TokenPost) | **Post** /token | 
+[**Authentication**](AuthenticationAPI.md#Authentication) | **Post** /token | 
 
 
 
-## TokenPost
+## Authentication
 
-> Token TokenPost(ctx).GrantType(grantType).Execute()
+> Token Authentication(ctx).GrantType(grantType).Execute()
 
 
 
@@ -25,7 +25,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/dhimas-sirclo/apiclient/tokopediaauth"
+    openapiclient "github.com/dhimas-sirclo/apiclient"
 )
 
 func main() {
@@ -33,13 +33,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.DefaultApi.TokenPost(context.Background()).GrantType(grantType).Execute()
+    resp, r, err := apiClient.AuthenticationAPI.Authentication(context.Background()).GrantType(grantType).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.TokenPost``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `AuthenticationAPI.Authentication``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TokenPost`: Token
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.TokenPost`: %v\n", resp)
+    // response from `Authentication`: Token
+    fmt.Fprintf(os.Stdout, "Response from `AuthenticationAPI.Authentication`: %v\n", resp)
 }
 ```
 
@@ -49,7 +49,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiTokenPostRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiAuthenticationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

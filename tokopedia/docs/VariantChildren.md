@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
-**ProductId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
+**ProductId** | Pointer to **int32** |  | [optional] 
+**Price** | Pointer to **int32** |  | [optional] 
 **PriceFmt** | Pointer to **string** |  | [optional] 
-**Stock** | Pointer to **int64** |  | [optional] 
-**MainStock** | Pointer to **int64** |  | [optional] 
-**ReserveStock** | Pointer to **int64** |  | [optional] 
+**Stock** | Pointer to **int32** |  | [optional] 
+**MainStock** | Pointer to **int32** |  | [optional] 
+**ReserveStock** | Pointer to **int32** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
-**OptionIds** | Pointer to **[]int64** |  | [optional] 
+**OptionIds** | Pointer to **[]int32** |  | [optional] 
 **Enabled** | Pointer to **bool** |  | [optional] 
 **IsBuyable** | Pointer to **bool** |  | [optional] 
 **IsWishlist** | Pointer to **bool** |  | [optional] 
@@ -95,20 +95,20 @@ HasUrl returns a boolean if a field has been set.
 
 ### GetProductId
 
-`func (o *VariantChildren) GetProductId() int64`
+`func (o *VariantChildren) GetProductId() int32`
 
 GetProductId returns the ProductId field if non-nil, zero value otherwise.
 
 ### GetProductIdOk
 
-`func (o *VariantChildren) GetProductIdOk() (*int64, bool)`
+`func (o *VariantChildren) GetProductIdOk() (*int32, bool)`
 
 GetProductIdOk returns a tuple with the ProductId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductId
 
-`func (o *VariantChildren) SetProductId(v int64)`
+`func (o *VariantChildren) SetProductId(v int32)`
 
 SetProductId sets ProductId field to given value.
 
@@ -120,20 +120,20 @@ HasProductId returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *VariantChildren) GetPrice() int64`
+`func (o *VariantChildren) GetPrice() int32`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *VariantChildren) GetPriceOk() (*int64, bool)`
+`func (o *VariantChildren) GetPriceOk() (*int32, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *VariantChildren) SetPrice(v int64)`
+`func (o *VariantChildren) SetPrice(v int32)`
 
 SetPrice sets Price field to given value.
 
@@ -170,20 +170,20 @@ HasPriceFmt returns a boolean if a field has been set.
 
 ### GetStock
 
-`func (o *VariantChildren) GetStock() int64`
+`func (o *VariantChildren) GetStock() int32`
 
 GetStock returns the Stock field if non-nil, zero value otherwise.
 
 ### GetStockOk
 
-`func (o *VariantChildren) GetStockOk() (*int64, bool)`
+`func (o *VariantChildren) GetStockOk() (*int32, bool)`
 
 GetStockOk returns a tuple with the Stock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStock
 
-`func (o *VariantChildren) SetStock(v int64)`
+`func (o *VariantChildren) SetStock(v int32)`
 
 SetStock sets Stock field to given value.
 
@@ -195,20 +195,20 @@ HasStock returns a boolean if a field has been set.
 
 ### GetMainStock
 
-`func (o *VariantChildren) GetMainStock() int64`
+`func (o *VariantChildren) GetMainStock() int32`
 
 GetMainStock returns the MainStock field if non-nil, zero value otherwise.
 
 ### GetMainStockOk
 
-`func (o *VariantChildren) GetMainStockOk() (*int64, bool)`
+`func (o *VariantChildren) GetMainStockOk() (*int32, bool)`
 
 GetMainStockOk returns a tuple with the MainStock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMainStock
 
-`func (o *VariantChildren) SetMainStock(v int64)`
+`func (o *VariantChildren) SetMainStock(v int32)`
 
 SetMainStock sets MainStock field to given value.
 
@@ -220,20 +220,20 @@ HasMainStock returns a boolean if a field has been set.
 
 ### GetReserveStock
 
-`func (o *VariantChildren) GetReserveStock() int64`
+`func (o *VariantChildren) GetReserveStock() int32`
 
 GetReserveStock returns the ReserveStock field if non-nil, zero value otherwise.
 
 ### GetReserveStockOk
 
-`func (o *VariantChildren) GetReserveStockOk() (*int64, bool)`
+`func (o *VariantChildren) GetReserveStockOk() (*int32, bool)`
 
 GetReserveStockOk returns a tuple with the ReserveStock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReserveStock
 
-`func (o *VariantChildren) SetReserveStock(v int64)`
+`func (o *VariantChildren) SetReserveStock(v int32)`
 
 SetReserveStock sets ReserveStock field to given value.
 
@@ -270,20 +270,20 @@ HasSku returns a boolean if a field has been set.
 
 ### GetOptionIds
 
-`func (o *VariantChildren) GetOptionIds() []int64`
+`func (o *VariantChildren) GetOptionIds() []int32`
 
 GetOptionIds returns the OptionIds field if non-nil, zero value otherwise.
 
 ### GetOptionIdsOk
 
-`func (o *VariantChildren) GetOptionIdsOk() (*[]int64, bool)`
+`func (o *VariantChildren) GetOptionIdsOk() (*[]int32, bool)`
 
 GetOptionIdsOk returns a tuple with the OptionIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOptionIds
 
-`func (o *VariantChildren) SetOptionIds(v []int64)`
+`func (o *VariantChildren) SetOptionIds(v []int32)`
 
 SetOptionIds sets OptionIds field to given value.
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BundleID** | Pointer to **int64** | Bundle Unique Identifier | [optional] 
+**BundleID** | Pointer to **int32** | Bundle Unique Identifier | [optional] 
 **Name** | Pointer to **string** | Bundle Name | [optional] 
-**Type** | Pointer to **int64** | Bundle Type | [optional] 
-**Status** | Pointer to **int64** | Bundle Status | [optional] 
-**ShopID** | Pointer to **int64** | Shop Unique Identifier | [optional] 
-**StartTimeUnix** | Pointer to **int64** | Bundle Start Time | [optional] 
-**StopTimeUnix** | Pointer to **int64** | Bundle End Time | [optional] 
+**Type** | Pointer to **int32** | Bundle Type | [optional] 
+**Status** | Pointer to **int32** | Bundle Status | [optional] 
+**ShopID** | Pointer to **int32** | Shop Unique Identifier | [optional] 
+**StartTimeUnix** | Pointer to **int32** | Bundle Start Time | [optional] 
+**StopTimeUnix** | Pointer to **int32** | Bundle End Time | [optional] 
 
 ## Methods
 
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetBundleID
 
-`func (o *ProductBundle) GetBundleID() int64`
+`func (o *ProductBundle) GetBundleID() int32`
 
 GetBundleID returns the BundleID field if non-nil, zero value otherwise.
 
 ### GetBundleIDOk
 
-`func (o *ProductBundle) GetBundleIDOk() (*int64, bool)`
+`func (o *ProductBundle) GetBundleIDOk() (*int32, bool)`
 
 GetBundleIDOk returns a tuple with the BundleID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBundleID
 
-`func (o *ProductBundle) SetBundleID(v int64)`
+`func (o *ProductBundle) SetBundleID(v int32)`
 
 SetBundleID sets BundleID field to given value.
 
@@ -83,20 +83,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *ProductBundle) GetType() int64`
+`func (o *ProductBundle) GetType() int32`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *ProductBundle) GetTypeOk() (*int64, bool)`
+`func (o *ProductBundle) GetTypeOk() (*int32, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *ProductBundle) SetType(v int64)`
+`func (o *ProductBundle) SetType(v int32)`
 
 SetType sets Type field to given value.
 
@@ -108,20 +108,20 @@ HasType returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *ProductBundle) GetStatus() int64`
+`func (o *ProductBundle) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ProductBundle) GetStatusOk() (*int64, bool)`
+`func (o *ProductBundle) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ProductBundle) SetStatus(v int64)`
+`func (o *ProductBundle) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
@@ -133,20 +133,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetShopID
 
-`func (o *ProductBundle) GetShopID() int64`
+`func (o *ProductBundle) GetShopID() int32`
 
 GetShopID returns the ShopID field if non-nil, zero value otherwise.
 
 ### GetShopIDOk
 
-`func (o *ProductBundle) GetShopIDOk() (*int64, bool)`
+`func (o *ProductBundle) GetShopIDOk() (*int32, bool)`
 
 GetShopIDOk returns a tuple with the ShopID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShopID
 
-`func (o *ProductBundle) SetShopID(v int64)`
+`func (o *ProductBundle) SetShopID(v int32)`
 
 SetShopID sets ShopID field to given value.
 
@@ -158,20 +158,20 @@ HasShopID returns a boolean if a field has been set.
 
 ### GetStartTimeUnix
 
-`func (o *ProductBundle) GetStartTimeUnix() int64`
+`func (o *ProductBundle) GetStartTimeUnix() int32`
 
 GetStartTimeUnix returns the StartTimeUnix field if non-nil, zero value otherwise.
 
 ### GetStartTimeUnixOk
 
-`func (o *ProductBundle) GetStartTimeUnixOk() (*int64, bool)`
+`func (o *ProductBundle) GetStartTimeUnixOk() (*int32, bool)`
 
 GetStartTimeUnixOk returns a tuple with the StartTimeUnix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartTimeUnix
 
-`func (o *ProductBundle) SetStartTimeUnix(v int64)`
+`func (o *ProductBundle) SetStartTimeUnix(v int32)`
 
 SetStartTimeUnix sets StartTimeUnix field to given value.
 
@@ -183,20 +183,20 @@ HasStartTimeUnix returns a boolean if a field has been set.
 
 ### GetStopTimeUnix
 
-`func (o *ProductBundle) GetStopTimeUnix() int64`
+`func (o *ProductBundle) GetStopTimeUnix() int32`
 
 GetStopTimeUnix returns the StopTimeUnix field if non-nil, zero value otherwise.
 
 ### GetStopTimeUnixOk
 
-`func (o *ProductBundle) GetStopTimeUnixOk() (*int64, bool)`
+`func (o *ProductBundle) GetStopTimeUnixOk() (*int32, bool)`
 
 GetStopTimeUnixOk returns a tuple with the StopTimeUnix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStopTimeUnix
 
-`func (o *ProductBundle) SetStopTimeUnix(v int64)`
+`func (o *ProductBundle) SetStopTimeUnix(v int32)`
 
 SetStopTimeUnix sets StopTimeUnix field to given value.
 

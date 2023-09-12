@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CategoryId** | Pointer to **int64** |  | [optional] 
-**VariantIdCombinations** | Pointer to **[][]int64** |  | [optional] 
+**CategoryId** | Pointer to **int32** |  | [optional] 
+**VariantIdCombinations** | Pointer to **[][]int32** |  | [optional] 
 **VariantDetails** | Pointer to [**[]CategoryVariantDetail**](CategoryVariantDetail.md) |  | [optional] 
 
 ## Methods
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCategoryId
 
-`func (o *CategoryVariant) GetCategoryId() int64`
+`func (o *CategoryVariant) GetCategoryId() int32`
 
 GetCategoryId returns the CategoryId field if non-nil, zero value otherwise.
 
 ### GetCategoryIdOk
 
-`func (o *CategoryVariant) GetCategoryIdOk() (*int64, bool)`
+`func (o *CategoryVariant) GetCategoryIdOk() (*int32, bool)`
 
 GetCategoryIdOk returns a tuple with the CategoryId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCategoryId
 
-`func (o *CategoryVariant) SetCategoryId(v int64)`
+`func (o *CategoryVariant) SetCategoryId(v int32)`
 
 SetCategoryId sets CategoryId field to given value.
 
@@ -54,20 +54,20 @@ HasCategoryId returns a boolean if a field has been set.
 
 ### GetVariantIdCombinations
 
-`func (o *CategoryVariant) GetVariantIdCombinations() [][]int64`
+`func (o *CategoryVariant) GetVariantIdCombinations() [][]int32`
 
 GetVariantIdCombinations returns the VariantIdCombinations field if non-nil, zero value otherwise.
 
 ### GetVariantIdCombinationsOk
 
-`func (o *CategoryVariant) GetVariantIdCombinationsOk() (*[][]int64, bool)`
+`func (o *CategoryVariant) GetVariantIdCombinationsOk() (*[][]int32, bool)`
 
 GetVariantIdCombinationsOk returns a tuple with the VariantIdCombinations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariantIdCombinations
 
-`func (o *CategoryVariant) SetVariantIdCombinations(v [][]int64)`
+`func (o *CategoryVariant) SetVariantIdCombinations(v [][]int32)`
 
 SetVariantIdCombinations sets VariantIdCombinations field to given value.
 

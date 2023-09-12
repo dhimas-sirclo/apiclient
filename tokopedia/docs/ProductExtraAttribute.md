@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MinOrder** | Pointer to **int64** | Minimum Order | [optional] 
-**LastUpdateCategory** | Pointer to **int64** | Product Category Last Updated time | [optional] 
+**MinOrder** | Pointer to **int32** | Minimum Order | [optional] 
+**LastUpdateCategory** | Pointer to **int32** | Product Category Last Updated time | [optional] 
 **IsEligibleCOD** | Pointer to **bool** | Is Product Eligible for COD? | [optional] 
 **IsOnCampaign** | Pointer to **bool** | Is Product on Campaign? | [optional] 
 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMinOrder
 
-`func (o *ProductExtraAttribute) GetMinOrder() int64`
+`func (o *ProductExtraAttribute) GetMinOrder() int32`
 
 GetMinOrder returns the MinOrder field if non-nil, zero value otherwise.
 
 ### GetMinOrderOk
 
-`func (o *ProductExtraAttribute) GetMinOrderOk() (*int64, bool)`
+`func (o *ProductExtraAttribute) GetMinOrderOk() (*int32, bool)`
 
 GetMinOrderOk returns a tuple with the MinOrder field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMinOrder
 
-`func (o *ProductExtraAttribute) SetMinOrder(v int64)`
+`func (o *ProductExtraAttribute) SetMinOrder(v int32)`
 
 SetMinOrder sets MinOrder field to given value.
 
@@ -55,20 +55,20 @@ HasMinOrder returns a boolean if a field has been set.
 
 ### GetLastUpdateCategory
 
-`func (o *ProductExtraAttribute) GetLastUpdateCategory() int64`
+`func (o *ProductExtraAttribute) GetLastUpdateCategory() int32`
 
 GetLastUpdateCategory returns the LastUpdateCategory field if non-nil, zero value otherwise.
 
 ### GetLastUpdateCategoryOk
 
-`func (o *ProductExtraAttribute) GetLastUpdateCategoryOk() (*int64, bool)`
+`func (o *ProductExtraAttribute) GetLastUpdateCategoryOk() (*int32, bool)`
 
 GetLastUpdateCategoryOk returns a tuple with the LastUpdateCategory field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastUpdateCategory
 
-`func (o *ProductExtraAttribute) SetLastUpdateCategory(v int64)`
+`func (o *ProductExtraAttribute) SetLastUpdateCategory(v int32)`
 
 SetLastUpdateCategory sets LastUpdateCategory field to given value.
 

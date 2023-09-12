@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsActive** | Pointer to **bool** |  | [optional] 
-**DiscountedPercentage** | Pointer to **int64** |  | [optional] 
-**DiscountedPrice** | Pointer to **int64** |  | [optional] 
+**DiscountedPercentage** | Pointer to **int32** |  | [optional] 
+**DiscountedPrice** | Pointer to **int32** |  | [optional] 
 **DiscountedPriceFmt** | Pointer to **string** |  | [optional] 
-**CampaignType** | Pointer to **int64** |  | [optional] 
+**CampaignType** | Pointer to **int32** |  | [optional] 
 **CampaignTypeName** | Pointer to **string** |  | [optional] 
 **StartDate** | Pointer to **string** |  | [optional] 
 **EndDate** | Pointer to **string** |  | [optional] 
@@ -59,20 +59,20 @@ HasIsActive returns a boolean if a field has been set.
 
 ### GetDiscountedPercentage
 
-`func (o *VariantCampaign) GetDiscountedPercentage() int64`
+`func (o *VariantCampaign) GetDiscountedPercentage() int32`
 
 GetDiscountedPercentage returns the DiscountedPercentage field if non-nil, zero value otherwise.
 
 ### GetDiscountedPercentageOk
 
-`func (o *VariantCampaign) GetDiscountedPercentageOk() (*int64, bool)`
+`func (o *VariantCampaign) GetDiscountedPercentageOk() (*int32, bool)`
 
 GetDiscountedPercentageOk returns a tuple with the DiscountedPercentage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountedPercentage
 
-`func (o *VariantCampaign) SetDiscountedPercentage(v int64)`
+`func (o *VariantCampaign) SetDiscountedPercentage(v int32)`
 
 SetDiscountedPercentage sets DiscountedPercentage field to given value.
 
@@ -84,20 +84,20 @@ HasDiscountedPercentage returns a boolean if a field has been set.
 
 ### GetDiscountedPrice
 
-`func (o *VariantCampaign) GetDiscountedPrice() int64`
+`func (o *VariantCampaign) GetDiscountedPrice() int32`
 
 GetDiscountedPrice returns the DiscountedPrice field if non-nil, zero value otherwise.
 
 ### GetDiscountedPriceOk
 
-`func (o *VariantCampaign) GetDiscountedPriceOk() (*int64, bool)`
+`func (o *VariantCampaign) GetDiscountedPriceOk() (*int32, bool)`
 
 GetDiscountedPriceOk returns a tuple with the DiscountedPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountedPrice
 
-`func (o *VariantCampaign) SetDiscountedPrice(v int64)`
+`func (o *VariantCampaign) SetDiscountedPrice(v int32)`
 
 SetDiscountedPrice sets DiscountedPrice field to given value.
 
@@ -134,20 +134,20 @@ HasDiscountedPriceFmt returns a boolean if a field has been set.
 
 ### GetCampaignType
 
-`func (o *VariantCampaign) GetCampaignType() int64`
+`func (o *VariantCampaign) GetCampaignType() int32`
 
 GetCampaignType returns the CampaignType field if non-nil, zero value otherwise.
 
 ### GetCampaignTypeOk
 
-`func (o *VariantCampaign) GetCampaignTypeOk() (*int64, bool)`
+`func (o *VariantCampaign) GetCampaignTypeOk() (*int32, bool)`
 
 GetCampaignTypeOk returns a tuple with the CampaignType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCampaignType
 
-`func (o *VariantCampaign) SetCampaignType(v int64)`
+`func (o *VariantCampaign) SetCampaignType(v int32)`
 
 SetCampaignType sets CampaignType field to given value.
 

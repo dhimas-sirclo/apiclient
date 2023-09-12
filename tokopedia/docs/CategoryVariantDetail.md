@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VariantId** | Pointer to **int64** |  | [optional] 
-**HasUnit** | Pointer to **int64** |  | [optional] 
+**VariantId** | Pointer to **int32** |  | [optional] 
+**HasUnit** | Pointer to **int32** |  | [optional] 
 **Identifier** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**Status** | Pointer to **int32** |  | [optional] 
 **Units** | Pointer to [**[]CategoryVariantUnit**](CategoryVariantUnit.md) |  | [optional] 
-**IsPrimary** | Pointer to **int64** |  | [optional] 
+**IsPrimary** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVariantId
 
-`func (o *CategoryVariantDetail) GetVariantId() int64`
+`func (o *CategoryVariantDetail) GetVariantId() int32`
 
 GetVariantId returns the VariantId field if non-nil, zero value otherwise.
 
 ### GetVariantIdOk
 
-`func (o *CategoryVariantDetail) GetVariantIdOk() (*int64, bool)`
+`func (o *CategoryVariantDetail) GetVariantIdOk() (*int32, bool)`
 
 GetVariantIdOk returns a tuple with the VariantId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariantId
 
-`func (o *CategoryVariantDetail) SetVariantId(v int64)`
+`func (o *CategoryVariantDetail) SetVariantId(v int32)`
 
 SetVariantId sets VariantId field to given value.
 
@@ -58,20 +58,20 @@ HasVariantId returns a boolean if a field has been set.
 
 ### GetHasUnit
 
-`func (o *CategoryVariantDetail) GetHasUnit() int64`
+`func (o *CategoryVariantDetail) GetHasUnit() int32`
 
 GetHasUnit returns the HasUnit field if non-nil, zero value otherwise.
 
 ### GetHasUnitOk
 
-`func (o *CategoryVariantDetail) GetHasUnitOk() (*int64, bool)`
+`func (o *CategoryVariantDetail) GetHasUnitOk() (*int32, bool)`
 
 GetHasUnitOk returns a tuple with the HasUnit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHasUnit
 
-`func (o *CategoryVariantDetail) SetHasUnit(v int64)`
+`func (o *CategoryVariantDetail) SetHasUnit(v int32)`
 
 SetHasUnit sets HasUnit field to given value.
 
@@ -133,20 +133,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *CategoryVariantDetail) GetStatus() int64`
+`func (o *CategoryVariantDetail) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *CategoryVariantDetail) GetStatusOk() (*int64, bool)`
+`func (o *CategoryVariantDetail) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *CategoryVariantDetail) SetStatus(v int64)`
+`func (o *CategoryVariantDetail) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
@@ -183,20 +183,20 @@ HasUnits returns a boolean if a field has been set.
 
 ### GetIsPrimary
 
-`func (o *CategoryVariantDetail) GetIsPrimary() int64`
+`func (o *CategoryVariantDetail) GetIsPrimary() int32`
 
 GetIsPrimary returns the IsPrimary field if non-nil, zero value otherwise.
 
 ### GetIsPrimaryOk
 
-`func (o *CategoryVariantDetail) GetIsPrimaryOk() (*int64, bool)`
+`func (o *CategoryVariantDetail) GetIsPrimaryOk() (*int32, bool)`
 
 GetIsPrimaryOk returns a tuple with the IsPrimary field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIsPrimary
 
-`func (o *CategoryVariantDetail) SetIsPrimary(v int64)`
+`func (o *CategoryVariantDetail) SetIsPrimary(v int32)`
 
 SetIsPrimary sets IsPrimary field to given value.
 

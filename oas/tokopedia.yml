@@ -1,6 +1,7 @@
 openapi: "3.0.2"
 info:
-  title: Tokopedia
+  title: Tokopedia API
+  description: Tokopedia API
   version: "1.0"
   contact:
     email: dev@sirclo.com
@@ -8,14 +9,30 @@ info:
     url: https://sirclo.com
 servers:
   - url: https://fs.tokopedia.net
+    description: Seller API
+  - url: https://accounts.tokopedia.com
+    description: Authentication
 components:
   schemas:
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: "LSPr7x7sRGaewzwZE6IcuA"
+        expires_in:
+          type: integer
+          format: int64
+          example: 2592000
+        token_type:
+          type: string
+          example: "Bearer"
     Header:
       type: object
       properties:
         process_time:
           type: number
-          format: float
+          format: double
           example: 5.871520385
         messages:
           type: string
@@ -38,7 +55,6 @@ components:
           $ref: "#/components/schemas/ErrorHeader"
         data:
           type: object
-          example: null
     BaseResponse:
       type: object
       properties:
@@ -49,17 +65,17 @@ components:
       properties:
         productID:
           type: integer
-          format: int64
+          format: int32
           description: "Product Unique Identifier"
           example: 15245228
         shopID:
           type: integer
-          format: int64
+          format: int32
           description: "Shop Unique Identifier"
           example: 480829
         status:
           type: integer
-          format: int64
+          format: int32
           description: "Product Status (e.g., -2 for Banned, -1 for Pending, 0 for Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive (Warehouse))"
           example: 1
         Name:
@@ -68,12 +84,12 @@ components:
           example: "hxh wallpaper best la zzzz"
         condition:
           type: integer
-          format: int64
+          format: int32
           description: "Product Condition (e.g., 1 for New, 2 for Used)"
           example: 1
         childCategoryID:
           type: integer
-          format: int64
+          format: int32
           description: "Product Category Unique Identifier"
           example: 1828
         shortDesc:
@@ -85,22 +101,22 @@ components:
       properties:
         value:
           type: integer
-          format: int64
+          format: int32
           description: "Product Price Value"
           example: 3000
         currency:
           type: integer
-          format: int64
+          format: int32
           description: "Product Price Currency"
           example: 1
         LastUpdateUnix:
           type: integer
-          format: int64
+          format: int32
           description: "Product Price Last Updated timer"
           example: 1557981264
         idr:
           type: integer
-          format: int64
+          format: int32
           description: "Price Value"
           example: 3000
     ProductWeight:
@@ -108,12 +124,12 @@ components:
       properties:
         value:
           type: integer
-          format: int64
+          format: int32
           description: "Product Weight Value"
           example: 5
         unit:
           type: integer
-          format: int64
+          format: int32
           description: "Weight (e.g., 1 for Gram, 2 for Kilogram)"
           example: 1
     ProductStock:
@@ -124,7 +140,7 @@ components:
           example: true
         value:
           type: integer
-          format: int64
+          format: int32
           description: "Product Total Stock"
           example: 10
     ProductStockWording:
@@ -153,13 +169,13 @@ components:
           example: [15245978, 15245979]
           items:
             type: integer
-            format: int64
+            format: int32
     ProductMenu:
       type: object
       properties:
         id:
           type: integer
-          format: int64
+          format: int32
           description: "Etalase Unique Identifier"
           example: 1405065
         Name:
@@ -173,21 +189,21 @@ components:
           type: boolean
         unit:
           type: integer
-          format: int64
+          format: int32
         day:
           type: integer
-          format: int64
+          format: int32
     ProductExtraAttribute:
       type: object
       properties:
         minOrder:
           type: integer
-          format: int64
+          format: int32
           description: "Minimum Order"
           example: 1
         lastUpdateCategory:
           type: integer
-          format: int64
+          format: int32
           description: "Product Category Last Updated time"
           example: 1554708202
         isEligibleCOD:
@@ -203,17 +219,17 @@ components:
       properties:
         value:
           type: integer
-          format: int64
+          format: int32
           description: "Product Price Value"
           example: 10000
         currency:
           type: integer
-          format: int64
+          format: int32
           description: "Product Price Currency"
           example: 1
         idr:
           type: integer
-          format: int64
+          format: int32
           description: "Price Value"
           example: 10000
     ProductWholesale:
@@ -223,18 +239,18 @@ components:
           $ref: "#/components/schemas/ProductWholesalePrice"
         minQuantity:
           type: integer
-          format: int64
+          format: int32
           example: 2
         maxQuantity:
           type: integer
-          format: int64
+          format: int32
           example: 2
     ProductCategoryTree:
       type: object
       properties:
         id:
           type: integer
-          format: int64
+          format: int32
           description: "Category Unique Identifier"
           example: 1759
         Name:
@@ -254,7 +270,7 @@ components:
       properties:
         picID:
           type: integer
-          format: int64
+          format: int32
           description: "Image Unique Identifier"
           example: 21189631
         fileName:
@@ -267,7 +283,7 @@ components:
           example: "product-1/2019/3/12/5510908"
         status:
           type: integer
-          format: int64
+          format: int32
           description: "Image Status"
           example: 2
         OriginalURL:
@@ -280,12 +296,12 @@ components:
           example: "https://ecs7.tokopedia.net/img/cache/200-square/product-1/2019/3/12/5510908/5510908_a4b5f7a2-2451-45f2-8a83-979808fe28d3_1920_1080.jpg"
         width:
           type: integer
-          format: int64
+          format: int32
           description: "Image Width Size"
           example: 1920
         height:
           type: integer
-          format: int64
+          format: int32
           description: "Image Height"
           example: 1080
         URL300:
@@ -297,22 +313,22 @@ components:
       properties:
         transactionSuccess:
           type: integer
-          format: int64
+          format: int32
           example: 3
         transactionReject:
           type: integer
-          format: int64
+          format: int32
           example: 69
         countSold:
           type: integer
-          format: int64
+          format: int32
           example: 3
     ProductStats:
       type: object
       properties:
         countView:
           type: integer
-          format: int64
+          format: int32
           example: 163
     ProductOther:
       type: object
@@ -345,55 +361,55 @@ components:
       properties:
         length:
           type: integer
-          format: int64
+          format: int32
           description: "Product Length"
         width:
           type: integer
-          format: int64
+          format: int32
           description: "Product Width"
         height:
           type: integer
-          format: int64
+          format: int32
           description: "Product Height"
     ProductBundle:
       type: object
       properties:
         bundleID:
           type: integer
-          format: int64
+          format: int32
           description: "Bundle Unique Identifier"
         Name:
           type: string
           description: "Bundle Name"
         Type:
           type: integer
-          format: int64
+          format: int32
           description: "Bundle Type"
         status:
           type: integer
-          format: int64
+          format: int32
           description: "Bundle Status"
         shopID:
           type: integer
-          format: int64
+          format: int32
           description: "Shop Unique Identifier"
         startTimeUnix:
           type: integer
-          format: int64
+          format: int32
           description: "Bundle Start Time"
         stopTimeUnix:
           type: integer
-          format: int64
+          format: int32
           description: "Bundle End Time"
     ProductWarehouse:
       type: object
       properties:
         productID:
           type: integer
-          format: int64
+          format: int32
         warehouseID:
           type: integer
-          format: int64
+          format: int32
         price:
           $ref: "#/components/schemas/ProductPrice"
         stock:
@@ -413,12 +429,12 @@ components:
           $ref: "#/components/schemas/ProductStockWording"
         main_stock:
           type: integer
-          format: int64
+          format: int32
           description: "Product Stock (Not Reserved)"
           example: 7
         reserve_stock:
           type: integer
-          format: int64
+          format: int32
           description: "Product Stock that Reserved (ex: FlashSale)"
           example: 3
         variant:
@@ -469,15 +485,15 @@ components:
       properties:
         variant_unit_value_id:
           type: integer
-          format: int64
+          format: int32
         status:
           type: integer
-          format: int64
+          format: int32
         value:
           type: string
         equivalent_value_id:
           type: integer
-          format: int64
+          format: int32
         english_value:
           type: string
         hex:
@@ -489,10 +505,10 @@ components:
       properties:
         variant_unit_id:
           type: integer
-          format: int64
+          format: int32
         status:
           type: integer
-          format: int64
+          format: int32
         unit_name:
           type: string
         unit_short_name:
@@ -506,42 +522,42 @@ components:
       properties:
         variant_id:
           type: integer
-          format: int64
+          format: int32
         has_unit:
           type: integer
-          format: int64
+          format: int32
         identifier:
           type: string
         name:
           type: string
         status:
           type: integer
-          format: int64
+          format: int32
         units:
           type: array
           items:
             $ref: "#/components/schemas/CategoryVariantUnit"
         is_primary:
           type: integer
-          format: int64
+          format: int32
     CategoryVariant:
       type: object
       properties:
         category_id:
           type: integer
-          format: int64
+          format: int32
         variant_id_combinations:
           type: array
           items:
             type: array
             items:
               type: integer
-              format: int64
+              format: int32
         variant_details:
           type: array
           items:
             $ref: "#/components/schemas/CategoryVariantDetail"
-    GetCategoryVariantResponse:
+    CategoryVariants:
       allOf:
         - $ref: "#/components/schemas/BaseResponse"
         - type: object
@@ -553,7 +569,7 @@ components:
       properties:
         id:
           type: integer
-          format: int64
+          format: int32
         value:
           type: string
         hex:
@@ -569,7 +585,7 @@ components:
           type: string
         position:
           type: integer
-          format: int64
+          format: int32
         option:
           type: array
           items:
@@ -588,15 +604,15 @@ components:
           type: boolean
         discounted_percentage:
           type: integer
-          format: int64
+          format: int32
         discounted_price:
           type: integer
-          format: int64
+          format: int32
         discounted_price_fmt:
           type: string
         campaign_type:
           type: integer
-          format: int64
+          format: int32
         campaign_type_name:
           type: string
         start_date:
@@ -612,28 +628,28 @@ components:
           type: string
         product_id:
           type: integer
-          format: int64
+          format: int32
         price:
           type: integer
-          format: int64
+          format: int32
         price_fmt:
           type: string
         stock:
           type: integer
-          format: int64
+          format: int32
         main_stock:
           type: integer
-          format: int64
+          format: int32
         reserve_stock:
           type: integer
-          format: int64
+          format: int32
         sku:
           type: string
         option_ids:
           type: array
           items:
             type: integer
-            format: int64
+            format: int32
         enabled:
           type: boolean
         is_buyable:
@@ -657,11 +673,11 @@ components:
       properties:
         parent_id:
           type: integer
-          format: int64
+          format: int32
           description: "Variant Parent Unique Identifier"
         default_child:
           type: integer
-          format: int64
+          format: int32
           description: "Variant Default Child Identifier"
         variant:
           type: array
@@ -686,7 +702,7 @@ components:
       description: "Fulfillment service unique identifier"
       schema:
         type: integer
-        format: int64
+        format: int32
     product_id:
       name: product_id
       in: path
@@ -694,17 +710,64 @@ components:
       description: "Product unique identifier"
       schema:
         type: integer
-        format: int64
+        format: int32
   securitySchemes:
+    basic:
+      type: http
+      scheme: basic
     bearer:
       type: http
       scheme: bearer
       bearerFormat: JWT
 paths:
+  /token:
+    post:
+      tags:
+        - Authentication
+      operationId: authentication
+      description: "Authentication"
+      security:
+        - basic: []
+      parameters:
+        - name: grant_type
+          in: query
+          required: true
+          schema:
+            type: string
+            default: client_credentials
+      responses:
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"
   /inventory/v1/fs/{fs_id}/product/info:
     parameters:
       - $ref: "#/components/parameters/fs_id"
     get:
+      tags:
+        - Product
+      operationId: getProductInfo
       description: "This method will retrieve single product information either by product id as parameter (choose one of those two parameters to use) from related fs_id."
       parameters:
         - name: product
@@ -731,21 +794,21 @@ paths:
           description: "Shop Identifier"
           schema:
             type: integer
-            format: int64
+            format: int32
         - name: page
           in: query
           required: false
           description: "Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled)"
           schema:
             type: integer
-            format: int64
+            format: int32
         - name: per_page
           in: query
           required: false
           description: "Page per item (required if shop_id is filled). Maximun items are 50 for 1 page"
           schema:
             type: integer
-            format: int64
+            format: int32
         - name: last_sort
           in: query
           required: false
@@ -755,12 +818,50 @@ paths:
       responses:
         "default":
           description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
@@ -769,6 +870,9 @@ paths:
     parameters:
       - $ref: "#/components/parameters/fs_id"
     get:
+      tags:
+        - Product
+      operationId: getVariantsByCategoryId
       description: "This endpoint retrieves a list of variants related to a category_id. Use this API as main source to retrieve the newest category variant data."
       parameters:
         - name: cat_id
@@ -777,38 +881,121 @@ paths:
           description: "Category unique identifier"
           schema:
             type: integer
-            format: int64
+            format: int32
       responses:
         "default":
           description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GetCategoryVariantResponse"
+                $ref: "#/components/schemas/CategoryVariants"
   /inventory/v1/fs/{fs_id}/product/variant/{product_id}:
     parameters:
       - $ref: "#/components/parameters/fs_id"
       - $ref: "#/components/parameters/product_id"
     get:
+      tags:
+        - Product
+      operationId: getVariantsByProductId
       description: "This endpoint retrieves a list of variants related to a product_id."
       responses:
         "default":
           description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BaseErrorResponse"
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetProductVariantResponse"
 security:
   - bearer: []
+
+tags:
+  - name: Authentication
+  - name: Product

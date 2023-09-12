@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VariantUnitValueId** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**VariantUnitValueId** | Pointer to **int32** |  | [optional] 
+**Status** | Pointer to **int32** |  | [optional] 
 **Value** | Pointer to **string** |  | [optional] 
-**EquivalentValueId** | Pointer to **int64** |  | [optional] 
+**EquivalentValueId** | Pointer to **int32** |  | [optional] 
 **EnglishValue** | Pointer to **string** |  | [optional] 
 **Hex** | Pointer to **string** |  | [optional] 
 **Icon** | Pointer to **string** |  | [optional] 
@@ -33,20 +33,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVariantUnitValueId
 
-`func (o *CategoryVariantUnitValue) GetVariantUnitValueId() int64`
+`func (o *CategoryVariantUnitValue) GetVariantUnitValueId() int32`
 
 GetVariantUnitValueId returns the VariantUnitValueId field if non-nil, zero value otherwise.
 
 ### GetVariantUnitValueIdOk
 
-`func (o *CategoryVariantUnitValue) GetVariantUnitValueIdOk() (*int64, bool)`
+`func (o *CategoryVariantUnitValue) GetVariantUnitValueIdOk() (*int32, bool)`
 
 GetVariantUnitValueIdOk returns a tuple with the VariantUnitValueId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariantUnitValueId
 
-`func (o *CategoryVariantUnitValue) SetVariantUnitValueId(v int64)`
+`func (o *CategoryVariantUnitValue) SetVariantUnitValueId(v int32)`
 
 SetVariantUnitValueId sets VariantUnitValueId field to given value.
 
@@ -58,20 +58,20 @@ HasVariantUnitValueId returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *CategoryVariantUnitValue) GetStatus() int64`
+`func (o *CategoryVariantUnitValue) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *CategoryVariantUnitValue) GetStatusOk() (*int64, bool)`
+`func (o *CategoryVariantUnitValue) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *CategoryVariantUnitValue) SetStatus(v int64)`
+`func (o *CategoryVariantUnitValue) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 
@@ -108,20 +108,20 @@ HasValue returns a boolean if a field has been set.
 
 ### GetEquivalentValueId
 
-`func (o *CategoryVariantUnitValue) GetEquivalentValueId() int64`
+`func (o *CategoryVariantUnitValue) GetEquivalentValueId() int32`
 
 GetEquivalentValueId returns the EquivalentValueId field if non-nil, zero value otherwise.
 
 ### GetEquivalentValueIdOk
 
-`func (o *CategoryVariantUnitValue) GetEquivalentValueIdOk() (*int64, bool)`
+`func (o *CategoryVariantUnitValue) GetEquivalentValueIdOk() (*int32, bool)`
 
 GetEquivalentValueIdOk returns a tuple with the EquivalentValueId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEquivalentValueId
 
-`func (o *CategoryVariantUnitValue) SetEquivalentValueId(v int64)`
+`func (o *CategoryVariantUnitValue) SetEquivalentValueId(v int32)`
 
 SetEquivalentValueId sets EquivalentValueId field to given value.
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProcessTime** | Pointer to **float32** |  | [optional] 
+**ProcessTime** | Pointer to **float64** |  | [optional] 
 **Messages** | Pointer to **string** |  | [optional] 
 **Reason** | Pointer to **string** |  | [optional] 
 **ErrorCode** | Pointer to **string** |  | [optional] 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetProcessTime
 
-`func (o *ErrorHeader) GetProcessTime() float32`
+`func (o *ErrorHeader) GetProcessTime() float64`
 
 GetProcessTime returns the ProcessTime field if non-nil, zero value otherwise.
 
 ### GetProcessTimeOk
 
-`func (o *ErrorHeader) GetProcessTimeOk() (*float32, bool)`
+`func (o *ErrorHeader) GetProcessTimeOk() (*float64, bool)`
 
 GetProcessTimeOk returns a tuple with the ProcessTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProcessTime
 
-`func (o *ErrorHeader) SetProcessTime(v float32)`
+`func (o *ErrorHeader) SetProcessTime(v float64)`
 
 SetProcessTime sets ProcessTime field to given value.
 

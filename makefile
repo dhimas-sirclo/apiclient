@@ -1,12 +1,11 @@
 tokopedia:
-	openapi-generator-cli generate -g go -i ./oas/tokopedia.yml -o ./tokopedia --package-name tokopedia -t ./template/go --additional-properties=generateInterfaces=true --additional-properties=isGoSubmodule=true --git-repo-id apiclient --git-host github.com --git-user-id dhimas-sirclo
-	openapi-generator-cli generate -g go -i ./oas/tokopedia.auth.yml -o ./tokopediaauth --package-name tokopediaauth -t ./template/go --additional-properties=generateInterfaces=true --additional-properties=isGoSubmodule=true --git-repo-id apiclient --git-host github.com --git-user-id dhimas-sirclo
+	docker run --rm -v $PWD:/local openapitools/openapi-generator-cli generate -i /local/oas/tokopedia.yml -g go -o /local/tokopedia -t /local/template/go-tokopedia --git-host github.com --git-user-id dhimas-sirclo --git-repo-id apiclient --package-name tokopedia --additional-properties=packageName=tokopedia,generateInterfaces=true,enumClassPrefix=true
 
 generate:
 	make tokopedia
 
 template-go:
-	openapi-generator-cli author template -g go -o ./template/go
+	docker run --rm -v $PWD:/local openapitools/openapi-generator-cli author template -g go -o /local/template/go
 
 template:
 	make template-go

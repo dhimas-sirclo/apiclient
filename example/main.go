@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	"github.com/dhimas-sirclo/apiclient/tokopedia"
-	"github.com/dhimas-sirclo/apiclient/tokopediaauth"
 )
 
 const (
@@ -18,60 +17,109 @@ const (
 )
 
 func main() {
-	authclient := tokopediaauth.NewAPIClient(tokopediaauth.NewConfiguration())
-	ctx := context.WithValue(context.Background(), tokopediaauth.ContextBasicAuth, tokopediaauth.BasicAuth{
+	client := tokopedia.NewAPIClient(tokopedia.NewConfiguration())
+	authCtx := context.WithValue(context.Background(), tokopedia.ContextBasicAuth, tokopedia.BasicAuth{
 		UserName: CLIENT_ID,
 		Password: CLIENT_SECRET,
 	})
-	tokenRes, httpRes, err := authclient.DefaultApi.TokenPost(ctx).Execute()
+	authCtx = context.WithValue(authCtx, tokopedia.ContextServerIndex, 1)
+	tokenResp, httpResp, err := client.AuthenticationAPI.
+		Authentication(authCtx).
+		GrantType("client_credentials").
+		Execute()
 	if err != nil {
 		panic(err)
 	}
-	if httpRes.StatusCode >= 400 {
-		panic(httpRes.Status)
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
 	}
-	fmt.Println(tokenRes)
+	fmt.Println(tokenResp)
 
-	client := tokopedia.NewAPIClient(tokopedia.NewConfiguration())
-	ctx = context.WithValue(context.Background(), tokopedia.ContextAccessToken, tokenRes.AccessToken)
+	maxRetry := 10
+	maxDelayMs := 8000
+
+	ctx := context.WithValue(context.Background(), tokopedia.ContextAccessToken, tokenResp.AccessToken)
 	// Get product by product id
-	res, httpRes, err := client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+	resp, httpResp, err := client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
 		Product(PRODUCT_ID).
 		Execute()
 	if err != nil {
 		panic(err)
 	}
-	if httpRes.StatusCode >= 400 {
-		panic(httpRes.Status)
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
 	}
-	fmt.Println(res)
+	fmt.Println(resp)
+
+	// Get product by product id with retry
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
+		Product(PRODUCT_ID).
+		ExecuteWithRetry(maxRetry, maxDelayMs)
+	if err != nil {
+		panic(err)
+	}
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
+	}
+	fmt.Println(resp)
 
 	// Get product by product url
-	res, httpRes, err = client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
 		ProductUrl(PRODUCT_ID).
 		Execute()
 	if err != nil {
 		panic(err)
 	}
-	if httpRes.StatusCode >= 400 {
-		panic(httpRes.Status)
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
 	}
-	fmt.Println(res)
+	fmt.Println(resp)
+
+	// Get product by product url with Retry
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
+		ProductUrl(PRODUCT_ID).
+		ExecuteWithRetry(maxRetry, maxDelayMs)
+	if err != nil {
+		panic(err)
+	}
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
+	}
+	fmt.Println(resp)
 
 	// Get product by product sku
-	res, httpRes, err = client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
 		Sku(PRODUCT_SKU).
 		Execute()
 	if err != nil {
 		panic(err)
 	}
-	if httpRes.StatusCode >= 400 {
-		panic(httpRes.Status)
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
 	}
-	fmt.Println(res)
+	fmt.Println(resp)
+
+	// Get product by product sku with retry
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
+		Sku(PRODUCT_SKU).
+		ExecuteWithRetry(maxRetry, maxDelayMs)
+	if err != nil {
+		panic(err)
+	}
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
+	}
+	fmt.Println(resp)
 
 	// Get product by shop id
-	res, httpRes, err = client.DefaultApi.InventoryV1FsFsIdProductInfoGet(ctx, FS_ID).
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
 		ShopId(SHOP_ID).
 		Page(1).
 		PerPage(50).
@@ -80,8 +128,24 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	if httpRes.StatusCode >= 400 {
-		panic(httpRes.Status)
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
 	}
-	fmt.Println(res)
+	fmt.Println(resp)
+
+	// Get product by shop id
+	resp, httpResp, err = client.ProductAPI.
+		GetProductInfo(ctx, FS_ID).
+		ShopId(SHOP_ID).
+		Page(1).
+		PerPage(50).
+		LastSort("lastSort").
+		ExecuteWithRetry(maxRetry, maxDelayMs)
+	if err != nil {
+		panic(err)
+	}
+	if httpResp.StatusCode >= 400 {
+		panic(httpResp.Status)
+	}
+	fmt.Println(resp)
 }

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsParent** | Pointer to **bool** | Is Product Variant Parent? | [optional] 
 **IsVariant** | Pointer to **bool** | Is Product Has Variants? | [optional] 
-**ChildrenID** | Pointer to **[]int64** | List of Product Variant ID | [optional] 
+**ChildrenID** | Pointer to **[]int32** | List of Product Variant ID | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasIsVariant returns a boolean if a field has been set.
 
 ### GetChildrenID
 
-`func (o *ProductVariant) GetChildrenID() []int64`
+`func (o *ProductVariant) GetChildrenID() []int32`
 
 GetChildrenID returns the ChildrenID field if non-nil, zero value otherwise.
 
 ### GetChildrenIDOk
 
-`func (o *ProductVariant) GetChildrenIDOk() (*[]int64, bool)`
+`func (o *ProductVariant) GetChildrenIDOk() (*[]int32, bool)`
 
 GetChildrenIDOk returns a tuple with the ChildrenID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetChildrenID
 
-`func (o *ProductVariant) SetChildrenID(v []int64)`
+`func (o *ProductVariant) SetChildrenID(v []int32)`
 
 SetChildrenID sets ChildrenID field to given value.
 

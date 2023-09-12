@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**VariantUnitId** | Pointer to **int64** |  | [optional] 
-**Status** | Pointer to **int64** |  | [optional] 
+**VariantUnitId** | Pointer to **int32** |  | [optional] 
+**Status** | Pointer to **int32** |  | [optional] 
 **UnitName** | Pointer to **string** |  | [optional] 
 **UnitShortName** | Pointer to **string** |  | [optional] 
 **UnitValues** | Pointer to [**[]CategoryVariantUnitValue**](CategoryVariantUnitValue.md) |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetVariantUnitId
 
-`func (o *CategoryVariantUnit) GetVariantUnitId() int64`
+`func (o *CategoryVariantUnit) GetVariantUnitId() int32`
 
 GetVariantUnitId returns the VariantUnitId field if non-nil, zero value otherwise.
 
 ### GetVariantUnitIdOk
 
-`func (o *CategoryVariantUnit) GetVariantUnitIdOk() (*int64, bool)`
+`func (o *CategoryVariantUnit) GetVariantUnitIdOk() (*int32, bool)`
 
 GetVariantUnitIdOk returns a tuple with the VariantUnitId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariantUnitId
 
-`func (o *CategoryVariantUnit) SetVariantUnitId(v int64)`
+`func (o *CategoryVariantUnit) SetVariantUnitId(v int32)`
 
 SetVariantUnitId sets VariantUnitId field to given value.
 
@@ -56,20 +56,20 @@ HasVariantUnitId returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *CategoryVariantUnit) GetStatus() int64`
+`func (o *CategoryVariantUnit) GetStatus() int32`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *CategoryVariantUnit) GetStatusOk() (*int64, bool)`
+`func (o *CategoryVariantUnit) GetStatusOk() (*int32, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *CategoryVariantUnit) SetStatus(v int64)`
+`func (o *CategoryVariantUnit) SetStatus(v int32)`
 
 SetStatus sets Status field to given value.
 

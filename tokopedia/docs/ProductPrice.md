@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **int64** | Product Price Value | [optional] 
-**Currency** | Pointer to **int64** | Product Price Currency | [optional] 
-**LastUpdateUnix** | Pointer to **int64** | Product Price Last Updated timer | [optional] 
-**Idr** | Pointer to **int64** | Price Value | [optional] 
+**Value** | Pointer to **int32** | Product Price Value | [optional] 
+**Currency** | Pointer to **int32** | Product Price Currency | [optional] 
+**LastUpdateUnix** | Pointer to **int32** | Product Price Last Updated timer | [optional] 
+**Idr** | Pointer to **int32** | Price Value | [optional] 
 
 ## Methods
 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetValue
 
-`func (o *ProductPrice) GetValue() int64`
+`func (o *ProductPrice) GetValue() int32`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *ProductPrice) GetValueOk() (*int64, bool)`
+`func (o *ProductPrice) GetValueOk() (*int32, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *ProductPrice) SetValue(v int64)`
+`func (o *ProductPrice) SetValue(v int32)`
 
 SetValue sets Value field to given value.
 
@@ -55,20 +55,20 @@ HasValue returns a boolean if a field has been set.
 
 ### GetCurrency
 
-`func (o *ProductPrice) GetCurrency() int64`
+`func (o *ProductPrice) GetCurrency() int32`
 
 GetCurrency returns the Currency field if non-nil, zero value otherwise.
 
 ### GetCurrencyOk
 
-`func (o *ProductPrice) GetCurrencyOk() (*int64, bool)`
+`func (o *ProductPrice) GetCurrencyOk() (*int32, bool)`
 
 GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrency
 
-`func (o *ProductPrice) SetCurrency(v int64)`
+`func (o *ProductPrice) SetCurrency(v int32)`
 
 SetCurrency sets Currency field to given value.
 
@@ -80,20 +80,20 @@ HasCurrency returns a boolean if a field has been set.
 
 ### GetLastUpdateUnix
 
-`func (o *ProductPrice) GetLastUpdateUnix() int64`
+`func (o *ProductPrice) GetLastUpdateUnix() int32`
 
 GetLastUpdateUnix returns the LastUpdateUnix field if non-nil, zero value otherwise.
 
 ### GetLastUpdateUnixOk
 
-`func (o *ProductPrice) GetLastUpdateUnixOk() (*int64, bool)`
+`func (o *ProductPrice) GetLastUpdateUnixOk() (*int32, bool)`
 
 GetLastUpdateUnixOk returns a tuple with the LastUpdateUnix field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLastUpdateUnix
 
-`func (o *ProductPrice) SetLastUpdateUnix(v int64)`
+`func (o *ProductPrice) SetLastUpdateUnix(v int32)`
 
 SetLastUpdateUnix sets LastUpdateUnix field to given value.
 
@@ -105,20 +105,20 @@ HasLastUpdateUnix returns a boolean if a field has been set.
 
 ### GetIdr
 
-`func (o *ProductPrice) GetIdr() int64`
+`func (o *ProductPrice) GetIdr() int32`
 
 GetIdr returns the Idr field if non-nil, zero value otherwise.
 
 ### GetIdrOk
 
-`func (o *ProductPrice) GetIdrOk() (*int64, bool)`
+`func (o *ProductPrice) GetIdrOk() (*int32, bool)`
 
 GetIdrOk returns a tuple with the Idr field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetIdr
 
-`func (o *ProductPrice) SetIdr(v int64)`
+`func (o *ProductPrice) SetIdr(v int32)`
 
 SetIdr sets Idr field to given value.
 
