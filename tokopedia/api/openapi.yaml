@@ -10,8 +10,6 @@ info:
 servers:
 - description: Seller API
   url: https://fs.tokopedia.net
-- description: Authentication
-  url: https://accounts.tokopedia.com
 security:
 - bearer: []
 tags:
@@ -74,6 +72,9 @@ paths:
       - basic: []
       tags:
       - Authentication
+    servers:
+    - description: Authentication
+      url: https://accounts.tokopedia.com
   /inventory/v1/fs/{fs_id}/product/info:
     get:
       description: This method will retrieve single product information either by

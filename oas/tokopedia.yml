@@ -10,8 +10,6 @@ info:
 servers:
   - url: https://fs.tokopedia.net
     description: Seller API
-  - url: https://accounts.tokopedia.com
-    description: Authentication
 components:
   schemas:
     Token:
@@ -721,6 +719,9 @@ components:
       bearerFormat: JWT
 paths:
   /token:
+    servers:
+      - url: https://accounts.tokopedia.com
+        description: Authentication
     post:
       tags:
         - Authentication

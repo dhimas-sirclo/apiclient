@@ -22,7 +22,7 @@ func main() {
 		UserName: CLIENT_ID,
 		Password: CLIENT_SECRET,
 	})
-	authCtx = context.WithValue(authCtx, tokopedia.ContextServerIndex, 1)
+	// authCtx = context.WithValue(authCtx, tokopedia.ContextServerIndex, 1)
 	tokenResp, httpResp, err := client.AuthenticationAPI.
 		Authentication(authCtx).
 		GrantType("client_credentials").

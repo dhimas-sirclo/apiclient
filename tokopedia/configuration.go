@@ -100,12 +100,14 @@ func NewConfiguration() *Configuration {
 				URL: "https://fs.tokopedia.net",
 				Description: "Seller API",
 			},
-			{
-				URL: "https://accounts.tokopedia.com",
-				Description: "Authentication",
-			},
 		},
 		OperationServers: map[string]ServerConfigurations{
+			"AuthenticationAPIService.Authentication": {
+				{
+					URL: "https://accounts.tokopedia.com",
+					Description: "Authentication",
+				},
+			},
 		},
 	}
 	return cfg
