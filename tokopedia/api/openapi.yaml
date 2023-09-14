@@ -459,6 +459,486 @@ components:
         type: integer
       style: simple
   schemas:
+    WebhookOrderNotification:
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        order_id:
+          description: Order unique identifier
+          format: int64
+          type: integer
+        accept_partial:
+          description: Flag which determines if the order is partially accepted
+          type: boolean
+        invoice_num:
+          description: Invoice reference number
+          type: string
+        products:
+          description: Products data
+          items:
+            $ref: '#/components/schemas/WebhookOrderNotification_products_inner'
+          type: array
+        customer:
+          $ref: '#/components/schemas/WebhookOrderNotification_customer'
+        recipient:
+          $ref: '#/components/schemas/WebhookOrderNotification_recipient'
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          format: int64
+          type: integer
+        shop_name:
+          description: Shop name
+          type: string
+        payment_id:
+          description: Payment unique identifier
+          format: int64
+          type: integer
+        logistics:
+          $ref: '#/components/schemas/WebhookOrderNotification_logistics'
+        amt:
+          $ref: '#/components/schemas/WebhookOrderNotification_amt'
+        dropshipper_info:
+          $ref: '#/components/schemas/WebhookOrderNotification_dropshipper_info'
+        voucher_info:
+          $ref: '#/components/schemas/WebhookOrderNotification_voucher_info'
+        device_type:
+          description: User device type
+          type: string
+        create_time:
+          description: Time in UNIX timestamp
+          format: int64
+          type: integer
+        order_status:
+          description: Order status
+          format: int32
+          type: integer
+        custom_fields:
+          additionalProperties: {}
+          description: A map of String to String for custom fields for future
+          type: object
+        encryption:
+          $ref: '#/components/schemas/WebhookOrderNotification_encryption'
+        bundle_detail:
+          $ref: '#/components/schemas/WebhookOrderNotification_bundle_detail'
+        is_plus:
+          description: Flag which determines if the order is a Plus order
+          type: boolean
+      type: object
+    WebhookOrderStatusCancellation:
+      properties:
+        order_status:
+          description: Order Status
+          format: int64
+          type: integer
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        order_id:
+          description: Order unique identifier
+          format: int64
+          type: integer
+        product_details:
+          description: List of products
+          items:
+            $ref: '#/components/schemas/WebhookOrderStatusCancellation_product_details_inner'
+          type: array
+      type: object
+    WebhookOrderRequestCancellation:
+      properties:
+        order_id:
+          description: Requested order unique identifier
+          format: int64
+          type: integer
+      type: object
+    WebhookStockOverwriteNotification:
+      description: |
+        Stock Overwrite is notification that show information overwrite main stock into new value.
+        This notification will be trigger when :
+        - Edit Stock At Seller Dashboard
+        - Hit Open API Edit Product Endpoint by change stock into new value
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        product_changes_data:
+          items:
+            $ref: '#/components/schemas/WebhookStockOverwriteNotification_product_changes_data_inner'
+          type: array
+      type: object
+    WebhookStockDecrementNotification:
+      description: |
+        Stock Decrement is notification that show information decrement stock into new value.
+        This notification will be trigger when :
+        - New Order with Payment Verified Status (order status 220)
+        - Hit Open API Update Stock
+        - Created new reserve stock by join campaign
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_changes_data:
+          description: Products changes data
+          items:
+            $ref: '#/components/schemas/WebhookStockDecrementNotification_product_changes_data_inner'
+          type: array
+      type: object
+    WebhookStockIncrementNotification:
+      description: |
+        Stock Increment is notification that show information increment stock into new value.
+        This notification will be trigger when :
+        - Order Rejected (order status 10)
+        - Hit Open API Update Stock)
+        - Transfer back remaining reserve stock by the end of campaign
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_changes_data:
+          description: Products changes data
+          items:
+            $ref: '#/components/schemas/WebhookStockIncrementNotification_product_changes_data_inner'
+          type: array
+      type: object
+    WebhookStockAlertNotification:
+      description: |
+        Stock Alert is notification that show information alert stock into new value.
+        This notification will be trigger when :
+        - Edit Stock Alert At Seller Dashboard
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_changes_data:
+          description: Products changes data
+          items:
+            $ref: '#/components/schemas/WebhookStockAlertNotification_product_changes_data_inner'
+          type: array
+      type: object
+    WebhookPriceChangeNotification:
+      description: |
+        Price Changes is notification that show information new price value.
+        This notification will be trigger when :
+        - Hit Open API Update Price
+        - Edit Price At Seller Dashboard
+        - Hit Open API Edit Product Endpoint by change price into new value(
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_changes_data:
+          description: Products changes data
+          items:
+            $ref: '#/components/schemas/WebhookPriceChangeNotification_product_changes_data_inner'
+          type: array
+      type: object
+    WebhookProductStatusChangeNotification:
+      description: |
+        Status Changes is notification that show information new product status value.
+        This notification will be trigger when :
+        - Hit Open API Update Stock
+        - Hit Open API Set Active Product
+        - Hit Open API Set Inactive Product
+        - Hit Open API Set Delete Product
+        - Edit Status At Seller Dashboard
+        - Hit Open API Edit Product Endpoint by change status into new value
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_changes_data:
+          description: Products changes data
+          items:
+            $ref: '#/components/schemas/WebhookProductStatusChangeNotification_product_changes_data_inner'
+          type: array
+      type: object
+    WebhookProductCreation:
+      description: "This notification will be trigger when using Create Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/create-product]"
+      properties:
+        upload_id:
+          description: Upload id of the product to check Notification
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        user_id:
+          description: User unique identifier
+          format: int64
+          type: integer
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        status:
+          type: string
+        total_data:
+          format: int64
+          type: integer
+        success_row_data:
+          items:
+            $ref: '#/components/schemas/WebhookProductCreation_success_row_data_inner'
+          type: array
+      type: object
+    WebhookProductEdit:
+      description: "This notification will be trigger when using Edit Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product]"
+      properties:
+        upload_id:
+          description: Upload id of the product to check Notification
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        user_id:
+          description: User unique identifier
+          format: int64
+          type: integer
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        status:
+          type: string
+        total_data:
+          format: int64
+          type: integer
+        success_rows_data:
+          items:
+            $ref: '#/components/schemas/WebhookProductCreation_success_row_data_inner'
+          type: array
+      type: object
+    WebhookErrorProductEdit:
+      description: "This notification will be trigger when using Edit Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product]"
+      properties:
+        header:
+          $ref: '#/components/schemas/WebhookErrorProductEdit_header'
+        data:
+          $ref: '#/components/schemas/WebhookErrorProductEdit_data'
+      type: object
+    WebhookActiveSlashPriceNotification:
+      description: Active Slash Price is notification that show information of active
+        slash prsice event. This notification will be trigger when slash price already
+        started.
+      properties:
+        action:
+          default: slash_price_active
+          description: Action Type of Active Slash Price Notification
+          type: string
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        original_price:
+          description: Normal Price
+          format: int64
+          type: integer
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          format: int64
+          type: integer
+        discount_percentage:
+          description: Discount Percentage
+          format: int64
+          type: integer
+        start_date:
+          description: Slash Price Start Time
+          type: string
+        end_date:
+          description: Slash Price End Time
+          type: string
+      type: object
+    WebhookInactiveSlashPriceNotification:
+      description: Inactive Slash Price is notification that show information of inactive
+        slash price event. This notification will be trigger when slash price already
+        ended.
+      properties:
+        action:
+          default: slash_price_inactive
+          description: Action Type of Active Slash Price Notification
+          type: string
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        original_price:
+          description: Normal Price
+          format: int64
+          type: integer
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          format: int64
+          type: integer
+        discount_percentage:
+          description: Discount Percentage
+          format: int64
+          type: integer
+        start_date:
+          description: Slash Price Start Time
+          type: string
+        end_date:
+          description: Slash Price End Time
+          type: string
+      type: object
+    WebhookActiveFlashSaleNotification:
+      description: Active Flash Sale is notification that show information of active
+        flash sale event. This notification will be trigger when flash sale already
+        started.
+      properties:
+        action:
+          default: flash_sale_active
+          description: Action Type of Active Flash Sale Notification
+          type: string
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        original_price:
+          description: Normal Price
+          format: int64
+          type: integer
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          format: int64
+          type: integer
+        discount_percentage:
+          description: Discount Percentage
+          format: int64
+          type: integer
+        start_date:
+          description: Flash Sale Start Time
+          type: string
+        end_date:
+          description: Flash Sale End Time
+          type: string
+      type: object
+    WebhookInactiveFlashSaleNotification:
+      description: Inactive Flash Sale is notification that show information of inactive
+        flash sale event. This notification will be trigger when flash sale already
+        ended.
+      properties:
+        action:
+          default: flash_sale_inactive
+          description: Action Type of Active Flash Sale Notification
+          type: string
+        fs_id:
+          description: Fulfillment service unique identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        original_price:
+          description: Normal Price
+          format: int64
+          type: integer
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          format: int64
+          type: integer
+        discount_percentage:
+          description: Discount Percentage
+          format: int64
+          type: integer
+        start_date:
+          description: Flash Sale Start Time
+          type: string
+        end_date:
+          description: Flash Sale End Time
+          type: string
+      type: object
+    WebhookChatReplyNotification:
+      properties:
+        msg_id:
+          description: Message unique identifier
+          format: int64
+          type: integer
+        buyer_id:
+          description: Buyer unique identifier
+          format: int64
+          type: integer
+        message:
+          description: Message content
+          type: string
+        thumbnail:
+          description: Chat's Thumbnail
+          type: string
+        full_name:
+          description: Opposite chat user's first name
+          type: string
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+      type: object
+    WebhookProductDiscussionNewQuestion:
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        discussion_type:
+          default: NewQuestion
+          type: string
+        discussion_data:
+          $ref: '#/components/schemas/WebhookProductDiscussionNewQuestion_discussion_data'
+      type: object
+    WebhookProductDiscussionNewAnswer:
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        discussion_type:
+          default: DiscussionAnswer
+          type: string
+        discussion_data:
+          $ref: '#/components/schemas/WebhookProductDiscussionNewAnswer_discussion_data'
+      type: object
     Token:
       example:
         access_token: LSPr7x7sRGaewzwZE6IcuA
@@ -1147,6 +1627,623 @@ components:
           data:
             $ref: '#/components/schemas/Variant'
         type: object
+    WebhookOrderNotification_products_inner:
+      properties:
+        id:
+          description: Product ID
+          format: int64
+          type: integer
+        Name:
+          description: Product name
+          type: string
+        quantity:
+          description: Product quantity
+          type: integer
+        notes:
+          description: Product notes
+          type: string
+        weight:
+          format: double
+          type: number
+        total_weight:
+          format: double
+          type: number
+        price:
+          description: Product price
+          format: int64
+          type: integer
+        total_price:
+          description: Total price
+          format: int64
+          type: integer
+        currency:
+          description: Currency code
+          type: string
+        sku:
+          description: SKU code
+          type: string
+        is_eligible_pof:
+          description: Flag which determines if the product is eligible for POF
+          type: boolean
+      type: object
+    WebhookOrderNotification_customer:
+      description: Customer data
+      properties:
+        id:
+          description: Customer ID
+          format: int64
+          type: integer
+        Name:
+          description: Customer name
+          type: string
+        phone:
+          description: Customer phone (Masked)
+          type: string
+        email:
+          type: string
+      type: object
+    WebhookOrderNotification_recipient_address:
+      description: Recipient Address
+      properties:
+        address_full:
+          description: Complete Address
+          type: string
+        district:
+          description: District name
+          type: string
+        city:
+          description: City name
+          type: string
+        province:
+          description: Province name
+          type: string
+        country:
+          description: Country name
+          type: string
+        postal_code:
+          description: Postal Code
+          type: string
+        district_id:
+          description: District ID
+          format: int64
+          type: integer
+        city_id:
+          description: City ID
+          format: int64
+          type: integer
+        province_id:
+          description: Province ID
+          format: int64
+          type: integer
+        geo:
+          description: Longitude and Latitude position for instant delivery
+          type: string
+      type: object
+    WebhookOrderNotification_recipient:
+      description: Recipient data
+      properties:
+        Name:
+          description: Recipient Name
+          type: string
+        phone:
+          description: Recipient Phone Number
+          type: string
+        address:
+          $ref: '#/components/schemas/WebhookOrderNotification_recipient_address'
+      type: object
+    WebhookOrderNotification_logistics:
+      description: Logistics data
+      properties:
+        shipping_id:
+          description: Shipping id
+          format: int64
+          type: integer
+        district_id:
+          description: District ID
+          format: int64
+          type: integer
+        city_id:
+          description: City ID
+          format: int64
+          type: integer
+        province_id:
+          description: Province ID
+          format: int64
+          type: integer
+        geo:
+          description: Longitude and Latitude position for instant delivery
+          type: string
+        shipping_agency:
+          description: Shipping agency
+          type: string
+        service_type:
+          description: Service type
+          type: string
+      type: object
+    WebhookOrderNotification_amt:
+      description: Amount data
+      properties:
+        ttl_product_price:
+          description: Total product price
+          format: int64
+          type: integer
+        shipping_cost:
+          description: Shipping rate
+          format: int64
+          type: integer
+        insurance_cost:
+          description: Insurance price
+          format: int64
+          type: integer
+        ttl_amount:
+          description: Total amount
+          format: int64
+          type: integer
+        voucher_amount:
+          description: Voucher amount
+          format: int64
+          type: integer
+        toppoints_amount:
+          description: Toppoints amount
+          format: int64
+          type: integer
+      type: object
+    WebhookOrderNotification_dropshipper_info:
+      description: Dropshipper information
+      properties:
+        Name:
+          description: Dropshipper Name
+          type: string
+        phone:
+          description: Dropshipper Phone number
+          type: string
+      type: object
+    WebhookOrderNotification_voucher_info:
+      description: Voucher information
+      properties:
+        voucher_type:
+          description: Voucher Type
+          format: int64
+          type: integer
+        voucher_code:
+          description: Voucher Code
+          type: string
+      type: object
+    WebhookOrderNotification_encryption:
+      description: Contains secret and encrypted buyer information
+      properties:
+        secret:
+          description: Contains String used to generate key for content
+          type: string
+        content:
+          description: Contains encrypted buyer information
+          type: string
+      type: object
+    WebhookOrderNotification_bundle_detail_bundle_inner_order_detail_inner:
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        quantity:
+          format: int64
+          type: integer
+        price:
+          format: int64
+          type: integer
+        weight:
+          format: double
+          type: number
+        total_weight:
+          format: double
+          type: number
+        subtotal_price:
+          format: int64
+          type: integer
+        notes:
+          type: string
+        Currency:
+          type: string
+        sku:
+          type: string
+        bundle_id:
+          format: int64
+          type: integer
+        bundle_variant_id:
+          format: int64
+          type: integer
+      type: object
+    WebhookOrderNotification_bundle_detail_bundle_inner:
+      properties:
+        bundle_id:
+          format: int64
+          type: integer
+        bundle_variant_id:
+          type: string
+        bundle_name:
+          type: string
+        bundle_price:
+          format: int64
+          type: integer
+        bundle_quantity:
+          format: int64
+          type: integer
+        bundle_subtotal_price:
+          format: int64
+          type: integer
+        order_detail:
+          items:
+            $ref: '#/components/schemas/WebhookOrderNotification_bundle_detail_bundle_inner_order_detail_inner'
+          type: array
+      type: object
+    WebhookOrderNotification_bundle_detail_non_bundle_inner:
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        quantity:
+          format: int64
+          type: integer
+        notes:
+          type: string
+        weight:
+          format: double
+          type: number
+        total_weight:
+          format: double
+          type: number
+        price:
+          format: int64
+          type: integer
+        total_price:
+          format: int64
+          type: integer
+        currency:
+          type: string
+        sku:
+          type: string
+      type: object
+    WebhookOrderNotification_bundle_detail:
+      description: Contains bundle information
+      properties:
+        total_product:
+          format: int64
+          type: integer
+        product_bundling_icon:
+          type: string
+        bundle:
+          description: Contains information about bundle items in the order
+          items:
+            $ref: '#/components/schemas/WebhookOrderNotification_bundle_detail_bundle_inner'
+          type: array
+        non_bundle:
+          description: Contains information about non-bundle items in bundled item
+          items:
+            $ref: '#/components/schemas/WebhookOrderNotification_bundle_detail_non_bundle_inner'
+          type: array
+      type: object
+    WebhookOrderStatusCancellation_product_details_inner:
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        notes:
+          type: string
+        currency:
+          type: string
+        weight:
+          format: double
+          type: number
+        total_weight:
+          format: double
+          type: number
+        price:
+          format: int64
+          type: integer
+        total_price:
+          format: int64
+          type: integer
+        quantity:
+          format: int64
+          type: integer
+        sku:
+          type: string
+      type: object
+    WebhookStockOverwriteNotification_product_changes_data_inner:
+      properties:
+        action:
+          default: stock_overwrite
+          description: Action Type of Product Change Notification
+          type: string
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          format: int64
+          type: integer
+        value:
+          description: New overwrite main stock value
+          type: string
+        previous_value:
+          description: Previous main stock value
+          type: string
+        update_time:
+          description: UNIX format updated time
+          format: int64
+          type: integer
+        is_default_warehouse:
+          description: "Indicate for default warehouse of the shop. If not implement\
+            \ multilocation project, pick the true response to overwrite stock"
+          type: boolean
+      type: object
+    WebhookStockDecrementNotification_product_changes_data_inner:
+      properties:
+        action:
+          default: stock_decrement
+          description: Action Type of Product Change Notification
+          type: string
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          format: int64
+          type: integer
+        value:
+          description: New decrement stock value
+          type: string
+        previous_value:
+          description: Previous main stock value
+          type: string
+        update_time:
+          description: UNIX format updated time
+          format: int64
+          type: integer
+        is_default_warehouse:
+          description: "Indicate for default warehouse of the shop. If not implement\
+            \ multilocation project, pick the true response to decrement stock"
+          type: boolean
+      type: object
+    WebhookStockIncrementNotification_product_changes_data_inner:
+      properties:
+        action:
+          default: stock_increment
+          description: Action Type of Product Change Notification
+          type: string
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          format: int64
+          type: integer
+        value:
+          description: New decrement stock value
+          type: string
+        previous_value:
+          description: Previous main stock value
+          type: string
+        update_time:
+          description: UNIX format updated time
+          format: int64
+          type: integer
+        is_default_warehouse:
+          description: "Indicate for default warehouse of the shop. If not implement\
+            \ multilocation project, pick the true response to decrement stock"
+          type: boolean
+      type: object
+    WebhookStockAlertNotification_product_changes_data_inner:
+      properties:
+        action:
+          default: stock_alert_changes
+          description: Action Type of Product Change Notification
+          type: string
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          format: int64
+          type: integer
+        value:
+          description: New decrement stock value
+          type: string
+        update_time:
+          description: UNIX format updated time
+          format: int64
+          type: integer
+        is_default_warehouse:
+          description: "Indicate for default warehouse of the shop. If not implement\
+            \ multilocation project, pick the true response to decrement stock"
+          type: boolean
+      type: object
+    WebhookPriceChangeNotification_product_changes_data_inner:
+      properties:
+        action:
+          default: price_changes
+          description: Action Type of Product Change Notification
+          type: string
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          format: int64
+          type: integer
+        value:
+          description: New price value
+          type: string
+        previous_value:
+          description: Previous price value
+          type: string
+        update_time:
+          description: UNIX format updated time
+          format: int64
+          type: integer
+        is_default_warehouse:
+          description: "Indicate for default warehouse of the shop. If not implement\
+            \ multilocation project, pick the true response to decrement stock"
+          type: boolean
+      type: object
+    WebhookProductStatusChangeNotification_product_changes_data_inner:
+      properties:
+        action:
+          default: status_changes
+          description: Action Type of Product Change Notification
+          type: string
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        value:
+          description: New price value
+          type: string
+        update_time:
+          description: UNIX format updated time
+          format: int64
+          type: integer
+      type: object
+    WebhookProductCreation_success_row_data_inner:
+      properties:
+        product_id:
+          description: Product unique identifier
+          format: int64
+          type: integer
+      type: object
+    WebhookErrorProductEdit_header:
+      properties:
+        process_time:
+          format: int64
+          type: integer
+        messages:
+          type: string
+      type: object
+    WebhookErrorProductEdit_data_failed_rows_data_inner:
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        product_name:
+          type: string
+        product_price:
+          format: int64
+          type: integer
+        sku:
+          type: string
+        error:
+          items:
+            type: string
+          type: array
+      type: object
+    WebhookErrorProductEdit_data:
+      properties:
+        status:
+          type: string
+        total_data:
+          format: int64
+          type: integer
+        unprocessed_rows:
+          format: int64
+          type: integer
+        success_rows:
+          format: int64
+          type: integer
+        failed_rows:
+          format: int64
+          type: integer
+        failed_rows_data:
+          items:
+            $ref: '#/components/schemas/WebhookErrorProductEdit_data_failed_rows_data_inner'
+          type: array
+        processed_rows:
+          format: int64
+          type: integer
+      type: object
+    WebhookProductDiscussionNewQuestion_discussion_data_create_time:
+      properties:
+        original:
+          type: string
+        unix:
+          format: int64
+          type: integer
+      type: object
+    WebhookProductDiscussionNewQuestion_discussion_data:
+      properties:
+        id:
+          type: string
+        product_id:
+          format: int64
+          type: integer
+        shop_id:
+          format: int64
+          type: integer
+        user_id:
+          format: int64
+          type: integer
+        message:
+          type: string
+        create_time:
+          $ref: '#/components/schemas/WebhookProductDiscussionNewQuestion_discussion_data_create_time'
+      type: object
+    WebhookProductDiscussionNewAnswer_discussion_data:
+      properties:
+        question_id:
+          format: int64
+          type: integer
+        shop_id:
+          format: int64
+          type: integer
+        user_id:
+          format: int64
+          type: integer
+        user_full_name:
+          type: string
+        product_id:
+          format: int64
+          type: integer
+        product_name:
+          type: string
+        answer_id:
+          format: int64
+          type: integer
+        message:
+          type: string
+      type: object
   securitySchemes:
     basic:
       scheme: basic

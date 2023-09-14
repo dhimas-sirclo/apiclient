@@ -12,6 +12,1063 @@ servers:
     description: Seller API
 components:
   schemas:
+    WebhookOrderNotification:
+      type: object
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        order_id:
+          description: Order unique identifier
+          type: integer
+          format: int64
+        accept_partial:
+          description: Flag which determines if the order is partially accepted
+          type: boolean
+        invoice_num:
+          description: Invoice reference number
+          type: string
+        products:
+          description: Products data
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: Product ID
+                type: integer
+                format: int64
+              # Name di contoh payload title case tapi di dokumentasi lowercase
+              Name:
+                description: Product name
+                type: string
+              quantity:
+                description: Product quantity
+                type: integer
+              notes:
+                description: Product notes
+                type: string
+              weight:
+                type: number
+                format: double
+              total_weight:
+                type: number
+                format: double
+              price:
+                description: Product price
+                type: integer
+                format: int64
+              total_price:
+                description: Total price
+                type: integer
+                format: int64
+              currency:
+                description: Currency code
+                type: string
+              sku:
+                description: SKU code
+                type: string
+              is_eligible_pof:
+                description: Flag which determines if the product is eligible for POF
+                type: boolean
+        # customer di dokumentasi ditulis array, tapi di contoh berupa object
+        customer:
+          description: Customer data
+          type: object
+          properties:
+            id:
+              description: Customer ID
+              type: integer
+              format: int64
+            # Name di contoh payload title case tapi di dokumentasi lowercase
+            Name:
+              description: Customer name
+              type: string
+            phone:
+              description: Customer phone (Masked)
+              type: string
+            # email ada di contoh payload tapi tidak ada di dokumentasi
+            email:
+              type: string
+        # recipient di dokumentasi ditulis array, tapi di contoh berupa object
+        recipient:
+          description: Recipient data
+          type: object
+          properties:
+            # Name di contoh payload title case tapi di dokumentasi lowercase
+            Name:
+              description: Recipient Name
+              type: string
+            phone:
+              description: Recipient Phone Number
+              type: string
+            address:
+              description: Recipient Address
+              type: object
+              properties:
+                address_full:
+                  description: Complete Address
+                  type: string
+                district:
+                  description: District name
+                  type: string
+                city:
+                  description: City name
+                  type: string
+                province:
+                  description: Province name
+                  type: string
+                country:
+                  description: Country name
+                  type: string
+                postal_code:
+                  description: Postal Code
+                  type: string
+                district_id:
+                  description: District ID
+                  type: integer
+                  format: int64
+                city_id:
+                  description: City ID
+                  type: integer
+                  format: int64
+                province_id:
+                  description: Province ID
+                  type: integer
+                  format: int64
+                geo:
+                  description: Longitude and Latitude position for instant delivery
+                  type: string
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        warehouse_id:
+          description: Warehouse unique identifier
+          type: integer
+          format: int64
+        shop_name:
+          description: Shop name
+          type: string
+        payment_id:
+          description: Payment unique identifier
+          type: integer
+          format: int64
+        # logistics di dokumentasi ditulis array, tapi di contoh berupa object
+        logistics:
+          description: Logistics data
+          type: object
+          properties:
+            shipping_id:
+              description: Shipping id
+              type: integer
+              format: int64
+            district_id:
+              description: District ID
+              type: integer
+              format: int64
+            city_id:
+              description: City ID
+              type: integer
+              format: int64
+            # province_id ada di dokumentasi tidak ada di contoh payload
+            province_id:
+              description: Province ID
+              type: integer
+              format: int64
+            geo:
+              description: Longitude and Latitude position for instant delivery
+              type: string
+            shipping_agency:
+              description: Shipping agency
+              type: string
+            service_type:
+              description: Service type
+              type: string
+            # akan lebih baik jika terdapat shipping detail pickup dan delivery
+        # amt di dokumentasi ditulis array, tapi di contoh berupa object
+        amt:
+          description: Amount data
+          type: object
+          properties:
+            ttl_product_price:
+              description: Total product price
+              type: integer
+              format: int64
+            shipping_cost:
+              description: Shipping rate
+              type: integer
+              format: int64
+            insurance_cost:
+              description: Insurance price
+              type: integer
+              format: int64
+            ttl_amount:
+              description: Total amount
+              type: integer
+              format: int64
+            voucher_amount:
+              description: Voucher amount
+              type: integer
+              format: int64
+            toppoints_amount:
+              description: Toppoints amount
+              type: integer
+              format: int64
+        # dropshipper_info di dokumentasi ditulis array, tapi di contoh berupa object
+        dropshipper_info:
+          description: Dropshipper information
+          type: object
+          properties:
+            # Name di contoh payload title case tapi di dokumentasi lowercase
+            Name:
+              description: Dropshipper Name
+              type: string
+            phone:
+              description: Dropshipper Phone number
+              type: string
+        # voucher_info di dokumentasi ditulis array, tapi di contoh berupa object
+        voucher_info:
+          description: Voucher information
+          type: object
+          properties:
+            voucher_type:
+              description: Voucher Type
+              type: integer
+              format: int64
+            voucher_code:
+              description: Voucher Code
+              type: string
+        device_type:
+          description: User device type
+          type: string
+        create_time:
+          description: Time in UNIX timestamp
+          type: integer
+          format: int64
+        order_status:
+          description: Order status
+          type: integer
+          format: int32
+        custom_fields:
+          description: A map of String to String for custom fields for future
+          type: object
+          additionalProperties: {}
+        encryption:
+          description: Contains secret and encrypted buyer information
+          type: object
+          properties:
+            secret:
+              description: Contains String used to generate key for content
+              type: string
+            content:
+              description: Contains encrypted buyer information
+              type: string
+        bundle_detail:
+          description: Contains bundle information
+          type: object
+          properties:
+            total_product:
+              type: integer
+              format: int64
+            product_bundling_icon:
+              type: string
+            bundle:
+              description: Contains information about bundle items in the order
+              type: array
+              items:
+                type: object
+                properties:
+                  bundle_id:
+                    type: integer
+                    format: int64
+                  bundle_variant_id:
+                    type: string
+                  bundle_name:
+                    type: string
+                  bundle_price:
+                    type: integer
+                    format: int64
+                  bundle_quantity:
+                    type: integer
+                    format: int64
+                  bundle_subtotal_price:
+                    type: integer
+                    format: int64
+                  order_detail:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          format: int64
+                        # Name di contoh payload title case tapi di dokumentasi lowercase
+                        Name:
+                          type: string
+                        quantity:
+                          type: integer
+                          format: int64
+                        price:
+                          type: integer
+                          format: int64
+                        weight:
+                          type: number
+                          format: double
+                        total_weight:
+                          type: number
+                          format: double
+                        subtotal_price:
+                          type: integer
+                          format: int64
+                        notes:
+                          type: string
+                        Currency:
+                          type: string
+                        sku:
+                          type: string
+                        bundle_id:
+                          type: integer
+                          format: int64
+                        bundle_variant_id:
+                          type: integer
+                          format: int64
+            non_bundle:
+              description: Contains information about non-bundle items in bundled item
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  # Name di contoh payload title case tapi di dokumentasi lowercase
+                  Name:
+                    type: string
+                  quantity:
+                    type: integer
+                    format: int64
+                  notes:
+                    type: string
+                  weight:
+                    type: number
+                    format: double
+                  total_weight:
+                    type: number
+                    format: double
+                  price:
+                    type: integer
+                    format: int64
+                  total_price:
+                    type: integer
+                    format: int64
+                  currency:
+                    type: string
+                  sku:
+                    type: string
+        is_plus:
+          description: Flag which determines if the order is a Plus order
+          type: boolean
+    WebhookOrderStatusCancellation:
+      type: object
+      properties:
+        order_status:
+          description: Order Status
+          type: integer
+          format: int64
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        order_id:
+          description: Order unique identifier
+          type: integer
+          format: int64
+        product_details:
+          description: List of products
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                format: int64
+              # Name di contoh payload title case tapi di dokumentasi lowercase
+              Name:
+                type: string
+              notes:
+                type: string
+              currency:
+                type: string
+              weight:
+                type: number
+                format: double
+              total_weight:
+                type: number
+                format: double
+              price:
+                type: integer
+                format: int64
+              total_price:
+                type: integer
+                format: int64
+              quantity:
+                type: integer
+                format: int64
+              sku:
+                type: string
+    WebhookOrderRequestCancellation:
+      type: object
+      properties:
+        order_id:
+          description: Requested order unique identifier
+          type: integer
+          format: int64
+    WebhookStockOverwriteNotification:
+      description: |
+        Stock Overwrite is notification that show information overwrite main stock into new value.
+        This notification will be trigger when :
+        - Edit Stock At Seller Dashboard
+        - Hit Open API Edit Product Endpoint by change stock into new value
+      type: object
+      properties:
+        fs_id:
+          type: integer
+          format: int64
+        product_changes_data:
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                description: Action Type of Product Change Notification
+                type: string
+                default: stock_overwrite
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+              shop_id:
+                description: Shop unique identifier
+                type: integer
+                format: int64
+              warehouse_id:
+                description: Warehouse unique identifier
+                type: integer
+                format: int64
+              value:
+                description: New overwrite main stock value
+                type: string
+              previous_value:
+                description: Previous main stock value
+                type: string
+              update_time:
+                description: UNIX format updated time
+                type: integer
+                format: int64
+              is_default_warehouse:
+                description: Indicate for default warehouse of the shop. If not implement multilocation project, pick the true response to overwrite stock
+                type: boolean
+    WebhookStockDecrementNotification:
+      description: |
+        Stock Decrement is notification that show information decrement stock into new value.
+        This notification will be trigger when :
+        - New Order with Payment Verified Status (order status 220)
+        - Hit Open API Update Stock
+        - Created new reserve stock by join campaign
+      type: object
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_changes_data:
+          description: Products changes data
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                description: Action Type of Product Change Notification
+                type: string
+                default: stock_decrement
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+              shop_id:
+                description: Shop unique identifier
+                type: integer
+                format: int64
+              warehouse_id:
+                description: Warehouse unique identifier
+                type: integer
+                format: int64
+              value:
+                description: New decrement stock value
+                type: string
+              previous_value:
+                description: Previous main stock value
+                type: string
+              update_time:
+                description: UNIX format updated time
+                type: integer
+                format: int64
+              is_default_warehouse:
+                description: Indicate for default warehouse of the shop. If not implement multilocation project, pick the true response to decrement stock
+                type: boolean
+    WebhookStockIncrementNotification:
+      description: |
+        Stock Increment is notification that show information increment stock into new value.
+        This notification will be trigger when :
+        - Order Rejected (order status 10)
+        - Hit Open API Update Stock)
+        - Transfer back remaining reserve stock by the end of campaign
+      type: object
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_changes_data:
+          description: Products changes data
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                description: Action Type of Product Change Notification
+                type: string
+                default: stock_increment
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+              shop_id:
+                description: Shop unique identifier
+                type: integer
+                format: int64
+              warehouse_id:
+                description: Warehouse unique identifier
+                type: integer
+                format: int64
+              value:
+                description: New decrement stock value
+                type: string
+              previous_value:
+                description: Previous main stock value
+                type: string
+              update_time:
+                description: UNIX format updated time
+                type: integer
+                format: int64
+              is_default_warehouse:
+                description: Indicate for default warehouse of the shop. If not implement multilocation project, pick the true response to decrement stock
+                type: boolean
+    WebhookStockAlertNotification:
+      description: |
+        Stock Alert is notification that show information alert stock into new value.
+        This notification will be trigger when :
+        - Edit Stock Alert At Seller Dashboard
+      type: object
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_changes_data:
+          description: Products changes data
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                description: Action Type of Product Change Notification
+                type: string
+                default: stock_alert_changes
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+              shop_id:
+                description: Shop unique identifier
+                type: integer
+                format: int64
+              warehouse_id:
+                description: Warehouse unique identifier
+                type: integer
+                format: int64
+              value:
+                description: New decrement stock value
+                type: string
+              update_time:
+                description: UNIX format updated time
+                type: integer
+                format: int64
+              is_default_warehouse:
+                description: Indicate for default warehouse of the shop. If not implement multilocation project, pick the true response to decrement stock
+                type: boolean
+    WebhookPriceChangeNotification:
+      description: |
+        Price Changes is notification that show information new price value.
+        This notification will be trigger when :
+        - Hit Open API Update Price
+        - Edit Price At Seller Dashboard
+        - Hit Open API Edit Product Endpoint by change price into new value(
+      type: object
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_changes_data:
+          description: Products changes data
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                description: Action Type of Product Change Notification
+                type: string
+                default: price_changes
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+              shop_id:
+                description: Shop unique identifier
+                type: integer
+                format: int64
+              warehouse_id:
+                description: Warehouse unique identifier
+                type: integer
+                format: int64
+              value:
+                description: New price value
+                type: string
+              previous_value:
+                description: Previous price value
+                type: string
+              update_time:
+                description: UNIX format updated time
+                type: integer
+                format: int64
+              is_default_warehouse:
+                description: Indicate for default warehouse of the shop. If not implement multilocation project, pick the true response to decrement stock
+                type: boolean
+    WebhookProductStatusChangeNotification:
+      description: |
+        Status Changes is notification that show information new product status value.
+        This notification will be trigger when :
+        - Hit Open API Update Stock
+        - Hit Open API Set Active Product
+        - Hit Open API Set Inactive Product
+        - Hit Open API Set Delete Product
+        - Edit Status At Seller Dashboard
+        - Hit Open API Edit Product Endpoint by change status into new value
+      type: object
+      properties:
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_changes_data:
+          description: Products changes data
+          type: array
+          items:
+            type: object
+            properties:
+              action:
+                description: Action Type of Product Change Notification
+                type: string
+                default: status_changes
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+              shop_id:
+                description: Shop unique identifier
+                type: integer
+                format: int64
+              value:
+                description: New price value
+                type: string
+              update_time:
+                description: UNIX format updated time
+                type: integer
+                format: int64
+    WebhookProductCreation:
+      description: This notification will be trigger when using Create Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/create-product]
+      type: object
+      properties:
+        upload_id:
+          description: Upload id of the product to check Notification
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        user_id:
+          description: User unique identifier
+          type: integer
+          format: int64
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        # status tidak ada di dokumentasi tapi ada di contoh payload
+        status:
+          type: string
+        # total_data tidak ada di dokumentasi tapi ada di contoh payload
+        total_data:
+          type: integer
+          format: int64
+        # success_row_data tidak ada di dokumentasi tapi ada di contoh payload
+        success_row_data:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+    WebhookProductEdit:
+      description: This notification will be trigger when using Edit Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product]
+      type: object
+      properties:
+        upload_id:
+          description: Upload id of the product to check Notification
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        user_id:
+          description: User unique identifier
+          type: integer
+          format: int64
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        # status tidak ada di dokumentasi tapi ada di contoh payload
+        status:
+          type: string
+        # total_data tidak ada di dokumentasi tapi ada di contoh payload
+        total_data:
+          type: integer
+          format: int64
+        # success_row_data tidak ada di dokumentasi tapi ada di contoh payload
+        success_rows_data:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                description: Product unique identifier
+                type: integer
+                format: int64
+    WebhookErrorProductEdit:
+      description: This notification will be trigger when using Edit Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product]
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            process_time:
+              type: integer
+              format: int64
+            messages:
+              type: string
+        data:
+          type: object
+          properties:
+            status:
+              type: string
+            total_data:
+              type: integer
+              format: int64
+            unprocessed_rows:
+              type: integer
+              format: int64
+            success_rows:
+              type: integer
+              format: int64
+            failed_rows:
+              type: integer
+              format: int64
+            failed_rows_data:
+              type: array
+              items:
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    format: int64
+                  product_name:
+                    type: string
+                  product_price:
+                    type: integer
+                    format: int64
+                  sku:
+                    type: string
+                  error:
+                    type: array
+                    items:
+                      type: string
+            processed_rows:
+              type: integer
+              format: int64
+    WebhookActiveSlashPriceNotification:
+      description: Active Slash Price is notification that show information of active slash prsice event. This notification will be trigger when slash price already started.
+      type: object
+      properties:
+        action:
+          description: Action Type of Active Slash Price Notification
+          type: string
+          default: slash_price_active
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_id:
+          description: Product unique identifier
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        original_price:
+          description: Normal Price
+          type: integer
+          format: int64
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          type: integer
+          format: int64
+        discount_percentage:
+          description: Discount Percentage
+          type: integer
+          format: int64
+        start_date:
+          description: Slash Price Start Time
+          type: string
+        end_date:
+          description: Slash Price End Time
+          type: string
+    WebhookInactiveSlashPriceNotification:
+      description: Inactive Slash Price is notification that show information of inactive slash price event. This notification will be trigger when slash price already ended.
+      type: object
+      properties:
+        action:
+          description: Action Type of Active Slash Price Notification
+          type: string
+          default: slash_price_inactive
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_id:
+          description: Product unique identifier
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        original_price:
+          description: Normal Price
+          type: integer
+          format: int64
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          type: integer
+          format: int64
+        discount_percentage:
+          description: Discount Percentage
+          type: integer
+          format: int64
+        start_date:
+          description: Slash Price Start Time
+          type: string
+        end_date:
+          description: Slash Price End Time
+          type: string
+    WebhookActiveFlashSaleNotification:
+      description: Active Flash Sale is notification that show information of active flash sale event. This notification will be trigger when flash sale already started.
+      type: object
+      properties:
+        action:
+          description: Action Type of Active Flash Sale Notification
+          type: string
+          default: flash_sale_active
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_id:
+          description: Product unique identifier
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        original_price:
+          description: Normal Price
+          type: integer
+          format: int64
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          type: integer
+          format: int64
+        discount_percentage:
+          description: Discount Percentage
+          type: integer
+          format: int64
+        start_date:
+          description: Flash Sale Start Time
+          type: string
+        end_date:
+          description: Flash Sale End Time
+          type: string
+    WebhookInactiveFlashSaleNotification:
+      description: Inactive Flash Sale is notification that show information of inactive flash sale event. This notification will be trigger when flash sale already ended.
+      type: object
+      properties:
+        action:
+          description: Action Type of Active Flash Sale Notification
+          type: string
+          default: flash_sale_inactive
+        fs_id:
+          description: Fulfillment service unique identifier
+          type: integer
+          format: int64
+        product_id:
+          description: Product unique identifier
+          type: integer
+          format: int64
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+        original_price:
+          description: Normal Price
+          type: integer
+          format: int64
+        discounted_price:
+          description: New Price When Slash Price Already Started
+          type: integer
+          format: int64
+        discount_percentage:
+          description: Discount Percentage
+          type: integer
+          format: int64
+        start_date:
+          description: Flash Sale Start Time
+          type: string
+        end_date:
+          description: Flash Sale End Time
+          type: string
+    WebhookChatReplyNotification:
+      type: object
+      properties:
+        msg_id:
+          description: Message unique identifier
+          type: integer
+          format: int64
+        buyer_id:
+          description: Buyer unique identifier
+          type: integer
+          format: int64
+        message:
+          description: Message content
+          type: string
+        thumbnail:
+          description: Chat's Thumbnail
+          type: string
+        full_name:
+          description: Opposite chat user's first name
+          type: string
+        shop_id:
+          description: Shop unique identifier
+          type: integer
+          format: int64
+    WebhookProductDiscussionNewQuestion:
+      type: object
+      properties:
+        fs_id:
+          type: integer
+          format: int64
+        discussion_type:
+          type: string
+          default: NewQuestion
+        discussion_data:
+          type: object
+          properties:
+            id:
+              type: string
+            product_id:
+              type: integer
+              format: int64
+            shop_id:
+              type: integer
+              format: int64
+            user_id:
+              type: integer
+              format: int64
+            message:
+              type: string
+            create_time:
+              type: object
+              properties:
+                original:
+                  type: string
+                unix:
+                  type: integer
+                  format: int64
+    WebhookProductDiscussionNewAnswer:
+      type: object
+      properties:
+        fs_id:
+          type: integer
+          format: int64
+        discussion_type:
+          type: string
+          default: DiscussionAnswer
+        discussion_data:
+          type: object
+          properties:
+            question_id:
+              type: integer
+              format: int64
+            shop_id:
+              type: integer
+              format: int64
+            user_id:
+              type: integer
+              format: int64
+            user_full_name:
+              type: string
+            product_id:
+              type: integer
+              format: int64
+            product_name:
+              type: string
+            answer_id:
+              type: integer
+              format: int64
+            message:
+              type: string
     Token:
       type: object
       properties:
@@ -76,6 +1133,7 @@ components:
           format: int32
           description: "Product Status (e.g., -2 for Banned, -1 for Pending, 0 for Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive (Warehouse))"
           example: 1
+        # Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Product Name"
@@ -176,6 +1234,7 @@ components:
           format: int32
           description: "Etalase Unique Identifier"
           example: 1405065
+        # Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Etalase Name"
@@ -251,6 +1310,7 @@ components:
           format: int32
           description: "Category Unique Identifier"
           example: 1759
+        # Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Category Name"
@@ -376,6 +1436,7 @@ components:
           type: integer
           format: int32
           description: "Bundle Unique Identifier"
+        # Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Bundle Name"
