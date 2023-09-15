@@ -592,6 +592,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = f.Seek(0, io.SeekStart)
+		err = os.Remove(f.Name())
 		return
 	}
 	if f, ok := v.(**os.File); ok {
@@ -604,6 +605,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = (*f).Seek(0, io.SeekStart)
+		err = os.Remove((*f).Name())
 		return
 	}
 	if xmlCheck.MatchString(contentType) {
@@ -742,7 +744,7 @@ func parseCacheControl(headers http.Header) cacheControl {
 
 // CacheExpires helper function to determine remaining time before repeating a request.
 func CacheExpires(r *http.Response) time.Time {
-	// Figure out when the cache expiresp.
+	// Figure out when the cache expires.
 	var expires time.Time
 	now, err := time.Parse(time.RFC1123, r.Header.Get("date"))
 	if err != nil {
