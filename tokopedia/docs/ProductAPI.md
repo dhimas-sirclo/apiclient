@@ -27,7 +27,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/dhimas-sirclo/apiclient"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
 )
 
 func main() {
@@ -111,7 +111,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/dhimas-sirclo/apiclient"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
 )
 
 func main() {
@@ -183,7 +183,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "github.com/dhimas-sirclo/apiclient"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
 )
 
 func main() {

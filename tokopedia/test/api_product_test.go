@@ -11,10 +11,11 @@ package tokopedia
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/dhimas-sirclo/apiclient"
 )
 
 func Test_tokopedia_ProductAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_tokopedia_ProductAPIService(t *testing.T) {
 
 	t.Run("Test ProductAPIService GetProductInfo", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var fsId int32
 
@@ -38,7 +39,7 @@ func Test_tokopedia_ProductAPIService(t *testing.T) {
 
 	t.Run("Test ProductAPIService GetVariantsByCategoryId", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var fsId int32
 
@@ -52,7 +53,7 @@ func Test_tokopedia_ProductAPIService(t *testing.T) {
 
 	t.Run("Test ProductAPIService GetVariantsByProductId", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var fsId int32
 		var productId int32

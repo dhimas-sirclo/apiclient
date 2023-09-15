@@ -1,4 +1,4 @@
-module github.com/dhimas-sirclo/apiclient
+module github.com/dhimas-sirclo/apiclient/tokopedia
 
 go 1.18
 

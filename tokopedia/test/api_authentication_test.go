@@ -11,10 +11,11 @@ package tokopedia
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/dhimas-sirclo/apiclient"
 )
 
 func Test_tokopedia_AuthenticationAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_tokopedia_AuthenticationAPIService(t *testing.T) {
 
 	t.Run("Test AuthenticationAPIService Authentication", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.AuthenticationAPI.Authentication(context.Background()).Execute()
 
