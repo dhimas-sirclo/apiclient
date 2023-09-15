@@ -1,0 +1,927 @@
+openapi: "3.0.2"
+info:
+  title: SIRCLO Open API
+  version: "1.0.0"
+  description: SIRCLO Open API
+  contact:
+    email: dev@sirclo.com
+    name: SIRCLO Tech
+    url: https://sirclo.com
+servers:
+  - url: https://api2.connexi.id.dmmy.me/v1/open/api
+    description: Staging
+  - url: https://api.connexi.id/v1/open/api
+    description: Production
+
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        message:
+          type: string
+        reference:
+          type: string
+    urlInfoInput:
+      type: object
+      required:
+        - url_channel
+        - url_help_page
+        - url_logo_channel
+        - url_square_logo_channel
+      properties:
+        url_channel:
+          type: string
+          example: https://example.com
+        url_help_page:
+          type: string
+          example: https://example.com
+        url_logo_channel:
+          type: string
+          example: https://example.com
+        url_square_logo_channel:
+          type: string
+          example: https://example.com
+    urlWebhookInput:
+      type: object
+      required:
+        - url_connect
+        - url_accepted_order
+        - url_packed_order
+        - url_shipped_order
+        - url_completed_order
+        - url_cancelled_order
+        - url_update_stock
+        - url_upsert_product
+      properties:
+        url_connect:
+          type: string
+          example: https://example.com
+        url_accepted_order:
+          type: string
+          example: https://example.com
+        url_packed_order:
+          type: string
+          example: https://example.com
+        url_shipped_order:
+          type: string
+          example: https://example.com
+        url_completed_order:
+          type: string
+          example: https://example.com
+        url_cancelled_order:
+          type: string
+          example: https://example.com
+        url_update_stock:
+          type: string
+          example: https://example.com
+        url_upsert_product:
+          type: string
+          example: https://example.com
+    registerSalesChannelInput:
+      type: object
+      required:
+        - app_name
+        - app_channel_code
+        - type
+        - url_info
+      properties:
+        app_name:
+          type: string
+        app_channel_code:
+          type: string
+        type:
+          type: string
+          enum:
+            - secret_key
+            - oauth2
+        url_info:
+          $ref: "#/components/schemas/urlInfoInput"
+        url_webhook:
+          $ref: "#/components/schemas/urlWebhookInput"
+    urlInfo:
+      type: object
+      properties:
+        url_channel:
+          type: string
+          example: https://example.com
+        url_help_page:
+          type: string
+          example: https://example.com/help
+        url_logo_channel:
+          type: string
+          example: https://example.com/assets/logo.png
+        url_square_logo_channel:
+          type: string
+          example: https://example.com/assets/thumbnail.png
+        url_oauth2:
+          type: string
+          example: https://example.com/auth
+    urlWebhook:
+      type: object
+      properties:
+        url_connect:
+          type: string
+          example: https://example.com/connect
+        url_disconnect:
+          type: string
+          example: https://example.com/disconnect
+        url_accepted_order:
+          type: string
+          example: https://example.com/orders/accept
+        url_packed_order:
+          type: string
+          example: https://example.com/orders/pack
+        url_shipped_order:
+          type: string
+          example: https://example.com/orders/ship
+        url_completed_order:
+          type: string
+          example: https://example.com/orders/complete
+        url_cancelled_order:
+          type: string
+          example: https://example.com/orders/cancel
+        url_fetch_order:
+          type: string
+          example: https://example.com/orders
+        url_update_stock:
+          type: string
+          example: https://example.com/stocks
+        url_bulk_update_stock:
+          type: string
+          example: https://example.com/stocks
+        url_update_price:
+          type: string
+          example: https://example.com/prices
+        url_bulk_update_price:
+          type: string
+          example: https://example.com/prices
+        url_upsert_product:
+          type: string
+          example: https://example.com/products
+        url_fetch_product:
+          type: string
+          example: https://example.com/products
+        url_fetch_attributes:
+          type: string
+          example: https://example.com/attributes
+        url_connect_oauth2:
+          type: string
+          example: https://example.com/auth
+        url_generate_shop_id:
+          type: string
+          example: https://example.com/shop
+        url_get_shop_name:
+          type: string
+          example: https://example.com/shop
+        url_passthrough:
+          type: string
+          example: https://example.com/passthrough
+        url_webhook_new_order:
+          type: string
+          example: https://example.com/orders
+        url_webhook_upsert_order:
+          type: string
+          example: https://example.com/orders
+        url_webhook_cancel_order:
+          type: string
+          example: https://example.com/orders/cancel
+        url_update_status_product:
+          type: string
+          example: https://example.com/products/status
+        url_create_discount:
+          type: string
+          example: https://example.com/discounts
+        url_delete_discount:
+          type: string
+          example: https://example.com/discounts
+        url_pull_warehouse:
+          type: string
+          example: https://example.com/warehouses
+        url_fetch_categories:
+          type: string
+          example: https://example.com/categories
+    salesChannel:
+      type: object
+      properties:
+        app_name:
+          type: string
+        app_channel_code:
+          type: string
+        url_info:
+          $ref: "#/components/schemas/urlInfo"
+        url_webhook:
+          $ref: "#/components/schemas/urlWebhook"
+        type:
+          type: string
+          enum:
+            - secret_key
+            - oauth2
+    registeredSalesChannel:
+      allOf:
+        - $ref: "#/components/schemas/salesChannel"
+        - type: object
+          properties:
+            app_key:
+              type: string
+    urlInfoUpdateInput:
+      type: object
+      required:
+        - url_channel
+        - url_help_page
+        - url_logo_channel
+        - url_square_logo_channel
+        - url_oauth2
+      properties:
+        url_channel:
+          type: string
+          example: https://example.com
+        url_help_page:
+          type: string
+          example: https://example.com/help
+        url_logo_channel:
+          type: string
+          example: https://example.com/assets/logo.png
+        url_square_logo_channel:
+          type: string
+          example: https://example.com/assets/square-logo.png
+        url_oauth2:
+          type: string
+          example: https://example.com/auth
+    urlWebhookUpdateInput:
+      type: object
+      required:
+        - url_connect
+        - url_disconnect
+        - url_accepted_order
+        - url_packed_order
+        - url_cancelled_order
+        - url_update_stock
+      properties:
+        url_connect:
+          type: string
+          example: https://example.com/connect
+        url_disconnect:
+          type: string
+          example: https://example.com/disconnect
+        url_accepted_order:
+          type: string
+          example: https://example.com/orders/accept
+        url_packed_order:
+          type: string
+          example: https://example.com/orders/pack
+        url_shipped_order:
+          type: string
+          example: https://example.com/orders/ship
+        url_completed_order:
+          type: string
+          example: https://example.com/orders/complete
+        url_cancelled_order:
+          type: string
+          example: https://example.com/orders/cancel
+        url_update_stock:
+          type: string
+          example: https://example.com/stocks
+        url_bulk_update_stock:
+          type: string
+          example: https://example.com/stocks
+        url_upsert_product:
+          type: string
+          example: https://example.com/products
+        url_fetch_product:
+          type: string
+          example: https://example.com/products
+        url_fetch_order:
+          type: string
+          example: https://example.com/orders
+        url_connect_oauth2:
+          type: string
+          example: https://example.com/auth
+        url_update_price:
+          type: string
+          example: https://example.com/prices
+        url_bulk_update_price:
+          type: string
+          example: https://example.com/prices
+        url_create_discount:
+          type: string
+          example: https://example.com/discount
+        url_delete_discount:
+          type: string
+          example: https://example.com/discount
+    updateSalesChannelInput:
+      type: object
+      required:
+        - type
+        - url_info
+        - url_webhook
+      properties:
+        type:
+          type: string
+          enum:
+            - secret_key
+            - oauth2
+        url_info:
+          $ref: "#/components/schemas/urlInfoUpdateInput"
+        url_webhook:
+          $ref: "#/components/schemas/urlWebhookUpdateInput"
+    lineItemInput:
+      type: object
+      required:
+        - order_item_id
+        - sku
+        - product_name
+        - order_quantity
+        - raw_price
+        - line_tax
+        - promo
+        - voucher
+        - line_total
+      properties:
+        order_item_id:
+          type: string
+        sku:
+          type: string
+        product_name:
+          type: string
+        order_quantity:
+          type: integer
+        raw_price:
+          type: number
+          format: double
+        discount_amount:
+          type: number
+          format: double
+          nullable: true
+        line_tax:
+          type: number
+          format: double
+        shipping_amount:
+          type: number
+          format: double
+          nullable: true
+        promo:
+          type: number
+          format: double
+        voucher:
+          type: number
+          format: double
+        line_total:
+          type: number
+          format: double
+        line_comments:
+          type: string
+    orderInput:
+      type: object
+      required:
+        - order_date
+        - order_id
+        - customer_reference
+        - currency_code
+        - warehouse_id
+        - payment_method
+        - delivery_name
+        - delivery_street_address
+        - delivery_suburb
+        - delivery_city
+        - delivery_region
+        - delivery_post_code
+        - delivery_country
+        - delivery_method
+        - order_status
+        - tax_total
+        - shipping_total
+        - discount_total
+        - total_promo
+        - total_voucher
+        - subtotal
+        - total
+        - phone_number
+        - shop_id
+        - provider
+        - service
+        - is_awb_available_from_channel
+        - line_items
+      properties:
+        order_date:
+          type: string
+        order_id:
+          type: string
+        customer_reference:
+          type: string
+        currency_code:
+          type: string
+        exchange_rate:
+          type: number
+          format: double
+          nullable: true
+        warehouse_id:
+          type: string
+        payment_method:
+          type: string
+        dropshipper_name:
+          type: string
+        driver_name:
+          type: string
+        driver_phone_number:
+          type: string
+        delivery_latitude:
+          type: string
+        delivery_longitude:
+          type: string
+        delivery_name:
+          type: string
+        delivery_street_address:
+          type: string
+        delivery_street_address_2:
+          type: string
+        delivery_suburb:
+          type: string
+        delivery_city:
+          type: string
+        delivery_region:
+          type: string
+        delivery_post_code:
+          type: string
+        delivery_country:
+          type: string
+        delivery_method:
+          type: string
+        order_status:
+          type: string
+          enum:
+            - unpaid
+            - pending
+            - accepted
+            - packed
+            - shipped
+            - completed
+            - cancelled
+        tax_code:
+          type: string
+        tax_rate:
+          type: number
+          format: double
+          nullable: true
+        tax_total:
+          type: number
+          format: double
+        shipping_total:
+          type: number
+          format: double
+        discount_total:
+          type: number
+          format: double
+        total_promo:
+          type: number
+          format: double
+        total_voucher:
+          type: number
+          format: double
+        subtotal:
+          type: number
+          format: double
+        total:
+          type: number
+          format: double
+        remarks:
+          type: string
+        phone_number:
+          type: string
+        airwaybill_number:
+          type: string
+        paid_at:
+          type: string
+        accepted_at:
+          type: string
+        packed_at:
+          type: string
+        awb_retrieved_at:
+          type: string
+        completed_at:
+          type: string
+        received_at:
+          type: string
+        received_by:
+          type: string
+        cancelled_at:
+          type: string
+        shop_id:
+          type: string
+        cancel_reason:
+          type: string
+        provider:
+          type: string
+        service:
+          type: string
+        shipment_extras:
+          type: string
+        is_awb_available_from_channel:
+          type: boolean
+        line_items:
+          type: array
+          items:
+            $ref: "#/components/schemas/lineItemInput"
+    ordersInput:
+      type: array
+      items:
+        $ref: "#/components/schemas/orderInput"
+    order:
+      type: object
+      properties:
+        order_id:
+          type: string
+        shop_id:
+          type: string
+        success:
+          type: boolean
+        message:
+          type: string
+    orders:
+      type: array
+      items:
+        $ref: "#/components/schemas/order"
+    volumeInput:
+      type: object
+      required:
+        - height
+        - length
+        - width
+      properties:
+        height:
+          type: number
+          format: double
+          nullable: true
+        length:
+          type: number
+          format: double
+          nullable: true
+        width:
+          type: number
+          format: double
+          nullable: true
+    variantAttributeInput:
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    variantInput:
+      type: object
+      required:
+        - variant_id
+        - variant_sku
+        - variant_name
+        - status
+        - volume
+        - weight
+        - attributes
+        - variant_url
+        - currency_code
+        - price
+        - img_urls
+      properties:
+        variant_id:
+          type: string
+        variant_sku:
+          type: string
+        variant_name:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - deactive
+        volume:
+          $ref: "#/components/schemas/volumeInput"
+        weight:
+          type: number
+          format: double
+        attributes:
+          type: array
+          items:
+            $ref: "#/components/schemas/variantAttributeInput"
+        variant_url:
+          type: string
+        currency_code:
+          type: string
+        price:
+          type: number
+          format: double
+        img_urls:
+          type: array
+          items:
+            type: string
+    productInput:
+      type: object
+      required:
+        - type
+        - name
+        - brand
+        - product_id
+        - product_code
+        - product_description
+        - condition
+        - shop_id
+        - category_id
+        - category_name
+        - variants
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        brand:
+          type: string
+        product_id:
+          type: string
+        product_code:
+          type: string
+        product_description:
+          type: string
+        condition:
+          type: string
+        shop_id:
+          type: string
+        category_id:
+          type: string
+        category_name:
+          type: string
+        variants:
+          type: array
+          items:
+            $ref: "#/components/schemas/variantInput"
+    productsInput:
+      type: array
+      items:
+        $ref: "#/components/schemas/productInput"
+    product:
+      type: object
+      required:
+        - product_code
+        - success
+        - message
+      properties:
+        product_code:
+          type: string
+        success:
+          type: boolean
+        message:
+          type: string
+    products:
+      type: array
+      items:
+        $ref: "#/components/schemas/product"
+    productCategoryAttributeInput:
+      type: object
+      required:
+        - attribute_id
+        - field_name
+        - input_type
+        - is_mandatory
+        - is_variant_attribute
+      properties:
+        attribute_id:
+          type: string
+        field_name:
+          type: string
+        input_type:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+        is_mandatory:
+          type: boolean
+        is_variant_attribute:
+          type: boolean
+    productCategoryInput:
+      type: object
+      required:
+        - category_id
+        - category_name
+        - is_leaf
+        - attribute
+      properties:
+        parent_category_id:
+          type: string
+        category_id:
+          type: string
+        category_name:
+          type: string
+        is_leaf:
+          type: boolean
+        attribute:
+          type: array
+          items:
+            $ref: "#/components/schemas/productCategoryAttributeInput"
+    productCategoriesInput:
+      type: array
+      items:
+        $ref: "#/components/schemas/productCategoryInput"
+    productCategoryAttribute:
+      type: object
+      properties:
+        attribute_id:
+          type: string
+        message:
+          type: string
+    productCategory:
+      type: object
+      properties:
+        category_id:
+          type: string
+        attribute:
+          type: array
+          items:
+            $ref: "#/components/schemas/productCategoryAttribute"
+        message:
+          type: string
+    upsertProductCategoriesResponse:
+      type: object
+      properties:
+        failure_category:
+          nullable: true
+          type: array
+          items:
+            $ref: "#/components/schemas/productCategory"
+        total_failure_category:
+          type: integer
+        total_success_category:
+          type: integer
+        total_category:
+          type: integer
+  parameters:
+    channelCode:
+      name: channelCode
+      in: path
+      required: true
+      description: "Channel code"
+      schema:
+        type: string
+  securitySchemes:
+    appKey:
+      type: apiKey
+      name: Authorization
+      in: header
+    bearer:
+      type: http
+      scheme: bearer
+
+paths:
+  /saleschannel/register:
+    post:
+      tags:
+        - "Sales Channel"
+      operationId: registerSalesChannel
+      description: "Register sales channel"
+      security:
+        - bearer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/registerSalesChannelInput"
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              example: "Error message"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/registeredSalesChannel"
+  /saleschannel/update/{channelCode}:
+    parameters:
+      - $ref: "#/components/parameters/channelCode"
+    post:
+      tags:
+        - "Sales Channel"
+      operationId: updateSalesChannel
+      description: Update Sales Channel
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateSalesChannelInput"
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              example: "Error message"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/salesChannel"
+  /orders/upsert/{channelCode}:
+    parameters:
+      - $ref: "#/components/parameters/channelCode"
+    post:
+      tags:
+        - "Order"
+      operationId: upsertOrders
+      description: "Upsert orders"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ordersInput"
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              example: "Error message"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/orders"
+  /products/upsert/{channelCode}:
+    parameters:
+      - $ref: "#/components/parameters/channelCode"
+    post:
+      tags:
+        - "Product"
+      operationId: upsertProducts
+      description: "Upsert products"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/productsInput"
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              example: "Error message"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/products"
+  /categories/upsert/{channelCode}:
+    parameters:
+      - $ref: "#/components/parameters/channelCode"
+    post:
+      tags:
+        - "Product"
+      operationId: upsertProductCategories
+      description: "Upsert product categories"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/productCategoriesInput"
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+            text/plain:
+              example: "Error message"
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/upsertProductCategoriesResponse"
+security:
+  - appKey: []
+
+tags:
+  - name: Sales Channel
+  - name: Order
+  - name: Product
