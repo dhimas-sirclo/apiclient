@@ -1,0 +1,18 @@
+{{>partial_header}}
+package {{packageName}}
+
+{{#operations}}
+import (
+	"github.com/gin-gonic/gin"
+)
+
+type {{classname}} struct {
+{{#operation}}
+	// {{httpMethod}} {{{basePathWithoutHost}}}{{{path}}}
+	// {{{summary}}}
+{{#isDeprecated}}
+	// Deprecated
+{{/isDeprecated}}
+	{{nickname}} gin.HandlerFunc
+{{/operation}}
+}{{/operations}}

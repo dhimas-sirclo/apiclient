@@ -45,3 +45,15 @@ docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generat
 ```sh
 docker compose --file ./docker/sirclo.mock.docker-compose.yml up -d
 ```
+
+## Extract go gin server stubs template
+
+```sh
+docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 author template -g go-gin-server -o /local/template/go-gin-server
+```
+
+## Generate Connector Server Stubs
+
+```sh
+docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generate -i /local/oas/connector.yml -g go-gin-server -o /local/connector -t /local/template/go-gin-server --git-host github.com --git-user-id dhimas-sirclo --git-repo-id apiclient/connector --package-name connector --additional-properties=packageName=connector,enumClassPrefix=true,isConnector=true
+```

@@ -1,0 +1,690 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: dev@sirclo.com
+    name: SIRCLO Tech
+    url: https://sirclo.com
+  description: MP Connector API
+  title: MP Connector API
+  version: v1.0.0
+servers:
+- description: staging
+  url: http://localhost
+- description: production
+  url: http://localhost
+security:
+- shopSecret: []
+tags:
+- description: Shop Management API
+  name: Shop
+- description: Order Management API
+  name: Order
+- description: Stock Management API
+  name: Inventory
+- description: Product Management API
+  name: Product
+paths:
+  /v1/shop/connect:
+    post:
+      description: Connect
+      operationId: connect
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectInput'
+        required: true
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Shop
+  /v1/shop/disconnect:
+    post:
+      description: Disconnect
+      operationId: disconnect
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/disconnectInput'
+        required: true
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Shop
+  /v1/orders/new:
+    post:
+      description: New order
+      operationId: newOrder
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Order
+  /v1/orders/accept:
+    post:
+      description: Accept Order
+      operationId: acceptOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/acceptOrderInput'
+        required: true
+      responses:
+        default:
+          description: Error
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+          description: OK
+      tags:
+      - Order
+  /v1/orders/accepted:
+    post:
+      description: Order accepted
+      operationId: orderAccepted
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Order
+  /v1/orders/pack:
+    post:
+      description: Pack Order
+      operationId: packOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/packOrderInput'
+        required: true
+      responses:
+        default:
+          description: Error
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+          description: OK
+      tags:
+      - Order
+  /v1/orders/packed:
+    post:
+      description: Order packed
+      operationId: orderPacked
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Order
+  /v1/orders/ship:
+    post:
+      description: Ship Order
+      operationId: shipOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shipOrderInput'
+        required: true
+      responses:
+        default:
+          description: Error
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+          description: OK
+      tags:
+      - Order
+  /v1/orders/shipped:
+    post:
+      description: Order shipped
+      operationId: orderShipped
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Order
+  /v1/orders/complete:
+    post:
+      description: Complete Order
+      operationId: completeOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/completeOrderInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+          description: OK
+      tags:
+      - Order
+  /v1/orders/completed:
+    post:
+      description: Order completed
+      operationId: orderCompleted
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Order
+  /v1/orders/cancel:
+    post:
+      description: Cancel Order
+      operationId: cancelOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cancelOrderInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/response'
+          description: OK
+      tags:
+      - Order
+  /v1/orders/cancelled:
+    post:
+      description: Order cancelled
+      operationId: orderCancelled
+      responses:
+        default:
+          description: Error
+        "200":
+          description: OK
+      tags:
+      - Order
+  /v1/inventory/update:
+    post:
+      description: Update Stock
+      operationId: updateStock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateStockInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateStockResponse'
+          description: OK
+      tags:
+      - Inventory
+  /v1/products/upsert:
+    post:
+      description: Upsert Product
+      operationId: upsertProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/productInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/product'
+          description: OK
+      tags:
+      - Product
+  /v1/products/fetch:
+    post:
+      description: Fetch Product
+      operationId: fetchProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/fetchProductInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/fetchProductResponse'
+          description: OK
+      tags:
+      - Product
+  /v1/products/delete:
+    post:
+      description: Delete Products
+      operationId: deleteProducts
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/productDeleteInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/productDeleteResponse'
+          description: OK
+      tags:
+      - Product
+  /v1/products/status:
+    post:
+      description: Update Product Status
+      operationId: updateProductStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateProductStatusInput'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateProductStatusResponse'
+          description: OK
+      tags:
+      - Product
+components:
+  schemas:
+    connectInput:
+      properties:
+        shop_id:
+          type: string
+      required:
+      - shop_id
+      type: object
+    disconnectInput:
+      properties:
+        shop_id:
+          type: string
+      required:
+      - shop_id
+      type: object
+    shipOrderInput:
+      properties:
+        order_id:
+          type: string
+      required:
+      - order_id
+      type: object
+    acceptOrderInput:
+      properties:
+        order_id:
+          type: string
+      required:
+      - order_id
+      type: object
+    packOrderInput:
+      properties:
+        order_id:
+          type: string
+        airwaybill_number:
+          type: string
+      required:
+      - order_id
+      type: object
+    completeOrderInput:
+      properties:
+        order_id:
+          type: string
+        received_by:
+          type: string
+      required:
+      - order_id
+      type: object
+    cancelOrderInput:
+      properties:
+        order_id:
+          type: string
+        cancel_reason:
+          type: string
+      required:
+      - order_id
+      type: object
+    response:
+      example:
+        reference: reference
+        success: true
+        message: message
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        reference:
+          type: string
+      type: object
+    volumeInput:
+      properties:
+        height:
+          type: number
+        length:
+          type: number
+        width:
+          type: number
+      type: object
+    weightInput:
+      properties:
+        value:
+          type: number
+      type: object
+    attributeInput:
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      type: object
+    wholesaleOptionInput:
+      properties:
+        min:
+          type: number
+        max:
+          type: number
+        price_per_unit:
+          type: number
+      type: object
+    variantInput:
+      properties:
+        variant_id:
+          type: string
+        variant_sku:
+          type: string
+        variant_name:
+          type: string
+        price:
+          type: number
+        active:
+          type: boolean
+        minimum_stock:
+          type: number
+        stock:
+          type: number
+        volume:
+          $ref: '#/components/schemas/volumeInput'
+        weight:
+          $ref: '#/components/schemas/weightInput'
+        attributes:
+          items:
+            $ref: '#/components/schemas/attributeInput'
+          type: array
+        variant_images:
+          items:
+            type: string
+          type: array
+        remote_warehouse_id:
+          type: string
+      type: object
+    productInput:
+      properties:
+        product_id:
+          type: string
+        parent_sku:
+          type: string
+        product_code:
+          type: string
+        product_description:
+          type: string
+        current_code:
+          type: string
+        price:
+          type: number
+        minimum_stock:
+          type: number
+        stock:
+          type: number
+        category_id:
+          type: number
+        volume_unit:
+          type: string
+        volume:
+          $ref: '#/components/schemas/volumeInput'
+        weight_unit:
+          type: string
+        weight:
+          $ref: '#/components/schemas/weightInput'
+        attributes:
+          items:
+            $ref: '#/components/schemas/attributeInput'
+          type: array
+        product_images:
+          items:
+            type: string
+          type: array
+        wholesale_options:
+          items:
+            $ref: '#/components/schemas/wholesaleOptionInput'
+          type: array
+        condition:
+          type: string
+        variants:
+          items:
+            $ref: '#/components/schemas/variantInput'
+          type: array
+      required:
+      - attributes
+      - category_id
+      - condition
+      - current_code
+      - minimum_stock
+      - parent_sku
+      - price
+      - product_code
+      - product_description
+      - product_id
+      - product_images
+      - stock
+      - variants
+      - volume
+      - volume_unit
+      - weight
+      - weight_unit
+      - wholesale_options
+      type: object
+    variant:
+      example:
+        variant_id: variant_id
+        sku: sku
+      properties:
+        sku:
+          type: string
+        variant_id:
+          type: string
+      type: object
+    product:
+      example:
+        shop_id: shop_id
+        success: true
+        variants:
+        - variant_id: variant_id
+          sku: sku
+        - variant_id: variant_id
+          sku: sku
+        product_code: product_code
+        message: message
+      properties:
+        product_code:
+          type: string
+        shop_id:
+          type: string
+        success:
+          type: boolean
+        message:
+          type: string
+        variants:
+          items:
+            $ref: '#/components/schemas/variant'
+          type: array
+      type: object
+    fetchProductInput:
+      properties:
+        product_id:
+          type: string
+      required:
+      - product_id
+      type: object
+    fetchProductResponse:
+      example:
+        shop_id: shop_id
+        success: true
+        message: message
+      properties:
+        shop_id:
+          type: string
+        success:
+          type: boolean
+        message:
+          type: string
+      type: object
+    stockInput:
+      properties:
+        warehouse_id:
+          type: string
+        qty:
+          type: number
+      required:
+      - qty
+      type: object
+    updateStockInput:
+      properties:
+        product_id:
+          type: string
+        variant_id:
+          type: string
+        stocks:
+          items:
+            $ref: '#/components/schemas/stockInput'
+          type: array
+      required:
+      - product_id
+      - variant_id
+      type: object
+    stockResponse:
+      example:
+        success: true
+        qty: 0.8008281904610115
+        message: message
+        warehouse_id: warehouse_id
+      properties:
+        warehouse_id:
+          type: string
+        qty:
+          type: number
+        success:
+          type: boolean
+        message:
+          type: string
+      type: object
+    updateStockResponse:
+      example:
+        variant_id: variant_id
+        product_id: product_id
+        stocks:
+        - success: true
+          qty: 0.8008281904610115
+          message: message
+          warehouse_id: warehouse_id
+        - success: true
+          qty: 0.8008281904610115
+          message: message
+          warehouse_id: warehouse_id
+      properties:
+        product_id:
+          type: string
+        variant_id:
+          type: string
+        stocks:
+          items:
+            $ref: '#/components/schemas/stockResponse'
+          type: array
+      type: object
+    productDeleteInput:
+      properties:
+        product_id:
+          type: string
+      required:
+      - product_id
+      type: object
+    productDeleteResponse:
+      example:
+        shop_id: shop_id
+        success: true
+        product_code: product_code
+        message: message
+      properties:
+        product_code:
+          type: string
+        shop_id:
+          type: string
+        success:
+          type: boolean
+        message:
+          type: string
+      type: object
+    updateProductStatusInput:
+      properties:
+        product_id:
+          type: string
+        status:
+          type: string
+      required:
+      - product_id
+      - status
+      type: object
+    updateProductStatusResponse:
+      example:
+        shop_id: shop_id
+        success: true
+        product_code: product_code
+        message: message
+      properties:
+        product_code:
+          type: string
+        shop_id:
+          type: string
+        success:
+          type: boolean
+        message:
+          type: string
+      type: object
+  securitySchemes:
+    shopSecret:
+      in: header
+      name: shop-secret
+      type: apiKey
