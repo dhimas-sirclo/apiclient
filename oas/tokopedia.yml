@@ -1817,6 +1817,14 @@ components:
       schema:
         type: integer
         format: int64
+    shop_id:
+      name: shop_id
+      in: path
+      required: true
+      description: "Shop service unique identifier"
+      schema:
+        type: integer
+        format: int64
     msg_id:
       name: msg_id
       in: path
@@ -3337,6 +3345,107 @@ paths:
                             type: string
                           message:
                             type: string
+  /v1/fs/{fs_id}/shop/{shop_id}/saldo-history:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+      - $ref: "#/components/parameters/shop_id"
+    get:
+      operationId: getSaldoHistory
+      tags:
+        - Finance
+      description: "This endpoint returns seller saldo history from Shop ID that associated with FS ID. This endpoint has two types of response as json format and files format with .xls extension"
+      parameters:
+        - name: from_date
+          in: query
+          description: UNIX timestamp of date (hour, min, sec) from which the order details are requested. Max Range per request 31 Days
+          required: true
+          schema:
+            type: string
+        - name: to_date
+          in: query
+          description: UNIX timestamp of date (hour, min, sec) to which the order details are requested. Max Range per request 31 Days
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Determine which page the order list should start. Start from 1. You can get the next page when the previous page has have_next_page value true
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          description: Determine how many orders will be shown per page. The maximum value is 500
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: export
+          in: query
+          description: When the value is 1 then data will be send as files with .xls extension
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    properties:
+                      process_time:
+                        type: number
+                        format: double
+                      messages:
+                        type: string
+                      reason:
+                        type: string
+                      error_code:
+                        type: integer
+                        format: int64
+                  data:
+                    type: object
+                    nullable: true
+                    properties:
+                      have_next_page:
+                        type: boolean
+                      saldo_history:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            deposit_id:
+                              type: integer
+                              format: int64
+                            type_description:
+                              type: string
+                            Type:
+                              type: integer
+                              format: int64
+                            class:
+                              type: string
+                            amount:
+                              type: integer
+                              format: int64
+                            note:
+                              type: string
+                            create_time:
+                              type: string
+                            withdrawal_date:
+                              type: string
+                            withdrawal_status:
+                              type: integer
+                              format: int64
+                            saldo:
+                              type: integer
+                              format: int64
+                            image:
+                              type: string
 
 security:
   - bearer: []
@@ -3347,3 +3456,4 @@ tags:
   - name: Webhook
   - name: Order
   - name: Interaction
+  - name: Finance

@@ -18,6 +18,7 @@ tags:
 - name: Webhook
 - name: Order
 - name: Interaction
+- name: Finance
 paths:
   /token:
     post:
@@ -1199,6 +1200,89 @@ paths:
           description: OK
       tags:
       - Interaction
+  /v1/fs/{fs_id}/shop/{shop_id}/saldo-history:
+    get:
+      description: This endpoint returns seller saldo history from Shop ID that associated
+        with FS ID. This endpoint has two types of response as json format and files
+        format with .xls extension
+      operationId: getSaldoHistory
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop service unique identifier
+        explode: false
+        in: path
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: "UNIX timestamp of date (hour, min, sec) from which the order\
+          \ details are requested. Max Range per request 31 Days"
+        explode: true
+        in: query
+        name: from_date
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "UNIX timestamp of date (hour, min, sec) to which the order details\
+          \ are requested. Max Range per request 31 Days"
+        explode: true
+        in: query
+        name: to_date
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Determine which page the order list should start. Start from
+          1. You can get the next page when the previous page has have_next_page value
+          true
+        explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine how many orders will be shown per page. The maximum
+          value is 500
+        explode: true
+        in: query
+        name: per_page
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: When the value is 1 then data will be send as files with .xls
+          extension
+        explode: true
+        in: query
+        name: export
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSaldoHistory_200_response'
+          description: OK
+      tags:
+      - Finance
 components:
   parameters:
     fs_id:
@@ -1206,6 +1290,16 @@ components:
       explode: false
       in: path
       name: fs_id
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
+    shop_id:
+      description: Shop service unique identifier
+      explode: false
+      in: path
+      name: shop_id
       required: true
       schema:
         format: int64
@@ -3385,6 +3479,121 @@ components:
           $ref: '#/components/schemas/getListMessage_default_response_header'
         data:
           $ref: '#/components/schemas/sendReply_200_response_data'
+      type: object
+    getSaldoHistory_200_response_data_saldo_history_inner:
+      example:
+        note: note
+        image: image
+        Type: 6
+        amount: 1
+        create_time: create_time
+        saldo: 5
+        withdrawal_status: 5
+        class: class
+        withdrawal_date: withdrawal_date
+        deposit_id: 0
+        type_description: type_description
+      properties:
+        deposit_id:
+          format: int64
+          type: integer
+        type_description:
+          type: string
+        Type:
+          format: int64
+          type: integer
+        class:
+          type: string
+        amount:
+          format: int64
+          type: integer
+        note:
+          type: string
+        create_time:
+          type: string
+        withdrawal_date:
+          type: string
+        withdrawal_status:
+          format: int64
+          type: integer
+        saldo:
+          format: int64
+          type: integer
+        image:
+          type: string
+      type: object
+    getSaldoHistory_200_response_data:
+      example:
+        have_next_page: true
+        saldo_history:
+        - note: note
+          image: image
+          Type: 6
+          amount: 1
+          create_time: create_time
+          saldo: 5
+          withdrawal_status: 5
+          class: class
+          withdrawal_date: withdrawal_date
+          deposit_id: 0
+          type_description: type_description
+        - note: note
+          image: image
+          Type: 6
+          amount: 1
+          create_time: create_time
+          saldo: 5
+          withdrawal_status: 5
+          class: class
+          withdrawal_date: withdrawal_date
+          deposit_id: 0
+          type_description: type_description
+      nullable: true
+      properties:
+        have_next_page:
+          type: boolean
+        saldo_history:
+          items:
+            $ref: '#/components/schemas/getSaldoHistory_200_response_data_saldo_history_inner'
+          type: array
+      type: object
+    getSaldoHistory_200_response:
+      example:
+        data:
+          have_next_page: true
+          saldo_history:
+          - note: note
+            image: image
+            Type: 6
+            amount: 1
+            create_time: create_time
+            saldo: 5
+            withdrawal_status: 5
+            class: class
+            withdrawal_date: withdrawal_date
+            deposit_id: 0
+            type_description: type_description
+          - note: note
+            image: image
+            Type: 6
+            amount: 1
+            create_time: create_time
+            saldo: 5
+            withdrawal_status: 5
+            class: class
+            withdrawal_date: withdrawal_date
+            deposit_id: 0
+            type_description: type_description
+        header:
+          reason: reason
+          messages: messages
+          error_code: 6
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getListMessage_default_response_header'
+        data:
+          $ref: '#/components/schemas/getSaldoHistory_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:

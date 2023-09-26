@@ -79,6 +79,7 @@ All URIs are relative to *https://fs.tokopedia.net*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationAPI* | [**Authentication**](docs/AuthenticationAPI.md#authentication) | **Post** /token | 
+*FinanceAPI* | [**GetSaldoHistory**](docs/FinanceAPI.md#getsaldohistory) | **Get** /v1/fs/{fs_id}/shop/{shop_id}/saldo-history | 
 *InteractionAPI* | [**GetListMessage**](docs/InteractionAPI.md#getlistmessage) | **Get** /v1/chat/fs/{fs_id}/messages | 
 *InteractionAPI* | [**GetListReply**](docs/InteractionAPI.md#getlistreply) | **Get** /v1/chat/fs/{fs_id}/messages/{msg_id}/replies | 
 *InteractionAPI* | [**InitiateChat**](docs/InteractionAPI.md#initiatechat) | **Get** /v1/chat/fs/{fs_id}/initiate | 
@@ -130,6 +131,9 @@ Class | Method | HTTP request | Description
  - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
  - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)
  - [GetRegisteredWebhooks200ResponseData](docs/GetRegisteredWebhooks200ResponseData.md)
+ - [GetSaldoHistory200Response](docs/GetSaldoHistory200Response.md)
+ - [GetSaldoHistory200ResponseData](docs/GetSaldoHistory200ResponseData.md)
+ - [GetSaldoHistory200ResponseDataSaldoHistoryInner](docs/GetSaldoHistory200ResponseDataSaldoHistoryInner.md)
  - [Header](docs/Header.md)
  - [InitiateChat200Response](docs/InitiateChat200Response.md)
  - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
