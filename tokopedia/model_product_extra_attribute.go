@@ -21,9 +21,9 @@ var _ MappedNullable = &ProductExtraAttribute{}
 // ProductExtraAttribute struct for ProductExtraAttribute
 type ProductExtraAttribute struct {
 	// Minimum Order
-	MinOrder *int32 `json:"minOrder,omitempty"`
+	MinOrder *int64 `json:"minOrder,omitempty"`
 	// Product Category Last Updated time
-	LastUpdateCategory *int32 `json:"lastUpdateCategory,omitempty"`
+	LastUpdateCategory *int64 `json:"lastUpdateCategory,omitempty"`
 	// Is Product Eligible for COD?
 	IsEligibleCOD *bool `json:"isEligibleCOD,omitempty"`
 	// Is Product on Campaign?
@@ -48,9 +48,9 @@ func NewProductExtraAttributeWithDefaults() *ProductExtraAttribute {
 }
 
 // GetMinOrder returns the MinOrder field value if set, zero value otherwise.
-func (o *ProductExtraAttribute) GetMinOrder() int32 {
+func (o *ProductExtraAttribute) GetMinOrder() int64 {
 	if o == nil || IsNil(o.MinOrder) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MinOrder
@@ -58,7 +58,7 @@ func (o *ProductExtraAttribute) GetMinOrder() int32 {
 
 // GetMinOrderOk returns a tuple with the MinOrder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductExtraAttribute) GetMinOrderOk() (*int32, bool) {
+func (o *ProductExtraAttribute) GetMinOrderOk() (*int64, bool) {
 	if o == nil || IsNil(o.MinOrder) {
 		return nil, false
 	}
@@ -74,15 +74,15 @@ func (o *ProductExtraAttribute) HasMinOrder() bool {
 	return false
 }
 
-// SetMinOrder gets a reference to the given int32 and assigns it to the MinOrder field.
-func (o *ProductExtraAttribute) SetMinOrder(v int32) {
+// SetMinOrder gets a reference to the given int64 and assigns it to the MinOrder field.
+func (o *ProductExtraAttribute) SetMinOrder(v int64) {
 	o.MinOrder = &v
 }
 
 // GetLastUpdateCategory returns the LastUpdateCategory field value if set, zero value otherwise.
-func (o *ProductExtraAttribute) GetLastUpdateCategory() int32 {
+func (o *ProductExtraAttribute) GetLastUpdateCategory() int64 {
 	if o == nil || IsNil(o.LastUpdateCategory) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LastUpdateCategory
@@ -90,7 +90,7 @@ func (o *ProductExtraAttribute) GetLastUpdateCategory() int32 {
 
 // GetLastUpdateCategoryOk returns a tuple with the LastUpdateCategory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductExtraAttribute) GetLastUpdateCategoryOk() (*int32, bool) {
+func (o *ProductExtraAttribute) GetLastUpdateCategoryOk() (*int64, bool) {
 	if o == nil || IsNil(o.LastUpdateCategory) {
 		return nil, false
 	}
@@ -106,8 +106,8 @@ func (o *ProductExtraAttribute) HasLastUpdateCategory() bool {
 	return false
 }
 
-// SetLastUpdateCategory gets a reference to the given int32 and assigns it to the LastUpdateCategory field.
-func (o *ProductExtraAttribute) SetLastUpdateCategory(v int32) {
+// SetLastUpdateCategory gets a reference to the given int64 and assigns it to the LastUpdateCategory field.
+func (o *ProductExtraAttribute) SetLastUpdateCategory(v int64) {
 	o.LastUpdateCategory = &v
 }
 

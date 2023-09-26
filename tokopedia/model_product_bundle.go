@@ -21,19 +21,19 @@ var _ MappedNullable = &ProductBundle{}
 // ProductBundle struct for ProductBundle
 type ProductBundle struct {
 	// Bundle Unique Identifier
-	BundleID *int32 `json:"bundleID,omitempty"`
+	BundleID *int64 `json:"bundleID,omitempty"`
 	// Bundle Name
 	Name *string `json:"Name,omitempty"`
 	// Bundle Type
-	Type *int32 `json:"Type,omitempty"`
+	Type *int64 `json:"Type,omitempty"`
 	// Bundle Status
-	Status *int32 `json:"status,omitempty"`
+	Status *int64 `json:"status,omitempty"`
 	// Shop Unique Identifier
-	ShopID *int32 `json:"shopID,omitempty"`
+	ShopID *int64 `json:"shopID,omitempty"`
 	// Bundle Start Time
-	StartTimeUnix *int32 `json:"startTimeUnix,omitempty"`
+	StartTimeUnix *int64 `json:"startTimeUnix,omitempty"`
 	// Bundle End Time
-	StopTimeUnix *int32 `json:"stopTimeUnix,omitempty"`
+	StopTimeUnix *int64 `json:"stopTimeUnix,omitempty"`
 }
 
 // NewProductBundle instantiates a new ProductBundle object
@@ -54,9 +54,9 @@ func NewProductBundleWithDefaults() *ProductBundle {
 }
 
 // GetBundleID returns the BundleID field value if set, zero value otherwise.
-func (o *ProductBundle) GetBundleID() int32 {
+func (o *ProductBundle) GetBundleID() int64 {
 	if o == nil || IsNil(o.BundleID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BundleID
@@ -64,7 +64,7 @@ func (o *ProductBundle) GetBundleID() int32 {
 
 // GetBundleIDOk returns a tuple with the BundleID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBundle) GetBundleIDOk() (*int32, bool) {
+func (o *ProductBundle) GetBundleIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.BundleID) {
 		return nil, false
 	}
@@ -80,8 +80,8 @@ func (o *ProductBundle) HasBundleID() bool {
 	return false
 }
 
-// SetBundleID gets a reference to the given int32 and assigns it to the BundleID field.
-func (o *ProductBundle) SetBundleID(v int32) {
+// SetBundleID gets a reference to the given int64 and assigns it to the BundleID field.
+func (o *ProductBundle) SetBundleID(v int64) {
 	o.BundleID = &v
 }
 
@@ -118,9 +118,9 @@ func (o *ProductBundle) SetName(v string) {
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *ProductBundle) GetType() int32 {
+func (o *ProductBundle) GetType() int64 {
 	if o == nil || IsNil(o.Type) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Type
@@ -128,7 +128,7 @@ func (o *ProductBundle) GetType() int32 {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBundle) GetTypeOk() (*int32, bool) {
+func (o *ProductBundle) GetTypeOk() (*int64, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
@@ -144,15 +144,15 @@ func (o *ProductBundle) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given int32 and assigns it to the Type field.
-func (o *ProductBundle) SetType(v int32) {
+// SetType gets a reference to the given int64 and assigns it to the Type field.
+func (o *ProductBundle) SetType(v int64) {
 	o.Type = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ProductBundle) GetStatus() int32 {
+func (o *ProductBundle) GetStatus() int64 {
 	if o == nil || IsNil(o.Status) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Status
@@ -160,7 +160,7 @@ func (o *ProductBundle) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBundle) GetStatusOk() (*int32, bool) {
+func (o *ProductBundle) GetStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -176,15 +176,15 @@ func (o *ProductBundle) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *ProductBundle) SetStatus(v int32) {
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *ProductBundle) SetStatus(v int64) {
 	o.Status = &v
 }
 
 // GetShopID returns the ShopID field value if set, zero value otherwise.
-func (o *ProductBundle) GetShopID() int32 {
+func (o *ProductBundle) GetShopID() int64 {
 	if o == nil || IsNil(o.ShopID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ShopID
@@ -192,7 +192,7 @@ func (o *ProductBundle) GetShopID() int32 {
 
 // GetShopIDOk returns a tuple with the ShopID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBundle) GetShopIDOk() (*int32, bool) {
+func (o *ProductBundle) GetShopIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.ShopID) {
 		return nil, false
 	}
@@ -208,15 +208,15 @@ func (o *ProductBundle) HasShopID() bool {
 	return false
 }
 
-// SetShopID gets a reference to the given int32 and assigns it to the ShopID field.
-func (o *ProductBundle) SetShopID(v int32) {
+// SetShopID gets a reference to the given int64 and assigns it to the ShopID field.
+func (o *ProductBundle) SetShopID(v int64) {
 	o.ShopID = &v
 }
 
 // GetStartTimeUnix returns the StartTimeUnix field value if set, zero value otherwise.
-func (o *ProductBundle) GetStartTimeUnix() int32 {
+func (o *ProductBundle) GetStartTimeUnix() int64 {
 	if o == nil || IsNil(o.StartTimeUnix) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StartTimeUnix
@@ -224,7 +224,7 @@ func (o *ProductBundle) GetStartTimeUnix() int32 {
 
 // GetStartTimeUnixOk returns a tuple with the StartTimeUnix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBundle) GetStartTimeUnixOk() (*int32, bool) {
+func (o *ProductBundle) GetStartTimeUnixOk() (*int64, bool) {
 	if o == nil || IsNil(o.StartTimeUnix) {
 		return nil, false
 	}
@@ -240,15 +240,15 @@ func (o *ProductBundle) HasStartTimeUnix() bool {
 	return false
 }
 
-// SetStartTimeUnix gets a reference to the given int32 and assigns it to the StartTimeUnix field.
-func (o *ProductBundle) SetStartTimeUnix(v int32) {
+// SetStartTimeUnix gets a reference to the given int64 and assigns it to the StartTimeUnix field.
+func (o *ProductBundle) SetStartTimeUnix(v int64) {
 	o.StartTimeUnix = &v
 }
 
 // GetStopTimeUnix returns the StopTimeUnix field value if set, zero value otherwise.
-func (o *ProductBundle) GetStopTimeUnix() int32 {
+func (o *ProductBundle) GetStopTimeUnix() int64 {
 	if o == nil || IsNil(o.StopTimeUnix) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StopTimeUnix
@@ -256,7 +256,7 @@ func (o *ProductBundle) GetStopTimeUnix() int32 {
 
 // GetStopTimeUnixOk returns a tuple with the StopTimeUnix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBundle) GetStopTimeUnixOk() (*int32, bool) {
+func (o *ProductBundle) GetStopTimeUnixOk() (*int64, bool) {
 	if o == nil || IsNil(o.StopTimeUnix) {
 		return nil, false
 	}
@@ -272,8 +272,8 @@ func (o *ProductBundle) HasStopTimeUnix() bool {
 	return false
 }
 
-// SetStopTimeUnix gets a reference to the given int32 and assigns it to the StopTimeUnix field.
-func (o *ProductBundle) SetStopTimeUnix(v int32) {
+// SetStopTimeUnix gets a reference to the given int64 and assigns it to the StopTimeUnix field.
+func (o *ProductBundle) SetStopTimeUnix(v int64) {
 	o.StopTimeUnix = &v
 }
 

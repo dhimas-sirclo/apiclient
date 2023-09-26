@@ -21,8 +21,8 @@ var _ MappedNullable = &ProductWholesale{}
 // ProductWholesale struct for ProductWholesale
 type ProductWholesale struct {
 	Price *ProductWholesalePrice `json:"price,omitempty"`
-	MinQuantity *int32 `json:"minQuantity,omitempty"`
-	MaxQuantity *int32 `json:"maxQuantity,omitempty"`
+	MinQuantity *int64 `json:"minQuantity,omitempty"`
+	MaxQuantity *int64 `json:"maxQuantity,omitempty"`
 }
 
 // NewProductWholesale instantiates a new ProductWholesale object
@@ -75,9 +75,9 @@ func (o *ProductWholesale) SetPrice(v ProductWholesalePrice) {
 }
 
 // GetMinQuantity returns the MinQuantity field value if set, zero value otherwise.
-func (o *ProductWholesale) GetMinQuantity() int32 {
+func (o *ProductWholesale) GetMinQuantity() int64 {
 	if o == nil || IsNil(o.MinQuantity) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MinQuantity
@@ -85,7 +85,7 @@ func (o *ProductWholesale) GetMinQuantity() int32 {
 
 // GetMinQuantityOk returns a tuple with the MinQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWholesale) GetMinQuantityOk() (*int32, bool) {
+func (o *ProductWholesale) GetMinQuantityOk() (*int64, bool) {
 	if o == nil || IsNil(o.MinQuantity) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *ProductWholesale) HasMinQuantity() bool {
 	return false
 }
 
-// SetMinQuantity gets a reference to the given int32 and assigns it to the MinQuantity field.
-func (o *ProductWholesale) SetMinQuantity(v int32) {
+// SetMinQuantity gets a reference to the given int64 and assigns it to the MinQuantity field.
+func (o *ProductWholesale) SetMinQuantity(v int64) {
 	o.MinQuantity = &v
 }
 
 // GetMaxQuantity returns the MaxQuantity field value if set, zero value otherwise.
-func (o *ProductWholesale) GetMaxQuantity() int32 {
+func (o *ProductWholesale) GetMaxQuantity() int64 {
 	if o == nil || IsNil(o.MaxQuantity) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MaxQuantity
@@ -117,7 +117,7 @@ func (o *ProductWholesale) GetMaxQuantity() int32 {
 
 // GetMaxQuantityOk returns a tuple with the MaxQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWholesale) GetMaxQuantityOk() (*int32, bool) {
+func (o *ProductWholesale) GetMaxQuantityOk() (*int64, bool) {
 	if o == nil || IsNil(o.MaxQuantity) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *ProductWholesale) HasMaxQuantity() bool {
 	return false
 }
 
-// SetMaxQuantity gets a reference to the given int32 and assigns it to the MaxQuantity field.
-func (o *ProductWholesale) SetMaxQuantity(v int32) {
+// SetMaxQuantity gets a reference to the given int64 and assigns it to the MaxQuantity field.
+func (o *ProductWholesale) SetMaxQuantity(v int64) {
 	o.MaxQuantity = &v
 }
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **int32** | Product Weight Value | [optional] 
-**Unit** | Pointer to **int32** | Weight (e.g., 1 for Gram, 2 for Kilogram) | [optional] 
+**Value** | Pointer to **int64** | Product Weight Value | [optional] 
+**Unit** | Pointer to **int64** | Weight (e.g., 1 for Gram, 2 for Kilogram) | [optional] 
 
 ## Methods
 
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetValue
 
-`func (o *ProductWeight) GetValue() int32`
+`func (o *ProductWeight) GetValue() int64`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *ProductWeight) GetValueOk() (*int32, bool)`
+`func (o *ProductWeight) GetValueOk() (*int64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *ProductWeight) SetValue(v int32)`
+`func (o *ProductWeight) SetValue(v int64)`
 
 SetValue sets Value field to given value.
 
@@ -53,20 +53,20 @@ HasValue returns a boolean if a field has been set.
 
 ### GetUnit
 
-`func (o *ProductWeight) GetUnit() int32`
+`func (o *ProductWeight) GetUnit() int64`
 
 GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *ProductWeight) GetUnitOk() (*int32, bool)`
+`func (o *ProductWeight) GetUnitOk() (*int64, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnit
 
-`func (o *ProductWeight) SetUnit(v int32)`
+`func (o *ProductWeight) SetUnit(v int64)`
 
 SetUnit sets Unit field to given value.
 

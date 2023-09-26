@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UseStock** | Pointer to **bool** |  | [optional] 
-**Value** | Pointer to **int32** | Product Total Stock | [optional] 
+**Value** | Pointer to **int64** | Product Total Stock | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasUseStock returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *ProductStock) GetValue() int32`
+`func (o *ProductStock) GetValue() int64`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *ProductStock) GetValueOk() (*int32, bool)`
+`func (o *ProductStock) GetValueOk() (*int64, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *ProductStock) SetValue(v int32)`
+`func (o *ProductStock) SetValue(v int64)`
 
 SetValue sets Value field to given value.
 

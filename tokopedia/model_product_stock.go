@@ -22,7 +22,7 @@ var _ MappedNullable = &ProductStock{}
 type ProductStock struct {
 	UseStock *bool `json:"useStock,omitempty"`
 	// Product Total Stock
-	Value *int32 `json:"value,omitempty"`
+	Value *int64 `json:"value,omitempty"`
 }
 
 // NewProductStock instantiates a new ProductStock object
@@ -75,9 +75,9 @@ func (o *ProductStock) SetUseStock(v bool) {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *ProductStock) GetValue() int32 {
+func (o *ProductStock) GetValue() int64 {
 	if o == nil || IsNil(o.Value) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Value
@@ -85,7 +85,7 @@ func (o *ProductStock) GetValue() int32 {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductStock) GetValueOk() (*int32, bool) {
+func (o *ProductStock) GetValueOk() (*int64, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *ProductStock) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given int32 and assigns it to the Value field.
-func (o *ProductStock) SetValue(v int32) {
+// SetValue gets a reference to the given int64 and assigns it to the Value field.
+func (o *ProductStock) SetValue(v int64) {
 	o.Value = &v
 }
 

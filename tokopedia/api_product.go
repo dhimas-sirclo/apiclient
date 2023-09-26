@@ -30,17 +30,17 @@ type ProductAPI interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param fsId Fulfillment service unique identifier
-	@return ApiGetProductInfoRequest
+	@return ProductAPIGetProductInfoRequest
 	*/
-	GetProductInfo(ctx context.Context, fsId int32) ApiGetProductInfoRequest
+	GetProductInfo(ctx context.Context, fsId int64) ProductAPIGetProductInfoRequest
 
 	// GetProductInfoExecute executes the request
 	//  @return GetProductInfoResponse
-	GetProductInfoExecute(r ApiGetProductInfoRequest) (*GetProductInfoResponse, *http.Response, error)
+	GetProductInfoExecute(r ProductAPIGetProductInfoRequest) (*GetProductInfoResponse, *http.Response, error)
 
 	// GetProductInfoExecuteWithRetry executes the request with retry
 	//  @return GetProductInfoResponse
-	GetProductInfoExecuteWithRetry(r ApiGetProductInfoRequest, maxRetry, maxDelayMs int) (*GetProductInfoResponse, *http.Response, error)
+	GetProductInfoExecuteWithRetry(r ProductAPIGetProductInfoRequest, maxRetry, maxDelayMs int) (*GetProductInfoResponse, *http.Response, error)
 
 	/*
 	GetVariantsByCategoryId Method for GetVariantsByCategoryId
@@ -49,17 +49,17 @@ type ProductAPI interface {
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param fsId Fulfillment service unique identifier
-	@return ApiGetVariantsByCategoryIdRequest
+	@return ProductAPIGetVariantsByCategoryIdRequest
 	*/
-	GetVariantsByCategoryId(ctx context.Context, fsId int32) ApiGetVariantsByCategoryIdRequest
+	GetVariantsByCategoryId(ctx context.Context, fsId int64) ProductAPIGetVariantsByCategoryIdRequest
 
 	// GetVariantsByCategoryIdExecute executes the request
 	//  @return CategoryVariants
-	GetVariantsByCategoryIdExecute(r ApiGetVariantsByCategoryIdRequest) (*CategoryVariants, *http.Response, error)
+	GetVariantsByCategoryIdExecute(r ProductAPIGetVariantsByCategoryIdRequest) (*CategoryVariants, *http.Response, error)
 
 	// GetVariantsByCategoryIdExecuteWithRetry executes the request with retry
 	//  @return CategoryVariants
-	GetVariantsByCategoryIdExecuteWithRetry(r ApiGetVariantsByCategoryIdRequest, maxRetry, maxDelayMs int) (*CategoryVariants, *http.Response, error)
+	GetVariantsByCategoryIdExecuteWithRetry(r ProductAPIGetVariantsByCategoryIdRequest, maxRetry, maxDelayMs int) (*CategoryVariants, *http.Response, error)
 
 	/*
 	GetVariantsByProductId Method for GetVariantsByProductId
@@ -69,82 +69,101 @@ type ProductAPI interface {
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param fsId Fulfillment service unique identifier
 	@param productId Product unique identifier
-	@return ApiGetVariantsByProductIdRequest
+	@return ProductAPIGetVariantsByProductIdRequest
 	*/
-	GetVariantsByProductId(ctx context.Context, fsId int32, productId int32) ApiGetVariantsByProductIdRequest
+	GetVariantsByProductId(ctx context.Context, fsId int64, productId int64) ProductAPIGetVariantsByProductIdRequest
 
 	// GetVariantsByProductIdExecute executes the request
 	//  @return GetProductVariantResponse
-	GetVariantsByProductIdExecute(r ApiGetVariantsByProductIdRequest) (*GetProductVariantResponse, *http.Response, error)
+	GetVariantsByProductIdExecute(r ProductAPIGetVariantsByProductIdRequest) (*GetProductVariantResponse, *http.Response, error)
 
 	// GetVariantsByProductIdExecuteWithRetry executes the request with retry
 	//  @return GetProductVariantResponse
-	GetVariantsByProductIdExecuteWithRetry(r ApiGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error)
+	GetVariantsByProductIdExecuteWithRetry(r ProductAPIGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error)
+
+	/*
+	UpdateStock Method for UpdateStock
+
+	This endpoint used for update product stock. You can update up to 100 products or SKUs in a single request to this endpoint.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIUpdateStockRequest
+	*/
+	UpdateStock(ctx context.Context, fsId int64) ProductAPIUpdateStockRequest
+
+	// UpdateStockExecute executes the request
+	//  @return UpdateStockResponse
+	UpdateStockExecute(r ProductAPIUpdateStockRequest) (*UpdateStockResponse, *http.Response, error)
+
+	// UpdateStockExecuteWithRetry executes the request with retry
+	//  @return UpdateStockResponse
+	UpdateStockExecuteWithRetry(r ProductAPIUpdateStockRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error)
 }
 
 // ProductAPIService ProductAPI service
 type ProductAPIService service
 
-type ApiGetProductInfoRequest struct {
+type ProductAPIGetProductInfoRequest struct {
 	ctx context.Context
 	ApiService ProductAPI
-	fsId int32
+	fsId int64
 	product *string
 	productUrl *string
 	sku *string
-	shopId *int32
-	page *int32
-	perPage *int32
+	shopId *int64
+	page *int64
+	perPage *int64
 	lastSort *string
 }
 
 // Can input more than one product_id
-func (r ApiGetProductInfoRequest) Product(product string) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) Product(product string) ProductAPIGetProductInfoRequest {
 	r.product = &product
 	return r
 }
 
 // Can input more than one product_url
-func (r ApiGetProductInfoRequest) ProductUrl(productUrl string) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) ProductUrl(productUrl string) ProductAPIGetProductInfoRequest {
 	r.productUrl = &productUrl
 	return r
 }
 
 // Product’s SKU
-func (r ApiGetProductInfoRequest) Sku(sku string) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) Sku(sku string) ProductAPIGetProductInfoRequest {
 	r.sku = &sku
 	return r
 }
 
 // Shop Identifier
-func (r ApiGetProductInfoRequest) ShopId(shopId int32) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) ShopId(shopId int64) ProductAPIGetProductInfoRequest {
 	r.shopId = &shopId
 	return r
 }
 
 // Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled)
-func (r ApiGetProductInfoRequest) Page(page int32) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) Page(page int64) ProductAPIGetProductInfoRequest {
 	r.page = &page
 	return r
 }
 
 // Page per item (required if shop_id is filled). Maximun items are 50 for 1 page
-func (r ApiGetProductInfoRequest) PerPage(perPage int32) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) PerPage(perPage int64) ProductAPIGetProductInfoRequest {
 	r.perPage = &perPage
 	return r
 }
 
 // This parameter is required when the product exceeds 10.000 products
-func (r ApiGetProductInfoRequest) LastSort(lastSort string) ApiGetProductInfoRequest {
+func (r ProductAPIGetProductInfoRequest) LastSort(lastSort string) ProductAPIGetProductInfoRequest {
 	r.lastSort = &lastSort
 	return r
 }
 
-func (r ApiGetProductInfoRequest) Execute() (*GetProductInfoResponse, *http.Response, error) {
+func (r ProductAPIGetProductInfoRequest) Execute() (*GetProductInfoResponse, *http.Response, error) {
 	return r.ApiService.GetProductInfoExecute(r)
 }
 
-func (r ApiGetProductInfoRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetProductInfoResponse, *http.Response, error) {
+func (r ProductAPIGetProductInfoRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetProductInfoResponse, *http.Response, error) {
 	return r.ApiService.GetProductInfoExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -155,10 +174,10 @@ This method will retrieve single product information either by product id as par
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fsId Fulfillment service unique identifier
- @return ApiGetProductInfoRequest
+ @return ProductAPIGetProductInfoRequest
 */
-func (a *ProductAPIService) GetProductInfo(ctx context.Context, fsId int32) ApiGetProductInfoRequest {
-	return ApiGetProductInfoRequest{
+func (a *ProductAPIService) GetProductInfo(ctx context.Context, fsId int64) ProductAPIGetProductInfoRequest {
+	return ProductAPIGetProductInfoRequest{
 		ApiService: a,
 		ctx: ctx,
 		fsId: fsId,
@@ -167,7 +186,7 @@ func (a *ProductAPIService) GetProductInfo(ctx context.Context, fsId int32) ApiG
 
 // Execute executes the request
 //  @return GetProductInfoResponse
-func (a *ProductAPIService) GetProductInfoExecute(r ApiGetProductInfoRequest) (*GetProductInfoResponse, *http.Response, error) {
+func (a *ProductAPIService) GetProductInfoExecute(r ProductAPIGetProductInfoRequest) (*GetProductInfoResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -272,7 +291,7 @@ func (a *ProductAPIService) GetProductInfoExecute(r ApiGetProductInfoRequest) (*
 
 // ExecuteWithRetry executes the request with retry
 //  @return GetProductInfoResponse
-func (a *ProductAPIService) GetProductInfoExecuteWithRetry(r ApiGetProductInfoRequest, maxRetry, maxDelayMs int) (*GetProductInfoResponse, *http.Response, error) {
+func (a *ProductAPIService) GetProductInfoExecuteWithRetry(r ProductAPIGetProductInfoRequest, maxRetry, maxDelayMs int) (*GetProductInfoResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -375,24 +394,24 @@ func (a *ProductAPIService) GetProductInfoExecuteWithRetry(r ApiGetProductInfoRe
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetVariantsByCategoryIdRequest struct {
+type ProductAPIGetVariantsByCategoryIdRequest struct {
 	ctx context.Context
 	ApiService ProductAPI
-	fsId int32
-	catId *int32
+	fsId int64
+	catId *int64
 }
 
 // Category unique identifier
-func (r ApiGetVariantsByCategoryIdRequest) CatId(catId int32) ApiGetVariantsByCategoryIdRequest {
+func (r ProductAPIGetVariantsByCategoryIdRequest) CatId(catId int64) ProductAPIGetVariantsByCategoryIdRequest {
 	r.catId = &catId
 	return r
 }
 
-func (r ApiGetVariantsByCategoryIdRequest) Execute() (*CategoryVariants, *http.Response, error) {
+func (r ProductAPIGetVariantsByCategoryIdRequest) Execute() (*CategoryVariants, *http.Response, error) {
 	return r.ApiService.GetVariantsByCategoryIdExecute(r)
 }
 
-func (r ApiGetVariantsByCategoryIdRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CategoryVariants, *http.Response, error) {
+func (r ProductAPIGetVariantsByCategoryIdRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CategoryVariants, *http.Response, error) {
 	return r.ApiService.GetVariantsByCategoryIdExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -403,10 +422,10 @@ This endpoint retrieves a list of variants related to a category_id. Use this AP
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fsId Fulfillment service unique identifier
- @return ApiGetVariantsByCategoryIdRequest
+ @return ProductAPIGetVariantsByCategoryIdRequest
 */
-func (a *ProductAPIService) GetVariantsByCategoryId(ctx context.Context, fsId int32) ApiGetVariantsByCategoryIdRequest {
-	return ApiGetVariantsByCategoryIdRequest{
+func (a *ProductAPIService) GetVariantsByCategoryId(ctx context.Context, fsId int64) ProductAPIGetVariantsByCategoryIdRequest {
+	return ProductAPIGetVariantsByCategoryIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		fsId: fsId,
@@ -415,7 +434,7 @@ func (a *ProductAPIService) GetVariantsByCategoryId(ctx context.Context, fsId in
 
 // Execute executes the request
 //  @return CategoryVariants
-func (a *ProductAPIService) GetVariantsByCategoryIdExecute(r ApiGetVariantsByCategoryIdRequest) (*CategoryVariants, *http.Response, error) {
+func (a *ProductAPIService) GetVariantsByCategoryIdExecute(r ProductAPIGetVariantsByCategoryIdRequest) (*CategoryVariants, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -503,7 +522,7 @@ func (a *ProductAPIService) GetVariantsByCategoryIdExecute(r ApiGetVariantsByCat
 
 // ExecuteWithRetry executes the request with retry
 //  @return CategoryVariants
-func (a *ProductAPIService) GetVariantsByCategoryIdExecuteWithRetry(r ApiGetVariantsByCategoryIdRequest, maxRetry, maxDelayMs int) (*CategoryVariants, *http.Response, error) {
+func (a *ProductAPIService) GetVariantsByCategoryIdExecuteWithRetry(r ProductAPIGetVariantsByCategoryIdRequest, maxRetry, maxDelayMs int) (*CategoryVariants, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -589,18 +608,18 @@ func (a *ProductAPIService) GetVariantsByCategoryIdExecuteWithRetry(r ApiGetVari
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetVariantsByProductIdRequest struct {
+type ProductAPIGetVariantsByProductIdRequest struct {
 	ctx context.Context
 	ApiService ProductAPI
-	fsId int32
-	productId int32
+	fsId int64
+	productId int64
 }
 
-func (r ApiGetVariantsByProductIdRequest) Execute() (*GetProductVariantResponse, *http.Response, error) {
+func (r ProductAPIGetVariantsByProductIdRequest) Execute() (*GetProductVariantResponse, *http.Response, error) {
 	return r.ApiService.GetVariantsByProductIdExecute(r)
 }
 
-func (r ApiGetVariantsByProductIdRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error) {
+func (r ProductAPIGetVariantsByProductIdRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error) {
 	return r.ApiService.GetVariantsByProductIdExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -612,10 +631,10 @@ This endpoint retrieves a list of variants related to a product_id.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fsId Fulfillment service unique identifier
  @param productId Product unique identifier
- @return ApiGetVariantsByProductIdRequest
+ @return ProductAPIGetVariantsByProductIdRequest
 */
-func (a *ProductAPIService) GetVariantsByProductId(ctx context.Context, fsId int32, productId int32) ApiGetVariantsByProductIdRequest {
-	return ApiGetVariantsByProductIdRequest{
+func (a *ProductAPIService) GetVariantsByProductId(ctx context.Context, fsId int64, productId int64) ProductAPIGetVariantsByProductIdRequest {
+	return ProductAPIGetVariantsByProductIdRequest{
 		ApiService: a,
 		ctx: ctx,
 		fsId: fsId,
@@ -625,7 +644,7 @@ func (a *ProductAPIService) GetVariantsByProductId(ctx context.Context, fsId int
 
 // Execute executes the request
 //  @return GetProductVariantResponse
-func (a *ProductAPIService) GetVariantsByProductIdExecute(r ApiGetVariantsByProductIdRequest) (*GetProductVariantResponse, *http.Response, error) {
+func (a *ProductAPIService) GetVariantsByProductIdExecute(r ProductAPIGetVariantsByProductIdRequest) (*GetProductVariantResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -710,7 +729,7 @@ func (a *ProductAPIService) GetVariantsByProductIdExecute(r ApiGetVariantsByProd
 
 // ExecuteWithRetry executes the request with retry
 //  @return GetProductVariantResponse
-func (a *ProductAPIService) GetVariantsByProductIdExecuteWithRetry(r ApiGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error) {
+func (a *ProductAPIService) GetVariantsByProductIdExecuteWithRetry(r ProductAPIGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -748,6 +767,259 @@ func (a *ProductAPIService) GetVariantsByProductIdExecuteWithRetry(r ApiGetVaria
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIUpdateStockRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	updateStockInput *[]UpdateStockInput
+	bypassUpdateProductStatus *bool
+	warehouseId *int64
+}
+
+func (r ProductAPIUpdateStockRequest) ShopId(shopId int64) ProductAPIUpdateStockRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPIUpdateStockRequest) UpdateStockInput(updateStockInput []UpdateStockInput) ProductAPIUpdateStockRequest {
+	r.updateStockInput = &updateStockInput
+	return r
+}
+
+func (r ProductAPIUpdateStockRequest) BypassUpdateProductStatus(bypassUpdateProductStatus bool) ProductAPIUpdateStockRequest {
+	r.bypassUpdateProductStatus = &bypassUpdateProductStatus
+	return r
+}
+
+func (r ProductAPIUpdateStockRequest) WarehouseId(warehouseId int64) ProductAPIUpdateStockRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+func (r ProductAPIUpdateStockRequest) Execute() (*UpdateStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockExecute(r)
+}
+
+func (r ProductAPIUpdateStockRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+UpdateStock Method for UpdateStock
+
+This endpoint used for update product stock. You can update up to 100 products or SKUs in a single request to this endpoint.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIUpdateStockRequest
+*/
+func (a *ProductAPIService) UpdateStock(ctx context.Context, fsId int64) ProductAPIUpdateStockRequest {
+	return ProductAPIUpdateStockRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return UpdateStockResponse
+func (a *ProductAPIService) UpdateStockExecute(r ProductAPIUpdateStockRequest) (*UpdateStockResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateStockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStock")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/stock/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateStockInput == nil {
+		return localVarReturnValue, nil, reportError("updateStockInput is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.bypassUpdateProductStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bypass_update_product_status", r.bypassUpdateProductStatus, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateStockInput
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return UpdateStockResponse
+func (a *ProductAPIService) UpdateStockExecuteWithRetry(r ProductAPIUpdateStockRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateStockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStock")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/stock/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateStockInput == nil {
+		return localVarReturnValue, nil, reportError("updateStockInput is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.bypassUpdateProductStatus != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "bypass_update_product_status", r.bypassUpdateProductStatus, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateStockInput
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

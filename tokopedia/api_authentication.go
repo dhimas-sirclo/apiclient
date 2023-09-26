@@ -28,38 +28,38 @@ type AuthenticationAPI interface {
 	Authentication
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiAuthenticationRequest
+	@return AuthenticationAPIAuthenticationRequest
 	*/
-	Authentication(ctx context.Context) ApiAuthenticationRequest
+	Authentication(ctx context.Context) AuthenticationAPIAuthenticationRequest
 
 	// AuthenticationExecute executes the request
 	//  @return Token
-	AuthenticationExecute(r ApiAuthenticationRequest) (*Token, *http.Response, error)
+	AuthenticationExecute(r AuthenticationAPIAuthenticationRequest) (*Token, *http.Response, error)
 
 	// AuthenticationExecuteWithRetry executes the request with retry
 	//  @return Token
-	AuthenticationExecuteWithRetry(r ApiAuthenticationRequest, maxRetry, maxDelayMs int) (*Token, *http.Response, error)
+	AuthenticationExecuteWithRetry(r AuthenticationAPIAuthenticationRequest, maxRetry, maxDelayMs int) (*Token, *http.Response, error)
 }
 
 // AuthenticationAPIService AuthenticationAPI service
 type AuthenticationAPIService service
 
-type ApiAuthenticationRequest struct {
+type AuthenticationAPIAuthenticationRequest struct {
 	ctx context.Context
 	ApiService AuthenticationAPI
 	grantType *string
 }
 
-func (r ApiAuthenticationRequest) GrantType(grantType string) ApiAuthenticationRequest {
+func (r AuthenticationAPIAuthenticationRequest) GrantType(grantType string) AuthenticationAPIAuthenticationRequest {
 	r.grantType = &grantType
 	return r
 }
 
-func (r ApiAuthenticationRequest) Execute() (*Token, *http.Response, error) {
+func (r AuthenticationAPIAuthenticationRequest) Execute() (*Token, *http.Response, error) {
 	return r.ApiService.AuthenticationExecute(r)
 }
 
-func (r ApiAuthenticationRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*Token, *http.Response, error) {
+func (r AuthenticationAPIAuthenticationRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*Token, *http.Response, error) {
 	return r.ApiService.AuthenticationExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -69,10 +69,10 @@ Authentication Method for Authentication
 Authentication
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiAuthenticationRequest
+ @return AuthenticationAPIAuthenticationRequest
 */
-func (a *AuthenticationAPIService) Authentication(ctx context.Context) ApiAuthenticationRequest {
-	return ApiAuthenticationRequest{
+func (a *AuthenticationAPIService) Authentication(ctx context.Context) AuthenticationAPIAuthenticationRequest {
+	return AuthenticationAPIAuthenticationRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -80,7 +80,7 @@ func (a *AuthenticationAPIService) Authentication(ctx context.Context) ApiAuthen
 
 // Execute executes the request
 //  @return Token
-func (a *AuthenticationAPIService) AuthenticationExecute(r ApiAuthenticationRequest) (*Token, *http.Response, error) {
+func (a *AuthenticationAPIService) AuthenticationExecute(r AuthenticationAPIAuthenticationRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -159,7 +159,7 @@ func (a *AuthenticationAPIService) AuthenticationExecute(r ApiAuthenticationRequ
 
 // ExecuteWithRetry executes the request with retry
 //  @return Token
-func (a *AuthenticationAPIService) AuthenticationExecuteWithRetry(r ApiAuthenticationRequest, maxRetry, maxDelayMs int) (*Token, *http.Response, error) {
+func (a *AuthenticationAPIService) AuthenticationExecuteWithRetry(r AuthenticationAPIAuthenticationRequest, maxRetry, maxDelayMs int) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}

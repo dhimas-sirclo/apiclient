@@ -20,8 +20,8 @@ var _ MappedNullable = &CategoryVariant{}
 
 // CategoryVariant struct for CategoryVariant
 type CategoryVariant struct {
-	CategoryId *int32 `json:"category_id,omitempty"`
-	VariantIdCombinations [][]int32 `json:"variant_id_combinations,omitempty"`
+	CategoryId *int64 `json:"category_id,omitempty"`
+	VariantIdCombinations [][]int64 `json:"variant_id_combinations,omitempty"`
 	VariantDetails []CategoryVariantDetail `json:"variant_details,omitempty"`
 }
 
@@ -43,9 +43,9 @@ func NewCategoryVariantWithDefaults() *CategoryVariant {
 }
 
 // GetCategoryId returns the CategoryId field value if set, zero value otherwise.
-func (o *CategoryVariant) GetCategoryId() int32 {
+func (o *CategoryVariant) GetCategoryId() int64 {
 	if o == nil || IsNil(o.CategoryId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CategoryId
@@ -53,7 +53,7 @@ func (o *CategoryVariant) GetCategoryId() int32 {
 
 // GetCategoryIdOk returns a tuple with the CategoryId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariant) GetCategoryIdOk() (*int32, bool) {
+func (o *CategoryVariant) GetCategoryIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.CategoryId) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *CategoryVariant) HasCategoryId() bool {
 	return false
 }
 
-// SetCategoryId gets a reference to the given int32 and assigns it to the CategoryId field.
-func (o *CategoryVariant) SetCategoryId(v int32) {
+// SetCategoryId gets a reference to the given int64 and assigns it to the CategoryId field.
+func (o *CategoryVariant) SetCategoryId(v int64) {
 	o.CategoryId = &v
 }
 
 // GetVariantIdCombinations returns the VariantIdCombinations field value if set, zero value otherwise.
-func (o *CategoryVariant) GetVariantIdCombinations() [][]int32 {
+func (o *CategoryVariant) GetVariantIdCombinations() [][]int64 {
 	if o == nil || IsNil(o.VariantIdCombinations) {
-		var ret [][]int32
+		var ret [][]int64
 		return ret
 	}
 	return o.VariantIdCombinations
@@ -85,7 +85,7 @@ func (o *CategoryVariant) GetVariantIdCombinations() [][]int32 {
 
 // GetVariantIdCombinationsOk returns a tuple with the VariantIdCombinations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariant) GetVariantIdCombinationsOk() ([][]int32, bool) {
+func (o *CategoryVariant) GetVariantIdCombinationsOk() ([][]int64, bool) {
 	if o == nil || IsNil(o.VariantIdCombinations) {
 		return nil, false
 	}
@@ -101,8 +101,8 @@ func (o *CategoryVariant) HasVariantIdCombinations() bool {
 	return false
 }
 
-// SetVariantIdCombinations gets a reference to the given [][]int32 and assigns it to the VariantIdCombinations field.
-func (o *CategoryVariant) SetVariantIdCombinations(v [][]int32) {
+// SetVariantIdCombinations gets a reference to the given [][]int64 and assigns it to the VariantIdCombinations field.
+func (o *CategoryVariant) SetVariantIdCombinations(v [][]int64) {
 	o.VariantIdCombinations = v
 }
 

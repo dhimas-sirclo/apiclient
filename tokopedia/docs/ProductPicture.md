@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PicID** | Pointer to **int32** | Image Unique Identifier | [optional] 
+**PicID** | Pointer to **int64** | Image Unique Identifier | [optional] 
 **FileName** | Pointer to **string** | Image File Name | [optional] 
 **FilePath** | Pointer to **string** | Image Path | [optional] 
-**Status** | Pointer to **int32** | Image Status | [optional] 
+**Status** | Pointer to **int64** | Image Status | [optional] 
 **OriginalURL** | Pointer to **string** | Original Image URL | [optional] 
 **ThumbnailURL** | Pointer to **string** | Thumbnail Image URL | [optional] 
-**Width** | Pointer to **int32** | Image Width Size | [optional] 
-**Height** | Pointer to **int32** | Image Height | [optional] 
+**Width** | Pointer to **int64** | Image Width Size | [optional] 
+**Height** | Pointer to **int64** | Image Height | [optional] 
 **URL300** | Pointer to **string** | Image URL | [optional] 
 
 ## Methods
@@ -35,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetPicID
 
-`func (o *ProductPicture) GetPicID() int32`
+`func (o *ProductPicture) GetPicID() int64`
 
 GetPicID returns the PicID field if non-nil, zero value otherwise.
 
 ### GetPicIDOk
 
-`func (o *ProductPicture) GetPicIDOk() (*int32, bool)`
+`func (o *ProductPicture) GetPicIDOk() (*int64, bool)`
 
 GetPicIDOk returns a tuple with the PicID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPicID
 
-`func (o *ProductPicture) SetPicID(v int32)`
+`func (o *ProductPicture) SetPicID(v int64)`
 
 SetPicID sets PicID field to given value.
 
@@ -110,20 +110,20 @@ HasFilePath returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *ProductPicture) GetStatus() int32`
+`func (o *ProductPicture) GetStatus() int64`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *ProductPicture) GetStatusOk() (*int32, bool)`
+`func (o *ProductPicture) GetStatusOk() (*int64, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *ProductPicture) SetStatus(v int32)`
+`func (o *ProductPicture) SetStatus(v int64)`
 
 SetStatus sets Status field to given value.
 
@@ -185,20 +185,20 @@ HasThumbnailURL returns a boolean if a field has been set.
 
 ### GetWidth
 
-`func (o *ProductPicture) GetWidth() int32`
+`func (o *ProductPicture) GetWidth() int64`
 
 GetWidth returns the Width field if non-nil, zero value otherwise.
 
 ### GetWidthOk
 
-`func (o *ProductPicture) GetWidthOk() (*int32, bool)`
+`func (o *ProductPicture) GetWidthOk() (*int64, bool)`
 
 GetWidthOk returns a tuple with the Width field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWidth
 
-`func (o *ProductPicture) SetWidth(v int32)`
+`func (o *ProductPicture) SetWidth(v int64)`
 
 SetWidth sets Width field to given value.
 
@@ -210,20 +210,20 @@ HasWidth returns a boolean if a field has been set.
 
 ### GetHeight
 
-`func (o *ProductPicture) GetHeight() int32`
+`func (o *ProductPicture) GetHeight() int64`
 
 GetHeight returns the Height field if non-nil, zero value otherwise.
 
 ### GetHeightOk
 
-`func (o *ProductPicture) GetHeightOk() (*int32, bool)`
+`func (o *ProductPicture) GetHeightOk() (*int64, bool)`
 
 GetHeightOk returns a tuple with the Height field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeight
 
-`func (o *ProductPicture) SetHeight(v int32)`
+`func (o *ProductPicture) SetHeight(v int64)`
 
 SetHeight sets Height field to given value.
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **FsId** | Pointer to **int64** | Fulfillment service unique identifier | [optional] 
 **ShopId** | Pointer to **int64** | Shop unique identifier | [optional] 
 **OrderId** | Pointer to **int64** | Order unique identifier | [optional] 
-**ProductDetails** | Pointer to [**[]WebhookOrderStatusCancellationProductDetailsInner**](WebhookOrderStatusCancellationProductDetailsInner.md) | List of products | [optional] 
+**ProductDetails** | Pointer to [**[]GetOrderWebhook200ResponseDataOneOfProductDetailsInner**](GetOrderWebhook200ResponseDataOneOfProductDetailsInner.md) | List of products | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasOrderId returns a boolean if a field has been set.
 
 ### GetProductDetails
 
-`func (o *WebhookOrderStatusCancellation) GetProductDetails() []WebhookOrderStatusCancellationProductDetailsInner`
+`func (o *WebhookOrderStatusCancellation) GetProductDetails() []GetOrderWebhook200ResponseDataOneOfProductDetailsInner`
 
 GetProductDetails returns the ProductDetails field if non-nil, zero value otherwise.
 
 ### GetProductDetailsOk
 
-`func (o *WebhookOrderStatusCancellation) GetProductDetailsOk() (*[]WebhookOrderStatusCancellationProductDetailsInner, bool)`
+`func (o *WebhookOrderStatusCancellation) GetProductDetailsOk() (*[]GetOrderWebhook200ResponseDataOneOfProductDetailsInner, bool)`
 
 GetProductDetailsOk returns a tuple with the ProductDetails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductDetails
 
-`func (o *WebhookOrderStatusCancellation) SetProductDetails(v []WebhookOrderStatusCancellationProductDetailsInner)`
+`func (o *WebhookOrderStatusCancellation) SetProductDetails(v []GetOrderWebhook200ResponseDataOneOfProductDetailsInner)`
 
 SetProductDetails sets ProductDetails field to given value.
 

@@ -79,9 +79,16 @@ All URIs are relative to *https://fs.tokopedia.net*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationAPI* | [**Authentication**](docs/AuthenticationAPI.md#authentication) | **Post** /token | 
+*OrderAPI* | [**GetOrderWebhook**](docs/OrderAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
+*OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
+*ProductAPI* | [**UpdateStock**](docs/ProductAPI.md#updatestock) | **Get** /inventory/v1/fs/{fs_id}/stock/update | 
+*WebhookAPI* | [**GetOrderWebhook**](docs/WebhookAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
+*WebhookAPI* | [**GetRegisteredWebhooks**](docs/WebhookAPI.md#getregisteredwebhooks) | **Get** /v1/fs/{fs_id} | 
+*WebhookAPI* | [**RegisterWebhook**](docs/WebhookAPI.md#registerwebhook) | **Post** /v1/fs/{fs_id}/register | 
+*WebhookAPI* | [**TriggerWebhook**](docs/WebhookAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 
 
 ## Documentation For Models
@@ -94,8 +101,23 @@ Class | Method | HTTP request | Description
  - [CategoryVariantUnitValue](docs/CategoryVariantUnitValue.md)
  - [CategoryVariants](docs/CategoryVariants.md)
  - [ErrorHeader](docs/ErrorHeader.md)
+ - [GetOrderWebhook200Response](docs/GetOrderWebhook200Response.md)
+ - [GetOrderWebhook200ResponseData](docs/GetOrderWebhook200ResponseData.md)
+ - [GetOrderWebhook200ResponseDataOneOf](docs/GetOrderWebhook200ResponseDataOneOf.md)
+ - [GetOrderWebhook200ResponseDataOneOf1](docs/GetOrderWebhook200ResponseDataOneOf1.md)
+ - [GetOrderWebhook200ResponseDataOneOf1Amt](docs/GetOrderWebhook200ResponseDataOneOf1Amt.md)
+ - [GetOrderWebhook200ResponseDataOneOf1Customer](docs/GetOrderWebhook200ResponseDataOneOf1Customer.md)
+ - [GetOrderWebhook200ResponseDataOneOf1DropshipperInfo](docs/GetOrderWebhook200ResponseDataOneOf1DropshipperInfo.md)
+ - [GetOrderWebhook200ResponseDataOneOf1Logistics](docs/GetOrderWebhook200ResponseDataOneOf1Logistics.md)
+ - [GetOrderWebhook200ResponseDataOneOf1Recipient](docs/GetOrderWebhook200ResponseDataOneOf1Recipient.md)
+ - [GetOrderWebhook200ResponseDataOneOf1RecipientAddress](docs/GetOrderWebhook200ResponseDataOneOf1RecipientAddress.md)
+ - [GetOrderWebhook200ResponseDataOneOf1VoucherInfo](docs/GetOrderWebhook200ResponseDataOneOf1VoucherInfo.md)
+ - [GetOrderWebhook200ResponseDataOneOfProductDetailsInner](docs/GetOrderWebhook200ResponseDataOneOfProductDetailsInner.md)
+ - [GetOrderWebhook200ResponseHeader](docs/GetOrderWebhook200ResponseHeader.md)
  - [GetProductInfoResponse](docs/GetProductInfoResponse.md)
  - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
+ - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)
+ - [GetRegisteredWebhooks200ResponseData](docs/GetRegisteredWebhooks200ResponseData.md)
  - [Header](docs/Header.md)
  - [Product](docs/Product.md)
  - [ProductBasic](docs/ProductBasic.md)
@@ -118,7 +140,16 @@ Class | Method | HTTP request | Description
  - [ProductWeight](docs/ProductWeight.md)
  - [ProductWholesale](docs/ProductWholesale.md)
  - [ProductWholesalePrice](docs/ProductWholesalePrice.md)
+ - [RegisterWebhookDefaultResponse](docs/RegisterWebhookDefaultResponse.md)
+ - [RegisterWebhookRequest](docs/RegisterWebhookRequest.md)
  - [Token](docs/Token.md)
+ - [TriggerWebhookDefaultResponse](docs/TriggerWebhookDefaultResponse.md)
+ - [TriggerWebhookRequest](docs/TriggerWebhookRequest.md)
+ - [UpdateStockInput](docs/UpdateStockInput.md)
+ - [UpdateStockResponse](docs/UpdateStockResponse.md)
+ - [UpdateStockResponseData](docs/UpdateStockResponseData.md)
+ - [UpdateStockResponseDataFailedRowsDataInner](docs/UpdateStockResponseDataFailedRowsDataInner.md)
+ - [UpdateStockResponseHeader](docs/UpdateStockResponseHeader.md)
  - [Variant](docs/Variant.md)
  - [VariantCampaign](docs/VariantCampaign.md)
  - [VariantChildren](docs/VariantChildren.md)
@@ -150,7 +181,6 @@ Class | Method | HTTP request | Description
  - [WebhookOrderNotificationVoucherInfo](docs/WebhookOrderNotificationVoucherInfo.md)
  - [WebhookOrderRequestCancellation](docs/WebhookOrderRequestCancellation.md)
  - [WebhookOrderStatusCancellation](docs/WebhookOrderStatusCancellation.md)
- - [WebhookOrderStatusCancellationProductDetailsInner](docs/WebhookOrderStatusCancellationProductDetailsInner.md)
  - [WebhookPriceChangeNotification](docs/WebhookPriceChangeNotification.md)
  - [WebhookPriceChangeNotificationProductChangesDataInner](docs/WebhookPriceChangeNotificationProductChangesDataInner.md)
  - [WebhookProductCreation](docs/WebhookProductCreation.md)

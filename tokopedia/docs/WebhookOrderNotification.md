@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **VoucherInfo** | Pointer to [**WebhookOrderNotificationVoucherInfo**](WebhookOrderNotificationVoucherInfo.md) |  | [optional] 
 **DeviceType** | Pointer to **string** | User device type | [optional] 
 **CreateTime** | Pointer to **int64** | Time in UNIX timestamp | [optional] 
-**OrderStatus** | Pointer to **int32** | Order status | [optional] 
+**OrderStatus** | Pointer to **int64** | Order status | [optional] 
 **CustomFields** | Pointer to **map[string]interface{}** | A map of String to String for custom fields for future | [optional] 
 **Encryption** | Pointer to [**WebhookOrderNotificationEncryption**](WebhookOrderNotificationEncryption.md) |  | [optional] 
 **BundleDetail** | Pointer to [**WebhookOrderNotificationBundleDetail**](WebhookOrderNotificationBundleDetail.md) |  | [optional] 
@@ -473,20 +473,20 @@ HasCreateTime returns a boolean if a field has been set.
 
 ### GetOrderStatus
 
-`func (o *WebhookOrderNotification) GetOrderStatus() int32`
+`func (o *WebhookOrderNotification) GetOrderStatus() int64`
 
 GetOrderStatus returns the OrderStatus field if non-nil, zero value otherwise.
 
 ### GetOrderStatusOk
 
-`func (o *WebhookOrderNotification) GetOrderStatusOk() (*int32, bool)`
+`func (o *WebhookOrderNotification) GetOrderStatusOk() (*int64, bool)`
 
 GetOrderStatusOk returns a tuple with the OrderStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOrderStatus
 
-`func (o *WebhookOrderNotification) SetOrderStatus(v int32)`
+`func (o *WebhookOrderNotification) SetOrderStatus(v int64)`
 
 SetOrderStatus sets OrderStatus field to given value.
 

@@ -23,7 +23,7 @@ type VariantVariant struct {
 	Name *string `json:"name,omitempty"`
 	Identifier *string `json:"identifier,omitempty"`
 	UnitName *string `json:"unit_name,omitempty"`
-	Position *int32 `json:"position,omitempty"`
+	Position *int64 `json:"position,omitempty"`
 	Option []VariantOption `json:"option,omitempty"`
 }
 
@@ -141,9 +141,9 @@ func (o *VariantVariant) SetUnitName(v string) {
 }
 
 // GetPosition returns the Position field value if set, zero value otherwise.
-func (o *VariantVariant) GetPosition() int32 {
+func (o *VariantVariant) GetPosition() int64 {
 	if o == nil || IsNil(o.Position) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Position
@@ -151,7 +151,7 @@ func (o *VariantVariant) GetPosition() int32 {
 
 // GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VariantVariant) GetPositionOk() (*int32, bool) {
+func (o *VariantVariant) GetPositionOk() (*int64, bool) {
 	if o == nil || IsNil(o.Position) {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *VariantVariant) HasPosition() bool {
 	return false
 }
 
-// SetPosition gets a reference to the given int32 and assigns it to the Position field.
-func (o *VariantVariant) SetPosition(v int32) {
+// SetPosition gets a reference to the given int64 and assigns it to the Position field.
+func (o *VariantVariant) SetPosition(v int64) {
 	o.Position = &v
 }
 

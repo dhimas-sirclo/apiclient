@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
+[**UpdateStock**](ProductAPI.md#UpdateStock) | **Get** /inventory/v1/fs/{fs_id}/stock/update | 
 
 
 
@@ -31,13 +32,13 @@ import (
 )
 
 func main() {
-    fsId := int32(56) // int32 | Fulfillment service unique identifier
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
     product := "product_example" // string | Can input more than one product_id (optional)
     productUrl := "productUrl_example" // string | Can input more than one product_url (optional)
     sku := "sku_example" // string | Product’s SKU (optional)
-    shopId := int32(56) // int32 | Shop Identifier (optional)
-    page := int32(56) // int32 | Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled) (optional)
-    perPage := int32(56) // int32 | Page per item (required if shop_id is filled). Maximun items are 50 for 1 page (optional)
+    shopId := int64(789) // int64 | Shop Identifier (optional)
+    page := int64(789) // int64 | Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled) (optional)
+    perPage := int64(789) // int64 | Page per item (required if shop_id is filled). Maximun items are 50 for 1 page (optional)
     lastSort := "lastSort_example" // string | This parameter is required when the product exceeds 10.000 products (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -58,7 +59,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fsId** | **int32** | Fulfillment service unique identifier | 
+**fsId** | **int64** | Fulfillment service unique identifier | 
 
 ### Other Parameters
 
@@ -71,9 +72,9 @@ Name | Type | Description  | Notes
  **product** | **string** | Can input more than one product_id | 
  **productUrl** | **string** | Can input more than one product_url | 
  **sku** | **string** | Product’s SKU | 
- **shopId** | **int32** | Shop Identifier | 
- **page** | **int32** | Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled) | 
- **perPage** | **int32** | Page per item (required if shop_id is filled). Maximun items are 50 for 1 page | 
+ **shopId** | **int64** | Shop Identifier | 
+ **page** | **int64** | Determine which page the order list should start. The minimal value is 1. Page (required if shop_id is filled) | 
+ **perPage** | **int64** | Page per item (required if shop_id is filled). Maximun items are 50 for 1 page | 
  **lastSort** | **string** | This parameter is required when the product exceeds 10.000 products | 
 
 ### Return type
@@ -115,8 +116,8 @@ import (
 )
 
 func main() {
-    fsId := int32(56) // int32 | Fulfillment service unique identifier
-    catId := int32(56) // int32 | Category unique identifier
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    catId := int64(789) // int64 | Category unique identifier
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -136,7 +137,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fsId** | **int32** | Fulfillment service unique identifier | 
+**fsId** | **int64** | Fulfillment service unique identifier | 
 
 ### Other Parameters
 
@@ -146,7 +147,7 @@ Other parameters are passed through a pointer to a apiGetVariantsByCategoryIdReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **catId** | **int32** | Category unique identifier | 
+ **catId** | **int64** | Category unique identifier | 
 
 ### Return type
 
@@ -187,8 +188,8 @@ import (
 )
 
 func main() {
-    fsId := int32(56) // int32 | Fulfillment service unique identifier
-    productId := int32(56) // int32 | Product unique identifier
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    productId := int64(789) // int64 | Product unique identifier
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
@@ -208,8 +209,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**fsId** | **int32** | Fulfillment service unique identifier | 
-**productId** | **int32** | Product unique identifier | 
+**fsId** | **int64** | Fulfillment service unique identifier | 
+**productId** | **int64** | Product unique identifier | 
 
 ### Other Parameters
 
@@ -232,6 +233,84 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateStock
+
+> UpdateStockResponse UpdateStock(ctx, fsId).ShopId(shopId).UpdateStockInput(updateStockInput).BypassUpdateProductStatus(bypassUpdateProductStatus).WarehouseId(warehouseId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | 
+    updateStockInput := []openapiclient.UpdateStockInput{*openapiclient.NewUpdateStockInput(int64(123))} // []UpdateStockInput | 
+    bypassUpdateProductStatus := true // bool |  (optional)
+    warehouseId := int64(789) // int64 |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.UpdateStock(context.Background(), fsId).ShopId(shopId).UpdateStockInput(updateStockInput).BypassUpdateProductStatus(bypassUpdateProductStatus).WarehouseId(warehouseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.UpdateStock``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateStock`: UpdateStockResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.UpdateStock`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateStockRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** |  | 
+ **updateStockInput** | [**[]UpdateStockInput**](UpdateStockInput.md) |  | 
+ **bypassUpdateProductStatus** | **bool** |  | 
+ **warehouseId** | **int64** |  | 
+
+### Return type
+
+[**UpdateStockResponse**](UpdateStockResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

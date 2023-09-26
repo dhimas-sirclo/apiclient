@@ -49,7 +49,7 @@ type WebhookOrderNotification struct {
 	// Time in UNIX timestamp
 	CreateTime *int64 `json:"create_time,omitempty"`
 	// Order status
-	OrderStatus *int32 `json:"order_status,omitempty"`
+	OrderStatus *int64 `json:"order_status,omitempty"`
 	// A map of String to String for custom fields for future
 	CustomFields map[string]interface{} `json:"custom_fields,omitempty"`
 	Encryption *WebhookOrderNotificationEncryption `json:"encryption,omitempty"`
@@ -620,9 +620,9 @@ func (o *WebhookOrderNotification) SetCreateTime(v int64) {
 }
 
 // GetOrderStatus returns the OrderStatus field value if set, zero value otherwise.
-func (o *WebhookOrderNotification) GetOrderStatus() int32 {
+func (o *WebhookOrderNotification) GetOrderStatus() int64 {
 	if o == nil || IsNil(o.OrderStatus) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OrderStatus
@@ -630,7 +630,7 @@ func (o *WebhookOrderNotification) GetOrderStatus() int32 {
 
 // GetOrderStatusOk returns a tuple with the OrderStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotification) GetOrderStatusOk() (*int32, bool) {
+func (o *WebhookOrderNotification) GetOrderStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.OrderStatus) {
 		return nil, false
 	}
@@ -646,8 +646,8 @@ func (o *WebhookOrderNotification) HasOrderStatus() bool {
 	return false
 }
 
-// SetOrderStatus gets a reference to the given int32 and assigns it to the OrderStatus field.
-func (o *WebhookOrderNotification) SetOrderStatus(v int32) {
+// SetOrderStatus gets a reference to the given int64 and assigns it to the OrderStatus field.
+func (o *WebhookOrderNotification) SetOrderStatus(v int64) {
 	o.OrderStatus = &v
 }
 

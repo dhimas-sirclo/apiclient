@@ -21,17 +21,17 @@ var _ MappedNullable = &ProductBasic{}
 // ProductBasic struct for ProductBasic
 type ProductBasic struct {
 	// Product Unique Identifier
-	ProductID *int32 `json:"productID,omitempty"`
+	ProductID *int64 `json:"productID,omitempty"`
 	// Shop Unique Identifier
-	ShopID *int32 `json:"shopID,omitempty"`
+	ShopID *int64 `json:"shopID,omitempty"`
 	// Product Status (e.g., -2 for Banned, -1 for Pending, 0 for Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive (Warehouse))
-	Status *int32 `json:"status,omitempty"`
+	Status *int64 `json:"status,omitempty"`
 	// Product Name
 	Name *string `json:"Name,omitempty"`
 	// Product Condition (e.g., 1 for New, 2 for Used)
-	Condition *int32 `json:"condition,omitempty"`
+	Condition *int64 `json:"condition,omitempty"`
 	// Product Category Unique Identifier
-	ChildCategoryID *int32 `json:"childCategoryID,omitempty"`
+	ChildCategoryID *int64 `json:"childCategoryID,omitempty"`
 	// Product Description
 	ShortDesc *string `json:"shortDesc,omitempty"`
 }
@@ -54,9 +54,9 @@ func NewProductBasicWithDefaults() *ProductBasic {
 }
 
 // GetProductID returns the ProductID field value if set, zero value otherwise.
-func (o *ProductBasic) GetProductID() int32 {
+func (o *ProductBasic) GetProductID() int64 {
 	if o == nil || IsNil(o.ProductID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProductID
@@ -64,7 +64,7 @@ func (o *ProductBasic) GetProductID() int32 {
 
 // GetProductIDOk returns a tuple with the ProductID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBasic) GetProductIDOk() (*int32, bool) {
+func (o *ProductBasic) GetProductIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.ProductID) {
 		return nil, false
 	}
@@ -80,15 +80,15 @@ func (o *ProductBasic) HasProductID() bool {
 	return false
 }
 
-// SetProductID gets a reference to the given int32 and assigns it to the ProductID field.
-func (o *ProductBasic) SetProductID(v int32) {
+// SetProductID gets a reference to the given int64 and assigns it to the ProductID field.
+func (o *ProductBasic) SetProductID(v int64) {
 	o.ProductID = &v
 }
 
 // GetShopID returns the ShopID field value if set, zero value otherwise.
-func (o *ProductBasic) GetShopID() int32 {
+func (o *ProductBasic) GetShopID() int64 {
 	if o == nil || IsNil(o.ShopID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ShopID
@@ -96,7 +96,7 @@ func (o *ProductBasic) GetShopID() int32 {
 
 // GetShopIDOk returns a tuple with the ShopID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBasic) GetShopIDOk() (*int32, bool) {
+func (o *ProductBasic) GetShopIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.ShopID) {
 		return nil, false
 	}
@@ -112,15 +112,15 @@ func (o *ProductBasic) HasShopID() bool {
 	return false
 }
 
-// SetShopID gets a reference to the given int32 and assigns it to the ShopID field.
-func (o *ProductBasic) SetShopID(v int32) {
+// SetShopID gets a reference to the given int64 and assigns it to the ShopID field.
+func (o *ProductBasic) SetShopID(v int64) {
 	o.ShopID = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ProductBasic) GetStatus() int32 {
+func (o *ProductBasic) GetStatus() int64 {
 	if o == nil || IsNil(o.Status) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Status
@@ -128,7 +128,7 @@ func (o *ProductBasic) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBasic) GetStatusOk() (*int32, bool) {
+func (o *ProductBasic) GetStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -144,8 +144,8 @@ func (o *ProductBasic) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *ProductBasic) SetStatus(v int32) {
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *ProductBasic) SetStatus(v int64) {
 	o.Status = &v
 }
 
@@ -182,9 +182,9 @@ func (o *ProductBasic) SetName(v string) {
 }
 
 // GetCondition returns the Condition field value if set, zero value otherwise.
-func (o *ProductBasic) GetCondition() int32 {
+func (o *ProductBasic) GetCondition() int64 {
 	if o == nil || IsNil(o.Condition) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Condition
@@ -192,7 +192,7 @@ func (o *ProductBasic) GetCondition() int32 {
 
 // GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBasic) GetConditionOk() (*int32, bool) {
+func (o *ProductBasic) GetConditionOk() (*int64, bool) {
 	if o == nil || IsNil(o.Condition) {
 		return nil, false
 	}
@@ -208,15 +208,15 @@ func (o *ProductBasic) HasCondition() bool {
 	return false
 }
 
-// SetCondition gets a reference to the given int32 and assigns it to the Condition field.
-func (o *ProductBasic) SetCondition(v int32) {
+// SetCondition gets a reference to the given int64 and assigns it to the Condition field.
+func (o *ProductBasic) SetCondition(v int64) {
 	o.Condition = &v
 }
 
 // GetChildCategoryID returns the ChildCategoryID field value if set, zero value otherwise.
-func (o *ProductBasic) GetChildCategoryID() int32 {
+func (o *ProductBasic) GetChildCategoryID() int64 {
 	if o == nil || IsNil(o.ChildCategoryID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ChildCategoryID
@@ -224,7 +224,7 @@ func (o *ProductBasic) GetChildCategoryID() int32 {
 
 // GetChildCategoryIDOk returns a tuple with the ChildCategoryID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductBasic) GetChildCategoryIDOk() (*int32, bool) {
+func (o *ProductBasic) GetChildCategoryIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.ChildCategoryID) {
 		return nil, false
 	}
@@ -240,8 +240,8 @@ func (o *ProductBasic) HasChildCategoryID() bool {
 	return false
 }
 
-// SetChildCategoryID gets a reference to the given int32 and assigns it to the ChildCategoryID field.
-func (o *ProductBasic) SetChildCategoryID(v int32) {
+// SetChildCategoryID gets a reference to the given int64 and assigns it to the ChildCategoryID field.
+func (o *ProductBasic) SetChildCategoryID(v int64) {
 	o.ChildCategoryID = &v
 }
 

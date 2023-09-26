@@ -25,9 +25,9 @@ type Product struct {
 	Weight *ProductWeight `json:"weight,omitempty"`
 	Stock *ProductStockWording `json:"stock,omitempty"`
 	// Product Stock (Not Reserved)
-	MainStock *int32 `json:"main_stock,omitempty"`
+	MainStock *int64 `json:"main_stock,omitempty"`
 	// Product Stock that Reserved (ex: FlashSale)
-	ReserveStock *int32 `json:"reserve_stock,omitempty"`
+	ReserveStock *int64 `json:"reserve_stock,omitempty"`
 	Variant *ProductVariant `json:"variant,omitempty"`
 	Menu *ProductMenu `json:"menu,omitempty"`
 	Preorder *ProductPreOrder `json:"preorder,omitempty"`
@@ -189,9 +189,9 @@ func (o *Product) SetStock(v ProductStockWording) {
 }
 
 // GetMainStock returns the MainStock field value if set, zero value otherwise.
-func (o *Product) GetMainStock() int32 {
+func (o *Product) GetMainStock() int64 {
 	if o == nil || IsNil(o.MainStock) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MainStock
@@ -199,7 +199,7 @@ func (o *Product) GetMainStock() int32 {
 
 // GetMainStockOk returns a tuple with the MainStock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Product) GetMainStockOk() (*int32, bool) {
+func (o *Product) GetMainStockOk() (*int64, bool) {
 	if o == nil || IsNil(o.MainStock) {
 		return nil, false
 	}
@@ -215,15 +215,15 @@ func (o *Product) HasMainStock() bool {
 	return false
 }
 
-// SetMainStock gets a reference to the given int32 and assigns it to the MainStock field.
-func (o *Product) SetMainStock(v int32) {
+// SetMainStock gets a reference to the given int64 and assigns it to the MainStock field.
+func (o *Product) SetMainStock(v int64) {
 	o.MainStock = &v
 }
 
 // GetReserveStock returns the ReserveStock field value if set, zero value otherwise.
-func (o *Product) GetReserveStock() int32 {
+func (o *Product) GetReserveStock() int64 {
 	if o == nil || IsNil(o.ReserveStock) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReserveStock
@@ -231,7 +231,7 @@ func (o *Product) GetReserveStock() int32 {
 
 // GetReserveStockOk returns a tuple with the ReserveStock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Product) GetReserveStockOk() (*int32, bool) {
+func (o *Product) GetReserveStockOk() (*int64, bool) {
 	if o == nil || IsNil(o.ReserveStock) {
 		return nil, false
 	}
@@ -247,8 +247,8 @@ func (o *Product) HasReserveStock() bool {
 	return false
 }
 
-// SetReserveStock gets a reference to the given int32 and assigns it to the ReserveStock field.
-func (o *Product) SetReserveStock(v int32) {
+// SetReserveStock gets a reference to the given int64 and assigns it to the ReserveStock field.
+func (o *Product) SetReserveStock(v int64) {
 	o.ReserveStock = &v
 }
 

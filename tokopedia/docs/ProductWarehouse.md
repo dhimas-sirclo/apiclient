@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProductID** | Pointer to **int32** |  | [optional] 
-**WarehouseID** | Pointer to **int32** |  | [optional] 
+**ProductID** | Pointer to **int64** |  | [optional] 
+**WarehouseID** | Pointer to **int64** |  | [optional] 
 **Price** | Pointer to [**ProductPrice**](ProductPrice.md) |  | [optional] 
 **Stock** | Pointer to [**ProductStock**](ProductStock.md) |  | [optional] 
 **Bundle** | Pointer to [**ProductBundle**](ProductBundle.md) |  | [optional] 
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetProductID
 
-`func (o *ProductWarehouse) GetProductID() int32`
+`func (o *ProductWarehouse) GetProductID() int64`
 
 GetProductID returns the ProductID field if non-nil, zero value otherwise.
 
 ### GetProductIDOk
 
-`func (o *ProductWarehouse) GetProductIDOk() (*int32, bool)`
+`func (o *ProductWarehouse) GetProductIDOk() (*int64, bool)`
 
 GetProductIDOk returns a tuple with the ProductID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductID
 
-`func (o *ProductWarehouse) SetProductID(v int32)`
+`func (o *ProductWarehouse) SetProductID(v int64)`
 
 SetProductID sets ProductID field to given value.
 
@@ -56,20 +56,20 @@ HasProductID returns a boolean if a field has been set.
 
 ### GetWarehouseID
 
-`func (o *ProductWarehouse) GetWarehouseID() int32`
+`func (o *ProductWarehouse) GetWarehouseID() int64`
 
 GetWarehouseID returns the WarehouseID field if non-nil, zero value otherwise.
 
 ### GetWarehouseIDOk
 
-`func (o *ProductWarehouse) GetWarehouseIDOk() (*int32, bool)`
+`func (o *ProductWarehouse) GetWarehouseIDOk() (*int64, bool)`
 
 GetWarehouseIDOk returns a tuple with the WarehouseID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWarehouseID
 
-`func (o *ProductWarehouse) SetWarehouseID(v int32)`
+`func (o *ProductWarehouse) SetWarehouseID(v int64)`
 
 SetWarehouseID sets WarehouseID field to given value.
 

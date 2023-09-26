@@ -20,8 +20,8 @@ var _ MappedNullable = &CategoryVariantUnit{}
 
 // CategoryVariantUnit struct for CategoryVariantUnit
 type CategoryVariantUnit struct {
-	VariantUnitId *int32 `json:"variant_unit_id,omitempty"`
-	Status *int32 `json:"status,omitempty"`
+	VariantUnitId *int64 `json:"variant_unit_id,omitempty"`
+	Status *int64 `json:"status,omitempty"`
 	UnitName *string `json:"unit_name,omitempty"`
 	UnitShortName *string `json:"unit_short_name,omitempty"`
 	UnitValues []CategoryVariantUnitValue `json:"unit_values,omitempty"`
@@ -45,9 +45,9 @@ func NewCategoryVariantUnitWithDefaults() *CategoryVariantUnit {
 }
 
 // GetVariantUnitId returns the VariantUnitId field value if set, zero value otherwise.
-func (o *CategoryVariantUnit) GetVariantUnitId() int32 {
+func (o *CategoryVariantUnit) GetVariantUnitId() int64 {
 	if o == nil || IsNil(o.VariantUnitId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.VariantUnitId
@@ -55,7 +55,7 @@ func (o *CategoryVariantUnit) GetVariantUnitId() int32 {
 
 // GetVariantUnitIdOk returns a tuple with the VariantUnitId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariantUnit) GetVariantUnitIdOk() (*int32, bool) {
+func (o *CategoryVariantUnit) GetVariantUnitIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VariantUnitId) {
 		return nil, false
 	}
@@ -71,15 +71,15 @@ func (o *CategoryVariantUnit) HasVariantUnitId() bool {
 	return false
 }
 
-// SetVariantUnitId gets a reference to the given int32 and assigns it to the VariantUnitId field.
-func (o *CategoryVariantUnit) SetVariantUnitId(v int32) {
+// SetVariantUnitId gets a reference to the given int64 and assigns it to the VariantUnitId field.
+func (o *CategoryVariantUnit) SetVariantUnitId(v int64) {
 	o.VariantUnitId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CategoryVariantUnit) GetStatus() int32 {
+func (o *CategoryVariantUnit) GetStatus() int64 {
 	if o == nil || IsNil(o.Status) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Status
@@ -87,7 +87,7 @@ func (o *CategoryVariantUnit) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariantUnit) GetStatusOk() (*int32, bool) {
+func (o *CategoryVariantUnit) GetStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *CategoryVariantUnit) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *CategoryVariantUnit) SetStatus(v int32) {
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *CategoryVariantUnit) SetStatus(v int64) {
 	o.Status = &v
 }
 

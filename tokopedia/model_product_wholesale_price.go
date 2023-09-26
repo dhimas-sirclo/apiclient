@@ -21,11 +21,11 @@ var _ MappedNullable = &ProductWholesalePrice{}
 // ProductWholesalePrice struct for ProductWholesalePrice
 type ProductWholesalePrice struct {
 	// Product Price Value
-	Value *int32 `json:"value,omitempty"`
+	Value *int64 `json:"value,omitempty"`
 	// Product Price Currency
-	Currency *int32 `json:"currency,omitempty"`
+	Currency *int64 `json:"currency,omitempty"`
 	// Price Value
-	Idr *int32 `json:"idr,omitempty"`
+	Idr *int64 `json:"idr,omitempty"`
 }
 
 // NewProductWholesalePrice instantiates a new ProductWholesalePrice object
@@ -46,9 +46,9 @@ func NewProductWholesalePriceWithDefaults() *ProductWholesalePrice {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *ProductWholesalePrice) GetValue() int32 {
+func (o *ProductWholesalePrice) GetValue() int64 {
 	if o == nil || IsNil(o.Value) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Value
@@ -56,7 +56,7 @@ func (o *ProductWholesalePrice) GetValue() int32 {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWholesalePrice) GetValueOk() (*int32, bool) {
+func (o *ProductWholesalePrice) GetValueOk() (*int64, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -72,15 +72,15 @@ func (o *ProductWholesalePrice) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given int32 and assigns it to the Value field.
-func (o *ProductWholesalePrice) SetValue(v int32) {
+// SetValue gets a reference to the given int64 and assigns it to the Value field.
+func (o *ProductWholesalePrice) SetValue(v int64) {
 	o.Value = &v
 }
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
-func (o *ProductWholesalePrice) GetCurrency() int32 {
+func (o *ProductWholesalePrice) GetCurrency() int64 {
 	if o == nil || IsNil(o.Currency) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Currency
@@ -88,7 +88,7 @@ func (o *ProductWholesalePrice) GetCurrency() int32 {
 
 // GetCurrencyOk returns a tuple with the Currency field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWholesalePrice) GetCurrencyOk() (*int32, bool) {
+func (o *ProductWholesalePrice) GetCurrencyOk() (*int64, bool) {
 	if o == nil || IsNil(o.Currency) {
 		return nil, false
 	}
@@ -104,15 +104,15 @@ func (o *ProductWholesalePrice) HasCurrency() bool {
 	return false
 }
 
-// SetCurrency gets a reference to the given int32 and assigns it to the Currency field.
-func (o *ProductWholesalePrice) SetCurrency(v int32) {
+// SetCurrency gets a reference to the given int64 and assigns it to the Currency field.
+func (o *ProductWholesalePrice) SetCurrency(v int64) {
 	o.Currency = &v
 }
 
 // GetIdr returns the Idr field value if set, zero value otherwise.
-func (o *ProductWholesalePrice) GetIdr() int32 {
+func (o *ProductWholesalePrice) GetIdr() int64 {
 	if o == nil || IsNil(o.Idr) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Idr
@@ -120,7 +120,7 @@ func (o *ProductWholesalePrice) GetIdr() int32 {
 
 // GetIdrOk returns a tuple with the Idr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWholesalePrice) GetIdrOk() (*int32, bool) {
+func (o *ProductWholesalePrice) GetIdrOk() (*int64, bool) {
 	if o == nil || IsNil(o.Idr) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *ProductWholesalePrice) HasIdr() bool {
 	return false
 }
 
-// SetIdr gets a reference to the given int32 and assigns it to the Idr field.
-func (o *ProductWholesalePrice) SetIdr(v int32) {
+// SetIdr gets a reference to the given int64 and assigns it to the Idr field.
+func (o *ProductWholesalePrice) SetIdr(v int64) {
 	o.Idr = &v
 }
 

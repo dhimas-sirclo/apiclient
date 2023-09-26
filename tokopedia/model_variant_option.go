@@ -20,7 +20,7 @@ var _ MappedNullable = &VariantOption{}
 
 // VariantOption struct for VariantOption
 type VariantOption struct {
-	Id *int32 `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	Value *string `json:"value,omitempty"`
 	Hex *string `json:"hex,omitempty"`
 }
@@ -43,9 +43,9 @@ func NewVariantOptionWithDefaults() *VariantOption {
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *VariantOption) GetId() int32 {
+func (o *VariantOption) GetId() int64 {
 	if o == nil || IsNil(o.Id) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Id
@@ -53,7 +53,7 @@ func (o *VariantOption) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VariantOption) GetIdOk() (*int32, bool) {
+func (o *VariantOption) GetIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *VariantOption) HasId() bool {
 	return false
 }
 
-// SetId gets a reference to the given int32 and assigns it to the Id field.
-func (o *VariantOption) SetId(v int32) {
+// SetId gets a reference to the given int64 and assigns it to the Id field.
+func (o *VariantOption) SetId(v int64) {
 	o.Id = &v
 }
 

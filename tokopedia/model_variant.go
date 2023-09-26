@@ -21,9 +21,9 @@ var _ MappedNullable = &Variant{}
 // Variant struct for Variant
 type Variant struct {
 	// Variant Parent Unique Identifier
-	ParentId *int32 `json:"parent_id,omitempty"`
+	ParentId *int64 `json:"parent_id,omitempty"`
 	// Variant Default Child Identifier
-	DefaultChild *int32 `json:"default_child,omitempty"`
+	DefaultChild *int64 `json:"default_child,omitempty"`
 	Variant []VariantVariant `json:"variant,omitempty"`
 	Children []VariantChildren `json:"children,omitempty"`
 }
@@ -46,9 +46,9 @@ func NewVariantWithDefaults() *Variant {
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
-func (o *Variant) GetParentId() int32 {
+func (o *Variant) GetParentId() int64 {
 	if o == nil || IsNil(o.ParentId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ParentId
@@ -56,7 +56,7 @@ func (o *Variant) GetParentId() int32 {
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Variant) GetParentIdOk() (*int32, bool) {
+func (o *Variant) GetParentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.ParentId) {
 		return nil, false
 	}
@@ -72,15 +72,15 @@ func (o *Variant) HasParentId() bool {
 	return false
 }
 
-// SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
-func (o *Variant) SetParentId(v int32) {
+// SetParentId gets a reference to the given int64 and assigns it to the ParentId field.
+func (o *Variant) SetParentId(v int64) {
 	o.ParentId = &v
 }
 
 // GetDefaultChild returns the DefaultChild field value if set, zero value otherwise.
-func (o *Variant) GetDefaultChild() int32 {
+func (o *Variant) GetDefaultChild() int64 {
 	if o == nil || IsNil(o.DefaultChild) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultChild
@@ -88,7 +88,7 @@ func (o *Variant) GetDefaultChild() int32 {
 
 // GetDefaultChildOk returns a tuple with the DefaultChild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Variant) GetDefaultChildOk() (*int32, bool) {
+func (o *Variant) GetDefaultChildOk() (*int64, bool) {
 	if o == nil || IsNil(o.DefaultChild) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *Variant) HasDefaultChild() bool {
 	return false
 }
 
-// SetDefaultChild gets a reference to the given int32 and assigns it to the DefaultChild field.
-func (o *Variant) SetDefaultChild(v int32) {
+// SetDefaultChild gets a reference to the given int64 and assigns it to the DefaultChild field.
+func (o *Variant) SetDefaultChild(v int64) {
 	o.DefaultChild = &v
 }
 

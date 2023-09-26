@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Price** | Pointer to [**ProductPrice**](ProductPrice.md) |  | [optional] 
 **Weight** | Pointer to [**ProductWeight**](ProductWeight.md) |  | [optional] 
 **Stock** | Pointer to [**ProductStockWording**](ProductStockWording.md) |  | [optional] 
-**MainStock** | Pointer to **int32** | Product Stock (Not Reserved) | [optional] 
-**ReserveStock** | Pointer to **int32** | Product Stock that Reserved (ex: FlashSale) | [optional] 
+**MainStock** | Pointer to **int64** | Product Stock (Not Reserved) | [optional] 
+**ReserveStock** | Pointer to **int64** | Product Stock that Reserved (ex: FlashSale) | [optional] 
 **Variant** | Pointer to [**ProductVariant**](ProductVariant.md) |  | [optional] 
 **Menu** | Pointer to [**ProductMenu**](ProductMenu.md) |  | [optional] 
 **Preorder** | Pointer to [**ProductPreOrder**](ProductPreOrder.md) |  | [optional] 
@@ -145,20 +145,20 @@ HasStock returns a boolean if a field has been set.
 
 ### GetMainStock
 
-`func (o *Product) GetMainStock() int32`
+`func (o *Product) GetMainStock() int64`
 
 GetMainStock returns the MainStock field if non-nil, zero value otherwise.
 
 ### GetMainStockOk
 
-`func (o *Product) GetMainStockOk() (*int32, bool)`
+`func (o *Product) GetMainStockOk() (*int64, bool)`
 
 GetMainStockOk returns a tuple with the MainStock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMainStock
 
-`func (o *Product) SetMainStock(v int32)`
+`func (o *Product) SetMainStock(v int64)`
 
 SetMainStock sets MainStock field to given value.
 
@@ -170,20 +170,20 @@ HasMainStock returns a boolean if a field has been set.
 
 ### GetReserveStock
 
-`func (o *Product) GetReserveStock() int32`
+`func (o *Product) GetReserveStock() int64`
 
 GetReserveStock returns the ReserveStock field if non-nil, zero value otherwise.
 
 ### GetReserveStockOk
 
-`func (o *Product) GetReserveStockOk() (*int32, bool)`
+`func (o *Product) GetReserveStockOk() (*int64, bool)`
 
 GetReserveStockOk returns a tuple with the ReserveStock field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetReserveStock
 
-`func (o *Product) SetReserveStock(v int32)`
+`func (o *Product) SetReserveStock(v int64)`
 
 SetReserveStock sets ReserveStock field to given value.
 

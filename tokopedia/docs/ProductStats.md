@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CountView** | Pointer to **int32** |  | [optional] 
+**CountView** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCountView
 
-`func (o *ProductStats) GetCountView() int32`
+`func (o *ProductStats) GetCountView() int64`
 
 GetCountView returns the CountView field if non-nil, zero value otherwise.
 
 ### GetCountViewOk
 
-`func (o *ProductStats) GetCountViewOk() (*int32, bool)`
+`func (o *ProductStats) GetCountViewOk() (*int64, bool)`
 
 GetCountViewOk returns a tuple with the CountView field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCountView
 
-`func (o *ProductStats) SetCountView(v int32)`
+`func (o *ProductStats) SetCountView(v int64)`
 
 SetCountView sets CountView field to given value.
 

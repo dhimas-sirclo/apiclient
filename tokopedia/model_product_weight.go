@@ -21,9 +21,9 @@ var _ MappedNullable = &ProductWeight{}
 // ProductWeight struct for ProductWeight
 type ProductWeight struct {
 	// Product Weight Value
-	Value *int32 `json:"value,omitempty"`
+	Value *int64 `json:"value,omitempty"`
 	// Weight (e.g., 1 for Gram, 2 for Kilogram)
-	Unit *int32 `json:"unit,omitempty"`
+	Unit *int64 `json:"unit,omitempty"`
 }
 
 // NewProductWeight instantiates a new ProductWeight object
@@ -44,9 +44,9 @@ func NewProductWeightWithDefaults() *ProductWeight {
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *ProductWeight) GetValue() int32 {
+func (o *ProductWeight) GetValue() int64 {
 	if o == nil || IsNil(o.Value) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Value
@@ -54,7 +54,7 @@ func (o *ProductWeight) GetValue() int32 {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWeight) GetValueOk() (*int32, bool) {
+func (o *ProductWeight) GetValueOk() (*int64, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -70,15 +70,15 @@ func (o *ProductWeight) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given int32 and assigns it to the Value field.
-func (o *ProductWeight) SetValue(v int32) {
+// SetValue gets a reference to the given int64 and assigns it to the Value field.
+func (o *ProductWeight) SetValue(v int64) {
 	o.Value = &v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *ProductWeight) GetUnit() int32 {
+func (o *ProductWeight) GetUnit() int64 {
 	if o == nil || IsNil(o.Unit) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Unit
@@ -86,7 +86,7 @@ func (o *ProductWeight) GetUnit() int32 {
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWeight) GetUnitOk() (*int32, bool) {
+func (o *ProductWeight) GetUnitOk() (*int64, bool) {
 	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
@@ -102,8 +102,8 @@ func (o *ProductWeight) HasUnit() bool {
 	return false
 }
 
-// SetUnit gets a reference to the given int32 and assigns it to the Unit field.
-func (o *ProductWeight) SetUnit(v int32) {
+// SetUnit gets a reference to the given int64 and assigns it to the Unit field.
+func (o *ProductWeight) SetUnit(v int64) {
 	o.Unit = &v
 }
 

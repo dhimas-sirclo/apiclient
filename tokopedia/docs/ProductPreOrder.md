@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Duration** | Pointer to **bool** |  | [optional] 
-**Unit** | Pointer to **int32** |  | [optional] 
-**Day** | Pointer to **int32** |  | [optional] 
+**Unit** | Pointer to **int64** |  | [optional] 
+**Day** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -54,20 +54,20 @@ HasDuration returns a boolean if a field has been set.
 
 ### GetUnit
 
-`func (o *ProductPreOrder) GetUnit() int32`
+`func (o *ProductPreOrder) GetUnit() int64`
 
 GetUnit returns the Unit field if non-nil, zero value otherwise.
 
 ### GetUnitOk
 
-`func (o *ProductPreOrder) GetUnitOk() (*int32, bool)`
+`func (o *ProductPreOrder) GetUnitOk() (*int64, bool)`
 
 GetUnitOk returns a tuple with the Unit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnit
 
-`func (o *ProductPreOrder) SetUnit(v int32)`
+`func (o *ProductPreOrder) SetUnit(v int64)`
 
 SetUnit sets Unit field to given value.
 
@@ -79,20 +79,20 @@ HasUnit returns a boolean if a field has been set.
 
 ### GetDay
 
-`func (o *ProductPreOrder) GetDay() int32`
+`func (o *ProductPreOrder) GetDay() int64`
 
 GetDay returns the Day field if non-nil, zero value otherwise.
 
 ### GetDayOk
 
-`func (o *ProductPreOrder) GetDayOk() (*int32, bool)`
+`func (o *ProductPreOrder) GetDayOk() (*int64, bool)`
 
 GetDayOk returns a tuple with the Day field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDay
 
-`func (o *ProductPreOrder) SetDay(v int32)`
+`func (o *ProductPreOrder) SetDay(v int64)`
 
 SetDay sets Day field to given value.
 

@@ -20,9 +20,9 @@ var _ MappedNullable = &ProductGMStat{}
 
 // ProductGMStat struct for ProductGMStat
 type ProductGMStat struct {
-	TransactionSuccess *int32 `json:"transactionSuccess,omitempty"`
-	TransactionReject *int32 `json:"transactionReject,omitempty"`
-	CountSold *int32 `json:"countSold,omitempty"`
+	TransactionSuccess *int64 `json:"transactionSuccess,omitempty"`
+	TransactionReject *int64 `json:"transactionReject,omitempty"`
+	CountSold *int64 `json:"countSold,omitempty"`
 }
 
 // NewProductGMStat instantiates a new ProductGMStat object
@@ -43,9 +43,9 @@ func NewProductGMStatWithDefaults() *ProductGMStat {
 }
 
 // GetTransactionSuccess returns the TransactionSuccess field value if set, zero value otherwise.
-func (o *ProductGMStat) GetTransactionSuccess() int32 {
+func (o *ProductGMStat) GetTransactionSuccess() int64 {
 	if o == nil || IsNil(o.TransactionSuccess) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TransactionSuccess
@@ -53,7 +53,7 @@ func (o *ProductGMStat) GetTransactionSuccess() int32 {
 
 // GetTransactionSuccessOk returns a tuple with the TransactionSuccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductGMStat) GetTransactionSuccessOk() (*int32, bool) {
+func (o *ProductGMStat) GetTransactionSuccessOk() (*int64, bool) {
 	if o == nil || IsNil(o.TransactionSuccess) {
 		return nil, false
 	}
@@ -69,15 +69,15 @@ func (o *ProductGMStat) HasTransactionSuccess() bool {
 	return false
 }
 
-// SetTransactionSuccess gets a reference to the given int32 and assigns it to the TransactionSuccess field.
-func (o *ProductGMStat) SetTransactionSuccess(v int32) {
+// SetTransactionSuccess gets a reference to the given int64 and assigns it to the TransactionSuccess field.
+func (o *ProductGMStat) SetTransactionSuccess(v int64) {
 	o.TransactionSuccess = &v
 }
 
 // GetTransactionReject returns the TransactionReject field value if set, zero value otherwise.
-func (o *ProductGMStat) GetTransactionReject() int32 {
+func (o *ProductGMStat) GetTransactionReject() int64 {
 	if o == nil || IsNil(o.TransactionReject) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TransactionReject
@@ -85,7 +85,7 @@ func (o *ProductGMStat) GetTransactionReject() int32 {
 
 // GetTransactionRejectOk returns a tuple with the TransactionReject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductGMStat) GetTransactionRejectOk() (*int32, bool) {
+func (o *ProductGMStat) GetTransactionRejectOk() (*int64, bool) {
 	if o == nil || IsNil(o.TransactionReject) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *ProductGMStat) HasTransactionReject() bool {
 	return false
 }
 
-// SetTransactionReject gets a reference to the given int32 and assigns it to the TransactionReject field.
-func (o *ProductGMStat) SetTransactionReject(v int32) {
+// SetTransactionReject gets a reference to the given int64 and assigns it to the TransactionReject field.
+func (o *ProductGMStat) SetTransactionReject(v int64) {
 	o.TransactionReject = &v
 }
 
 // GetCountSold returns the CountSold field value if set, zero value otherwise.
-func (o *ProductGMStat) GetCountSold() int32 {
+func (o *ProductGMStat) GetCountSold() int64 {
 	if o == nil || IsNil(o.CountSold) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CountSold
@@ -117,7 +117,7 @@ func (o *ProductGMStat) GetCountSold() int32 {
 
 // GetCountSoldOk returns a tuple with the CountSold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductGMStat) GetCountSoldOk() (*int32, bool) {
+func (o *ProductGMStat) GetCountSoldOk() (*int64, bool) {
 	if o == nil || IsNil(o.CountSold) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *ProductGMStat) HasCountSold() bool {
 	return false
 }
 
-// SetCountSold gets a reference to the given int32 and assigns it to the CountSold field.
-func (o *ProductGMStat) SetCountSold(v int32) {
+// SetCountSold gets a reference to the given int64 and assigns it to the CountSold field.
+func (o *ProductGMStat) SetCountSold(v int64) {
 	o.CountSold = &v
 }
 

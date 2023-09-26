@@ -25,7 +25,7 @@ type WebhookOrderNotificationProductsInner struct {
 	// Product name
 	Name *string `json:"Name,omitempty"`
 	// Product quantity
-	Quantity *int32 `json:"quantity,omitempty"`
+	Quantity *int64 `json:"quantity,omitempty"`
 	// Product notes
 	Notes *string `json:"notes,omitempty"`
 	Weight *float64 `json:"weight,omitempty"`
@@ -124,9 +124,9 @@ func (o *WebhookOrderNotificationProductsInner) SetName(v string) {
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationProductsInner) GetQuantity() int32 {
+func (o *WebhookOrderNotificationProductsInner) GetQuantity() int64 {
 	if o == nil || IsNil(o.Quantity) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Quantity
@@ -134,7 +134,7 @@ func (o *WebhookOrderNotificationProductsInner) GetQuantity() int32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationProductsInner) GetQuantityOk() (*int32, bool) {
+func (o *WebhookOrderNotificationProductsInner) GetQuantityOk() (*int64, bool) {
 	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -150,8 +150,8 @@ func (o *WebhookOrderNotificationProductsInner) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given int32 and assigns it to the Quantity field.
-func (o *WebhookOrderNotificationProductsInner) SetQuantity(v int32) {
+// SetQuantity gets a reference to the given int64 and assigns it to the Quantity field.
+func (o *WebhookOrderNotificationProductsInner) SetQuantity(v int64) {
 	o.Quantity = &v
 }
 

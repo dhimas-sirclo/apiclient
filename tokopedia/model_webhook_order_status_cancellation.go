@@ -29,7 +29,7 @@ type WebhookOrderStatusCancellation struct {
 	// Order unique identifier
 	OrderId *int64 `json:"order_id,omitempty"`
 	// List of products
-	ProductDetails []WebhookOrderStatusCancellationProductDetailsInner `json:"product_details,omitempty"`
+	ProductDetails []GetOrderWebhook200ResponseDataOneOfProductDetailsInner `json:"product_details,omitempty"`
 }
 
 // NewWebhookOrderStatusCancellation instantiates a new WebhookOrderStatusCancellation object
@@ -178,9 +178,9 @@ func (o *WebhookOrderStatusCancellation) SetOrderId(v int64) {
 }
 
 // GetProductDetails returns the ProductDetails field value if set, zero value otherwise.
-func (o *WebhookOrderStatusCancellation) GetProductDetails() []WebhookOrderStatusCancellationProductDetailsInner {
+func (o *WebhookOrderStatusCancellation) GetProductDetails() []GetOrderWebhook200ResponseDataOneOfProductDetailsInner {
 	if o == nil || IsNil(o.ProductDetails) {
-		var ret []WebhookOrderStatusCancellationProductDetailsInner
+		var ret []GetOrderWebhook200ResponseDataOneOfProductDetailsInner
 		return ret
 	}
 	return o.ProductDetails
@@ -188,7 +188,7 @@ func (o *WebhookOrderStatusCancellation) GetProductDetails() []WebhookOrderStatu
 
 // GetProductDetailsOk returns a tuple with the ProductDetails field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderStatusCancellation) GetProductDetailsOk() ([]WebhookOrderStatusCancellationProductDetailsInner, bool) {
+func (o *WebhookOrderStatusCancellation) GetProductDetailsOk() ([]GetOrderWebhook200ResponseDataOneOfProductDetailsInner, bool) {
 	if o == nil || IsNil(o.ProductDetails) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *WebhookOrderStatusCancellation) HasProductDetails() bool {
 	return false
 }
 
-// SetProductDetails gets a reference to the given []WebhookOrderStatusCancellationProductDetailsInner and assigns it to the ProductDetails field.
-func (o *WebhookOrderStatusCancellation) SetProductDetails(v []WebhookOrderStatusCancellationProductDetailsInner) {
+// SetProductDetails gets a reference to the given []GetOrderWebhook200ResponseDataOneOfProductDetailsInner and assigns it to the ProductDetails field.
+func (o *WebhookOrderStatusCancellation) SetProductDetails(v []GetOrderWebhook200ResponseDataOneOfProductDetailsInner) {
 	o.ProductDetails = v
 }
 

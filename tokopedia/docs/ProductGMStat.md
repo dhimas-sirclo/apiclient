@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TransactionSuccess** | Pointer to **int32** |  | [optional] 
-**TransactionReject** | Pointer to **int32** |  | [optional] 
-**CountSold** | Pointer to **int32** |  | [optional] 
+**TransactionSuccess** | Pointer to **int64** |  | [optional] 
+**TransactionReject** | Pointer to **int64** |  | [optional] 
+**CountSold** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetTransactionSuccess
 
-`func (o *ProductGMStat) GetTransactionSuccess() int32`
+`func (o *ProductGMStat) GetTransactionSuccess() int64`
 
 GetTransactionSuccess returns the TransactionSuccess field if non-nil, zero value otherwise.
 
 ### GetTransactionSuccessOk
 
-`func (o *ProductGMStat) GetTransactionSuccessOk() (*int32, bool)`
+`func (o *ProductGMStat) GetTransactionSuccessOk() (*int64, bool)`
 
 GetTransactionSuccessOk returns a tuple with the TransactionSuccess field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransactionSuccess
 
-`func (o *ProductGMStat) SetTransactionSuccess(v int32)`
+`func (o *ProductGMStat) SetTransactionSuccess(v int64)`
 
 SetTransactionSuccess sets TransactionSuccess field to given value.
 
@@ -54,20 +54,20 @@ HasTransactionSuccess returns a boolean if a field has been set.
 
 ### GetTransactionReject
 
-`func (o *ProductGMStat) GetTransactionReject() int32`
+`func (o *ProductGMStat) GetTransactionReject() int64`
 
 GetTransactionReject returns the TransactionReject field if non-nil, zero value otherwise.
 
 ### GetTransactionRejectOk
 
-`func (o *ProductGMStat) GetTransactionRejectOk() (*int32, bool)`
+`func (o *ProductGMStat) GetTransactionRejectOk() (*int64, bool)`
 
 GetTransactionRejectOk returns a tuple with the TransactionReject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransactionReject
 
-`func (o *ProductGMStat) SetTransactionReject(v int32)`
+`func (o *ProductGMStat) SetTransactionReject(v int64)`
 
 SetTransactionReject sets TransactionReject field to given value.
 
@@ -79,20 +79,20 @@ HasTransactionReject returns a boolean if a field has been set.
 
 ### GetCountSold
 
-`func (o *ProductGMStat) GetCountSold() int32`
+`func (o *ProductGMStat) GetCountSold() int64`
 
 GetCountSold returns the CountSold field if non-nil, zero value otherwise.
 
 ### GetCountSoldOk
 
-`func (o *ProductGMStat) GetCountSoldOk() (*int32, bool)`
+`func (o *ProductGMStat) GetCountSoldOk() (*int64, bool)`
 
 GetCountSoldOk returns a tuple with the CountSold field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCountSold
 
-`func (o *ProductGMStat) SetCountSold(v int32)`
+`func (o *ProductGMStat) SetCountSold(v int64)`
 
 SetCountSold sets CountSold field to given value.
 

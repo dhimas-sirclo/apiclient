@@ -15,6 +15,8 @@ security:
 tags:
 - name: Authentication
 - name: Product
+- name: Webhook
+- name: Order
 paths:
   /token:
     post:
@@ -88,7 +90,7 @@ paths:
         name: fs_id
         required: true
         schema:
-          format: int32
+          format: int64
           type: integer
         style: simple
       - description: Can input more than one product_id
@@ -121,7 +123,7 @@ paths:
         name: shop_id
         required: false
         schema:
-          format: int32
+          format: int64
           type: integer
         style: form
       - description: Determine which page the order list should start. The minimal
@@ -131,7 +133,7 @@ paths:
         name: page
         required: false
         schema:
-          format: int32
+          format: int64
           type: integer
         style: form
       - description: Page per item (required if shop_id is filled). Maximun items
@@ -141,7 +143,7 @@ paths:
         name: per_page
         required: false
         schema:
-          format: int32
+          format: int64
           type: integer
         style: form
       - description: This parameter is required when the product exceeds 10.000 products
@@ -243,7 +245,7 @@ paths:
         name: fs_id
         required: true
         schema:
-          format: int32
+          format: int64
           type: integer
         style: simple
       - description: Category unique identifier
@@ -252,7 +254,7 @@ paths:
         name: cat_id
         required: true
         schema:
-          format: int32
+          format: int64
           type: integer
         style: form
       responses:
@@ -345,7 +347,7 @@ paths:
         name: fs_id
         required: true
         schema:
-          format: int32
+          format: int64
           type: integer
         style: simple
       - description: Product unique identifier
@@ -354,7 +356,7 @@ paths:
         name: product_id
         required: true
         schema:
-          format: int32
+          format: int64
           type: integer
         style: simple
       responses:
@@ -436,6 +438,494 @@ paths:
               style: simple
       tags:
       - Product
+  /inventory/v1/fs/{fs_id}/stock/update:
+    get:
+      description: This endpoint used for update product stock. You can update up
+        to 100 products or SKUs in a single request to this endpoint.
+      operationId: updateStock
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: bypass_update_product_status
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: warehouse_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateStockInput'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateStockResponse'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
+  /v1/fs/{fs_id}:
+    get:
+      description: Get list of registered webhook
+      operationId: getRegisteredWebhooks
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        default:
+          content:
+            text/html: {}
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getRegisteredWebhooks_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Webhook
+  /v1/fs/{fs_id}/register:
+    post:
+      description: Register webhook
+      operationId: registerWebhook
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registerWebhook_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerWebhook_default_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/registerWebhook_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Webhook
+  /v1/order/{order_id}/fs/{fs_id}/webhook:
+    get:
+      description: Get order webhook
+      operationId: getOrderWebhook
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          enum:
+          - order_status
+          - order_notification
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getOrderWebhook_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+      - Webhook
+  /v1/fs/{fs_id}/trigger:
+    post:
+      description: Trigger webhook
+      operationId: triggerWebhook
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/triggerWebhook_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/triggerWebhook_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/triggerWebhook_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+      - Webhook
 components:
   parameters:
     fs_id:
@@ -445,7 +935,17 @@ components:
       name: fs_id
       required: true
       schema:
-        format: int32
+        format: int64
+        type: integer
+      style: simple
+    order_id:
+      description: Order service unique identifier
+      explode: false
+      in: path
+      name: order_id
+      required: true
+      schema:
+        format: int64
         type: integer
       style: simple
     product_id:
@@ -455,7 +955,7 @@ components:
       name: product_id
       required: true
       schema:
-        format: int32
+        format: int64
         type: integer
       style: simple
   schemas:
@@ -516,7 +1016,7 @@ components:
           type: integer
         order_status:
           description: Order status
-          format: int32
+          format: int64
           type: integer
         custom_fields:
           additionalProperties: {}
@@ -551,7 +1051,7 @@ components:
         product_details:
           description: List of products
           items:
-            $ref: '#/components/schemas/WebhookOrderStatusCancellation_product_details_inner'
+            $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_product_details_inner'
           type: array
       type: object
     WebhookOrderRequestCancellation:
@@ -994,19 +1494,19 @@ components:
         productID:
           description: Product Unique Identifier
           example: 15245228
-          format: int32
+          format: int64
           type: integer
         shopID:
           description: Shop Unique Identifier
           example: 480829
-          format: int32
+          format: int64
           type: integer
         status:
           description: "Product Status (e.g., -2 for Banned, -1 for Pending, 0 for\
             \ Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive\
             \ (Warehouse))"
           example: 1
-          format: int32
+          format: int64
           type: integer
         Name:
           description: Product Name
@@ -1015,12 +1515,12 @@ components:
         condition:
           description: "Product Condition (e.g., 1 for New, 2 for Used)"
           example: 1
-          format: int32
+          format: int64
           type: integer
         childCategoryID:
           description: Product Category Unique Identifier
           example: 1828
-          format: int32
+          format: int64
           type: integer
         shortDesc:
           description: Product Description
@@ -1032,22 +1532,22 @@ components:
         value:
           description: Product Price Value
           example: 3000
-          format: int32
+          format: int64
           type: integer
         currency:
           description: Product Price Currency
           example: 1
-          format: int32
+          format: int64
           type: integer
         LastUpdateUnix:
           description: Product Price Last Updated timer
           example: 1557981264
-          format: int32
+          format: int64
           type: integer
         idr:
           description: Price Value
           example: 3000
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductWeight:
@@ -1055,12 +1555,12 @@ components:
         value:
           description: Product Weight Value
           example: 5
-          format: int32
+          format: int64
           type: integer
         unit:
           description: "Weight (e.g., 1 for Gram, 2 for Kilogram)"
           example: 1
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductStock:
@@ -1071,7 +1571,7 @@ components:
         value:
           description: Product Total Stock
           example: 10
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductStockWording:
@@ -1099,7 +1599,7 @@ components:
           - 15245978
           - 15245979
           items:
-            format: int32
+            format: int64
             type: integer
           type: array
       type: object
@@ -1108,7 +1608,7 @@ components:
         id:
           description: Etalase Unique Identifier
           example: 1405065
-          format: int32
+          format: int64
           type: integer
         Name:
           description: Etalase Name
@@ -1120,10 +1620,10 @@ components:
         duration:
           type: boolean
         unit:
-          format: int32
+          format: int64
           type: integer
         day:
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductExtraAttribute:
@@ -1131,12 +1631,12 @@ components:
         minOrder:
           description: Minimum Order
           example: 1
-          format: int32
+          format: int64
           type: integer
         lastUpdateCategory:
           description: Product Category Last Updated time
           example: 1554708202
-          format: int32
+          format: int64
           type: integer
         isEligibleCOD:
           description: Is Product Eligible for COD?
@@ -1152,17 +1652,17 @@ components:
         value:
           description: Product Price Value
           example: 10000
-          format: int32
+          format: int64
           type: integer
         currency:
           description: Product Price Currency
           example: 1
-          format: int32
+          format: int64
           type: integer
         idr:
           description: Price Value
           example: 10000
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductWholesale:
@@ -1171,11 +1671,11 @@ components:
           $ref: '#/components/schemas/ProductWholesalePrice'
         minQuantity:
           example: 2
-          format: int32
+          format: int64
           type: integer
         maxQuantity:
           example: 2
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductCategoryTree:
@@ -1183,7 +1683,7 @@ components:
         id:
           description: Category Unique Identifier
           example: 1759
-          format: int32
+          format: int64
           type: integer
         Name:
           description: Category Name
@@ -1203,7 +1703,7 @@ components:
         picID:
           description: Image Unique Identifier
           example: 21189631
-          format: int32
+          format: int64
           type: integer
         fileName:
           description: Image File Name
@@ -1216,7 +1716,7 @@ components:
         status:
           description: Image Status
           example: 2
-          format: int32
+          format: int64
           type: integer
         OriginalURL:
           description: Original Image URL
@@ -1229,12 +1729,12 @@ components:
         width:
           description: Image Width Size
           example: 1920
-          format: int32
+          format: int64
           type: integer
         height:
           description: Image Height
           example: 1080
-          format: int32
+          format: int64
           type: integer
         URL300:
           description: Image URL
@@ -1245,22 +1745,22 @@ components:
       properties:
         transactionSuccess:
           example: 3
-          format: int32
+          format: int64
           type: integer
         transactionReject:
           example: 69
-          format: int32
+          format: int64
           type: integer
         countSold:
           example: 3
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductStats:
       properties:
         countView:
           example: 163
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductOther:
@@ -1293,54 +1793,54 @@ components:
       properties:
         length:
           description: Product Length
-          format: int32
+          format: int64
           type: integer
         width:
           description: Product Width
-          format: int32
+          format: int64
           type: integer
         height:
           description: Product Height
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductBundle:
       properties:
         bundleID:
           description: Bundle Unique Identifier
-          format: int32
+          format: int64
           type: integer
         Name:
           description: Bundle Name
           type: string
         Type:
           description: Bundle Type
-          format: int32
+          format: int64
           type: integer
         status:
           description: Bundle Status
-          format: int32
+          format: int64
           type: integer
         shopID:
           description: Shop Unique Identifier
-          format: int32
+          format: int64
           type: integer
         startTimeUnix:
           description: Bundle Start Time
-          format: int32
+          format: int64
           type: integer
         stopTimeUnix:
           description: Bundle End Time
-          format: int32
+          format: int64
           type: integer
       type: object
     ProductWarehouse:
       properties:
         productID:
-          format: int32
+          format: int64
           type: integer
         warehouseID:
-          format: int32
+          format: int64
           type: integer
         price:
           $ref: '#/components/schemas/ProductPrice'
@@ -1362,12 +1862,12 @@ components:
         main_stock:
           description: Product Stock (Not Reserved)
           example: 7
-          format: int32
+          format: int64
           type: integer
         reserve_stock:
           description: "Product Stock that Reserved (ex: FlashSale)"
           example: 3
-          format: int32
+          format: int64
           type: integer
         variant:
           $ref: '#/components/schemas/ProductVariant'
@@ -1416,15 +1916,15 @@ components:
     CategoryVariantUnitValue:
       properties:
         variant_unit_value_id:
-          format: int32
+          format: int64
           type: integer
         status:
-          format: int32
+          format: int64
           type: integer
         value:
           type: string
         equivalent_value_id:
-          format: int32
+          format: int64
           type: integer
         english_value:
           type: string
@@ -1436,10 +1936,10 @@ components:
     CategoryVariantUnit:
       properties:
         variant_unit_id:
-          format: int32
+          format: int64
           type: integer
         status:
-          format: int32
+          format: int64
           type: integer
         unit_name:
           type: string
@@ -1453,35 +1953,35 @@ components:
     CategoryVariantDetail:
       properties:
         variant_id:
-          format: int32
+          format: int64
           type: integer
         has_unit:
-          format: int32
+          format: int64
           type: integer
         identifier:
           type: string
         name:
           type: string
         status:
-          format: int32
+          format: int64
           type: integer
         units:
           items:
             $ref: '#/components/schemas/CategoryVariantUnit'
           type: array
         is_primary:
-          format: int32
+          format: int64
           type: integer
       type: object
     CategoryVariant:
       properties:
         category_id:
-          format: int32
+          format: int64
           type: integer
         variant_id_combinations:
           items:
             items:
-              format: int32
+              format: int64
               type: integer
             type: array
           type: array
@@ -1500,7 +2000,7 @@ components:
     VariantOption:
       properties:
         id:
-          format: int32
+          format: int64
           type: integer
         value:
           type: string
@@ -1516,7 +2016,7 @@ components:
         unit_name:
           type: string
         position:
-          format: int32
+          format: int64
           type: integer
         option:
           items:
@@ -1535,15 +2035,15 @@ components:
         is_active:
           type: boolean
         discounted_percentage:
-          format: int32
+          format: int64
           type: integer
         discounted_price:
-          format: int32
+          format: int64
           type: integer
         discounted_price_fmt:
           type: string
         campaign_type:
-          format: int32
+          format: int64
           type: integer
         campaign_type_name:
           type: string
@@ -1559,27 +2059,27 @@ components:
         url:
           type: string
         product_id:
-          format: int32
+          format: int64
           type: integer
         price:
-          format: int32
+          format: int64
           type: integer
         price_fmt:
           type: string
         stock:
-          format: int32
+          format: int64
           type: integer
         main_stock:
-          format: int32
+          format: int64
           type: integer
         reserve_stock:
-          format: int32
+          format: int64
           type: integer
         sku:
           type: string
         option_ids:
           items:
-            format: int32
+            format: int64
             type: integer
           type: array
         enabled:
@@ -1605,11 +2105,11 @@ components:
       properties:
         parent_id:
           description: Variant Parent Unique Identifier
-          format: int32
+          format: int64
           type: integer
         default_child:
           description: Variant Default Child Identifier
-          format: int32
+          format: int64
           type: integer
         variant:
           items:
@@ -1627,6 +2127,445 @@ components:
           data:
             $ref: '#/components/schemas/Variant'
         type: object
+    UpdateStockInput:
+      example:
+        product_id: 0
+        sku: sku
+        new_stock: 6
+      properties:
+        sku:
+          type: string
+        product_id:
+          format: int64
+          type: integer
+        new_stock:
+          format: int64
+          type: integer
+      required:
+      - new_stock
+      type: object
+    BulkUpdateStockInput:
+      items:
+        $ref: '#/components/schemas/UpdateStockInput'
+      type: array
+    UpdateStockResponse:
+      example:
+        data:
+          failed_rows: 6
+          succeed_rows: 5
+          failed_rows_data:
+          - product_url: product_url
+            product_id: 1
+            sku: sku
+            new_stock: 5
+            message: message
+          - product_url: product_url
+            product_id: 1
+            sku: sku
+            new_stock: 5
+            message: message
+        header:
+          messages: messages
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/UpdateStockResponse_header'
+        data:
+          $ref: '#/components/schemas/UpdateStockResponse_data'
+      type: object
+    getRegisteredWebhooks_200_response_data:
+      example:
+        order_notification_url: order_notification_url
+        order_cancellation_url: order_cancellation_url
+        order_status_url: order_status_url
+        order_partial_fulfillment_url: order_partial_fulfillment_url
+        order_request_cancellation_url: order_request_cancellation_url
+        chat_notification_url: chat_notification_url
+        campaign_notification_url: campaign_notification_url
+        webhook_secret: webhook_secret
+        product_changes_url: product_changes_url
+        fs_id: 0
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        order_notification_url:
+          type: string
+        order_cancellation_url:
+          type: string
+        order_status_url:
+          type: string
+        order_request_cancellation_url:
+          type: string
+        chat_notification_url:
+          type: string
+        product_changes_url:
+          type: string
+        campaign_notification_url:
+          type: string
+        order_partial_fulfillment_url:
+          type: string
+        webhook_secret:
+          type: string
+      type: object
+    getRegisteredWebhooks_200_response:
+      example:
+        error_message:
+        - error_message
+        - error_message
+        data:
+          order_notification_url: order_notification_url
+          order_cancellation_url: order_cancellation_url
+          order_status_url: order_status_url
+          order_partial_fulfillment_url: order_partial_fulfillment_url
+          order_request_cancellation_url: order_request_cancellation_url
+          chat_notification_url: chat_notification_url
+          campaign_notification_url: campaign_notification_url
+          webhook_secret: webhook_secret
+          product_changes_url: product_changes_url
+          fs_id: 0
+        status: status
+      properties:
+        data:
+          $ref: '#/components/schemas/getRegisteredWebhooks_200_response_data'
+        status:
+          type: string
+        error_message:
+          items:
+            type: string
+          type: array
+      type: object
+    registerWebhook_request:
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        order_notification_url:
+          type: string
+        order_cancellation_url:
+          type: string
+        order_status_url:
+          type: string
+        order_request_cancellation_url:
+          type: string
+        chat_notification_url:
+          type: string
+        product_creation_url:
+          type: string
+        product_changes_url:
+          type: string
+        campaign_notification_url:
+          type: string
+        webhook_secret:
+          type: string
+      required:
+      - campaign_notification_url
+      - chat_notification_url
+      - fs_id
+      - order_cancellation_url
+      - order_notification_url
+      - order_request_cancellation_url
+      - order_status_url
+      - product_changes_url
+      - product_creation_url
+      - webhook_secret
+      type: object
+    registerWebhook_default_response:
+      example:
+        error_message:
+        - error_message
+        - error_message
+        data: data
+        status: status
+      properties:
+        data:
+          type: string
+        status:
+          type: string
+        error_message:
+          items:
+            type: string
+          type: array
+      type: object
+    getOrderWebhook_200_response_header:
+      example:
+        reason: reason
+        messages: messages
+        error_code: error_code
+        process_time: 0.8008281904610115
+      properties:
+        process_time:
+          format: double
+          type: number
+        messages:
+          type: string
+        reason:
+          type: string
+        error_code:
+          type: string
+      type: object
+    getOrderWebhook_200_response_data_oneOf_product_details_inner:
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        notes:
+          type: string
+        currency:
+          type: string
+        weight:
+          format: double
+          type: number
+        total_weight:
+          format: double
+          type: number
+        price:
+          format: int64
+          type: integer
+        total_price:
+          format: int64
+          type: integer
+        quantity:
+          format: int64
+          type: integer
+        sku:
+          type: string
+      type: object
+    getOrderWebhook_200_response_data_oneOf:
+      nullable: true
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        order_status:
+          format: int64
+          type: integer
+        order_id:
+          format: int64
+          type: integer
+        shop_id:
+          format: int64
+          type: integer
+        warehouse_id:
+          format: int64
+          type: integer
+        product_details:
+          items:
+            $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_product_details_inner'
+          type: array
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_customer:
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_recipient_address:
+      properties:
+        address_full:
+          type: string
+        district:
+          type: string
+        city:
+          type: string
+        province:
+          type: string
+        country:
+          type: string
+        postal_code:
+          type: string
+        district_id:
+          format: int64
+          type: integer
+        city_id:
+          format: int64
+          type: integer
+        province_id:
+          format: int64
+          type: integer
+        geo:
+          type: string
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_recipient:
+      properties:
+        Name:
+          type: string
+        phone:
+          type: string
+        address:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_recipient_address'
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_logistics:
+      properties:
+        shipping_id:
+          format: int64
+          type: integer
+        district_id:
+          format: int64
+          type: integer
+        city_id:
+          format: int64
+          type: integer
+        province_id:
+          format: int64
+          type: integer
+        geo:
+          type: string
+        shipping_agency:
+          type: string
+        service_type:
+          type: string
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_amt:
+      properties:
+        ttl_product_price:
+          format: int64
+          type: integer
+        shipping_cost:
+          format: int64
+          type: integer
+        insurance_cost:
+          format: int64
+          type: integer
+        ttl_amount:
+          format: int64
+          type: integer
+        voucher_amount:
+          format: int64
+          type: integer
+        toppoints_amount:
+          format: int64
+          type: integer
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_dropshipper_info:
+      properties:
+        Name:
+          type: string
+        phone:
+          type: string
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1_voucher_info:
+      properties:
+        voucher_code:
+          type: string
+        voucher_type:
+          format: int64
+          type: integer
+      type: object
+    getOrderWebhook_200_response_data_oneOf_1:
+      nullable: true
+      properties:
+        fs_id:
+          format: int64
+          type: integer
+        order_id:
+          format: int64
+          type: integer
+        invoice_ref_num:
+          type: string
+        products:
+          items:
+            $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_product_details_inner'
+          type: array
+        customer:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_customer'
+        recipient:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_recipient'
+        shop_id:
+          format: int64
+          type: integer
+        warehouse_id:
+          format: int64
+          type: integer
+        shop_name:
+          type: string
+        payment_id:
+          format: int64
+          type: integer
+        payment_date:
+          type: string
+        logistics:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_logistics'
+        amt:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_amt'
+        dropshipper_info:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_dropshipper_info'
+        voucher_info:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1_voucher_info'
+        device_type:
+          type: string
+        create_time:
+          type: string
+        order_status:
+          format: int64
+          type: integer
+        custom_fields:
+          additionalProperties: true
+          type: object
+        accept_partial:
+          type: boolean
+      type: object
+    getOrderWebhook_200_response_data:
+      oneOf:
+      - $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf'
+      - $ref: '#/components/schemas/getOrderWebhook_200_response_data_oneOf_1'
+    getOrderWebhook_200_response:
+      example:
+        data: null
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+        data:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_data'
+      type: object
+    triggerWebhook_request:
+      properties:
+        order_id:
+          format: int64
+          type: integer
+        type:
+          enum:
+          - order_status
+          - order_notification
+          type: string
+        url:
+          type: string
+        is_encrypted:
+          type: boolean
+      required:
+      - is_encrypted
+      - order_id
+      - type
+      - url
+      type: object
+    triggerWebhook_default_response:
+      example:
+        data: data
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+        data:
+          nullable: true
+          type: string
+      type: object
     WebhookOrderNotification_products_inner:
       properties:
         id:
@@ -1638,6 +2577,7 @@ components:
           type: string
         quantity:
           description: Product quantity
+          format: int64
           type: integer
         notes:
           description: Product notes
@@ -1924,35 +2864,6 @@ components:
           items:
             $ref: '#/components/schemas/WebhookOrderNotification_bundle_detail_non_bundle_inner'
           type: array
-      type: object
-    WebhookOrderStatusCancellation_product_details_inner:
-      properties:
-        id:
-          format: int64
-          type: integer
-        Name:
-          type: string
-        notes:
-          type: string
-        currency:
-          type: string
-        weight:
-          format: double
-          type: number
-        total_weight:
-          format: double
-          type: number
-        price:
-          format: int64
-          type: integer
-        total_price:
-          format: int64
-          type: integer
-        quantity:
-          format: int64
-          type: integer
-        sku:
-          type: string
       type: object
     WebhookStockOverwriteNotification_product_changes_data_inner:
       properties:
@@ -2243,6 +3154,65 @@ components:
           type: integer
         message:
           type: string
+      type: object
+    UpdateStockResponse_header:
+      example:
+        messages: messages
+        process_time: 0.8008281904610115
+      properties:
+        process_time:
+          format: double
+          type: number
+        messages:
+          type: string
+      type: object
+    UpdateStockResponse_data_failed_rows_data_inner:
+      example:
+        product_url: product_url
+        product_id: 1
+        sku: sku
+        new_stock: 5
+        message: message
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        sku:
+          type: string
+        product_url:
+          type: string
+        new_stock:
+          format: int64
+          type: integer
+        message:
+          type: string
+      type: object
+    UpdateStockResponse_data:
+      example:
+        failed_rows: 6
+        succeed_rows: 5
+        failed_rows_data:
+        - product_url: product_url
+          product_id: 1
+          sku: sku
+          new_stock: 5
+          message: message
+        - product_url: product_url
+          product_id: 1
+          sku: sku
+          new_stock: 5
+          message: message
+      properties:
+        failed_rows:
+          format: int64
+          type: integer
+        failed_rows_data:
+          items:
+            $ref: '#/components/schemas/UpdateStockResponse_data_failed_rows_data_inner'
+          type: array
+        succeed_rows:
+          format: int64
+          type: integer
       type: object
   securitySchemes:
     basic:

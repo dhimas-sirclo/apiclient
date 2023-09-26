@@ -25,7 +25,7 @@ docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 author 
 ## Generate Tokopedia API Client Library
 
 ```sh
-docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generate -i /local/oas/tokopedia.yml -g go -o /local/tokopedia -t /local/template/go-tokopedia --git-host github.com --git-user-id dhimas-sirclo --git-repo-id apiclient/tokopedia --package-name tokopedia --additional-properties=packageName=tokopedia,generateInterfaces=true,enumClassPrefix=true && cd tokopedia && go mod tidy && cd ..
+docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generate -i /local/oas/tokopedia.yml -g go -o /local/tokopedia -t /local/template/go-tokopedia --git-host github.com --git-user-id dhimas-sirclo --git-repo-id apiclient/tokopedia --package-name tokopedia --additional-properties=packageName=tokopedia,generateInterfaces=true,enumClassPrefix=true,structPrefix=true && cd tokopedia && go mod tidy && cd ..
 ```
 
 ## Run Tokopedia Mock API

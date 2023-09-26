@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ParentId** | Pointer to **int32** | Variant Parent Unique Identifier | [optional] 
-**DefaultChild** | Pointer to **int32** | Variant Default Child Identifier | [optional] 
+**ParentId** | Pointer to **int64** | Variant Parent Unique Identifier | [optional] 
+**DefaultChild** | Pointer to **int64** | Variant Default Child Identifier | [optional] 
 **Variant** | Pointer to [**[]VariantVariant**](VariantVariant.md) |  | [optional] 
 **Children** | Pointer to [**[]VariantChildren**](VariantChildren.md) |  | [optional] 
 
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetParentId
 
-`func (o *Variant) GetParentId() int32`
+`func (o *Variant) GetParentId() int64`
 
 GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 ### GetParentIdOk
 
-`func (o *Variant) GetParentIdOk() (*int32, bool)`
+`func (o *Variant) GetParentIdOk() (*int64, bool)`
 
 GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetParentId
 
-`func (o *Variant) SetParentId(v int32)`
+`func (o *Variant) SetParentId(v int64)`
 
 SetParentId sets ParentId field to given value.
 
@@ -55,20 +55,20 @@ HasParentId returns a boolean if a field has been set.
 
 ### GetDefaultChild
 
-`func (o *Variant) GetDefaultChild() int32`
+`func (o *Variant) GetDefaultChild() int64`
 
 GetDefaultChild returns the DefaultChild field if non-nil, zero value otherwise.
 
 ### GetDefaultChildOk
 
-`func (o *Variant) GetDefaultChildOk() (*int32, bool)`
+`func (o *Variant) GetDefaultChildOk() (*int64, bool)`
 
 GetDefaultChildOk returns a tuple with the DefaultChild field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDefaultChild
 
-`func (o *Variant) SetDefaultChild(v int32)`
+`func (o *Variant) SetDefaultChild(v int64)`
 
 SetDefaultChild sets DefaultChild field to given value.
 

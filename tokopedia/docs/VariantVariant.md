@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Identifier** | Pointer to **string** |  | [optional] 
 **UnitName** | Pointer to **string** |  | [optional] 
-**Position** | Pointer to **int32** |  | [optional] 
+**Position** | Pointer to **int64** |  | [optional] 
 **Option** | Pointer to [**[]VariantOption**](VariantOption.md) |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasUnitName returns a boolean if a field has been set.
 
 ### GetPosition
 
-`func (o *VariantVariant) GetPosition() int32`
+`func (o *VariantVariant) GetPosition() int64`
 
 GetPosition returns the Position field if non-nil, zero value otherwise.
 
 ### GetPositionOk
 
-`func (o *VariantVariant) GetPositionOk() (*int32, bool)`
+`func (o *VariantVariant) GetPositionOk() (*int64, bool)`
 
 GetPositionOk returns a tuple with the Position field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPosition
 
-`func (o *VariantVariant) SetPosition(v int32)`
+`func (o *VariantVariant) SetPosition(v int64)`
 
 SetPosition sets Position field to given value.
 

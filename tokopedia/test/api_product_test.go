@@ -27,7 +27,7 @@ func Test_tokopedia_ProductAPIService(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		var fsId int32
+		var fsId int64
 
 		resp, httpRes, err := apiClient.ProductAPI.GetProductInfo(context.Background(), fsId).Execute()
 
@@ -41,7 +41,7 @@ func Test_tokopedia_ProductAPIService(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		var fsId int32
+		var fsId int64
 
 		resp, httpRes, err := apiClient.ProductAPI.GetVariantsByCategoryId(context.Background(), fsId).Execute()
 
@@ -55,8 +55,8 @@ func Test_tokopedia_ProductAPIService(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		var fsId int32
-		var productId int32
+		var fsId int64
+		var productId int64
 
 		resp, httpRes, err := apiClient.ProductAPI.GetVariantsByProductId(context.Background(), fsId, productId).Execute()
 

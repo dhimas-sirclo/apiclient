@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int64** | Product ID | [optional] 
 **Name** | Pointer to **string** | Product name | [optional] 
-**Quantity** | Pointer to **int32** | Product quantity | [optional] 
+**Quantity** | Pointer to **int64** | Product quantity | [optional] 
 **Notes** | Pointer to **string** | Product notes | [optional] 
 **Weight** | Pointer to **float64** |  | [optional] 
 **TotalWeight** | Pointer to **float64** |  | [optional] 
@@ -87,20 +87,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *WebhookOrderNotificationProductsInner) GetQuantity() int32`
+`func (o *WebhookOrderNotificationProductsInner) GetQuantity() int64`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *WebhookOrderNotificationProductsInner) GetQuantityOk() (*int32, bool)`
+`func (o *WebhookOrderNotificationProductsInner) GetQuantityOk() (*int64, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *WebhookOrderNotificationProductsInner) SetQuantity(v int32)`
+`func (o *WebhookOrderNotificationProductsInner) SetQuantity(v int64)`
 
 SetQuantity sets Quantity field to given value.
 

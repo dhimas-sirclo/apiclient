@@ -20,10 +20,10 @@ var _ MappedNullable = &CategoryVariantUnitValue{}
 
 // CategoryVariantUnitValue struct for CategoryVariantUnitValue
 type CategoryVariantUnitValue struct {
-	VariantUnitValueId *int32 `json:"variant_unit_value_id,omitempty"`
-	Status *int32 `json:"status,omitempty"`
+	VariantUnitValueId *int64 `json:"variant_unit_value_id,omitempty"`
+	Status *int64 `json:"status,omitempty"`
 	Value *string `json:"value,omitempty"`
-	EquivalentValueId *int32 `json:"equivalent_value_id,omitempty"`
+	EquivalentValueId *int64 `json:"equivalent_value_id,omitempty"`
 	EnglishValue *string `json:"english_value,omitempty"`
 	Hex *string `json:"hex,omitempty"`
 	Icon *string `json:"icon,omitempty"`
@@ -47,9 +47,9 @@ func NewCategoryVariantUnitValueWithDefaults() *CategoryVariantUnitValue {
 }
 
 // GetVariantUnitValueId returns the VariantUnitValueId field value if set, zero value otherwise.
-func (o *CategoryVariantUnitValue) GetVariantUnitValueId() int32 {
+func (o *CategoryVariantUnitValue) GetVariantUnitValueId() int64 {
 	if o == nil || IsNil(o.VariantUnitValueId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.VariantUnitValueId
@@ -57,7 +57,7 @@ func (o *CategoryVariantUnitValue) GetVariantUnitValueId() int32 {
 
 // GetVariantUnitValueIdOk returns a tuple with the VariantUnitValueId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariantUnitValue) GetVariantUnitValueIdOk() (*int32, bool) {
+func (o *CategoryVariantUnitValue) GetVariantUnitValueIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.VariantUnitValueId) {
 		return nil, false
 	}
@@ -73,15 +73,15 @@ func (o *CategoryVariantUnitValue) HasVariantUnitValueId() bool {
 	return false
 }
 
-// SetVariantUnitValueId gets a reference to the given int32 and assigns it to the VariantUnitValueId field.
-func (o *CategoryVariantUnitValue) SetVariantUnitValueId(v int32) {
+// SetVariantUnitValueId gets a reference to the given int64 and assigns it to the VariantUnitValueId field.
+func (o *CategoryVariantUnitValue) SetVariantUnitValueId(v int64) {
 	o.VariantUnitValueId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CategoryVariantUnitValue) GetStatus() int32 {
+func (o *CategoryVariantUnitValue) GetStatus() int64 {
 	if o == nil || IsNil(o.Status) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Status
@@ -89,7 +89,7 @@ func (o *CategoryVariantUnitValue) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariantUnitValue) GetStatusOk() (*int32, bool) {
+func (o *CategoryVariantUnitValue) GetStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -105,8 +105,8 @@ func (o *CategoryVariantUnitValue) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *CategoryVariantUnitValue) SetStatus(v int32) {
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *CategoryVariantUnitValue) SetStatus(v int64) {
 	o.Status = &v
 }
 
@@ -143,9 +143,9 @@ func (o *CategoryVariantUnitValue) SetValue(v string) {
 }
 
 // GetEquivalentValueId returns the EquivalentValueId field value if set, zero value otherwise.
-func (o *CategoryVariantUnitValue) GetEquivalentValueId() int32 {
+func (o *CategoryVariantUnitValue) GetEquivalentValueId() int64 {
 	if o == nil || IsNil(o.EquivalentValueId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EquivalentValueId
@@ -153,7 +153,7 @@ func (o *CategoryVariantUnitValue) GetEquivalentValueId() int32 {
 
 // GetEquivalentValueIdOk returns a tuple with the EquivalentValueId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariantUnitValue) GetEquivalentValueIdOk() (*int32, bool) {
+func (o *CategoryVariantUnitValue) GetEquivalentValueIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.EquivalentValueId) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *CategoryVariantUnitValue) HasEquivalentValueId() bool {
 	return false
 }
 
-// SetEquivalentValueId gets a reference to the given int32 and assigns it to the EquivalentValueId field.
-func (o *CategoryVariantUnitValue) SetEquivalentValueId(v int32) {
+// SetEquivalentValueId gets a reference to the given int64 and assigns it to the EquivalentValueId field.
+func (o *CategoryVariantUnitValue) SetEquivalentValueId(v int64) {
 	o.EquivalentValueId = &v
 }
 

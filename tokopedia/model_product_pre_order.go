@@ -21,8 +21,8 @@ var _ MappedNullable = &ProductPreOrder{}
 // ProductPreOrder struct for ProductPreOrder
 type ProductPreOrder struct {
 	Duration *bool `json:"duration,omitempty"`
-	Unit *int32 `json:"unit,omitempty"`
-	Day *int32 `json:"day,omitempty"`
+	Unit *int64 `json:"unit,omitempty"`
+	Day *int64 `json:"day,omitempty"`
 }
 
 // NewProductPreOrder instantiates a new ProductPreOrder object
@@ -75,9 +75,9 @@ func (o *ProductPreOrder) SetDuration(v bool) {
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
-func (o *ProductPreOrder) GetUnit() int32 {
+func (o *ProductPreOrder) GetUnit() int64 {
 	if o == nil || IsNil(o.Unit) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Unit
@@ -85,7 +85,7 @@ func (o *ProductPreOrder) GetUnit() int32 {
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductPreOrder) GetUnitOk() (*int32, bool) {
+func (o *ProductPreOrder) GetUnitOk() (*int64, bool) {
 	if o == nil || IsNil(o.Unit) {
 		return nil, false
 	}
@@ -101,15 +101,15 @@ func (o *ProductPreOrder) HasUnit() bool {
 	return false
 }
 
-// SetUnit gets a reference to the given int32 and assigns it to the Unit field.
-func (o *ProductPreOrder) SetUnit(v int32) {
+// SetUnit gets a reference to the given int64 and assigns it to the Unit field.
+func (o *ProductPreOrder) SetUnit(v int64) {
 	o.Unit = &v
 }
 
 // GetDay returns the Day field value if set, zero value otherwise.
-func (o *ProductPreOrder) GetDay() int32 {
+func (o *ProductPreOrder) GetDay() int64 {
 	if o == nil || IsNil(o.Day) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Day
@@ -117,7 +117,7 @@ func (o *ProductPreOrder) GetDay() int32 {
 
 // GetDayOk returns a tuple with the Day field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductPreOrder) GetDayOk() (*int32, bool) {
+func (o *ProductPreOrder) GetDayOk() (*int64, bool) {
 	if o == nil || IsNil(o.Day) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *ProductPreOrder) HasDay() bool {
 	return false
 }
 
-// SetDay gets a reference to the given int32 and assigns it to the Day field.
-func (o *ProductPreOrder) SetDay(v int32) {
+// SetDay gets a reference to the given int64 and assigns it to the Day field.
+func (o *ProductPreOrder) SetDay(v int64) {
 	o.Day = &v
 }
 

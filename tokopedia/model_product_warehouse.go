@@ -20,8 +20,8 @@ var _ MappedNullable = &ProductWarehouse{}
 
 // ProductWarehouse struct for ProductWarehouse
 type ProductWarehouse struct {
-	ProductID *int32 `json:"productID,omitempty"`
-	WarehouseID *int32 `json:"warehouseID,omitempty"`
+	ProductID *int64 `json:"productID,omitempty"`
+	WarehouseID *int64 `json:"warehouseID,omitempty"`
 	Price *ProductPrice `json:"price,omitempty"`
 	Stock *ProductStock `json:"stock,omitempty"`
 	Bundle *ProductBundle `json:"bundle,omitempty"`
@@ -45,9 +45,9 @@ func NewProductWarehouseWithDefaults() *ProductWarehouse {
 }
 
 // GetProductID returns the ProductID field value if set, zero value otherwise.
-func (o *ProductWarehouse) GetProductID() int32 {
+func (o *ProductWarehouse) GetProductID() int64 {
 	if o == nil || IsNil(o.ProductID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProductID
@@ -55,7 +55,7 @@ func (o *ProductWarehouse) GetProductID() int32 {
 
 // GetProductIDOk returns a tuple with the ProductID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWarehouse) GetProductIDOk() (*int32, bool) {
+func (o *ProductWarehouse) GetProductIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.ProductID) {
 		return nil, false
 	}
@@ -71,15 +71,15 @@ func (o *ProductWarehouse) HasProductID() bool {
 	return false
 }
 
-// SetProductID gets a reference to the given int32 and assigns it to the ProductID field.
-func (o *ProductWarehouse) SetProductID(v int32) {
+// SetProductID gets a reference to the given int64 and assigns it to the ProductID field.
+func (o *ProductWarehouse) SetProductID(v int64) {
 	o.ProductID = &v
 }
 
 // GetWarehouseID returns the WarehouseID field value if set, zero value otherwise.
-func (o *ProductWarehouse) GetWarehouseID() int32 {
+func (o *ProductWarehouse) GetWarehouseID() int64 {
 	if o == nil || IsNil(o.WarehouseID) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.WarehouseID
@@ -87,7 +87,7 @@ func (o *ProductWarehouse) GetWarehouseID() int32 {
 
 // GetWarehouseIDOk returns a tuple with the WarehouseID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductWarehouse) GetWarehouseIDOk() (*int32, bool) {
+func (o *ProductWarehouse) GetWarehouseIDOk() (*int64, bool) {
 	if o == nil || IsNil(o.WarehouseID) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *ProductWarehouse) HasWarehouseID() bool {
 	return false
 }
 
-// SetWarehouseID gets a reference to the given int32 and assigns it to the WarehouseID field.
-func (o *ProductWarehouse) SetWarehouseID(v int32) {
+// SetWarehouseID gets a reference to the given int64 and assigns it to the WarehouseID field.
+func (o *ProductWarehouse) SetWarehouseID(v int64) {
 	o.WarehouseID = &v
 }
 

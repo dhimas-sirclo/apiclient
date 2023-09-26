@@ -53,7 +53,11 @@ type APIClient struct {
 
 	AuthenticationAPI AuthenticationAPI
 
+	OrderAPI OrderAPI
+
 	ProductAPI ProductAPI
+
+	WebhookAPI WebhookAPI
 }
 
 type service struct {
@@ -73,7 +77,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
+	c.OrderAPI = (*OrderAPIService)(&c.common)
 	c.ProductAPI = (*ProductAPIService)(&c.common)
+	c.WebhookAPI = (*WebhookAPIService)(&c.common)
 
 	return c
 }
