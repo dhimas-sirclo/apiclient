@@ -17,6 +17,7 @@ tags:
 - name: Product
 - name: Webhook
 - name: Order
+- name: Interaction
 paths:
   /token:
     post:
@@ -926,6 +927,278 @@ paths:
       tags:
       - Order
       - Webhook
+  /v1/chat/fs/{fs_id}/messages:
+    get:
+      description: This endpoint retrieves a list of all messages (chatrooms) owned
+        by a shop_id.
+      operationId: getListMessage
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop service unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine which page the order list should start. Start from
+          1. You can get the next page when the previous page has have_next_page value
+          true
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine how many orders will be shown per page. The maximum
+          value is 15
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: "Filter by message read status. Value between “all”, “read”,\
+          \ or “unread”identifier"
+        explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          enum:
+          - all
+          - read
+          - unread
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getListMessage_default_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getListMessage_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Interaction
+  /v1/chat/fs/{fs_id}/messages/{msg_id}/replies:
+    get:
+      description: This endpoint retrieves a list of all replies (chat bubble) for
+        a msg_id which is owned by a shop_id.x
+      operationId: getListReply
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Message service unique identifier
+        explode: false
+        in: path
+        name: msg_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop service unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine which page the order list should start. Start from
+          1. You can get the next page when the previous page has have_next_page value
+          true
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine how many orders will be shown per page. The maximum
+          value is 15
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getListReply_200_response'
+          description: OK
+      tags:
+      - Interaction
+  /v1/chat/fs/{fs_id}/initiate:
+    get:
+      description: "This endpoint check if chat message exists, if it doesn’t, creates\
+        \ a new message. The response consists of a list of replies in a message status."
+      operationId: initiateChat
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Order service unique identifier
+        explode: true
+        in: query
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/initiateChat_200_response'
+          description: OK
+      tags:
+      - Interaction
+  /v1/chat/fs/{fs_id}/messages/{msg_id}/reply:
+    post:
+      description: This endpoint sends a reply to a message (chat room) identified
+        by msg_id from shop_id.
+      operationId: sendReply
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Message service unique identifier
+        explode: false
+        in: path
+        name: msg_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sendReply_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/sendReply_200_response'
+          description: OK
+      tags:
+      - Interaction
 components:
   parameters:
     fs_id:
@@ -933,6 +1206,16 @@ components:
       explode: false
       in: path
       name: fs_id
+      required: true
+      schema:
+        format: int64
+        type: integer
+      style: simple
+    msg_id:
+      description: Message service unique identifier
+      explode: false
+      in: path
+      name: msg_id
       required: true
       schema:
         format: int64
@@ -2565,6 +2848,543 @@ components:
         data:
           nullable: true
           type: string
+      type: object
+    getListMessage_default_response_header:
+      example:
+        reason: reason
+        messages: messages
+        error_code: 6
+        process_time: 0.8008281904610115
+      properties:
+        process_time:
+          format: double
+          type: number
+        messages:
+          type: string
+        reason:
+          type: string
+        error_code:
+          format: int64
+          type: integer
+      type: object
+    getListMessage_default_response_data_inner_attributes_contact_attributes:
+      example:
+        thumbnail: thumbnail
+        tag: tag
+        Name: Name
+      properties:
+        Name:
+          description: User Name
+          type: string
+        tag:
+          description: User Tag
+          type: string
+        thumbnail:
+          description: User thumbnail
+          type: string
+      type: object
+    getListMessage_default_response_data_inner_attributes_contact:
+      example:
+        role: User
+        attributes:
+          thumbnail: thumbnail
+          tag: tag
+          Name: Name
+        id: 5
+      properties:
+        id:
+          description: User Unique Identifier
+          format: int64
+          type: integer
+        role:
+          description: "User Role, Field role has User, Shop Owner, Shop Admin, and\
+            \ Tokopedia Admin."
+          enum:
+          - User
+          - Shop Owner
+          - Shop Admin
+          - Tokopedia Admin
+          type: string
+        attributes:
+          $ref: '#/components/schemas/getListMessage_default_response_data_inner_attributes_contact_attributes'
+      type: object
+    getListMessage_default_response_data_inner_attributes:
+      example:
+        unreads: 7
+        last_reply_msg: last_reply_msg
+        contact:
+          role: User
+          attributes:
+            thumbnail: thumbnail
+            tag: tag
+            Name: Name
+          id: 5
+        read_status: 2
+        last_reply_time: 5
+        pin_status: 9
+      properties:
+        contact:
+          $ref: '#/components/schemas/getListMessage_default_response_data_inner_attributes_contact'
+        last_reply_msg:
+          description: Last Reply Message
+          type: string
+        last_reply_time:
+          description: Last Reply Time in UNIX
+          format: int64
+          type: integer
+        read_status:
+          description: "Read Status, Field read status is to identify that status\
+            \ = 1 is not read yet and status = 2 is already read."
+          format: int64
+          type: integer
+        unreads:
+          description: "Unreads Count, Field unreads is the number of unread messages\
+            \ in the related message."
+          format: int64
+          type: integer
+        pin_status:
+          description: "Pin Status, Field pin_status is for chat pinned or not, when\
+            \ pinned it is 1 and for not it is 0."
+          format: int64
+          type: integer
+      type: object
+    getListMessage_default_response_data_inner:
+      example:
+        attributes:
+          unreads: 7
+          last_reply_msg: last_reply_msg
+          contact:
+            role: User
+            attributes:
+              thumbnail: thumbnail
+              tag: tag
+              Name: Name
+            id: 5
+          read_status: 2
+          last_reply_time: 5
+          pin_status: 9
+        msg_id: 1
+        message_key: message_key
+      properties:
+        message_key:
+          description: "Message Key, Field messages_key is an identic key for related\
+            \ buyer and related seller that communicate at the chat."
+          type: string
+        msg_id:
+          description: Message Unique Identifier
+          format: int64
+          type: integer
+        attributes:
+          $ref: '#/components/schemas/getListMessage_default_response_data_inner_attributes'
+      type: object
+    getListMessage_default_response:
+      example:
+        data:
+        - attributes:
+            unreads: 7
+            last_reply_msg: last_reply_msg
+            contact:
+              role: User
+              attributes:
+                thumbnail: thumbnail
+                tag: tag
+                Name: Name
+              id: 5
+            read_status: 2
+            last_reply_time: 5
+            pin_status: 9
+          msg_id: 1
+          message_key: message_key
+        - attributes:
+            unreads: 7
+            last_reply_msg: last_reply_msg
+            contact:
+              role: User
+              attributes:
+                thumbnail: thumbnail
+                tag: tag
+                Name: Name
+              id: 5
+            read_status: 2
+            last_reply_time: 5
+            pin_status: 9
+          msg_id: 1
+          message_key: message_key
+        header:
+          reason: reason
+          messages: messages
+          error_code: 6
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getListMessage_default_response_header'
+        data:
+          items:
+            $ref: '#/components/schemas/getListMessage_default_response_data_inner'
+          nullable: true
+          type: array
+      type: object
+    getListReply_200_response_data_inner:
+      example:
+        msg: msg
+        is_opposite: true
+        is_first_reply: true
+        role: User
+        reply_time: 1
+        message_is_read: true
+        read_status: 5
+        sender_name: sender_name
+        sender_id: 6
+        reply_id: 5
+        read_time: 2
+        is_reported: true
+        attachment_id: 9
+        msg_id: 0
+        status: 7
+      properties:
+        msg_id:
+          format: int64
+          type: integer
+        sender_id:
+          format: int64
+          type: integer
+        role:
+          enum:
+          - User
+          type: string
+        msg:
+          type: string
+        reply_time:
+          format: int64
+          type: integer
+        reply_id:
+          format: int64
+          type: integer
+        sender_name:
+          type: string
+        read_status:
+          format: int64
+          type: integer
+        read_time:
+          format: int64
+          type: integer
+        status:
+          format: int64
+          type: integer
+        attachment_id:
+          format: int64
+          type: integer
+        message_is_read:
+          type: boolean
+        is_opposite:
+          type: boolean
+        is_first_reply:
+          type: boolean
+        is_reported:
+          type: boolean
+      type: object
+    getListReply_200_response:
+      example:
+        data:
+        - msg: msg
+          is_opposite: true
+          is_first_reply: true
+          role: User
+          reply_time: 1
+          message_is_read: true
+          read_status: 5
+          sender_name: sender_name
+          sender_id: 6
+          reply_id: 5
+          read_time: 2
+          is_reported: true
+          attachment_id: 9
+          msg_id: 0
+          status: 7
+        - msg: msg
+          is_opposite: true
+          is_first_reply: true
+          role: User
+          reply_time: 1
+          message_is_read: true
+          read_status: 5
+          sender_name: sender_name
+          sender_id: 6
+          reply_id: 5
+          read_time: 2
+          is_reported: true
+          attachment_id: 9
+          msg_id: 0
+          status: 7
+        header:
+          reason: reason
+          messages: messages
+          error_code: 6
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getListMessage_default_response_header'
+        data:
+          items:
+            $ref: '#/components/schemas/getListReply_200_response_data_inner'
+          nullable: true
+          type: array
+      type: object
+    initiateChat_200_response_data_contact_attributes:
+      example:
+        thumbnail: thumbnail
+        is_official: true
+        is_gold: true
+        tag: tag
+        Name: Name
+      properties:
+        Name:
+          type: string
+        tag:
+          type: string
+        thumbnail:
+          type: string
+        is_gold:
+          description: Field is_gold is to identify Seller Gold Merchant (Power Merchant)
+            or not.
+          type: boolean
+        is_official:
+          type: boolean
+      type: object
+    initiateChat_200_response_data_contact:
+      example:
+        role: User
+        attributes:
+          thumbnail: thumbnail
+          is_official: true
+          is_gold: true
+          tag: tag
+          Name: Name
+        id: 0
+      properties:
+        id:
+          format: int64
+          type: integer
+        role:
+          description: "Field role has User, Shop Owner, Shop Admin, and Tokopedia\
+            \ Admin."
+          enum:
+          - User
+          - Shop Owner
+          - Shop Admin
+          - Tokopedia Admin
+          type: string
+        attributes:
+          $ref: '#/components/schemas/initiateChat_200_response_data_contact_attributes'
+      type: object
+    initiateChat_200_response_data:
+      example:
+        contact:
+          role: User
+          attributes:
+            thumbnail: thumbnail
+            is_official: true
+            is_gold: true
+            tag: tag
+            Name: Name
+          id: 0
+        is_success: true
+        msg_id: 6
+      nullable: true
+      properties:
+        contact:
+          $ref: '#/components/schemas/initiateChat_200_response_data_contact'
+        is_success:
+          type: boolean
+        msg_id:
+          format: int64
+          type: integer
+      type: object
+    initiateChat_200_response:
+      example:
+        data:
+          contact:
+            role: User
+            attributes:
+              thumbnail: thumbnail
+              is_official: true
+              is_gold: true
+              tag: tag
+              Name: Name
+            id: 0
+          is_success: true
+          msg_id: 6
+        header:
+          reason: reason
+          messages: messages
+          error_code: 6
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getListMessage_default_response_header'
+        data:
+          $ref: '#/components/schemas/initiateChat_200_response_data'
+      type: object
+    sendReply_request_oneOf:
+      properties:
+        shop_id:
+          format: int64
+          type: integer
+        message:
+          type: string
+      required:
+      - message
+      - shop_id
+      type: object
+    sendReply_request_oneOf_1_payload:
+      properties:
+        thumbnail:
+          type: string
+        identifier:
+          type: string
+        title:
+          type: string
+        price:
+          type: string
+        url:
+          type: string
+      required:
+      - identifier
+      - price
+      - thumbnail
+      - title
+      - url
+      type: object
+    sendReply_request_oneOf_1:
+      properties:
+        shop_id:
+          format: int64
+          type: integer
+        attachment_type:
+          format: int64
+          type: integer
+        payload:
+          $ref: '#/components/schemas/sendReply_request_oneOf_1_payload'
+      required:
+      - attachment_type
+      - payload
+      - shop_id
+      type: object
+    sendReply_request:
+      oneOf:
+      - $ref: '#/components/schemas/sendReply_request_oneOf'
+      - $ref: '#/components/schemas/sendReply_request_oneOf_1'
+    sendReply_200_response_data_attachment_quotation_profile:
+      example:
+        identifier: identifier
+        thumbnail: thumbnail
+        price: price
+        title: title
+        url: url
+      properties:
+        thumbnail:
+          type: string
+        identifier:
+          type: string
+        title:
+          type: string
+        price:
+          type: string
+        url:
+          type: string
+      type: object
+    sendReply_200_response_data_attachment:
+      example:
+        quotation_profile:
+          identifier: identifier
+          thumbnail: thumbnail
+          price: price
+          title: title
+          url: url
+      properties:
+        quotation_profile:
+          $ref: '#/components/schemas/sendReply_200_response_data_attachment_quotation_profile'
+      type: object
+    sendReply_200_response_data_fallback_attachment:
+      example:
+        html: html
+        message: message
+      properties:
+        html:
+          type: string
+        message:
+          type: string
+      type: object
+    sendReply_200_response_data:
+      example:
+        msg: msg
+        role: 1
+        attachment:
+          quotation_profile:
+            identifier: identifier
+            thumbnail: thumbnail
+            price: price
+            title: title
+            url: url
+        reply_time: 5
+        fallback_attachment:
+          html: html
+          message: message
+        from: from
+        msg_id: 0
+        sender_id: 6
+      nullable: true
+      properties:
+        msg_id:
+          format: int64
+          type: integer
+        sender_id:
+          format: int64
+          type: integer
+        role:
+          format: int64
+          type: integer
+        msg:
+          type: string
+        reply_time:
+          format: int64
+          type: integer
+        from:
+          type: string
+        attachment:
+          $ref: '#/components/schemas/sendReply_200_response_data_attachment'
+        fallback_attachment:
+          $ref: '#/components/schemas/sendReply_200_response_data_fallback_attachment'
+      type: object
+    sendReply_200_response:
+      example:
+        data:
+          msg: msg
+          role: 1
+          attachment:
+            quotation_profile:
+              identifier: identifier
+              thumbnail: thumbnail
+              price: price
+              title: title
+              url: url
+          reply_time: 5
+          fallback_attachment:
+            html: html
+            message: message
+          from: from
+          msg_id: 0
+          sender_id: 6
+        header:
+          reason: reason
+          messages: messages
+          error_code: 6
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/getListMessage_default_response_header'
+        data:
+          $ref: '#/components/schemas/sendReply_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:

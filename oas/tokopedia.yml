@@ -1817,6 +1817,14 @@ components:
       schema:
         type: integer
         format: int64
+    msg_id:
+      name: msg_id
+      in: path
+      required: true
+      description: "Message service unique identifier"
+      schema:
+        type: integer
+        format: int64
     order_id:
       name: order_id
       in: path
@@ -2799,6 +2807,536 @@ paths:
                   data:
                     type: string
                     nullable: true
+  /v1/chat/fs/{fs_id}/messages:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getListMessage
+      tags:
+        - Interaction
+      description: "This endpoint retrieves a list of all messages (chatrooms) owned by a shop_id."
+      parameters:
+        - name: shop_id
+          description: Shop service unique identifier
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          description: Determine which page the order list should start. Start from 1. You can get the next page when the previous page has have_next_page value true
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          description: Determine how many orders will be shown per page. The maximum value is 15
+          in: query
+          schema:
+            type: integer
+            format: int64
+        - name: filter
+          description: Filter by message read status. Value between “all”, “read”, or “unread”identifier
+          in: query
+          schema:
+            type: string
+            enum:
+              - all
+              - read
+              - unread
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    properties:
+                      process_time:
+                        type: number
+                        format: double
+                      messages:
+                        type: string
+                      reason:
+                        type: string
+                      error_code:
+                        type: integer
+                        format: int64
+                  data:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        message_key:
+                          type: string
+                          description: Message Key, Field messages_key is an identic key for related buyer and related seller that communicate at the chat.
+                        msg_id:
+                          type: integer
+                          format: int64
+                          description: Message Unique Identifier
+                        attributes:
+                          type: object
+                          properties:
+                            contact:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  format: int64
+                                  description: User Unique Identifier
+                                role:
+                                  type: string
+                                  description: User Role, Field role has User, Shop Owner, Shop Admin, and Tokopedia Admin.
+                                  enum:
+                                    - User
+                                    - Shop Owner
+                                    - Shop Admin
+                                    - Tokopedia Admin
+                                attributes:
+                                  type: object
+                                  properties:
+                                    Name:
+                                      type: string
+                                      description: User Name
+                                    tag:
+                                      type: string
+                                      description: User Tag
+                                    thumbnail:
+                                      type: string
+                                      description: User thumbnail
+                            last_reply_msg:
+                              type: string
+                              description: Last Reply Message
+                            last_reply_time:
+                              type: integer
+                              format: int64
+                              description: Last Reply Time in UNIX
+                            read_status:
+                              type: integer
+                              format: int64
+                              description: Read Status, Field read status is to identify that status = 1 is not read yet and status = 2 is already read.
+                            unreads:
+                              type: integer
+                              format: int64
+                              description: Unreads Count, Field unreads is the number of unread messages in the related message.
+                            pin_status:
+                              type: integer
+                              format: int64
+                              description: Pin Status, Field pin_status is for chat pinned or not, when pinned it is 1 and for not it is 0.
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    properties:
+                      process_time:
+                        type: number
+                        format: double
+                      messages:
+                        type: string
+                      reason:
+                        type: string
+                      error_code:
+                        type: integer
+                        format: int64
+                  data:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        message_key:
+                          type: string
+                          description: Message Key, Field messages_key is an identic key for related buyer and related seller that communicate at the chat.
+                        msg_id:
+                          type: integer
+                          format: int64
+                          description: Message Unique Identifier
+                        attributes:
+                          type: object
+                          properties:
+                            contact:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  format: int64
+                                  description: User Unique Identifier
+                                role:
+                                  type: string
+                                  description: User Role, Field role has User, Shop Owner, Shop Admin, and Tokopedia Admin.
+                                  enum:
+                                    - User
+                                    - Shop Owner
+                                    - Shop Admin
+                                    - Tokopedia Admin
+                                attributes:
+                                  type: object
+                                  properties:
+                                    Name:
+                                      type: string
+                                      description: User Name
+                                    tag:
+                                      type: string
+                                      description: User Tag
+                                    thumbnail:
+                                      type: string
+                                      description: User thumbnail
+                            last_reply_msg:
+                              type: string
+                              description: Last Reply Message
+                            last_reply_time:
+                              type: integer
+                              format: int64
+                              description: Last Reply Time in UNIX
+                            read_status:
+                              type: integer
+                              format: int64
+                              description: Read Status, Field read status is to identify that status = 1 is not read yet and status = 2 is already read.
+                            unreads:
+                              type: integer
+                              format: int64
+                              description: Unreads Count, Field unreads is the number of unread messages in the related message.
+                            pin_status:
+                              type: integer
+                              format: int64
+                              description: Pin Status, Field pin_status is for chat pinned or not, when pinned it is 1 and for not it is 0.
+  /v1/chat/fs/{fs_id}/messages/{msg_id}/replies:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+      - $ref: "#/components/parameters/msg_id"
+    get:
+      operationId: getListReply
+      tags:
+        - Interaction
+      description: "This endpoint retrieves a list of all replies (chat bubble) for a msg_id which is owned by a shop_id.x"
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop service unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Determine which page the order list should start. Start from 1. You can get the next page when the previous page has have_next_page value true
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          description: Determine how many orders will be shown per page. The maximum value is 15
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    properties:
+                      process_time:
+                        type: number
+                        format: double
+                      messages:
+                        type: string
+                      reason:
+                        type: string
+                      error_code:
+                        type: integer
+                        format: int64
+                  data:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        msg_id:
+                          type: integer
+                          format: int64
+                        sender_id:
+                          type: integer
+                          format: int64
+                        role:
+                          type: string
+                          enum:
+                            - User
+                        msg:
+                          type: string
+                        reply_time:
+                          type: integer
+                          format: int64
+                        reply_id:
+                          type: integer
+                          format: int64
+                        sender_name:
+                          type: string
+                        read_status:
+                          type: integer
+                          format: int64
+                        read_time:
+                          type: integer
+                          format: int64
+                        status:
+                          type: integer
+                          format: int64
+                        attachment_id:
+                          type: integer
+                          format: int64
+                        message_is_read:
+                          type: boolean
+                        is_opposite:
+                          type: boolean
+                        is_first_reply:
+                          type: boolean
+                        is_reported:
+                          type: boolean
+  /v1/chat/fs/{fs_id}/initiate:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: initiateChat
+      tags:
+        - Interaction
+      description: "This endpoint check if chat message exists, if it doesn’t, creates a new message. The response consists of a list of replies in a message status."
+      parameters:
+        - name: order_id
+          in: query
+          description: Order service unique identifier
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    properties:
+                      process_time:
+                        type: number
+                        format: double
+                      messages:
+                        type: string
+                      reason:
+                        type: string
+                      error_code:
+                        type: integer
+                        format: int64
+                  data:
+                    type: object
+                    nullable: true
+                    properties:
+                      contact:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                          role:
+                            type: string
+                            description: Field role has User, Shop Owner, Shop Admin, and Tokopedia Admin.
+                            enum:
+                              - User
+                              - Shop Owner
+                              - Shop Admin
+                              - Tokopedia Admin
+                          attributes:
+                            type: object
+                            properties:
+                              Name:
+                                type: string
+                              tag:
+                                type: string
+                              thumbnail:
+                                type: string
+                              is_gold:
+                                type: boolean
+                                description: Field is_gold is to identify Seller Gold Merchant (Power Merchant) or not.
+                              is_official:
+                                type: boolean
+                      is_success:
+                        type: boolean
+                      msg_id:
+                        type: integer
+                        format: int64
+  /v1/chat/fs/{fs_id}/messages/{msg_id}/reply:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+      - $ref: "#/components/parameters/msg_id"
+    post:
+      operationId: sendReply
+      tags:
+        - Interaction
+      description: "This endpoint sends a reply to a message (chat room) identified by msg_id from shop_id."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  required:
+                    - shop_id
+                    - message
+                  properties:
+                    shop_id:
+                      type: integer
+                      format: int64
+                    message:
+                      type: string
+                - type: object
+                  required:
+                    - shop_id
+                    - attachment_type
+                    - payload
+                  properties:
+                    shop_id:
+                      type: integer
+                      format: int64
+                    attachment_type:
+                      type: integer
+                      format: int64
+                    payload:
+                      type: object
+                      required:
+                        - thumbnail
+                        - identifier
+                        - title
+                        - price
+                        - url
+                      properties:
+                        thumbnail:
+                          type: string
+                        identifier:
+                          type: string
+                        title:
+                          type: string
+                        price:
+                          type: string
+                        url:
+                          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    type: object
+                    properties:
+                      process_time:
+                        type: number
+                        format: double
+                      messages:
+                        type: string
+                      reason:
+                        type: string
+                      error_code:
+                        type: integer
+                        format: int64
+                  data:
+                    type: object
+                    nullable: true
+                    properties:
+                      msg_id:
+                        type: integer
+                        format: int64
+                      sender_id:
+                        type: integer
+                        format: int64
+                      role:
+                        type: integer
+                        format: int64
+                      msg:
+                        type: string
+                      reply_time:
+                        type: integer
+                        format: int64
+                      from:
+                        type: string
+                      attachment:
+                        type: object
+                        properties:
+                          quotation_profile:
+                            type: object
+                            properties:
+                              thumbnail:
+                                type: string
+                              identifier:
+                                type: string
+                              title:
+                                type: string
+                              price:
+                                type: string
+                              url:
+                                type: string
+                      fallback_attachment:
+                        type: object
+                        properties:
+                          html:
+                            type: string
+                          message:
+                            type: string
 
 security:
   - bearer: []
@@ -2808,3 +3346,4 @@ tags:
   - name: Product
   - name: Webhook
   - name: Order
+  - name: Interaction

@@ -79,6 +79,10 @@ All URIs are relative to *https://fs.tokopedia.net*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationAPI* | [**Authentication**](docs/AuthenticationAPI.md#authentication) | **Post** /token | 
+*InteractionAPI* | [**GetListMessage**](docs/InteractionAPI.md#getlistmessage) | **Get** /v1/chat/fs/{fs_id}/messages | 
+*InteractionAPI* | [**GetListReply**](docs/InteractionAPI.md#getlistreply) | **Get** /v1/chat/fs/{fs_id}/messages/{msg_id}/replies | 
+*InteractionAPI* | [**InitiateChat**](docs/InteractionAPI.md#initiatechat) | **Get** /v1/chat/fs/{fs_id}/initiate | 
+*InteractionAPI* | [**SendReply**](docs/InteractionAPI.md#sendreply) | **Post** /v1/chat/fs/{fs_id}/messages/{msg_id}/reply | 
 *OrderAPI* | [**GetOrderWebhook**](docs/OrderAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
@@ -101,6 +105,14 @@ Class | Method | HTTP request | Description
  - [CategoryVariantUnitValue](docs/CategoryVariantUnitValue.md)
  - [CategoryVariants](docs/CategoryVariants.md)
  - [ErrorHeader](docs/ErrorHeader.md)
+ - [GetListMessageDefaultResponse](docs/GetListMessageDefaultResponse.md)
+ - [GetListMessageDefaultResponseDataInner](docs/GetListMessageDefaultResponseDataInner.md)
+ - [GetListMessageDefaultResponseDataInnerAttributes](docs/GetListMessageDefaultResponseDataInnerAttributes.md)
+ - [GetListMessageDefaultResponseDataInnerAttributesContact](docs/GetListMessageDefaultResponseDataInnerAttributesContact.md)
+ - [GetListMessageDefaultResponseDataInnerAttributesContactAttributes](docs/GetListMessageDefaultResponseDataInnerAttributesContactAttributes.md)
+ - [GetListMessageDefaultResponseHeader](docs/GetListMessageDefaultResponseHeader.md)
+ - [GetListReply200Response](docs/GetListReply200Response.md)
+ - [GetListReply200ResponseDataInner](docs/GetListReply200ResponseDataInner.md)
  - [GetOrderWebhook200Response](docs/GetOrderWebhook200Response.md)
  - [GetOrderWebhook200ResponseData](docs/GetOrderWebhook200ResponseData.md)
  - [GetOrderWebhook200ResponseDataOneOf](docs/GetOrderWebhook200ResponseDataOneOf.md)
@@ -119,6 +131,10 @@ Class | Method | HTTP request | Description
  - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)
  - [GetRegisteredWebhooks200ResponseData](docs/GetRegisteredWebhooks200ResponseData.md)
  - [Header](docs/Header.md)
+ - [InitiateChat200Response](docs/InitiateChat200Response.md)
+ - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
+ - [InitiateChat200ResponseDataContact](docs/InitiateChat200ResponseDataContact.md)
+ - [InitiateChat200ResponseDataContactAttributes](docs/InitiateChat200ResponseDataContactAttributes.md)
  - [Product](docs/Product.md)
  - [ProductBasic](docs/ProductBasic.md)
  - [ProductBundle](docs/ProductBundle.md)
@@ -142,6 +158,15 @@ Class | Method | HTTP request | Description
  - [ProductWholesalePrice](docs/ProductWholesalePrice.md)
  - [RegisterWebhookDefaultResponse](docs/RegisterWebhookDefaultResponse.md)
  - [RegisterWebhookRequest](docs/RegisterWebhookRequest.md)
+ - [SendReply200Response](docs/SendReply200Response.md)
+ - [SendReply200ResponseData](docs/SendReply200ResponseData.md)
+ - [SendReply200ResponseDataAttachment](docs/SendReply200ResponseDataAttachment.md)
+ - [SendReply200ResponseDataAttachmentQuotationProfile](docs/SendReply200ResponseDataAttachmentQuotationProfile.md)
+ - [SendReply200ResponseDataFallbackAttachment](docs/SendReply200ResponseDataFallbackAttachment.md)
+ - [SendReplyRequest](docs/SendReplyRequest.md)
+ - [SendReplyRequestOneOf](docs/SendReplyRequestOneOf.md)
+ - [SendReplyRequestOneOf1](docs/SendReplyRequestOneOf1.md)
+ - [SendReplyRequestOneOf1Payload](docs/SendReplyRequestOneOf1Payload.md)
  - [Token](docs/Token.md)
  - [TriggerWebhookDefaultResponse](docs/TriggerWebhookDefaultResponse.md)
  - [TriggerWebhookRequest](docs/TriggerWebhookRequest.md)
