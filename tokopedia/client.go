@@ -67,6 +67,8 @@ type APIClient struct {
 
 	ProductAPI ProductAPI
 
+	ShopAPI ShopAPI
+
 	WebhookAPI WebhookAPI
 }
 
@@ -94,6 +96,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogisticAPI = (*LogisticAPIService)(&c.common)
 	c.OrderAPI = (*OrderAPIService)(&c.common)
 	c.ProductAPI = (*ProductAPIService)(&c.common)
+	c.ShopAPI = (*ShopAPIService)(&c.common)
 	c.WebhookAPI = (*WebhookAPIService)(&c.common)
 
 	return c

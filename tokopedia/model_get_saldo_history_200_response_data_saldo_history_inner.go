@@ -25,7 +25,7 @@ type GetSaldoHistory200ResponseDataSaldoHistoryInner struct {
 	Type *int64 `json:"Type,omitempty"`
 	Class *string `json:"class,omitempty"`
 	Amount *int64 `json:"amount,omitempty"`
-	Note *string `json:"note,omitempty"`
+	WARN *string `json:"WARN,omitempty"`
 	CreateTime *string `json:"create_time,omitempty"`
 	WithdrawalDate *string `json:"withdrawal_date,omitempty"`
 	WithdrawalStatus *int64 `json:"withdrawal_status,omitempty"`
@@ -210,36 +210,36 @@ func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) SetAmount(v int64) {
 	o.Amount = &v
 }
 
-// GetNote returns the Note field value if set, zero value otherwise.
-func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetNote() string {
-	if o == nil || IsNil(o.Note) {
+// GetWARN returns the WARN field value if set, zero value otherwise.
+func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetWARN() string {
+	if o == nil || IsNil(o.WARN) {
 		var ret string
 		return ret
 	}
-	return *o.Note
+	return *o.WARN
 }
 
-// GetNoteOk returns a tuple with the Note field value if set, nil otherwise
+// GetWARNOk returns a tuple with the WARN field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetNoteOk() (*string, bool) {
-	if o == nil || IsNil(o.Note) {
+func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetWARNOk() (*string, bool) {
+	if o == nil || IsNil(o.WARN) {
 		return nil, false
 	}
-	return o.Note, true
+	return o.WARN, true
 }
 
-// HasNote returns a boolean if a field has been set.
-func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) HasNote() bool {
-	if o != nil && !IsNil(o.Note) {
+// HasWARN returns a boolean if a field has been set.
+func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) HasWARN() bool {
+	if o != nil && !IsNil(o.WARN) {
 		return true
 	}
 
 	return false
 }
 
-// SetNote gets a reference to the given string and assigns it to the Note field.
-func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) SetNote(v string) {
-	o.Note = &v
+// SetWARN gets a reference to the given string and assigns it to the WARN field.
+func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) SetWARN(v string) {
+	o.WARN = &v
 }
 
 // GetCreateTime returns the CreateTime field value if set, zero value otherwise.
@@ -427,8 +427,8 @@ func (o GetSaldoHistory200ResponseDataSaldoHistoryInner) ToMap() (map[string]int
 	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
-	if !IsNil(o.Note) {
-		toSerialize["note"] = o.Note
+	if !IsNil(o.WARN) {
+		toSerialize["WARN"] = o.WARN
 	}
 	if !IsNil(o.CreateTime) {
 		toSerialize["create_time"] = o.CreateTime

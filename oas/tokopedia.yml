@@ -277,7 +277,7 @@ components:
                 description: Product ID
                 type: integer
                 format: int64
-              # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+              # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
               Name:
                 description: Product name
                 type: string
@@ -311,7 +311,7 @@ components:
               is_eligible_pof:
                 description: Flag which determines if the product is eligible for POF
                 type: boolean
-        # NOTE: customer di dokumentasi ditulis array, tapi di contoh berupa object
+        # WARN: customer di dokumentasi ditulis array, tapi di contoh berupa object
         customer:
           description: Customer data
           type: object
@@ -320,22 +320,22 @@ components:
               description: Customer ID
               type: integer
               format: int64
-            # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+            # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
             Name:
               description: Customer name
               type: string
             phone:
               description: Customer phone (Masked)
               type: string
-            # NOTE: email ada di contoh payload tapi tidak ada di dokumentasi
+            # WARN: email ada di contoh payload tapi tidak ada di dokumentasi
             email:
               type: string
-        # NOTE: recipient di dokumentasi ditulis array, tapi di contoh berupa object
+        # WARN: recipient di dokumentasi ditulis array, tapi di contoh berupa object
         recipient:
           description: Recipient data
           type: object
           properties:
-            # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+            # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
             Name:
               description: Recipient Name
               type: string
@@ -394,7 +394,7 @@ components:
           description: Payment unique identifier
           type: integer
           format: int64
-        # NOTE: logistics di dokumentasi ditulis array, tapi di contoh berupa object
+        # WARN: logistics di dokumentasi ditulis array, tapi di contoh berupa object
         logistics:
           description: Logistics data
           type: object
@@ -411,7 +411,7 @@ components:
               description: City ID
               type: integer
               format: int64
-            # NOTE: province_id ada di dokumentasi tidak ada di contoh payload
+            # WARN: province_id ada di dokumentasi tidak ada di contoh payload
             province_id:
               description: Province ID
               type: integer
@@ -425,8 +425,8 @@ components:
             service_type:
               description: Service type
               type: string
-            # NOTE: akan lebih baik jika terdapat shipping detail pickup dan delivery
-        # NOTE: amt di dokumentasi ditulis array, tapi di contoh berupa object
+            # WARN: akan lebih baik jika terdapat shipping detail pickup dan delivery
+        # WARN: amt di dokumentasi ditulis array, tapi di contoh berupa object
         amt:
           description: Amount data
           type: object
@@ -455,19 +455,19 @@ components:
               description: Toppoints amount
               type: integer
               format: int64
-        # NOTE: dropshipper_info di dokumentasi ditulis array, tapi di contoh berupa object
+        # WARN: dropshipper_info di dokumentasi ditulis array, tapi di contoh berupa object
         dropshipper_info:
           description: Dropshipper information
           type: object
           properties:
-            # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+            # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
             Name:
               description: Dropshipper Name
               type: string
             phone:
               description: Dropshipper Phone number
               type: string
-        # NOTE: voucher_info di dokumentasi ditulis array, tapi di contoh berupa object
+        # WARN: voucher_info di dokumentasi ditulis array, tapi di contoh berupa object
         voucher_info:
           description: Voucher information
           type: object
@@ -541,7 +541,7 @@ components:
                         id:
                           type: integer
                           format: int64
-                        # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+                        # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
                         Name:
                           type: string
                         quantity:
@@ -580,7 +580,7 @@ components:
                   id:
                     type: integer
                     format: int64
-                  # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+                  # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
                   Name:
                     type: string
                   quantity:
@@ -633,7 +633,7 @@ components:
               id:
                 type: integer
                 format: int64
-              # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+              # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
               Name:
                 type: string
               notes:
@@ -957,14 +957,14 @@ components:
           description: Fulfillment service unique identifier
           type: integer
           format: int64
-        # NOTE: status tidak ada di dokumentasi tapi ada di contoh payload
+        # WARN: status tidak ada di dokumentasi tapi ada di contoh payload
         status:
           type: string
-        # NOTE: total_data tidak ada di dokumentasi tapi ada di contoh payload
+        # WARN: total_data tidak ada di dokumentasi tapi ada di contoh payload
         total_data:
           type: integer
           format: int64
-        # NOTE: success_row_data tidak ada di dokumentasi tapi ada di contoh payload
+        # WARN: success_row_data tidak ada di dokumentasi tapi ada di contoh payload
         success_row_data:
           type: array
           items:
@@ -994,14 +994,14 @@ components:
           description: Fulfillment service unique identifier
           type: integer
           format: int64
-        # NOTE: status tidak ada di dokumentasi tapi ada di contoh payload
+        # WARN: status tidak ada di dokumentasi tapi ada di contoh payload
         status:
           type: string
-        # NOTE: total_data tidak ada di dokumentasi tapi ada di contoh payload
+        # WARN: total_data tidak ada di dokumentasi tapi ada di contoh payload
         total_data:
           type: integer
           format: int64
-        # NOTE: success_row_data tidak ada di dokumentasi tapi ada di contoh payload
+        # WARN: success_row_data tidak ada di dokumentasi tapi ada di contoh payload
         success_rows_data:
           type: array
           items:
@@ -1340,7 +1340,7 @@ components:
           example: 480829
         status:
           $ref: "#/components/schemas/ProductStatusCode"
-        # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+        # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Product Name"
@@ -1441,7 +1441,7 @@ components:
           format: int64
           description: "Etalase Unique Identifier"
           example: 1405065
-        # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+        # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Etalase Name"
@@ -1517,7 +1517,7 @@ components:
           format: int64
           description: "Category Unique Identifier"
           example: 1759
-        # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+        # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Category Name"
@@ -1643,7 +1643,7 @@ components:
           type: integer
           format: int64
           description: "Bundle Unique Identifier"
-        # NOTE: Name di contoh payload title case tapi di dokumentasi lowercase
+        # WARN: Name di contoh payload title case tapi di dokumentasi lowercase
         Name:
           type: string
           description: "Bundle Name"
@@ -3539,7 +3539,7 @@ paths:
                             amount:
                               type: integer
                               format: int64
-                            note:
+                            WARN:
                               type: string
                             create_time:
                               type: string
@@ -3996,7 +3996,7 @@ paths:
                                 process_time:
                                   type: integer
                                   format: int64
-                      # NOTE: ada di contoh payload, tapi tidak ada di dokumentasi
+                      # WARN: ada di contoh payload, tapi tidak ada di dokumentasi
                       error:
                         type: object
                         additionalProperties: true
@@ -4144,7 +4144,7 @@ paths:
                       type: integer
                       format: int64
                       description: Start time of bundle in UNIX format must be greater than the current time
-                    # NOTE: warehouse_id di dokumentasi bukan array, tapi di contoh array
+                    # WARN: warehouse_id di dokumentasi bukan array, tapi di contoh array
                     warehouse_id:
                       type: array
                       description: Warehouse unique identifier
@@ -4876,7 +4876,7 @@ paths:
                                 custom_stock:
                                   type: integer
                                   format: int64
-                                # NOTE: tidak ada dokumentasi campaign status code
+                                # WARN: tidak ada dokumentasi campaign status code
                                 campaign_status:
                                   type: integer
                                   format: int64
@@ -5455,6 +5455,862 @@ paths:
                                   AWBStatus:
                                     type: integer
                                     format: int64
+  /v1/showcase/fs/{fs_id}/delete:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: deleteShowcase
+      tags:
+        - Shop
+      description: "This endpoint used to delete existing showcase based on showcase_id."
+      parameters:
+        # WARN: di dokumentasi di path, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  description: Showcase id to be updated
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+  /v1/showcase/fs/{fs_id}/update:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: updateShowcase
+      tags:
+        - Shop
+      description: "This endpoint used to update existing showcase based on showcase_id."
+      parameters:
+        # WARN: di dokumentasi di path, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - Name
+              properties:
+                id:
+                  type: integer
+                  format: int64
+                  description: Showcase id to be updated
+                # WARN: di dokumentasi lowercase, di contoh title case
+                Name:
+                  type: string
+                  description: Showcase name to be updated
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+  /v1/showcase/fs/{fs_id}/create:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: createShowcase
+      tags:
+        - Shop
+      description: "This endpoint used to create new showcase based on shop_id and fs_id."
+      parameters:
+        # WARN: di dokumentasi di path, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - Name
+              properties:
+                # WARN: di dokumentasi lowercase, di contoh title case
+                Name:
+                  type: string
+                  description: Showcase name to be updated
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                      created_id:
+                        type: integer
+                        format: int64
+  /v1/showcase/fs/{fs_id}/get:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getShowcase
+      tags:
+        - Shop
+      description: "This endpoint used to get existing showcase based on shopID and FSID."
+      parameters:
+        # WARN: di dokumentasi di path dan opsional, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: false
+          description: >
+            USelect which page to show, default value: 1
+          schema:
+            type: integer
+            format: int64
+        - name: page_count
+          in: query
+          required: false
+          description: >
+            Showcase contained in each page, default value: 10
+          schema:
+            type: integer
+            format: int64
+        - name: hide_zero
+          in: query
+          required: false
+          description: >
+            Hide showcase if product equal to zero, default value: false
+          schema:
+            type: boolean
+        - name: display
+          in: query
+          required: false
+          description: >
+            To determine which showcase that you want to see. Accepted value: showcase to get user showcases only, group to get group showcases only, all to get both, default value: all
+          schema:
+            type: string
+            enum:
+              - showcase
+              - group
+              - all
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      showcase:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              format: int64
+                            Name:
+                              type: string
+                            alias:
+                              type: string
+                            uri:
+                              type: string
+                            product_count:
+                              type: string
+                            is_highlighted:
+                              type: boolean
+                            badge:
+                              type: string
+                            ace_default_sort:
+                              type: integer
+                              format: int64
+                      showcase_group:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              format: int64
+                            Name:
+                              type: string
+                            alias:
+                              type: string
+                            uri:
+                              type: string
+                            product_count:
+                              type: integer
+                              format: int64
+                            is_highlighted:
+                              type: boolean
+                            badge:
+                              type: string
+                            ace_default_sort:
+                              type: integer
+                              format: int64
+                      use_ace:
+                        type: boolean
+                      showcase_without_ace:
+                        type: array
+                        items:
+                          type: integer
+                          format: int64
+                      prev_link:
+                        type: string
+                      next_link:
+                        type: string
+  /inventory/v1/fs/{fs_id}/product/etalase:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getShowcaseAllEtalase
+      tags:
+        - Shop
+      description: "This endpoint retrieves a list of all etalase owned by a shop_id."
+      parameters:
+        # WARN: di dokumentasi di path dan opsional, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      shop:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                          Name:
+                            type: string
+                          uri:
+                            type: string
+                          location:
+                            type: string
+                      etalase:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            etalase_id:
+                              type: integer
+                              format: int64
+                            etalase_name:
+                              type: string
+                            url:
+                              type: string
+  /v2/shop/fs/{fs_id}/shop-status:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: updateShopStatus
+      tags:
+        - Shop
+      description: "This endpoint to update shop status into open or close."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - shop_id
+                - action
+              properties:
+                shop_id:
+                  type: integer
+                  format: int64
+                  description: Shop unique identifier
+                action:
+                  type: string
+                  description: Update the shop status. Value between open or close
+                  enum:
+                    - open
+                    - close
+                # WARN: di dokumentasi integer, di contoh string
+                start_date:
+                  type: string
+                  description: >
+                    Required for action : close. UNIX timestamp of date (hour, min, sec) from which the resolution ticket are
+                # WARN: di dokumentasi integer, di contoh string
+                end_date:
+                  type: string
+                  description: >
+                    Required for action : close. UNIX timestamp of date (hour, min, sec) to which the resolution ticket are
+                close_WARN:
+                  type: string
+                  description: Close shop description
+                close_now:
+                  type: boolean
+                  description: >
+                    Required for action : close. Value between true or false. If true, then immediately close shop & ignore start_date’s date. If false it will follows start_date’s schedule to close
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      header:
+                        $ref: "#/components/schemas/ResponseHeader"
+                      data:
+                        type: string
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      header:
+                        $ref: "#/components/schemas/ResponseHeader"
+                      data:
+                        type: string
+  /v1/shop/fs/{fs_id}/shop-info:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getShopInfo
+      tags:
+        - Shop
+      description: "This endpoint returns shop information from shop_id that associated with fs_id."
+      parameters:
+        - name: shop_id
+          in: query
+          required: false
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        # WARN: di dokumentasi di set required, di contoh tidak ada
+        - name: page
+          in: query
+          required: false
+          description: Determine which page the order list should start. The minimal value is 1
+          schema:
+            type: integer
+            format: int64
+        # WARN: di dokumentasi di set required, di contoh tidak ada
+        - name: per_page
+          in: query
+          required: false
+          description: Determine how many orders will be shown per page
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                  status:
+                    type: string
+                  error_message:
+                    type: array
+                    items:
+                      type: string
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        shop_id:
+                          type: integer
+                          format: int64
+                        user_id:
+                          type: integer
+                          format: int64
+                        shop_name:
+                          type: string
+                        logo:
+                          type: string
+                        shop_url:
+                          type: string
+                        is_open:
+                          type: integer
+                          format: int64
+                        status:
+                          type: integer
+                          format: int64
+                        date_shop_created:
+                          type: string
+                        domain:
+                          type: string
+                        admin_id:
+                          type: array
+                          items:
+                            type: integer
+                            format: int64
+                        reason:
+                          type: string
+                        district_id:
+                          type: integer
+                          format: int64
+                        province_name:
+                          type: string
+                        warehouses:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              warehouse_id:
+                                type: integer
+                                format: int64
+                              partner_id:
+                                type: object
+                                properties:
+                                  Int64:
+                                    type: integer
+                                    format: int64
+                                  Valid:
+                                    type: boolean
+                              shop_id:
+                                type: object
+                                properties:
+                                  Int64:
+                                    type: integer
+                                    format: int64
+                                  Valid:
+                                    type: boolean
+                              warehouse_name:
+                                type: string
+                              district_id:
+                                type: integer
+                                format: int64
+                              district_name:
+                                type: string
+                              city_id:
+                                type: integer
+                                format: int64
+                              city_name:
+                                type: string
+                              province_id:
+                                type: integer
+                                format: int64
+                              province_name:
+                                type: string
+                              status:
+                                type: integer
+                                format: int64
+                              postal_code:
+                                type: string
+                              is_default:
+                                type: integer
+                                format: int64
+                              latlon:
+                                type: string
+                              latitude:
+                                type: string
+                              longitude:
+                                type: string
+                              email:
+                                type: string
+                              address_detail:
+                                type: string
+                              phone:
+                                type: string
+                              warehose_type:
+                                type: string
+                        subscribe_tokocabang:
+                          type: boolean
+                        is_mitra:
+                          type: boolean
 
 security:
   - bearer: []
@@ -5469,3 +6325,4 @@ tags:
   - name: Campaign
   - name: Bundle
   - name: Logistic
+  - name: Shop

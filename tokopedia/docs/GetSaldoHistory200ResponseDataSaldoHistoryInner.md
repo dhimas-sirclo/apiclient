@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to **int64** |  | [optional] 
 **Class** | Pointer to **string** |  | [optional] 
 **Amount** | Pointer to **int64** |  | [optional] 
-**Note** | Pointer to **string** |  | [optional] 
+**WARN** | Pointer to **string** |  | [optional] 
 **CreateTime** | Pointer to **string** |  | [optional] 
 **WithdrawalDate** | Pointer to **string** |  | [optional] 
 **WithdrawalStatus** | Pointer to **int64** |  | [optional] 
@@ -160,30 +160,30 @@ SetAmount sets Amount field to given value.
 
 HasAmount returns a boolean if a field has been set.
 
-### GetNote
+### GetWARN
 
-`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetNote() string`
+`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetWARN() string`
 
-GetNote returns the Note field if non-nil, zero value otherwise.
+GetWARN returns the WARN field if non-nil, zero value otherwise.
 
-### GetNoteOk
+### GetWARNOk
 
-`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetNoteOk() (*string, bool)`
+`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) GetWARNOk() (*string, bool)`
 
-GetNoteOk returns a tuple with the Note field if it's non-nil, zero value otherwise
+GetWARNOk returns a tuple with the WARN field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetNote
+### SetWARN
 
-`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) SetNote(v string)`
+`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) SetWARN(v string)`
 
-SetNote sets Note field to given value.
+SetWARN sets WARN field to given value.
 
-### HasNote
+### HasWARN
 
-`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) HasNote() bool`
+`func (o *GetSaldoHistory200ResponseDataSaldoHistoryInner) HasWARN() bool`
 
-HasNote returns a boolean if a field has been set.
+HasWARN returns a boolean if a field has been set.
 
 ### GetCreateTime
 

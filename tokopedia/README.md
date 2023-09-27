@@ -106,6 +106,13 @@ Class | Method | HTTP request | Description
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
 *ProductAPI* | [**UpdateStock**](docs/ProductAPI.md#updatestock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
+*ShopAPI* | [**CreateShowcase**](docs/ShopAPI.md#createshowcase) | **Post** /v1/showcase/fs/{fs_id}/create | 
+*ShopAPI* | [**DeleteShowcase**](docs/ShopAPI.md#deleteshowcase) | **Post** /v1/showcase/fs/{fs_id}/delete | 
+*ShopAPI* | [**GetShopInfo**](docs/ShopAPI.md#getshopinfo) | **Get** /v1/shop/fs/{fs_id}/shop-info | 
+*ShopAPI* | [**GetShowcase**](docs/ShopAPI.md#getshowcase) | **Get** /v1/showcase/fs/{fs_id}/get | 
+*ShopAPI* | [**GetShowcaseAllEtalase**](docs/ShopAPI.md#getshowcasealletalase) | **Get** /inventory/v1/fs/{fs_id}/product/etalase | 
+*ShopAPI* | [**UpdateShopStatus**](docs/ShopAPI.md#updateshopstatus) | **Post** /v2/shop/fs/{fs_id}/shop-status | 
+*ShopAPI* | [**UpdateShowcase**](docs/ShopAPI.md#updateshowcase) | **Post** /v1/showcase/fs/{fs_id}/update | 
 *WebhookAPI* | [**GetOrderWebhook**](docs/WebhookAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
 *WebhookAPI* | [**GetRegisteredWebhooks**](docs/WebhookAPI.md#getregisteredwebhooks) | **Get** /v1/fs/{fs_id} | 
 *WebhookAPI* | [**RegisterWebhook**](docs/WebhookAPI.md#registerwebhook) | **Post** /v1/fs/{fs_id}/register | 
@@ -135,6 +142,12 @@ Class | Method | HTTP request | Description
  - [CreateBundleRequestBundle](docs/CreateBundleRequestBundle.md)
  - [CreateBundleRequestBundleBundleItemsInner](docs/CreateBundleRequestBundleBundleItemsInner.md)
  - [CreateBundleRequestBundleBundleItemsInnerChildren](docs/CreateBundleRequestBundleBundleItemsInnerChildren.md)
+ - [CreateShowcase200Response](docs/CreateShowcase200Response.md)
+ - [CreateShowcase200ResponseData](docs/CreateShowcase200ResponseData.md)
+ - [CreateShowcaseRequest](docs/CreateShowcaseRequest.md)
+ - [DeleteShowcase200Response](docs/DeleteShowcase200Response.md)
+ - [DeleteShowcase200ResponseData](docs/DeleteShowcase200ResponseData.md)
+ - [DeleteShowcaseRequest](docs/DeleteShowcaseRequest.md)
  - [GetActiveCourier200Response](docs/GetActiveCourier200Response.md)
  - [GetActiveCourier200ResponseData](docs/GetActiveCourier200ResponseData.md)
  - [GetActiveCourier200ResponseDataShopsInner](docs/GetActiveCourier200ResponseDataShopsInner.md)
@@ -182,6 +195,19 @@ Class | Method | HTTP request | Description
  - [GetShipmentInfo200Response](docs/GetShipmentInfo200Response.md)
  - [GetShipmentInfo200ResponseDataInner](docs/GetShipmentInfo200ResponseDataInner.md)
  - [GetShipmentInfo200ResponseDataInnerServicesInner](docs/GetShipmentInfo200ResponseDataInnerServicesInner.md)
+ - [GetShopInfo200Response](docs/GetShopInfo200Response.md)
+ - [GetShopInfo200ResponseDataInner](docs/GetShopInfo200ResponseDataInner.md)
+ - [GetShopInfo200ResponseDataInnerWarehousesInner](docs/GetShopInfo200ResponseDataInnerWarehousesInner.md)
+ - [GetShopInfo200ResponseDataInnerWarehousesInnerPartnerId](docs/GetShopInfo200ResponseDataInnerWarehousesInnerPartnerId.md)
+ - [GetShopInfoDefaultResponse](docs/GetShopInfoDefaultResponse.md)
+ - [GetShowcase200Response](docs/GetShowcase200Response.md)
+ - [GetShowcase200ResponseData](docs/GetShowcase200ResponseData.md)
+ - [GetShowcase200ResponseDataShowcaseGroupInner](docs/GetShowcase200ResponseDataShowcaseGroupInner.md)
+ - [GetShowcase200ResponseDataShowcaseInner](docs/GetShowcase200ResponseDataShowcaseInner.md)
+ - [GetShowcaseAllEtalase200Response](docs/GetShowcaseAllEtalase200Response.md)
+ - [GetShowcaseAllEtalase200ResponseData](docs/GetShowcaseAllEtalase200ResponseData.md)
+ - [GetShowcaseAllEtalase200ResponseDataEtalaseInner](docs/GetShowcaseAllEtalase200ResponseDataEtalaseInner.md)
+ - [GetShowcaseAllEtalase200ResponseDataShop](docs/GetShowcaseAllEtalase200ResponseDataShop.md)
  - [InitiateChat200Response](docs/InitiateChat200Response.md)
  - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
  - [InitiateChat200ResponseDataContact](docs/InitiateChat200ResponseDataContact.md)
@@ -225,6 +251,10 @@ Class | Method | HTTP request | Description
  - [UpdateShipmentInfo200Response](docs/UpdateShipmentInfo200Response.md)
  - [UpdateShipmentInfo200ResponseData](docs/UpdateShipmentInfo200ResponseData.md)
  - [UpdateShipmentInfo200ResponseDataData](docs/UpdateShipmentInfo200ResponseDataData.md)
+ - [UpdateShopStatusDefaultResponse](docs/UpdateShopStatusDefaultResponse.md)
+ - [UpdateShopStatusDefaultResponseData](docs/UpdateShopStatusDefaultResponseData.md)
+ - [UpdateShopStatusRequest](docs/UpdateShopStatusRequest.md)
+ - [UpdateShowcaseRequest](docs/UpdateShowcaseRequest.md)
  - [UpdateSlashPriceRequestInner](docs/UpdateSlashPriceRequestInner.md)
  - [UpdateSlashPriceRequestInnerSlashPriceWarehousesValue](docs/UpdateSlashPriceRequestInnerSlashPriceWarehousesValue.md)
  - [UpdateStockInput](docs/UpdateStockInput.md)

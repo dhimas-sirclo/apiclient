@@ -22,6 +22,7 @@ tags:
 - name: Campaign
 - name: Bundle
 - name: Logistic
+- name: Shop
 paths:
   /token:
     post:
@@ -2805,6 +2806,799 @@ paths:
               style: simple
       tags:
       - Logistic
+  /v1/showcase/fs/{fs_id}/delete:
+    post:
+      description: This endpoint used to delete existing showcase based on showcase_id.
+      operationId: deleteShowcase
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteShowcase_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteShowcase_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
+  /v1/showcase/fs/{fs_id}/update:
+    post:
+      description: This endpoint used to update existing showcase based on showcase_id.
+      operationId: updateShowcase
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateShowcase_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteShowcase_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
+  /v1/showcase/fs/{fs_id}/create:
+    post:
+      description: This endpoint used to create new showcase based on shop_id and
+        fs_id.
+      operationId: createShowcase
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createShowcase_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createShowcase_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
+  /v1/showcase/fs/{fs_id}/get:
+    get:
+      description: This endpoint used to get existing showcase based on shopID and
+        FSID.
+      operationId: getShowcase
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          USelect which page to show, default value: 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          Showcase contained in each page, default value: 10
+        explode: true
+        in: query
+        name: page_count
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          Hide showcase if product equal to zero, default value: false
+        explode: true
+        in: query
+        name: hide_zero
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: |
+          To determine which showcase that you want to see. Accepted value: showcase to get user showcases only, group to get group showcases only, all to get both, default value: all
+        explode: true
+        in: query
+        name: display
+        required: false
+        schema:
+          enum:
+          - showcase
+          - group
+          - all
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getShowcase_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
+  /inventory/v1/fs/{fs_id}/product/etalase:
+    get:
+      description: This endpoint retrieves a list of all etalase owned by a shop_id.
+      operationId: getShowcaseAllEtalase
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getShowcaseAllEtalase_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
+  /v2/shop/fs/{fs_id}/shop-status:
+    post:
+      description: This endpoint to update shop status into open or close.
+      operationId: updateShopStatus
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateShopStatus_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateShopStatus_default_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateShopStatus_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
+  /v1/shop/fs/{fs_id}/shop-info:
+    get:
+      description: This endpoint returns shop information from shop_id that associated
+        with fs_id.
+      operationId: getShopInfo
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine which page the order list should start. The minimal
+          value is 1
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine how many orders will be shown per page
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getShopInfo_default_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getShopInfo_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Shop
 components:
   parameters:
     fs_id:
@@ -4994,7 +5788,6 @@ components:
       type: object
     getSaldoHistory_200_response_data_saldo_history_inner:
       example:
-        note: note
         image: image
         Type: 6
         amount: 1
@@ -5005,6 +5798,7 @@ components:
         withdrawal_date: withdrawal_date
         deposit_id: 0
         type_description: type_description
+        WARN: WARN
       properties:
         deposit_id:
           format: int64
@@ -5019,7 +5813,7 @@ components:
         amount:
           format: int64
           type: integer
-        note:
+        WARN:
           type: string
         create_time:
           type: string
@@ -5038,8 +5832,7 @@ components:
       example:
         have_next_page: true
         saldo_history:
-        - note: note
-          image: image
+        - image: image
           Type: 6
           amount: 1
           create_time: create_time
@@ -5049,8 +5842,8 @@ components:
           withdrawal_date: withdrawal_date
           deposit_id: 0
           type_description: type_description
-        - note: note
-          image: image
+          WARN: WARN
+        - image: image
           Type: 6
           amount: 1
           create_time: create_time
@@ -5060,6 +5853,7 @@ components:
           withdrawal_date: withdrawal_date
           deposit_id: 0
           type_description: type_description
+          WARN: WARN
       nullable: true
       properties:
         have_next_page:
@@ -5074,8 +5868,7 @@ components:
         data:
           have_next_page: true
           saldo_history:
-          - note: note
-            image: image
+          - image: image
             Type: 6
             amount: 1
             create_time: create_time
@@ -5085,8 +5878,8 @@ components:
             withdrawal_date: withdrawal_date
             deposit_id: 0
             type_description: type_description
-          - note: note
-            image: image
+            WARN: WARN
+          - image: image
             Type: 6
             amount: 1
             create_time: create_time
@@ -5096,6 +5889,7 @@ components:
             withdrawal_date: withdrawal_date
             deposit_id: 0
             type_description: type_description
+            WARN: WARN
         header:
           reason: reason
           messages: messages
@@ -7934,6 +8728,763 @@ components:
           $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/getActiveCourier_200_response_data'
+      type: object
+    deleteShowcase_request:
+      properties:
+        id:
+          description: Showcase id to be updated
+          format: int64
+          type: integer
+      required:
+      - id
+      type: object
+    deleteShowcase_200_response_data:
+      example:
+        message: message
+      properties:
+        message:
+          type: string
+      type: object
+    deleteShowcase_200_response:
+      example:
+        data:
+          message: message
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/deleteShowcase_200_response_data'
+      type: object
+    updateShowcase_request:
+      properties:
+        id:
+          description: Showcase id to be updated
+          format: int64
+          type: integer
+        Name:
+          description: Showcase name to be updated
+          type: string
+      required:
+      - Name
+      - id
+      type: object
+    createShowcase_request:
+      properties:
+        Name:
+          description: Showcase name to be updated
+          type: string
+      required:
+      - Name
+      type: object
+    createShowcase_200_response_data:
+      example:
+        created_id: 0
+        message: message
+      properties:
+        message:
+          type: string
+        created_id:
+          format: int64
+          type: integer
+      type: object
+    createShowcase_200_response:
+      example:
+        data:
+          created_id: 0
+          message: message
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/createShowcase_200_response_data'
+      type: object
+    getShowcase_200_response_data_showcase_inner:
+      example:
+        badge: badge
+        ace_default_sort: 6
+        product_count: product_count
+        alias: alias
+        id: 0
+        is_highlighted: true
+        uri: uri
+        Name: Name
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        alias:
+          type: string
+        uri:
+          type: string
+        product_count:
+          type: string
+        is_highlighted:
+          type: boolean
+        badge:
+          type: string
+        ace_default_sort:
+          format: int64
+          type: integer
+      type: object
+    getShowcase_200_response_data_showcase_group_inner:
+      example:
+        badge: badge
+        ace_default_sort: 5
+        product_count: 5
+        alias: alias
+        id: 1
+        is_highlighted: true
+        uri: uri
+        Name: Name
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        alias:
+          type: string
+        uri:
+          type: string
+        product_count:
+          format: int64
+          type: integer
+        is_highlighted:
+          type: boolean
+        badge:
+          type: string
+        ace_default_sort:
+          format: int64
+          type: integer
+      type: object
+    getShowcase_200_response_data:
+      example:
+        prev_link: prev_link
+        showcase_without_ace:
+        - 2
+        - 2
+        showcase:
+        - badge: badge
+          ace_default_sort: 6
+          product_count: product_count
+          alias: alias
+          id: 0
+          is_highlighted: true
+          uri: uri
+          Name: Name
+        - badge: badge
+          ace_default_sort: 6
+          product_count: product_count
+          alias: alias
+          id: 0
+          is_highlighted: true
+          uri: uri
+          Name: Name
+        use_ace: true
+        showcase_group:
+        - badge: badge
+          ace_default_sort: 5
+          product_count: 5
+          alias: alias
+          id: 1
+          is_highlighted: true
+          uri: uri
+          Name: Name
+        - badge: badge
+          ace_default_sort: 5
+          product_count: 5
+          alias: alias
+          id: 1
+          is_highlighted: true
+          uri: uri
+          Name: Name
+        next_link: next_link
+      properties:
+        showcase:
+          items:
+            $ref: '#/components/schemas/getShowcase_200_response_data_showcase_inner'
+          type: array
+        showcase_group:
+          items:
+            $ref: '#/components/schemas/getShowcase_200_response_data_showcase_group_inner'
+          type: array
+        use_ace:
+          type: boolean
+        showcase_without_ace:
+          items:
+            format: int64
+            type: integer
+          type: array
+        prev_link:
+          type: string
+        next_link:
+          type: string
+      type: object
+    getShowcase_200_response:
+      example:
+        data:
+          prev_link: prev_link
+          showcase_without_ace:
+          - 2
+          - 2
+          showcase:
+          - badge: badge
+            ace_default_sort: 6
+            product_count: product_count
+            alias: alias
+            id: 0
+            is_highlighted: true
+            uri: uri
+            Name: Name
+          - badge: badge
+            ace_default_sort: 6
+            product_count: product_count
+            alias: alias
+            id: 0
+            is_highlighted: true
+            uri: uri
+            Name: Name
+          use_ace: true
+          showcase_group:
+          - badge: badge
+            ace_default_sort: 5
+            product_count: 5
+            alias: alias
+            id: 1
+            is_highlighted: true
+            uri: uri
+            Name: Name
+          - badge: badge
+            ace_default_sort: 5
+            product_count: 5
+            alias: alias
+            id: 1
+            is_highlighted: true
+            uri: uri
+            Name: Name
+          next_link: next_link
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getShowcase_200_response_data'
+      type: object
+    getShowcaseAllEtalase_200_response_data_shop:
+      example:
+        location: location
+        id: 0
+        uri: uri
+        Name: Name
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        uri:
+          type: string
+        location:
+          type: string
+      type: object
+    getShowcaseAllEtalase_200_response_data_etalase_inner:
+      example:
+        etalase_name: etalase_name
+        etalase_id: 6
+        url: url
+      properties:
+        etalase_id:
+          format: int64
+          type: integer
+        etalase_name:
+          type: string
+        url:
+          type: string
+      type: object
+    getShowcaseAllEtalase_200_response_data:
+      example:
+        shop:
+          location: location
+          id: 0
+          uri: uri
+          Name: Name
+        etalase:
+        - etalase_name: etalase_name
+          etalase_id: 6
+          url: url
+        - etalase_name: etalase_name
+          etalase_id: 6
+          url: url
+      properties:
+        shop:
+          $ref: '#/components/schemas/getShowcaseAllEtalase_200_response_data_shop'
+        etalase:
+          items:
+            $ref: '#/components/schemas/getShowcaseAllEtalase_200_response_data_etalase_inner'
+          type: array
+      type: object
+    getShowcaseAllEtalase_200_response:
+      example:
+        data:
+          shop:
+            location: location
+            id: 0
+            uri: uri
+            Name: Name
+          etalase:
+          - etalase_name: etalase_name
+            etalase_id: 6
+            url: url
+          - etalase_name: etalase_name
+            etalase_id: 6
+            url: url
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getShowcaseAllEtalase_200_response_data'
+      type: object
+    updateShopStatus_request:
+      properties:
+        shop_id:
+          description: Shop unique identifier
+          format: int64
+          type: integer
+        action:
+          description: Update the shop status. Value between open or close
+          enum:
+          - open
+          - close
+          type: string
+        start_date:
+          description: |
+            Required for action : close. UNIX timestamp of date (hour, min, sec) from which the resolution ticket are
+          type: string
+        end_date:
+          description: |
+            Required for action : close. UNIX timestamp of date (hour, min, sec) to which the resolution ticket are
+          type: string
+        close_WARN:
+          description: Close shop description
+          type: string
+        close_now:
+          description: |
+            Required for action : close. Value between true or false. If true, then immediately close shop & ignore start_date’s date. If false it will follows start_date’s schedule to close
+          type: boolean
+      required:
+      - action
+      - shop_id
+      type: object
+    updateShopStatus_default_response_data:
+      example:
+        data: data
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          type: string
+      type: object
+    updateShopStatus_default_response:
+      example:
+        data:
+          data: data
+          header:
+            reason: reason
+            messages: messages
+            error_code: error_code
+            process_time: 0.8008281904610115
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/updateShopStatus_default_response_data'
+      type: object
+    getShopInfo_default_response:
+      properties:
+        data:
+          type: object
+        status:
+          type: string
+        error_message:
+          items:
+            type: string
+          type: array
+      type: object
+    getShopInfo_200_response_data_inner_warehouses_inner_partner_id:
+      example:
+        Int64: 9
+        Valid: true
+      properties:
+        Int64:
+          format: int64
+          type: integer
+        Valid:
+          type: boolean
+      type: object
+    getShopInfo_200_response_data_inner_warehouses_inner:
+      example:
+        latitude: latitude
+        is_default: 1
+        warehose_type: warehose_type
+        province_name: province_name
+        address_detail: address_detail
+        shop_id:
+          Int64: 9
+          Valid: true
+        district_name: district_name
+        city_name: city_name
+        partner_id:
+          Int64: 9
+          Valid: true
+        warehouse_name: warehouse_name
+        latlon: latlon
+        province_id: 4
+        phone: phone
+        district_id: 3
+        postal_code: postal_code
+        email: email
+        warehouse_id: 7
+        city_id: 2
+        status: 7
+        longitude: longitude
+      properties:
+        warehouse_id:
+          format: int64
+          type: integer
+        partner_id:
+          $ref: '#/components/schemas/getShopInfo_200_response_data_inner_warehouses_inner_partner_id'
+        shop_id:
+          $ref: '#/components/schemas/getShopInfo_200_response_data_inner_warehouses_inner_partner_id'
+        warehouse_name:
+          type: string
+        district_id:
+          format: int64
+          type: integer
+        district_name:
+          type: string
+        city_id:
+          format: int64
+          type: integer
+        city_name:
+          type: string
+        province_id:
+          format: int64
+          type: integer
+        province_name:
+          type: string
+        status:
+          format: int64
+          type: integer
+        postal_code:
+          type: string
+        is_default:
+          format: int64
+          type: integer
+        latlon:
+          type: string
+        latitude:
+          type: string
+        longitude:
+          type: string
+        email:
+          type: string
+        address_detail:
+          type: string
+        phone:
+          type: string
+        warehose_type:
+          type: string
+      type: object
+    getShopInfo_200_response_data_inner:
+      example:
+        reason: reason
+        is_open: 1
+        is_mitra: true
+        warehouses:
+        - latitude: latitude
+          is_default: 1
+          warehose_type: warehose_type
+          province_name: province_name
+          address_detail: address_detail
+          shop_id:
+            Int64: 9
+            Valid: true
+          district_name: district_name
+          city_name: city_name
+          partner_id:
+            Int64: 9
+            Valid: true
+          warehouse_name: warehouse_name
+          latlon: latlon
+          province_id: 4
+          phone: phone
+          district_id: 3
+          postal_code: postal_code
+          email: email
+          warehouse_id: 7
+          city_id: 2
+          status: 7
+          longitude: longitude
+        - latitude: latitude
+          is_default: 1
+          warehose_type: warehose_type
+          province_name: province_name
+          address_detail: address_detail
+          shop_id:
+            Int64: 9
+            Valid: true
+          district_name: district_name
+          city_name: city_name
+          partner_id:
+            Int64: 9
+            Valid: true
+          warehouse_name: warehouse_name
+          latlon: latlon
+          province_id: 4
+          phone: phone
+          district_id: 3
+          postal_code: postal_code
+          email: email
+          warehouse_id: 7
+          city_id: 2
+          status: 7
+          longitude: longitude
+        shop_name: shop_name
+        province_name: province_name
+        subscribe_tokocabang: true
+        shop_id: 0
+        user_id: 6
+        shop_url: shop_url
+        domain: domain
+        admin_id:
+        - 5
+        - 5
+        date_shop_created: date_shop_created
+        logo: logo
+        district_id: 2
+        status: 5
+      properties:
+        shop_id:
+          format: int64
+          type: integer
+        user_id:
+          format: int64
+          type: integer
+        shop_name:
+          type: string
+        logo:
+          type: string
+        shop_url:
+          type: string
+        is_open:
+          format: int64
+          type: integer
+        status:
+          format: int64
+          type: integer
+        date_shop_created:
+          type: string
+        domain:
+          type: string
+        admin_id:
+          items:
+            format: int64
+            type: integer
+          type: array
+        reason:
+          type: string
+        district_id:
+          format: int64
+          type: integer
+        province_name:
+          type: string
+        warehouses:
+          items:
+            $ref: '#/components/schemas/getShopInfo_200_response_data_inner_warehouses_inner'
+          type: array
+        subscribe_tokocabang:
+          type: boolean
+        is_mitra:
+          type: boolean
+      type: object
+    getShopInfo_200_response:
+      example:
+        data:
+        - reason: reason
+          is_open: 1
+          is_mitra: true
+          warehouses:
+          - latitude: latitude
+            is_default: 1
+            warehose_type: warehose_type
+            province_name: province_name
+            address_detail: address_detail
+            shop_id:
+              Int64: 9
+              Valid: true
+            district_name: district_name
+            city_name: city_name
+            partner_id:
+              Int64: 9
+              Valid: true
+            warehouse_name: warehouse_name
+            latlon: latlon
+            province_id: 4
+            phone: phone
+            district_id: 3
+            postal_code: postal_code
+            email: email
+            warehouse_id: 7
+            city_id: 2
+            status: 7
+            longitude: longitude
+          - latitude: latitude
+            is_default: 1
+            warehose_type: warehose_type
+            province_name: province_name
+            address_detail: address_detail
+            shop_id:
+              Int64: 9
+              Valid: true
+            district_name: district_name
+            city_name: city_name
+            partner_id:
+              Int64: 9
+              Valid: true
+            warehouse_name: warehouse_name
+            latlon: latlon
+            province_id: 4
+            phone: phone
+            district_id: 3
+            postal_code: postal_code
+            email: email
+            warehouse_id: 7
+            city_id: 2
+            status: 7
+            longitude: longitude
+          shop_name: shop_name
+          province_name: province_name
+          subscribe_tokocabang: true
+          shop_id: 0
+          user_id: 6
+          shop_url: shop_url
+          domain: domain
+          admin_id:
+          - 5
+          - 5
+          date_shop_created: date_shop_created
+          logo: logo
+          district_id: 2
+          status: 5
+        - reason: reason
+          is_open: 1
+          is_mitra: true
+          warehouses:
+          - latitude: latitude
+            is_default: 1
+            warehose_type: warehose_type
+            province_name: province_name
+            address_detail: address_detail
+            shop_id:
+              Int64: 9
+              Valid: true
+            district_name: district_name
+            city_name: city_name
+            partner_id:
+              Int64: 9
+              Valid: true
+            warehouse_name: warehouse_name
+            latlon: latlon
+            province_id: 4
+            phone: phone
+            district_id: 3
+            postal_code: postal_code
+            email: email
+            warehouse_id: 7
+            city_id: 2
+            status: 7
+            longitude: longitude
+          - latitude: latitude
+            is_default: 1
+            warehose_type: warehose_type
+            province_name: province_name
+            address_detail: address_detail
+            shop_id:
+              Int64: 9
+              Valid: true
+            district_name: district_name
+            city_name: city_name
+            partner_id:
+              Int64: 9
+              Valid: true
+            warehouse_name: warehouse_name
+            latlon: latlon
+            province_id: 4
+            phone: phone
+            district_id: 3
+            postal_code: postal_code
+            email: email
+            warehouse_id: 7
+            city_id: 2
+            status: 7
+            longitude: longitude
+          shop_name: shop_name
+          province_name: province_name
+          subscribe_tokocabang: true
+          shop_id: 0
+          user_id: 6
+          shop_url: shop_url
+          domain: domain
+          admin_id:
+          - 5
+          - 5
+          date_shop_created: date_shop_created
+          logo: logo
+          district_id: 2
+          status: 5
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          items:
+            $ref: '#/components/schemas/getShopInfo_200_response_data_inner'
+          type: array
       type: object
     WebhookOrderNotification_products_inner:
       properties:
