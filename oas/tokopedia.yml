@@ -5129,6 +5129,332 @@ paths:
                           type: integer
                           format: int64
                           description: Slash Price Status
+  /v2/logistic/fs/{fs_id}/update:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: updateShipmentInfo
+      tags:
+        - Logistic
+      description: "This endpoint can update seller shipment availability."
+      parameters:
+        # WARN: di dokumentasi di body, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: key represent ShipmentID
+              additionalProperties:
+                type: object
+                description: key represent service_id or ShippingProductID
+                additionalProperties:
+                  type: integer
+                  format: int64
+                  description: 0 represent deactivate shipment, if want to activate shipment then use 1
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        description: Response Status
+                      server_process_time:
+                        type: number
+                        format: double
+                        description: Server Process Time
+                      # WARN: description did not match the field
+                      message_status:
+                        type: array
+                        description: Shipper Logo URL
+                        items:
+                          type: string
+                      data:
+                        type: object
+                        properties:
+                          success:
+                            type: boolean
+                            description: Is the request success?
+  /v2/logistic/fs/{fs_id}/info:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getShipmentInfo
+      tags:
+        - Logistic
+      description: This endpoint can retrieve all available shipment information
+      parameters:
+        # WARN: di dokumentasi di body, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        shipper_id:
+                          type: integer
+                          format: int64
+                        shipper_name:
+                          type: string
+                        logo:
+                          type: string
+                        services:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              service_id:
+                                type: integer
+                                format: int64
+                              service_name:
+                                type: string
+                              service_desc:
+                                type: string
+  /v1/logistic/fs/{fs_id}/active-info:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getActiveCourier
+      tags:
+        - Logistic
+      description: This endpoint can retrieve active courier from related shop.
+      parameters:
+        # WARN: di dokumentasi di body, tapi di contoh di query
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      Shops:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ShopID:
+                              type: integer
+                              format: int64
+                              description: Shop Unique Identifier
+                            ShipmentInfos:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  ShipmentID:
+                                    type: integer
+                                    format: int64
+                                    description: Shipment Unique Identifier
+                                  ShipmentName:
+                                    type: string
+                                    description: Shipment Name
+                                  ShipmentCode:
+                                    type: string
+                                    description: Shipment Code
+                                  ShipmentAvailable:
+                                    type: integer
+                                    format: int64
+                                    description: Shipment Available Status
+                                  ShipmentImage:
+                                    type: string
+                                    description: Shipment Image URL
+                                  ShipmentPackages:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        IsAvailable:
+                                          type: integer
+                                          format: int64
+                                          description: Is Shipment Available? 1 = true, 0 = false
+                                        ProductName:
+                                          type: string
+                                          description: Shipment Product Name
+                                        ShippingProductID:
+                                          type: integer
+                                          format: int64
+                                          description: Shipping Product Unique Identifier
+                                  AWBStatus:
+                                    type: integer
+                                    format: int64
 
 security:
   - bearer: []
@@ -5142,3 +5468,4 @@ tags:
   - name: Finance
   - name: Campaign
   - name: Bundle
+  - name: Logistic

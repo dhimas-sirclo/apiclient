@@ -97,6 +97,9 @@ Class | Method | HTTP request | Description
 *InteractionAPI* | [**GetListReply**](docs/InteractionAPI.md#getlistreply) | **Get** /v1/chat/fs/{fs_id}/messages/{msg_id}/replies | 
 *InteractionAPI* | [**InitiateChat**](docs/InteractionAPI.md#initiatechat) | **Get** /v1/chat/fs/{fs_id}/initiate | 
 *InteractionAPI* | [**SendReply**](docs/InteractionAPI.md#sendreply) | **Post** /v1/chat/fs/{fs_id}/messages/{msg_id}/reply | 
+*LogisticAPI* | [**GetActiveCourier**](docs/LogisticAPI.md#getactivecourier) | **Get** /v1/logistic/fs/{fs_id}/active-info | 
+*LogisticAPI* | [**GetShipmentInfo**](docs/LogisticAPI.md#getshipmentinfo) | **Get** /v2/logistic/fs/{fs_id}/info | 
+*LogisticAPI* | [**UpdateShipmentInfo**](docs/LogisticAPI.md#updateshipmentinfo) | **Post** /v2/logistic/fs/{fs_id}/update | 
 *OrderAPI* | [**GetOrderWebhook**](docs/OrderAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
@@ -132,6 +135,11 @@ Class | Method | HTTP request | Description
  - [CreateBundleRequestBundle](docs/CreateBundleRequestBundle.md)
  - [CreateBundleRequestBundleBundleItemsInner](docs/CreateBundleRequestBundleBundleItemsInner.md)
  - [CreateBundleRequestBundleBundleItemsInnerChildren](docs/CreateBundleRequestBundleBundleItemsInnerChildren.md)
+ - [GetActiveCourier200Response](docs/GetActiveCourier200Response.md)
+ - [GetActiveCourier200ResponseData](docs/GetActiveCourier200ResponseData.md)
+ - [GetActiveCourier200ResponseDataShopsInner](docs/GetActiveCourier200ResponseDataShopsInner.md)
+ - [GetActiveCourier200ResponseDataShopsInnerShipmentInfosInner](docs/GetActiveCourier200ResponseDataShopsInnerShipmentInfosInner.md)
+ - [GetActiveCourier200ResponseDataShopsInnerShipmentInfosInnerShipmentPackagesInner](docs/GetActiveCourier200ResponseDataShopsInnerShipmentInfosInnerShipmentPackagesInner.md)
  - [GetBundleInfo200Response](docs/GetBundleInfo200Response.md)
  - [GetBundleInfo200ResponseData](docs/GetBundleInfo200ResponseData.md)
  - [GetBundleInfo200ResponseDataBundleInfoInner](docs/GetBundleInfo200ResponseDataBundleInfoInner.md)
@@ -171,6 +179,9 @@ Class | Method | HTTP request | Description
  - [GetSaldoHistory200Response](docs/GetSaldoHistory200Response.md)
  - [GetSaldoHistory200ResponseData](docs/GetSaldoHistory200ResponseData.md)
  - [GetSaldoHistory200ResponseDataSaldoHistoryInner](docs/GetSaldoHistory200ResponseDataSaldoHistoryInner.md)
+ - [GetShipmentInfo200Response](docs/GetShipmentInfo200Response.md)
+ - [GetShipmentInfo200ResponseDataInner](docs/GetShipmentInfo200ResponseDataInner.md)
+ - [GetShipmentInfo200ResponseDataInnerServicesInner](docs/GetShipmentInfo200ResponseDataInnerServicesInner.md)
  - [InitiateChat200Response](docs/InitiateChat200Response.md)
  - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
  - [InitiateChat200ResponseDataContact](docs/InitiateChat200ResponseDataContact.md)
@@ -211,6 +222,9 @@ Class | Method | HTTP request | Description
  - [Token](docs/Token.md)
  - [TriggerWebhook200Response](docs/TriggerWebhook200Response.md)
  - [TriggerWebhookRequest](docs/TriggerWebhookRequest.md)
+ - [UpdateShipmentInfo200Response](docs/UpdateShipmentInfo200Response.md)
+ - [UpdateShipmentInfo200ResponseData](docs/UpdateShipmentInfo200ResponseData.md)
+ - [UpdateShipmentInfo200ResponseDataData](docs/UpdateShipmentInfo200ResponseDataData.md)
  - [UpdateSlashPriceRequestInner](docs/UpdateSlashPriceRequestInner.md)
  - [UpdateSlashPriceRequestInnerSlashPriceWarehousesValue](docs/UpdateSlashPriceRequestInnerSlashPriceWarehousesValue.md)
  - [UpdateStockInput](docs/UpdateStockInput.md)

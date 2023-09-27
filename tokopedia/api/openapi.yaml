@@ -21,6 +21,7 @@ tags:
 - name: Finance
 - name: Campaign
 - name: Bundle
+- name: Logistic
 paths:
   /token:
     post:
@@ -2483,6 +2484,327 @@ paths:
               style: simple
       tags:
       - Campaign
+  /v2/logistic/fs/{fs_id}/update:
+    post:
+      description: This endpoint can update seller shipment availability.
+      operationId: updateShipmentInfo
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                additionalProperties:
+                  description: "0 represent deactivate shipment, if want to activate\
+                    \ shipment then use 1"
+                  format: int64
+                  type: integer
+                description: key represent service_id or ShippingProductID
+                type: object
+              description: key represent ShipmentID
+              type: object
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateShipmentInfo_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Logistic
+  /v2/logistic/fs/{fs_id}/info:
+    get:
+      description: This endpoint can retrieve all available shipment information
+      operationId: getShipmentInfo
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getShipmentInfo_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Logistic
+  /v1/logistic/fs/{fs_id}/active-info:
+    get:
+      description: This endpoint can retrieve active courier from related shop.
+      operationId: getActiveCourier
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getActiveCourier_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Logistic
 components:
   parameters:
     fs_id:
@@ -7248,6 +7570,370 @@ components:
           items:
             $ref: '#/components/schemas/viewSlashPrice_200_response_data_inner'
           type: array
+      type: object
+    updateShipmentInfo_200_response_data_data:
+      example:
+        success: true
+      properties:
+        success:
+          description: Is the request success?
+          type: boolean
+      type: object
+    updateShipmentInfo_200_response_data:
+      example:
+        message_status:
+        - message_status
+        - message_status
+        server_process_time: 0.8008281904610115
+        data:
+          success: true
+        status: status
+      properties:
+        status:
+          description: Response Status
+          type: string
+        server_process_time:
+          description: Server Process Time
+          format: double
+          type: number
+        message_status:
+          description: Shipper Logo URL
+          items:
+            type: string
+          type: array
+        data:
+          $ref: '#/components/schemas/updateShipmentInfo_200_response_data_data'
+      type: object
+    updateShipmentInfo_200_response:
+      example:
+        data:
+          message_status:
+          - message_status
+          - message_status
+          server_process_time: 0.8008281904610115
+          data:
+            success: true
+          status: status
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/updateShipmentInfo_200_response_data'
+      type: object
+    getShipmentInfo_200_response_data_inner_services_inner:
+      example:
+        service_desc: service_desc
+        service_name: service_name
+        service_id: 6
+      properties:
+        service_id:
+          format: int64
+          type: integer
+        service_name:
+          type: string
+        service_desc:
+          type: string
+      type: object
+    getShipmentInfo_200_response_data_inner:
+      example:
+        logo: logo
+        shipper_id: 0
+        services:
+        - service_desc: service_desc
+          service_name: service_name
+          service_id: 6
+        - service_desc: service_desc
+          service_name: service_name
+          service_id: 6
+        shipper_name: shipper_name
+      properties:
+        shipper_id:
+          format: int64
+          type: integer
+        shipper_name:
+          type: string
+        logo:
+          type: string
+        services:
+          items:
+            $ref: '#/components/schemas/getShipmentInfo_200_response_data_inner_services_inner'
+          type: array
+      type: object
+    getShipmentInfo_200_response:
+      example:
+        data:
+        - logo: logo
+          shipper_id: 0
+          services:
+          - service_desc: service_desc
+            service_name: service_name
+            service_id: 6
+          - service_desc: service_desc
+            service_name: service_name
+            service_id: 6
+          shipper_name: shipper_name
+        - logo: logo
+          shipper_id: 0
+          services:
+          - service_desc: service_desc
+            service_name: service_name
+            service_id: 6
+          - service_desc: service_desc
+            service_name: service_name
+            service_id: 6
+          shipper_name: shipper_name
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          items:
+            $ref: '#/components/schemas/getShipmentInfo_200_response_data_inner'
+          type: array
+      type: object
+    getActiveCourier_200_response_data_Shops_inner_ShipmentInfos_inner_ShipmentPackages_inner:
+      example:
+        ShippingProductID: 5
+        ProductName: ProductName
+        IsAvailable: 5
+      properties:
+        IsAvailable:
+          description: "Is Shipment Available? 1 = true, 0 = false"
+          format: int64
+          type: integer
+        ProductName:
+          description: Shipment Product Name
+          type: string
+        ShippingProductID:
+          description: Shipping Product Unique Identifier
+          format: int64
+          type: integer
+      type: object
+    getActiveCourier_200_response_data_Shops_inner_ShipmentInfos_inner:
+      example:
+        ShipmentID: 6
+        ShipmentAvailable: 1
+        ShipmentPackages:
+        - ShippingProductID: 5
+          ProductName: ProductName
+          IsAvailable: 5
+        - ShippingProductID: 5
+          ProductName: ProductName
+          IsAvailable: 5
+        ShipmentName: ShipmentName
+        ShipmentImage: ShipmentImage
+        ShipmentCode: ShipmentCode
+        AWBStatus: 2
+      properties:
+        ShipmentID:
+          description: Shipment Unique Identifier
+          format: int64
+          type: integer
+        ShipmentName:
+          description: Shipment Name
+          type: string
+        ShipmentCode:
+          description: Shipment Code
+          type: string
+        ShipmentAvailable:
+          description: Shipment Available Status
+          format: int64
+          type: integer
+        ShipmentImage:
+          description: Shipment Image URL
+          type: string
+        ShipmentPackages:
+          items:
+            $ref: '#/components/schemas/getActiveCourier_200_response_data_Shops_inner_ShipmentInfos_inner_ShipmentPackages_inner'
+          type: array
+        AWBStatus:
+          format: int64
+          type: integer
+      type: object
+    getActiveCourier_200_response_data_Shops_inner:
+      example:
+        ShipmentInfos:
+        - ShipmentID: 6
+          ShipmentAvailable: 1
+          ShipmentPackages:
+          - ShippingProductID: 5
+            ProductName: ProductName
+            IsAvailable: 5
+          - ShippingProductID: 5
+            ProductName: ProductName
+            IsAvailable: 5
+          ShipmentName: ShipmentName
+          ShipmentImage: ShipmentImage
+          ShipmentCode: ShipmentCode
+          AWBStatus: 2
+        - ShipmentID: 6
+          ShipmentAvailable: 1
+          ShipmentPackages:
+          - ShippingProductID: 5
+            ProductName: ProductName
+            IsAvailable: 5
+          - ShippingProductID: 5
+            ProductName: ProductName
+            IsAvailable: 5
+          ShipmentName: ShipmentName
+          ShipmentImage: ShipmentImage
+          ShipmentCode: ShipmentCode
+          AWBStatus: 2
+        ShopID: 0
+      properties:
+        ShopID:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        ShipmentInfos:
+          items:
+            $ref: '#/components/schemas/getActiveCourier_200_response_data_Shops_inner_ShipmentInfos_inner'
+          type: array
+      type: object
+    getActiveCourier_200_response_data:
+      example:
+        Shops:
+        - ShipmentInfos:
+          - ShipmentID: 6
+            ShipmentAvailable: 1
+            ShipmentPackages:
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            ShipmentName: ShipmentName
+            ShipmentImage: ShipmentImage
+            ShipmentCode: ShipmentCode
+            AWBStatus: 2
+          - ShipmentID: 6
+            ShipmentAvailable: 1
+            ShipmentPackages:
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            ShipmentName: ShipmentName
+            ShipmentImage: ShipmentImage
+            ShipmentCode: ShipmentCode
+            AWBStatus: 2
+          ShopID: 0
+        - ShipmentInfos:
+          - ShipmentID: 6
+            ShipmentAvailable: 1
+            ShipmentPackages:
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            ShipmentName: ShipmentName
+            ShipmentImage: ShipmentImage
+            ShipmentCode: ShipmentCode
+            AWBStatus: 2
+          - ShipmentID: 6
+            ShipmentAvailable: 1
+            ShipmentPackages:
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            - ShippingProductID: 5
+              ProductName: ProductName
+              IsAvailable: 5
+            ShipmentName: ShipmentName
+            ShipmentImage: ShipmentImage
+            ShipmentCode: ShipmentCode
+            AWBStatus: 2
+          ShopID: 0
+      properties:
+        Shops:
+          items:
+            $ref: '#/components/schemas/getActiveCourier_200_response_data_Shops_inner'
+          type: array
+      type: object
+    getActiveCourier_200_response:
+      example:
+        data:
+          Shops:
+          - ShipmentInfos:
+            - ShipmentID: 6
+              ShipmentAvailable: 1
+              ShipmentPackages:
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              ShipmentName: ShipmentName
+              ShipmentImage: ShipmentImage
+              ShipmentCode: ShipmentCode
+              AWBStatus: 2
+            - ShipmentID: 6
+              ShipmentAvailable: 1
+              ShipmentPackages:
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              ShipmentName: ShipmentName
+              ShipmentImage: ShipmentImage
+              ShipmentCode: ShipmentCode
+              AWBStatus: 2
+            ShopID: 0
+          - ShipmentInfos:
+            - ShipmentID: 6
+              ShipmentAvailable: 1
+              ShipmentPackages:
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              ShipmentName: ShipmentName
+              ShipmentImage: ShipmentImage
+              ShipmentCode: ShipmentCode
+              AWBStatus: 2
+            - ShipmentID: 6
+              ShipmentAvailable: 1
+              ShipmentPackages:
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              - ShippingProductID: 5
+                ProductName: ProductName
+                IsAvailable: 5
+              ShipmentName: ShipmentName
+              ShipmentImage: ShipmentImage
+              ShipmentCode: ShipmentCode
+              AWBStatus: 2
+            ShopID: 0
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getActiveCourier_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:
