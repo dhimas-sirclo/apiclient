@@ -4,7 +4,8 @@
 
 1. Docker Engine or Desktop
 2. OpenAPI Generator CLI Docker Image v7
-3. Go v18
+3. Go >= v19
+4. NPM
 
 ### Get OpenAPI Generator CLI Docker Image v7
 
@@ -12,9 +13,35 @@
 docker pull openapitools/openapi-generator-cli:v7.0.0
 ```
 
-## Publishing a module
+## Publishing modules
 
 visit [Publishing a module](https://go.dev/doc/modules/publishing) and follow the guide
+
+For major release
+
+```sh
+npm run release:major
+```
+
+For minor release
+
+```sh
+npm run release:minor
+```
+
+For patch release
+
+```sh
+npm run release:patch
+```
+
+Make module available
+
+```sh
+GOPROXY=proxy.golang.org go list -m github.com/dhimas-sirclo/apiclient/tokopedia
+GOPROXY=proxy.golang.org go list -m github.com/dhimas-sirclo/apiclient/sirclo
+GOPROXY=proxy.golang.org go list -m github.com/dhimas-sirclo/apiclient/connector
+```
 
 ## Extract go API client template
 
