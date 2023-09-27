@@ -55,12 +55,12 @@ type OrderAPI interface {
 	TriggerWebhook(ctx context.Context, fsId int64) OrderAPITriggerWebhookRequest
 
 	// TriggerWebhookExecute executes the request
-	//  @return TriggerWebhookDefaultResponse
-	TriggerWebhookExecute(r OrderAPITriggerWebhookRequest) (*TriggerWebhookDefaultResponse, *http.Response, error)
+	//  @return TriggerWebhook200Response
+	TriggerWebhookExecute(r OrderAPITriggerWebhookRequest) (*TriggerWebhook200Response, *http.Response, error)
 
 	// TriggerWebhookExecuteWithRetry executes the request with retry
-	//  @return TriggerWebhookDefaultResponse
-	TriggerWebhookExecuteWithRetry(r OrderAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhookDefaultResponse, *http.Response, error)
+	//  @return TriggerWebhook200Response
+	TriggerWebhookExecuteWithRetry(r OrderAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhook200Response, *http.Response, error)
 }
 
 // OrderAPIService OrderAPI service
@@ -280,11 +280,11 @@ func (r OrderAPITriggerWebhookRequest) TriggerWebhookRequest(triggerWebhookReque
 	return r
 }
 
-func (r OrderAPITriggerWebhookRequest) Execute() (*TriggerWebhookDefaultResponse, *http.Response, error) {
+func (r OrderAPITriggerWebhookRequest) Execute() (*TriggerWebhook200Response, *http.Response, error) {
 	return r.ApiService.TriggerWebhookExecute(r)
 }
 
-func (r OrderAPITriggerWebhookRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*TriggerWebhookDefaultResponse, *http.Response, error) {
+func (r OrderAPITriggerWebhookRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*TriggerWebhook200Response, *http.Response, error) {
 	return r.ApiService.TriggerWebhookExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -306,13 +306,13 @@ func (a *OrderAPIService) TriggerWebhook(ctx context.Context, fsId int64) OrderA
 }
 
 // Execute executes the request
-//  @return TriggerWebhookDefaultResponse
-func (a *OrderAPIService) TriggerWebhookExecute(r OrderAPITriggerWebhookRequest) (*TriggerWebhookDefaultResponse, *http.Response, error) {
+//  @return TriggerWebhook200Response
+func (a *OrderAPIService) TriggerWebhookExecute(r OrderAPITriggerWebhookRequest) (*TriggerWebhook200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TriggerWebhookDefaultResponse
+		localVarReturnValue  *TriggerWebhook200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.TriggerWebhook")
@@ -371,7 +371,7 @@ func (a *OrderAPIService) TriggerWebhookExecute(r OrderAPITriggerWebhookRequest)
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v TriggerWebhookDefaultResponse
+			var v BaseErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -395,13 +395,13 @@ func (a *OrderAPIService) TriggerWebhookExecute(r OrderAPITriggerWebhookRequest)
 }
 
 // ExecuteWithRetry executes the request with retry
-//  @return TriggerWebhookDefaultResponse
-func (a *OrderAPIService) TriggerWebhookExecuteWithRetry(r OrderAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhookDefaultResponse, *http.Response, error) {
+//  @return TriggerWebhook200Response
+func (a *OrderAPIService) TriggerWebhookExecuteWithRetry(r OrderAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhook200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TriggerWebhookDefaultResponse
+		localVarReturnValue  *TriggerWebhook200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.TriggerWebhook")
@@ -460,7 +460,7 @@ func (a *OrderAPIService) TriggerWebhookExecuteWithRetry(r OrderAPITriggerWebhoo
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v TriggerWebhookDefaultResponse
+			var v BaseErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

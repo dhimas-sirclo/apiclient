@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## TriggerWebhook
 
-> TriggerWebhookDefaultResponse TriggerWebhook(ctx, fsId).TriggerWebhookRequest(triggerWebhookRequest).Execute()
+> TriggerWebhook200Response TriggerWebhook(ctx, fsId).TriggerWebhookRequest(triggerWebhookRequest).Execute()
 
 
 
@@ -259,7 +259,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookAPI.TriggerWebhook``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `TriggerWebhook`: TriggerWebhookDefaultResponse
+    // response from `TriggerWebhook`: TriggerWebhook200Response
     fmt.Fprintf(os.Stdout, "Response from `WebhookAPI.TriggerWebhook`: %v\n", resp)
 }
 ```
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TriggerWebhookDefaultResponse**](TriggerWebhookDefaultResponse.md)
+[**TriggerWebhook200Response**](TriggerWebhook200Response.md)
 
 ### Authorization
 

@@ -20,7 +20,7 @@ var _ MappedNullable = &CategoryVariants{}
 
 // CategoryVariants struct for CategoryVariants
 type CategoryVariants struct {
-	Header *Header `json:"header,omitempty"`
+	Header *ResponseHeader `json:"header,omitempty"`
 	Data *CategoryVariant `json:"data,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewCategoryVariantsWithDefaults() *CategoryVariants {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *CategoryVariants) GetHeader() Header {
+func (o *CategoryVariants) GetHeader() ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret Header
+		var ret ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -52,7 +52,7 @@ func (o *CategoryVariants) GetHeader() Header {
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CategoryVariants) GetHeaderOk() (*Header, bool) {
+func (o *CategoryVariants) GetHeaderOk() (*ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *CategoryVariants) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given Header and assigns it to the Header field.
-func (o *CategoryVariants) SetHeader(v Header) {
+// SetHeader gets a reference to the given ResponseHeader and assigns it to the Header field.
+func (o *CategoryVariants) SetHeader(v ResponseHeader) {
 	o.Header = &v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | Pointer to [**UpdateStockResponseHeader**](UpdateStockResponseHeader.md) |  | [optional] 
+**Header** | Pointer to [**ResponseHeader**](ResponseHeader.md) |  | [optional] 
 **Data** | Pointer to [**UpdateStockResponseData**](UpdateStockResponseData.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHeader
 
-`func (o *UpdateStockResponse) GetHeader() UpdateStockResponseHeader`
+`func (o *UpdateStockResponse) GetHeader() ResponseHeader`
 
 GetHeader returns the Header field if non-nil, zero value otherwise.
 
 ### GetHeaderOk
 
-`func (o *UpdateStockResponse) GetHeaderOk() (*UpdateStockResponseHeader, bool)`
+`func (o *UpdateStockResponse) GetHeaderOk() (*ResponseHeader, bool)`
 
 GetHeaderOk returns a tuple with the Header field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeader
 
-`func (o *UpdateStockResponse) SetHeader(v UpdateStockResponseHeader)`
+`func (o *UpdateStockResponse) SetHeader(v ResponseHeader)`
 
 SetHeader sets Header field to given value.
 

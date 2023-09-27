@@ -20,7 +20,7 @@ var _ MappedNullable = &GetProductVariantResponse{}
 
 // GetProductVariantResponse struct for GetProductVariantResponse
 type GetProductVariantResponse struct {
-	Header *Header `json:"header,omitempty"`
+	Header *ResponseHeader `json:"header,omitempty"`
 	Data *Variant `json:"data,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewGetProductVariantResponseWithDefaults() *GetProductVariantResponse {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *GetProductVariantResponse) GetHeader() Header {
+func (o *GetProductVariantResponse) GetHeader() ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret Header
+		var ret ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -52,7 +52,7 @@ func (o *GetProductVariantResponse) GetHeader() Header {
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetProductVariantResponse) GetHeaderOk() (*Header, bool) {
+func (o *GetProductVariantResponse) GetHeaderOk() (*ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *GetProductVariantResponse) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given Header and assigns it to the Header field.
-func (o *GetProductVariantResponse) SetHeader(v Header) {
+// SetHeader gets a reference to the given ResponseHeader and assigns it to the Header field.
+func (o *GetProductVariantResponse) SetHeader(v ResponseHeader) {
 	o.Header = &v
 }
 

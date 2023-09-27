@@ -20,7 +20,7 @@ var _ MappedNullable = &WebhookErrorProductEdit{}
 
 // WebhookErrorProductEdit This notification will be trigger when using Edit Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product]
 type WebhookErrorProductEdit struct {
-	Header *WebhookErrorProductEditHeader `json:"header,omitempty"`
+	Header *ResponseHeader `json:"header,omitempty"`
 	Data *WebhookErrorProductEditData `json:"data,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewWebhookErrorProductEditWithDefaults() *WebhookErrorProductEdit {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *WebhookErrorProductEdit) GetHeader() WebhookErrorProductEditHeader {
+func (o *WebhookErrorProductEdit) GetHeader() ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret WebhookErrorProductEditHeader
+		var ret ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -52,7 +52,7 @@ func (o *WebhookErrorProductEdit) GetHeader() WebhookErrorProductEditHeader {
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookErrorProductEdit) GetHeaderOk() (*WebhookErrorProductEditHeader, bool) {
+func (o *WebhookErrorProductEdit) GetHeaderOk() (*ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *WebhookErrorProductEdit) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given WebhookErrorProductEditHeader and assigns it to the Header field.
-func (o *WebhookErrorProductEdit) SetHeader(v WebhookErrorProductEditHeader) {
+// SetHeader gets a reference to the given ResponseHeader and assigns it to the Header field.
+func (o *WebhookErrorProductEdit) SetHeader(v ResponseHeader) {
 	o.Header = &v
 }
 

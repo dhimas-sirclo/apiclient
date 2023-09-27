@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | Pointer to [**WebhookErrorProductEditHeader**](WebhookErrorProductEditHeader.md) |  | [optional] 
+**Header** | Pointer to [**ResponseHeader**](ResponseHeader.md) |  | [optional] 
 **Data** | Pointer to [**WebhookErrorProductEditData**](WebhookErrorProductEditData.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHeader
 
-`func (o *WebhookErrorProductEdit) GetHeader() WebhookErrorProductEditHeader`
+`func (o *WebhookErrorProductEdit) GetHeader() ResponseHeader`
 
 GetHeader returns the Header field if non-nil, zero value otherwise.
 
 ### GetHeaderOk
 
-`func (o *WebhookErrorProductEdit) GetHeaderOk() (*WebhookErrorProductEditHeader, bool)`
+`func (o *WebhookErrorProductEdit) GetHeaderOk() (*ResponseHeader, bool)`
 
 GetHeaderOk returns a tuple with the Header field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeader
 
-`func (o *WebhookErrorProductEdit) SetHeader(v WebhookErrorProductEditHeader)`
+`func (o *WebhookErrorProductEdit) SetHeader(v ResponseHeader)`
 
 SetHeader sets Header field to given value.
 

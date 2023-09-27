@@ -53,6 +53,10 @@ type APIClient struct {
 
 	AuthenticationAPI AuthenticationAPI
 
+	BundleAPI BundleAPI
+
+	CampaignAPI CampaignAPI
+
 	FinanceAPI FinanceAPI
 
 	InteractionAPI InteractionAPI
@@ -81,6 +85,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 
 	// API Services
 	c.AuthenticationAPI = (*AuthenticationAPIService)(&c.common)
+	c.BundleAPI = (*BundleAPIService)(&c.common)
+	c.CampaignAPI = (*CampaignAPIService)(&c.common)
 	c.FinanceAPI = (*FinanceAPIService)(&c.common)
 	c.InteractionAPI = (*InteractionAPIService)(&c.common)
 	c.OrderAPI = (*OrderAPIService)(&c.common)

@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## GetListMessage
 
-> GetListMessageDefaultResponse GetListMessage(ctx, fsId).ShopId(shopId).Page(page).PerPage(perPage).Filter(filter).Execute()
+> GetListMessage200Response GetListMessage(ctx, fsId).ShopId(shopId).Page(page).PerPage(perPage).Filter(filter).Execute()
 
 
 
@@ -45,7 +45,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `InteractionAPI.GetListMessage``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetListMessage`: GetListMessageDefaultResponse
+    // response from `GetListMessage`: GetListMessage200Response
     fmt.Fprintf(os.Stdout, "Response from `InteractionAPI.GetListMessage`: %v\n", resp)
 }
 ```
@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetListMessageDefaultResponse**](GetListMessageDefaultResponse.md)
+[**GetListMessage200Response**](GetListMessage200Response.md)
 
 ### Authorization
 

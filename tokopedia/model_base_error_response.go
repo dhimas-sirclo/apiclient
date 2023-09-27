@@ -20,7 +20,7 @@ var _ MappedNullable = &BaseErrorResponse{}
 
 // BaseErrorResponse struct for BaseErrorResponse
 type BaseErrorResponse struct {
-	Header *ErrorHeader `json:"header,omitempty"`
+	Header *ResponseHeader `json:"header,omitempty"`
 	Data map[string]interface{} `json:"data,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewBaseErrorResponseWithDefaults() *BaseErrorResponse {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *BaseErrorResponse) GetHeader() ErrorHeader {
+func (o *BaseErrorResponse) GetHeader() ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret ErrorHeader
+		var ret ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -52,7 +52,7 @@ func (o *BaseErrorResponse) GetHeader() ErrorHeader {
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseErrorResponse) GetHeaderOk() (*ErrorHeader, bool) {
+func (o *BaseErrorResponse) GetHeaderOk() (*ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -68,14 +68,14 @@ func (o *BaseErrorResponse) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given ErrorHeader and assigns it to the Header field.
-func (o *BaseErrorResponse) SetHeader(v ErrorHeader) {
+// SetHeader gets a reference to the given ResponseHeader and assigns it to the Header field.
+func (o *BaseErrorResponse) SetHeader(v ResponseHeader) {
 	o.Header = &v
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
+// GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BaseErrorResponse) GetData() map[string]interface{} {
-	if o == nil || IsNil(o.Data) {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -84,6 +84,7 @@ func (o *BaseErrorResponse) GetData() map[string]interface{} {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BaseErrorResponse) GetDataOk() (map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Data) {
 		return map[string]interface{}{}, false
@@ -93,7 +94,7 @@ func (o *BaseErrorResponse) GetDataOk() (map[string]interface{}, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *BaseErrorResponse) HasData() bool {
-	if o != nil && !IsNil(o.Data) {
+	if o != nil && IsNil(o.Data) {
 		return true
 	}
 
@@ -118,7 +119,7 @@ func (o BaseErrorResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Header) {
 		toSerialize["header"] = o.Header
 	}
-	if !IsNil(o.Data) {
+	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	return toSerialize, nil

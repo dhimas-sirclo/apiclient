@@ -19,6 +19,8 @@ tags:
 - name: Order
 - name: Interaction
 - name: Finance
+- name: Campaign
+- name: Bundle
 paths:
   /token:
     post:
@@ -441,7 +443,7 @@ paths:
       tags:
       - Product
   /inventory/v1/fs/{fs_id}/stock/update:
-    get:
+    post:
       description: This endpoint used for update product stock. You can update up
         to 100 products or SKUs in a single request to this endpoint.
       operationId: updateStock
@@ -853,7 +855,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/triggerWebhook_default_response'
+                $ref: '#/components/schemas/BaseErrorResponse'
           description: OK
           headers:
             X-Ratelimit-Limit:
@@ -891,7 +893,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/triggerWebhook_default_response'
+                $ref: '#/components/schemas/triggerWebhook_200_response'
           description: OK
           headers:
             X-Ratelimit-Limit:
@@ -991,7 +993,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getListMessage_default_response'
+                $ref: '#/components/schemas/BaseErrorResponse'
           description: Error
           headers:
             X-Ratelimit-Limit:
@@ -1029,7 +1031,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/getListMessage_default_response'
+                $ref: '#/components/schemas/getListMessage_200_response'
           description: OK
           headers:
             X-Ratelimit-Limit:
@@ -1126,6 +1128,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/getListReply_200_response'
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
       tags:
       - Interaction
   /v1/chat/fs/{fs_id}/initiate:
@@ -1159,6 +1193,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/initiateChat_200_response'
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
       tags:
       - Interaction
   /v1/chat/fs/{fs_id}/messages/{msg_id}/reply:
@@ -1198,6 +1264,38 @@ paths:
               schema:
                 $ref: '#/components/schemas/sendReply_200_response'
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
       tags:
       - Interaction
   /v1/fs/{fs_id}/shop/{shop_id}/saldo-history:
@@ -1281,8 +1379,514 @@ paths:
               schema:
                 $ref: '#/components/schemas/getSaldoHistory_200_response'
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
       tags:
       - Finance
+  /v1/products/bundle/fs/{fs_id}/list:
+    get:
+      description: Get Bundle List
+      operationId: getBundleList
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          Filter type of bundle list: * 1 - SINGLE * 2 - MULTIPLE
+        explode: true
+        in: query
+        name: type
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          Filter status of bundle list: * 1 = ACTIVE * 2 = UPCOMING * -5 = CANCELED fill with 0 or keep it empty to show all bundle list status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: For pagination purpose. Fill with 0 or keep it empty to show
+          all bundle list
+        explode: true
+        in: query
+        name: last_group_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getBundleList_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Campaign
+      - Bundle
+  /v1/products/bundle/fs/{fs_id}/info:
+    get:
+      description: This endpoint is used to get bundle info using either the bundle_id
+        or product_id.
+      operationId: getBundleInfo
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          Bundle IDs, could add more than one. Example: 4360,4361
+        explode: true
+        in: query
+        name: bundle_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: The product unique identifier that associated with the bundle
+        explode: true
+        in: query
+        name: product_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getBundleInfo_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Campaign
+      - Bundle
+  /v1/products/bundle/fs/{fs_id}/edit:
+    patch:
+      description: This endpoint is used to cancel the bundle.
+      operationId: cancelBundle
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cancelBundle_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/cancelBundle_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Campaign
+      - Bundle
+  /v1/products/bundle/fs/{fs_id}/create:
+    post:
+      description: This endpoint is used to create a bundle.
+      operationId: createBundle
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createBundle_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createBundle_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Campaign
+      - Bundle
 components:
   parameters:
     fs_id:
@@ -1336,6 +1940,25 @@ components:
         type: integer
       style: simple
   schemas:
+    ResponseHeader:
+      example:
+        reason: reason
+        messages: messages
+        error_code: error_code
+        process_time: 0.8008281904610115
+      properties:
+        process_time:
+          format: double
+          type: number
+        messages:
+          type: string
+        reason:
+          type: string
+        error_code:
+          description: |
+            Error codes: * BDL_DLV_001 - Invalid request body, please check again - Invalid request body, please check again * BDL_DLV_002 - Invalid field %s format, value %v should be %s - Invalid params, please check again * BDL_DLV_013 - Filter type must be 1 or 2 and cannot be empty - Invalid filter value, please check again * BDL_USC_001 - FS ID is not associated with Shop ID or Warehouse ID - fs_id is not associated, please check again * BDL_USC_002 - Shop Info not found - Shop information cannot be found * BDL_USC_003 - Too many or too few bundle items given for this type of bundle - The number of bundle item is not right for this type of bundle * BDL_USC_004 - 2 or more same products in bundle - Multiple bundle must consist of minimum two different products * BDL_USC_005 - Different products in single bundle - Single bundle only accept same products * BDL_USC_006 - Please use different min order for each bundle item - Please use different min order * BDL_USC_007 - Min Order of single type bundle must be greater than 1 - Please set the minimum order more than 1 * BDL_USC_009 - Bundle item price must be lower than its original price - Please set the bundle item price lower than the original price * BDL_USC_010 - Bundle item stock cannot be empty - Please add the bundle item stock * BDL_USC_012 - One of the product variant is invalid - There is invalid product variant on the bundle * CMP_DLV_001 - Invalid field %s format, value %v should be %s - There is invalid request format * CMP_DLV_002 - Product IDs must be numeric and comma separated - Invalid Product IDs format, please kindly check * CMP_DLV_003 - Value of field %s exceed limit %s=%d - There is invalid request format * CMP_DLV_004 - product_id cannot be empty - Product ID is empty, please kindly check * CMP_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * CMP_GRPC_003 - Data Not Found - Data not found from upstream * CMP_GRPC_004 - Failed Marshalling JSON - Failed processing request to upstream * CMP_GRPC_005 - Failed Unmarshal JSON - Failed processing response from upstream * CMP_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated * CMP_USC_002 - Some Product ID Is Not Own By Current Shop ID - Some Product ID is not owned by current Shop ID * CMP_USC_003 - Invalid Product ID Format - Invalid Product ID format, please kindly check * ETS_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated, please kindly check * ORD_API_001 - Failed To Initialize Request - Failed sending request to upstream * ORD_API_003 - Failed To Fetching Request - Failed fetching response from upstream * ORD_API_004 - Failed To Reading Response Body - Failed processing response from upstream * ORD_API_005 - Failed To Parsing Json Response - Failed processing response from upstream * ORD_API_006 - There Are Error From Ext Service - Failed getting response from upstream * ORD_API_008 - Data Not Found - Order data not found * ORD_API_009 - Error Data Order Too Big, Must Reduce Time Interval - Response is too large, please reduce the time interval * ORD_API_010 - Partial Fulfillment Quantity must be lower than ordered - POF request quantity must be lower than initial order quantity * ORD_API_011 - Partial Fulfillment Request have been made before - POF request has already been made * ORD_API_012 - Order Bundle is not eligible for partial order fulfillment - POF is not eligible with bundling * ORD_API_013 - There's no change in the product quantity for partial order fulfillment - POF request quantity is the same as initial order quantity * ORD_API_016 - FS ID not authorized to reject cancel request - FS ID is not eligible to reject the buyer request cancellation * ORD_DLV_001 - fs_id cannot be empty - fs_id field is empty, please check again * ORD_DLV_002 - invalid fs_id format - Invalid fs_id format, please check again * ORD_DLV_003 - error order id and invoice no is empty - Both Order ID and Invoice Number is empty * ORD_DLV_004 - error must choose either order id or invoice no as parameter - Please choose either Order ID or Invoice Number to be filled * ORD_DLV_005 - invalid order_id format - Invalid order_id format, please check again * ORD_DLV_006 - invalid shop_id format - Invalid shop_id format, please check again * ORD_DLV_007 - invalid warehouse_id format - Invalid warehouse_id format, please check again * ORD_DLV_008 - please choose one between shop id or warehouse id - Please choose either Shop ID or Warehouse ID to be filled * ORD_DLV_009 - from_date cannot be empty - from_date is empty, please check again * ORD_DLV_010 - invalid from_date format - Invalid from_date format, please check again * ORD_DLV_011 - to_date cannot be empty - to_date is empty, please check again * ORD_DLV_012 - invalid to_date format - Invalid to_date format, please check again * ORD_DLV_013 - Date Range must be less than %d days * ORD_DLV_014 - page cannot be empty - page is empty, please check again * ORD_DLV_015 - invalid page format - Invalid page format, please check again * ORD_DLV_016 - per_page cannot be empty - per_page is empty, please check again * ORD_DLV_017 - invalid per_page format - Invalid per_page format, please check again * ORD_DLV_018 - invalid status format - Invalid status format, please check again * ORD_DLV_019 - failed read body request - Failed read body request, please check again * ORD_DLV_020 - wrong json format - Wrong JSON body format, please check again * ORD_DLV_021 - shipping ref number cannot be empty for confirm shipping - Shipping Ref Number is empty and is needed for confirm shipping, please check again * ORD_DLV_022 - Shop ID cannot be empty for set delivered - Shop ID is empty and is needed for set delivered, please check again * ORD_DLV_023 - order status is not supported - Order Status is not supported * ORD_DLV_025 - invalid next_order_id format - Invalid next_order_id format, please check again * ORD_DLV_028 - invalid order_type param value - Invalid order_type param value, please check again * ORD_DLV_029 - invalid order_type param format - Invalid order_type format, please check again * ORD_USC_001 - Order Status not eligible to accept - Order status is not eligible to be changed to accept * ORD_USC_002 - Order ID is not fulfillment * ORD_USC_003 - Order ID from warehouse id is not authenticate - Order ID is not associated with Warehouse ID * ORD_USC_004 - Order ID need to be fulfilled by toko cabang * ORD_USC_005 - Order ID from shop id is not authenticate - Order ID is not associated with Shop ID * ORD_USC_006 - Admin ID Not Found From Shop ID * ORD_USC_007 - Error When Request Accept Order To Ext Service - Failed getting response from upstream * ORD_USC_008 - Order Status not eligible to reject - Order status it not eligible to changed to reject * ORD_USC_009 - Mandatory To Fill Reason - It is required to fill reject reason * ORD_USC_010 - Failed Getting Products - Failed getting product information * ORD_USC_011 - No Matching product id * ORD_USC_012 - Mandatory To Fill Shop Close End Date and Note - It is required to fill shop close end date and note * ORD_USC_013 - Shop Close End Date Present But Invalid - Invalid shop close end date value * ORD_USC_014 - Error When Request Reject Order To Ext Service - Failed getting response from upstream * ORD_USC_015 - FS ID Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated with Shop ID or Warehouse ID * ORD_USC_016 - Order ID Status Must Be 500 (In Shipping Process) to Update Into Set Delivered * ORD_USC_018 - Order ID from warehouse id is not authenticate - Order ID is not associated with Warehouse ID * ORD_USC_019 - Order need to get request cancellation first from buyer * ORD_USC_020 - You are not allowed to reject this order * ORD_USC_024 - FS ID not associated with Shop ID - FS ID is not associated with Shop ID * PRD_API_001 - Failed To Initialize Request - Failed initialize request to upstream * PRD_API_003 - Failed To Fetching Request - Failed fetching request from upstream * PRD_API_004 - Failed To Reading Response Body - Error on processing data * PRD_API_005 - Failed To Parsing Json Response - Error on processing data * PRD_API_006 - There Are Error From Ext Service - There is error from external service * PRD_API_007 - Failed Marshalling JSON - Error on processing data * PRD_CACHE_001 - Failed retrieve new upload id - Error on processing data * PRD_CACHE_002 - Failed Marshall Cache Key Value - Error on processing data * PRD_CACHE_003 - Failed To Make Cache - Error on processing data * PRD_CACHE_005 - Data Not Found - Error on processing data * PRD_CACHE_006 - Failed to retrieve cache data - Error on processing data * PRD_CACHE_007 - Failed Unmarshal cache response - Error on processing data * PRD_DB_001 - Failed To Query DB Data - Failed getting data from database * PRD_DB_002 - Failed To Scan DB Data - Failed getting data from database * PRD_DB_003 - Data Not Found - Failed getting data from database * PRD_DLV_001 - fs_id cannot be empty - fs_id field is empty, please check again * PRD_DLV_002 - invalid fs_id format - fs_id is in the wrong format, please check again * PRD_DLV_003 - invalid shop_id format - shop_id is in the wrong format, please check again * PRD_DLV_005 - page cannot be empty when shop_id or warehouse_id is filled - fs_id is in the wrong format, please check * PRD_DLV_015 - failed read body request - Failed reading the body request * PRD_DLV_016 - shop_id cannot be empty - shop_id field is empty, please check again * PRD_DLV_018 - Max allowed products per-update are %d products - The request has exceed the max allowed product price edit per request * PRD_DLV_019 - invalid warehouse_id format - warehouse_id is in the wrong format, please check again * PRD_DLV_038 - Value %s of field %s is not allowed, the allowed fields are %s - There is something wrong with the request body * PRD_DLV_042 - Invalid field %s format, value %v should be %s - There is something wrong with the request body * PRD_DLV_043 - Invalid request body, please check again - There is something wrong with the request body * PRD_DLV_052 - warehouse_id cannot be empty - warehouse_id is empty, please check again * PRD_DLV_055 - warehouse_id is not eligible to perform this operation - warehouse_id is not eligible, please check again * PRD_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * PRD_GRPC_002 - There Are Error From Ext Service - Failed getting response from upstream * PRD_GRPC_003 - Data Not Found - Product not found * PRD_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - fs_id not associated, please check again * PRD_USC_008 - Mandatory To Fill Warehouse ID - warehouse_id is empty, please check again * PRD_USC_009 - Warehouse is not owned by toko cabang * PRD_USC_010 - Warehouse is owned by toko cabang * PRD_USC_011 - Partner ID not found - Failed to get Partner ID * PRD_USC_012 - Shop ID Not Match - Shop ID did not match with warehouse data * PRD_USC_013 - FS Type cannot use warehouse - Failed to precess data * PRD_USC_015 - Failed Epoch converter today - Error on processing data * PRD_USC_021 - Warehouse Data Not Found - Warehouse ID not found * PRD_USC_024 - Error Convert number format into string - Failed getting response from upstream * PRD_USC_025 - Shop ID is not associated with upload id - Shop ID not associated, please check again * PRD_USC_027 - Invalid action parameter value - invalid action value, please check again * PRD_USC_028 - Product Status Not In Active or Warehouse. Edit Process Canceled - Unable to edit product because the status is not active or warehouse * PRD_USC_029 - Warehouse ID Information Not Found - Failed to get warehouse information * RBAC_MDLW_001 - FS ID is not associated with Shop ID or Warehouse ID - fs_id not assosiated, please check again * RBAC_MDLW_002 - This shop owner has not given permission for your app to use this API on the shop - Application does not have shop permission * RBAC_USC_008 - App is not associated with shop - Application not assosiated, please check again * RBAC_USC_012 - This shop owner has not given permission for your app to use this API on the shop - Application does not have shop permission * SHP_API_003 - Failed To Fetching Request - Failed fetching response from upstream * SHP_DLV_001 - FS ID is not valid - Invalid FS ID, please kindly check * SHP_DLV_002 - Shop ID is not valid - Invalid Shop ID, please kindly check * SHP_DLV_003 - Page format is not valid - Invalid Page format, please kindly check * SHP_DLV_004 - Per Page format is not valid - Invalid Per Page format, please kindly check * SHP_DLV_005 - Date format is not valid - Invalid Date format, please kindly check * SHP_DLV_007 - Date Range must be less than %d days - Invalid Date Range value, please kindly check * SHP_DLV_008 - failed read body request - Failed read body request, please kindly check * SHP_DLV_009 - invalid hide_zero format - Invalid hide_zero format, please kindly check * SHP_DLV_010 - page_count value exceed limit - Invalid page_count value, please kindly check * SHP_DLV_011 - invalid display value - Invalid display value, please kindly check * SHP_DLV_012 - fs_id cannot be empty - fs_id is empty, please kindly check * SHP_DLV_013 - shop_id cannot be empty - shop_id is empty, please kindly check * SHP_DLV_014 - invalid page_count format - invalid page_count format, please kindly check * PRD_DLV_045 - Field %s should not be empty, please fill the empty field - Please check the request params again * SHP_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * SHP_GRPC_002 - There Are Error From Ext Service - Failed getting response from upstream * SHP_GRPC_003 - Data Not Found - Failed finding data from upstream * SHP_USC_001 - FS ID is not associated with Shop ID - FS ID is not connected with the Shop ID, please kindly check * SHP_USC_002 - Shop Owner is not found - Shop owner info not found, please kindly check * SHP_USC_004 - Shop information is empty - Failed getting shop info, please kindly check * SPE_DLV_001 - fs_id cannot be empty - FS ID is empty * SPE_DLV_005 - Invalid field %s format, value %v should be %s - Invalid field format, please kindly check * SPE_DLV_006 - Invalid request body, please check again - Invalid request body, please kindly check * SPE_DLV_007 - Value of field %s exceed limit %s=%d - Invalid field value, please kindly check * SPE_DLV_008 - Value %s of field %s is not allowed, the allowed fields are %s - Invalid field value, please kindly check * SPE_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * SPE_GRPC_003 - Data Not Found - Data not found * SPE_GRPC_004 - Failed Marshalling JSON - Failed processing request to upstream * SPE_GRPC_005 - Failed Unmarshal JSON - Failed processing response from upstream * SPE_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated, please kindly check * SPE_USC_002 - Product ID does not belong to Shop ID or Warehouse ID - Product ID is not associated, please kindly check * SPE_USC_003 - Warehouse ID Information Not Found - Warehouse information not found, please kindly check * SPE_USC_004 - Cannot View Slash Price Information Parent Product Variant * VRT_DLV_001 - fs_id cannot be empty - There is invalid request params * VRT_DLV_002 - invalid fs_id format - There is invalid request params * VRT_DLV_004 - Invalid cat_id format - There is invalid request params * VRT_DLV_005 - invalid product_id format - There is invalid request params * VRT_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - fs_id not associated, please check again * VRT_USC_002 - Category ID Not Found - Category ID not found, please check again
+          type: string
+      type: object
     ProductStatusCode:
       description: |
         Product status code: * -2 - Banned * -1 - Pending * 0 - Deleted * 1 - Active * 3 - Inactive (Warehouse)
@@ -1627,7 +2250,7 @@ components:
       description: "This notification will be trigger when using Edit Product V2.0.[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product]"
       properties:
         header:
-          $ref: '#/components/schemas/WebhookErrorProductEdit_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/WebhookErrorProductEdit_data'
       type: object
@@ -1854,37 +2477,19 @@ components:
           example: Bearer
           type: string
       type: object
-    Header:
-      properties:
-        process_time:
-          example: 5.871520385
-          format: double
-          type: number
-        messages:
-          example: Your request has been processed successfully
-          type: string
-      type: object
-    ErrorHeader:
-      allOf:
-      - $ref: '#/components/schemas/Header'
-      - properties:
-          reason:
-            example: Error Convert number format into string
-            type: string
-          error_code:
-            $ref: '#/components/schemas/ErrorCodes'
-        type: object
     BaseErrorResponse:
       properties:
         header:
-          $ref: '#/components/schemas/ErrorHeader'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
+          additionalProperties: true
+          nullable: true
           type: object
       type: object
     BaseResponse:
       properties:
         header:
-          $ref: '#/components/schemas/Header'
+          $ref: '#/components/schemas/ResponseHeader'
       type: object
     ProductBasic:
       properties:
@@ -2560,11 +3165,13 @@ components:
             new_stock: 5
             message: message
         header:
+          reason: reason
           messages: messages
+          error_code: error_code
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/UpdateStockResponse_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/UpdateStockResponse_data'
       type: object
@@ -2681,25 +3288,6 @@ components:
           items:
             type: string
           type: array
-      type: object
-    getOrderWebhook_200_response_header:
-      example:
-        reason: reason
-        messages: messages
-        error_code: error_code
-        process_time: 0.8008281904610115
-      properties:
-        process_time:
-          format: double
-          type: number
-        messages:
-          type: string
-        reason:
-          type: string
-        error_code:
-          description: |
-            Error codes: * BDL_DLV_001 - Invalid request body, please check again - Invalid request body, please check again * BDL_DLV_002 - Invalid field %s format, value %v should be %s - Invalid params, please check again * BDL_DLV_013 - Filter type must be 1 or 2 and cannot be empty - Invalid filter value, please check again * BDL_USC_001 - FS ID is not associated with Shop ID or Warehouse ID - fs_id is not associated, please check again * BDL_USC_002 - Shop Info not found - Shop information cannot be found * BDL_USC_003 - Too many or too few bundle items given for this type of bundle - The number of bundle item is not right for this type of bundle * BDL_USC_004 - 2 or more same products in bundle - Multiple bundle must consist of minimum two different products * BDL_USC_005 - Different products in single bundle - Single bundle only accept same products * BDL_USC_006 - Please use different min order for each bundle item - Please use different min order * BDL_USC_007 - Min Order of single type bundle must be greater than 1 - Please set the minimum order more than 1 * BDL_USC_009 - Bundle item price must be lower than its original price - Please set the bundle item price lower than the original price * BDL_USC_010 - Bundle item stock cannot be empty - Please add the bundle item stock * BDL_USC_012 - One of the product variant is invalid - There is invalid product variant on the bundle * CMP_DLV_001 - Invalid field %s format, value %v should be %s - There is invalid request format * CMP_DLV_002 - Product IDs must be numeric and comma separated - Invalid Product IDs format, please kindly check * CMP_DLV_003 - Value of field %s exceed limit %s=%d - There is invalid request format * CMP_DLV_004 - product_id cannot be empty - Product ID is empty, please kindly check * CMP_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * CMP_GRPC_003 - Data Not Found - Data not found from upstream * CMP_GRPC_004 - Failed Marshalling JSON - Failed processing request to upstream * CMP_GRPC_005 - Failed Unmarshal JSON - Failed processing response from upstream * CMP_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated * CMP_USC_002 - Some Product ID Is Not Own By Current Shop ID - Some Product ID is not owned by current Shop ID * CMP_USC_003 - Invalid Product ID Format - Invalid Product ID format, please kindly check * ETS_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated, please kindly check * ORD_API_001 - Failed To Initialize Request - Failed sending request to upstream * ORD_API_003 - Failed To Fetching Request - Failed fetching response from upstream * ORD_API_004 - Failed To Reading Response Body - Failed processing response from upstream * ORD_API_005 - Failed To Parsing Json Response - Failed processing response from upstream * ORD_API_006 - There Are Error From Ext Service - Failed getting response from upstream * ORD_API_008 - Data Not Found - Order data not found * ORD_API_009 - Error Data Order Too Big, Must Reduce Time Interval - Response is too large, please reduce the time interval * ORD_API_010 - Partial Fulfillment Quantity must be lower than ordered - POF request quantity must be lower than initial order quantity * ORD_API_011 - Partial Fulfillment Request have been made before - POF request has already been made * ORD_API_012 - Order Bundle is not eligible for partial order fulfillment - POF is not eligible with bundling * ORD_API_013 - There's no change in the product quantity for partial order fulfillment - POF request quantity is the same as initial order quantity * ORD_API_016 - FS ID not authorized to reject cancel request - FS ID is not eligible to reject the buyer request cancellation * ORD_DLV_001 - fs_id cannot be empty - fs_id field is empty, please check again * ORD_DLV_002 - invalid fs_id format - Invalid fs_id format, please check again * ORD_DLV_003 - error order id and invoice no is empty - Both Order ID and Invoice Number is empty * ORD_DLV_004 - error must choose either order id or invoice no as parameter - Please choose either Order ID or Invoice Number to be filled * ORD_DLV_005 - invalid order_id format - Invalid order_id format, please check again * ORD_DLV_006 - invalid shop_id format - Invalid shop_id format, please check again * ORD_DLV_007 - invalid warehouse_id format - Invalid warehouse_id format, please check again * ORD_DLV_008 - please choose one between shop id or warehouse id - Please choose either Shop ID or Warehouse ID to be filled * ORD_DLV_009 - from_date cannot be empty - from_date is empty, please check again * ORD_DLV_010 - invalid from_date format - Invalid from_date format, please check again * ORD_DLV_011 - to_date cannot be empty - to_date is empty, please check again * ORD_DLV_012 - invalid to_date format - Invalid to_date format, please check again * ORD_DLV_013 - Date Range must be less than %d days * ORD_DLV_014 - page cannot be empty - page is empty, please check again * ORD_DLV_015 - invalid page format - Invalid page format, please check again * ORD_DLV_016 - per_page cannot be empty - per_page is empty, please check again * ORD_DLV_017 - invalid per_page format - Invalid per_page format, please check again * ORD_DLV_018 - invalid status format - Invalid status format, please check again * ORD_DLV_019 - failed read body request - Failed read body request, please check again * ORD_DLV_020 - wrong json format - Wrong JSON body format, please check again * ORD_DLV_021 - shipping ref number cannot be empty for confirm shipping - Shipping Ref Number is empty and is needed for confirm shipping, please check again * ORD_DLV_022 - Shop ID cannot be empty for set delivered - Shop ID is empty and is needed for set delivered, please check again * ORD_DLV_023 - order status is not supported - Order Status is not supported * ORD_DLV_025 - invalid next_order_id format - Invalid next_order_id format, please check again * ORD_DLV_028 - invalid order_type param value - Invalid order_type param value, please check again * ORD_DLV_029 - invalid order_type param format - Invalid order_type format, please check again * ORD_USC_001 - Order Status not eligible to accept - Order status is not eligible to be changed to accept * ORD_USC_002 - Order ID is not fulfillment * ORD_USC_003 - Order ID from warehouse id is not authenticate - Order ID is not associated with Warehouse ID * ORD_USC_004 - Order ID need to be fulfilled by toko cabang * ORD_USC_005 - Order ID from shop id is not authenticate - Order ID is not associated with Shop ID * ORD_USC_006 - Admin ID Not Found From Shop ID * ORD_USC_007 - Error When Request Accept Order To Ext Service - Failed getting response from upstream * ORD_USC_008 - Order Status not eligible to reject - Order status it not eligible to changed to reject * ORD_USC_009 - Mandatory To Fill Reason - It is required to fill reject reason * ORD_USC_010 - Failed Getting Products - Failed getting product information * ORD_USC_011 - No Matching product id * ORD_USC_012 - Mandatory To Fill Shop Close End Date and Note - It is required to fill shop close end date and note * ORD_USC_013 - Shop Close End Date Present But Invalid - Invalid shop close end date value * ORD_USC_014 - Error When Request Reject Order To Ext Service - Failed getting response from upstream * ORD_USC_015 - FS ID Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated with Shop ID or Warehouse ID * ORD_USC_016 - Order ID Status Must Be 500 (In Shipping Process) to Update Into Set Delivered * ORD_USC_018 - Order ID from warehouse id is not authenticate - Order ID is not associated with Warehouse ID * ORD_USC_019 - Order need to get request cancellation first from buyer * ORD_USC_020 - You are not allowed to reject this order * ORD_USC_024 - FS ID not associated with Shop ID - FS ID is not associated with Shop ID * PRD_API_001 - Failed To Initialize Request - Failed initialize request to upstream * PRD_API_003 - Failed To Fetching Request - Failed fetching request from upstream * PRD_API_004 - Failed To Reading Response Body - Error on processing data * PRD_API_005 - Failed To Parsing Json Response - Error on processing data * PRD_API_006 - There Are Error From Ext Service - There is error from external service * PRD_API_007 - Failed Marshalling JSON - Error on processing data * PRD_CACHE_001 - Failed retrieve new upload id - Error on processing data * PRD_CACHE_002 - Failed Marshall Cache Key Value - Error on processing data * PRD_CACHE_003 - Failed To Make Cache - Error on processing data * PRD_CACHE_005 - Data Not Found - Error on processing data * PRD_CACHE_006 - Failed to retrieve cache data - Error on processing data * PRD_CACHE_007 - Failed Unmarshal cache response - Error on processing data * PRD_DB_001 - Failed To Query DB Data - Failed getting data from database * PRD_DB_002 - Failed To Scan DB Data - Failed getting data from database * PRD_DB_003 - Data Not Found - Failed getting data from database * PRD_DLV_001 - fs_id cannot be empty - fs_id field is empty, please check again * PRD_DLV_002 - invalid fs_id format - fs_id is in the wrong format, please check again * PRD_DLV_003 - invalid shop_id format - shop_id is in the wrong format, please check again * PRD_DLV_005 - page cannot be empty when shop_id or warehouse_id is filled - fs_id is in the wrong format, please check * PRD_DLV_015 - failed read body request - Failed reading the body request * PRD_DLV_016 - shop_id cannot be empty - shop_id field is empty, please check again * PRD_DLV_018 - Max allowed products per-update are %d products - The request has exceed the max allowed product price edit per request * PRD_DLV_019 - invalid warehouse_id format - warehouse_id is in the wrong format, please check again * PRD_DLV_038 - Value %s of field %s is not allowed, the allowed fields are %s - There is something wrong with the request body * PRD_DLV_042 - Invalid field %s format, value %v should be %s - There is something wrong with the request body * PRD_DLV_043 - Invalid request body, please check again - There is something wrong with the request body * PRD_DLV_052 - warehouse_id cannot be empty - warehouse_id is empty, please check again * PRD_DLV_055 - warehouse_id is not eligible to perform this operation - warehouse_id is not eligible, please check again * PRD_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * PRD_GRPC_002 - There Are Error From Ext Service - Failed getting response from upstream * PRD_GRPC_003 - Data Not Found - Product not found * PRD_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - fs_id not associated, please check again * PRD_USC_008 - Mandatory To Fill Warehouse ID - warehouse_id is empty, please check again * PRD_USC_009 - Warehouse is not owned by toko cabang * PRD_USC_010 - Warehouse is owned by toko cabang * PRD_USC_011 - Partner ID not found - Failed to get Partner ID * PRD_USC_012 - Shop ID Not Match - Shop ID did not match with warehouse data * PRD_USC_013 - FS Type cannot use warehouse - Failed to precess data * PRD_USC_015 - Failed Epoch converter today - Error on processing data * PRD_USC_021 - Warehouse Data Not Found - Warehouse ID not found * PRD_USC_024 - Error Convert number format into string - Failed getting response from upstream * PRD_USC_025 - Shop ID is not associated with upload id - Shop ID not associated, please check again * PRD_USC_027 - Invalid action parameter value - invalid action value, please check again * PRD_USC_028 - Product Status Not In Active or Warehouse. Edit Process Canceled - Unable to edit product because the status is not active or warehouse * PRD_USC_029 - Warehouse ID Information Not Found - Failed to get warehouse information * RBAC_MDLW_001 - FS ID is not associated with Shop ID or Warehouse ID - fs_id not assosiated, please check again * RBAC_MDLW_002 - This shop owner has not given permission for your app to use this API on the shop - Application does not have shop permission * RBAC_USC_008 - App is not associated with shop - Application not assosiated, please check again * RBAC_USC_012 - This shop owner has not given permission for your app to use this API on the shop - Application does not have shop permission * SHP_API_003 - Failed To Fetching Request - Failed fetching response from upstream * SHP_DLV_001 - FS ID is not valid - Invalid FS ID, please kindly check * SHP_DLV_002 - Shop ID is not valid - Invalid Shop ID, please kindly check * SHP_DLV_003 - Page format is not valid - Invalid Page format, please kindly check * SHP_DLV_004 - Per Page format is not valid - Invalid Per Page format, please kindly check * SHP_DLV_005 - Date format is not valid - Invalid Date format, please kindly check * SHP_DLV_007 - Date Range must be less than %d days - Invalid Date Range value, please kindly check * SHP_DLV_008 - failed read body request - Failed read body request, please kindly check * SHP_DLV_009 - invalid hide_zero format - Invalid hide_zero format, please kindly check * SHP_DLV_010 - page_count value exceed limit - Invalid page_count value, please kindly check * SHP_DLV_011 - invalid display value - Invalid display value, please kindly check * SHP_DLV_012 - fs_id cannot be empty - fs_id is empty, please kindly check * SHP_DLV_013 - shop_id cannot be empty - shop_id is empty, please kindly check * SHP_DLV_014 - invalid page_count format - invalid page_count format, please kindly check * PRD_DLV_045 - Field %s should not be empty, please fill the empty field - Please check the request params again * SHP_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * SHP_GRPC_002 - There Are Error From Ext Service - Failed getting response from upstream * SHP_GRPC_003 - Data Not Found - Failed finding data from upstream * SHP_USC_001 - FS ID is not associated with Shop ID - FS ID is not connected with the Shop ID, please kindly check * SHP_USC_002 - Shop Owner is not found - Shop owner info not found, please kindly check * SHP_USC_004 - Shop information is empty - Failed getting shop info, please kindly check * SPE_DLV_001 - fs_id cannot be empty - FS ID is empty * SPE_DLV_005 - Invalid field %s format, value %v should be %s - Invalid field format, please kindly check * SPE_DLV_006 - Invalid request body, please check again - Invalid request body, please kindly check * SPE_DLV_007 - Value of field %s exceed limit %s=%d - Invalid field value, please kindly check * SPE_DLV_008 - Value %s of field %s is not allowed, the allowed fields are %s - Invalid field value, please kindly check * SPE_GRPC_001 - Failed Send GRPC Request - Failed sending request to upstream * SPE_GRPC_003 - Data Not Found - Data not found * SPE_GRPC_004 - Failed Marshalling JSON - Failed processing request to upstream * SPE_GRPC_005 - Failed Unmarshal JSON - Failed processing response from upstream * SPE_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - FS ID is not associated, please kindly check * SPE_USC_002 - Product ID does not belong to Shop ID or Warehouse ID - Product ID is not associated, please kindly check * SPE_USC_003 - Warehouse ID Information Not Found - Warehouse information not found, please kindly check * SPE_USC_004 - Cannot View Slash Price Information Parent Product Variant * VRT_DLV_001 - fs_id cannot be empty - There is invalid request params * VRT_DLV_002 - invalid fs_id format - There is invalid request params * VRT_DLV_004 - Invalid cat_id format - There is invalid request params * VRT_DLV_005 - invalid product_id format - There is invalid request params * VRT_USC_001 - fs_id Is Not Associated With Shop ID or Warehouse ID - fs_id not associated, please check again * VRT_USC_002 - Category ID Not Found - Category ID not found, please check again
-          type: string
       type: object
     getOrderWebhook_200_response_data_oneOf_product_details_inner:
       properties:
@@ -2928,7 +3516,7 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/getOrderWebhook_200_response_data'
       type: object
@@ -2952,7 +3540,7 @@ components:
       - type
       - url
       type: object
-    triggerWebhook_default_response:
+    triggerWebhook_200_response:
       example:
         data: data
         header:
@@ -2962,12 +3550,12 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           nullable: true
           type: string
       type: object
-    getListMessage_default_response_data_inner_attributes_contact_attributes:
+    getListMessage_200_response_data_inner_attributes_contact_attributes:
       example:
         thumbnail: thumbnail
         tag: tag
@@ -2983,7 +3571,7 @@ components:
           description: User thumbnail
           type: string
       type: object
-    getListMessage_default_response_data_inner_attributes_contact:
+    getListMessage_200_response_data_inner_attributes_contact:
       example:
         role: User
         attributes:
@@ -3006,9 +3594,9 @@ components:
           - Tokopedia Admin
           type: string
         attributes:
-          $ref: '#/components/schemas/getListMessage_default_response_data_inner_attributes_contact_attributes'
+          $ref: '#/components/schemas/getListMessage_200_response_data_inner_attributes_contact_attributes'
       type: object
-    getListMessage_default_response_data_inner_attributes:
+    getListMessage_200_response_data_inner_attributes:
       example:
         unreads: 5
         last_reply_msg: last_reply_msg
@@ -3024,7 +3612,7 @@ components:
         pin_status: 2
       properties:
         contact:
-          $ref: '#/components/schemas/getListMessage_default_response_data_inner_attributes_contact'
+          $ref: '#/components/schemas/getListMessage_200_response_data_inner_attributes_contact'
         last_reply_msg:
           description: Last Reply Message
           type: string
@@ -3048,7 +3636,7 @@ components:
           format: int64
           type: integer
       type: object
-    getListMessage_default_response_data_inner:
+    getListMessage_200_response_data_inner:
       example:
         attributes:
           unreads: 5
@@ -3075,9 +3663,9 @@ components:
           format: int64
           type: integer
         attributes:
-          $ref: '#/components/schemas/getListMessage_default_response_data_inner_attributes'
+          $ref: '#/components/schemas/getListMessage_200_response_data_inner_attributes'
       type: object
-    getListMessage_default_response:
+    getListMessage_200_response:
       example:
         data:
         - attributes:
@@ -3117,10 +3705,10 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           items:
-            $ref: '#/components/schemas/getListMessage_default_response_data_inner'
+            $ref: '#/components/schemas/getListMessage_200_response_data_inner'
           nullable: true
           type: array
       type: object
@@ -3223,7 +3811,7 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           items:
             $ref: '#/components/schemas/getListReply_200_response_data_inner'
@@ -3321,7 +3909,7 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/initiateChat_200_response_data'
       type: object
@@ -3482,7 +4070,7 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/sendReply_200_response_data'
       type: object
@@ -3597,9 +4185,1828 @@ components:
           process_time: 0.8008281904610115
       properties:
         header:
-          $ref: '#/components/schemas/getOrderWebhook_200_response_header'
+          $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/getSaldoHistory_200_response_data'
+      type: object
+    getBundleList_200_response_data_bundle_list_info_inner_bundle_list_item_inner:
+      example:
+        product_url: product_url
+        quantity: 4
+        bundle_id: 9
+        product_id: 3
+        discount_percentage: 1
+        min_order: 1
+        pic_url: pic_url
+        child_ids:
+        - 7
+        - 7
+        Name: Name
+        status: 2
+      properties:
+        bundle_id:
+          format: int64
+          type: integer
+        product_id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        pic_url:
+          type: string
+        product_url:
+          type: string
+        status:
+          format: int64
+          type: integer
+        quantity:
+          format: int64
+          type: integer
+        child_ids:
+          items:
+            format: int64
+            type: integer
+          type: array
+        discount_percentage:
+          format: int64
+          type: integer
+        min_order:
+          format: int64
+          type: integer
+      type: object
+    getBundleList_200_response_data_bundle_list_info_inner:
+      example:
+        shop_id: 5
+        sold: 1
+        Type: 1
+        group_id: 0
+        bundle_id: 6
+        stop_time_unix: 7
+        bundle_list_item:
+        - product_url: product_url
+          quantity: 4
+          bundle_id: 9
+          product_id: 3
+          discount_percentage: 1
+          min_order: 1
+          pic_url: pic_url
+          child_ids:
+          - 7
+          - 7
+          Name: Name
+          status: 2
+        - product_url: product_url
+          quantity: 4
+          bundle_id: 9
+          product_id: 3
+          discount_percentage: 1
+          min_order: 1
+          pic_url: pic_url
+          child_ids:
+          - 7
+          - 7
+          Name: Name
+          status: 2
+        total_bundle_group: 6
+        start_time_unix: 2
+        Name: Name
+        status: 5
+      properties:
+        group_id:
+          format: int64
+          type: integer
+        bundle_id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        Type:
+          format: int64
+          type: integer
+        status:
+          format: int64
+          type: integer
+        shop_id:
+          format: int64
+          type: integer
+        start_time_unix:
+          format: int64
+          type: integer
+        stop_time_unix:
+          format: int64
+          type: integer
+        bundle_list_item:
+          items:
+            $ref: '#/components/schemas/getBundleList_200_response_data_bundle_list_info_inner_bundle_list_item_inner'
+          type: array
+        sold:
+          format: int64
+          type: integer
+        total_bundle_group:
+          format: int64
+          type: integer
+      type: object
+    getBundleList_200_response_data:
+      example:
+        last_group_id: 7
+        is_last_page: true
+        bundle_list_info:
+        - shop_id: 5
+          sold: 1
+          Type: 1
+          group_id: 0
+          bundle_id: 6
+          stop_time_unix: 7
+          bundle_list_item:
+          - product_url: product_url
+            quantity: 4
+            bundle_id: 9
+            product_id: 3
+            discount_percentage: 1
+            min_order: 1
+            pic_url: pic_url
+            child_ids:
+            - 7
+            - 7
+            Name: Name
+            status: 2
+          - product_url: product_url
+            quantity: 4
+            bundle_id: 9
+            product_id: 3
+            discount_percentage: 1
+            min_order: 1
+            pic_url: pic_url
+            child_ids:
+            - 7
+            - 7
+            Name: Name
+            status: 2
+          total_bundle_group: 6
+          start_time_unix: 2
+          Name: Name
+          status: 5
+        - shop_id: 5
+          sold: 1
+          Type: 1
+          group_id: 0
+          bundle_id: 6
+          stop_time_unix: 7
+          bundle_list_item:
+          - product_url: product_url
+            quantity: 4
+            bundle_id: 9
+            product_id: 3
+            discount_percentage: 1
+            min_order: 1
+            pic_url: pic_url
+            child_ids:
+            - 7
+            - 7
+            Name: Name
+            status: 2
+          - product_url: product_url
+            quantity: 4
+            bundle_id: 9
+            product_id: 3
+            discount_percentage: 1
+            min_order: 1
+            pic_url: pic_url
+            child_ids:
+            - 7
+            - 7
+            Name: Name
+            status: 2
+          total_bundle_group: 6
+          start_time_unix: 2
+          Name: Name
+          status: 5
+      properties:
+        bundle_list_info:
+          items:
+            $ref: '#/components/schemas/getBundleList_200_response_data_bundle_list_info_inner'
+          type: array
+        is_last_page:
+          type: boolean
+        last_group_id:
+          format: int64
+          type: integer
+      type: object
+    getBundleList_200_response:
+      example:
+        data:
+          last_group_id: 7
+          is_last_page: true
+          bundle_list_info:
+          - shop_id: 5
+            sold: 1
+            Type: 1
+            group_id: 0
+            bundle_id: 6
+            stop_time_unix: 7
+            bundle_list_item:
+            - product_url: product_url
+              quantity: 4
+              bundle_id: 9
+              product_id: 3
+              discount_percentage: 1
+              min_order: 1
+              pic_url: pic_url
+              child_ids:
+              - 7
+              - 7
+              Name: Name
+              status: 2
+            - product_url: product_url
+              quantity: 4
+              bundle_id: 9
+              product_id: 3
+              discount_percentage: 1
+              min_order: 1
+              pic_url: pic_url
+              child_ids:
+              - 7
+              - 7
+              Name: Name
+              status: 2
+            total_bundle_group: 6
+            start_time_unix: 2
+            Name: Name
+            status: 5
+          - shop_id: 5
+            sold: 1
+            Type: 1
+            group_id: 0
+            bundle_id: 6
+            stop_time_unix: 7
+            bundle_list_item:
+            - product_url: product_url
+              quantity: 4
+              bundle_id: 9
+              product_id: 3
+              discount_percentage: 1
+              min_order: 1
+              pic_url: pic_url
+              child_ids:
+              - 7
+              - 7
+              Name: Name
+              status: 2
+            - product_url: product_url
+              quantity: 4
+              bundle_id: 9
+              product_id: 3
+              discount_percentage: 1
+              min_order: 1
+              pic_url: pic_url
+              child_ids:
+              - 7
+              - 7
+              Name: Name
+              status: 2
+            total_bundle_group: 6
+            start_time_unix: 2
+            Name: Name
+            status: 5
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getBundleList_200_response_data'
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner_option_inner_picture:
+      example:
+        file_path: file_path
+        file_name: file_name
+        url200: url200
+        url100: url100
+        url: url
+      properties:
+        file_name:
+          type: string
+        file_path:
+          type: string
+        url:
+          type: string
+        url100:
+          type: string
+        url200:
+          type: string
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner_option_inner:
+      example:
+        unit_value_id: 1
+        hex: hex
+        product_variant_option_id: 1
+        value: value
+        picture:
+          file_path: file_path
+          file_name: file_name
+          url200: url200
+          url100: url100
+          url: url
+      properties:
+        product_variant_option_id:
+          format: int64
+          type: integer
+        unit_value_id:
+          format: int64
+          type: integer
+        value:
+          type: string
+        hex:
+          type: string
+        picture:
+          $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner_option_inner_picture'
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner:
+      example:
+        identifier: identifier
+        variant_id: 4
+        variant_unit_id: 7
+        position: 1
+        product_variant_id: 2
+        option:
+        - unit_value_id: 1
+          hex: hex
+          product_variant_option_id: 1
+          value: value
+          picture:
+            file_path: file_path
+            file_name: file_name
+            url200: url200
+            url100: url100
+            url: url
+        - unit_value_id: 1
+          hex: hex
+          product_variant_option_id: 1
+          value: value
+          picture:
+            file_path: file_path
+            file_name: file_name
+            url200: url200
+            url100: url100
+            url: url
+        Name: Name
+      properties:
+        product_variant_id:
+          format: int64
+          type: integer
+        variant_id:
+          format: int64
+          type: integer
+        variant_unit_id:
+          format: int64
+          type: integer
+        position:
+          format: int64
+          type: integer
+        option:
+          items:
+            $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner_option_inner'
+          type: array
+        Name:
+          type: string
+        identifier:
+          type: string
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_child_inner:
+      example:
+        original_price: 4
+        is_buyable: true
+        product_id: 6
+        option_id:
+        - 9
+        - 9
+        min_order: 7
+        pic_url: pic_url
+        stock: 5
+        bundle_price: 1
+        Name: Name
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        pic_url:
+          type: string
+        min_order:
+          format: int64
+          type: integer
+        bundle_price:
+          format: int64
+          type: integer
+        original_price:
+          format: int64
+          type: integer
+        stock:
+          format: int64
+          type: integer
+        option_id:
+          items:
+            format: int64
+            type: integer
+          type: array
+        is_buyable:
+          type: boolean
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner:
+      example:
+        original_price: 6
+        selection:
+        - identifier: identifier
+          variant_id: 4
+          variant_unit_id: 7
+          position: 1
+          product_variant_id: 2
+          option:
+          - unit_value_id: 1
+            hex: hex
+            product_variant_option_id: 1
+            value: value
+            picture:
+              file_path: file_path
+              file_name: file_name
+              url200: url200
+              url100: url100
+              url: url
+          - unit_value_id: 1
+            hex: hex
+            product_variant_option_id: 1
+            value: value
+            picture:
+              file_path: file_path
+              file_name: file_name
+              url200: url200
+              url100: url100
+              url: url
+          Name: Name
+        - identifier: identifier
+          variant_id: 4
+          variant_unit_id: 7
+          position: 1
+          product_variant_id: 2
+          option:
+          - unit_value_id: 1
+            hex: hex
+            product_variant_option_id: 1
+            value: value
+            picture:
+              file_path: file_path
+              file_name: file_name
+              url200: url200
+              url100: url100
+              url: url
+          - unit_value_id: 1
+            hex: hex
+            product_variant_option_id: 1
+            value: value
+            picture:
+              file_path: file_path
+              file_name: file_name
+              url200: url200
+              url100: url100
+              url: url
+          Name: Name
+        product_id: 9
+        product_status: product_status
+        min_order: 9
+        pic_url: pic_url
+        stock: 8
+        bundle_price: 9
+        Name: Name
+        status: 3
+        child:
+        - original_price: 4
+          is_buyable: true
+          product_id: 6
+          option_id:
+          - 9
+          - 9
+          min_order: 7
+          pic_url: pic_url
+          stock: 5
+          bundle_price: 1
+          Name: Name
+        - original_price: 4
+          is_buyable: true
+          product_id: 6
+          option_id:
+          - 9
+          - 9
+          min_order: 7
+          pic_url: pic_url
+          stock: 5
+          bundle_price: 1
+          Name: Name
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        pic_url:
+          type: string
+        status:
+          format: int64
+          type: integer
+        selection:
+          items:
+            $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner'
+          type: array
+        child:
+          items:
+            $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_child_inner'
+          type: array
+        bundle_price:
+          format: int64
+          type: integer
+        original_price:
+          format: int64
+          type: integer
+        stock:
+          format: int64
+          type: integer
+        min_order:
+          format: int64
+          type: integer
+        product_status:
+          type: string
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner_preorder:
+      example:
+        start_time: start_time
+        status_num: 2
+        process_type_num: 6
+        end_time: end_time
+        process_type: process_type
+        process_day: 6
+        order_limit: 6
+        max_order: 5
+        process_time: 3
+        status: status
+      properties:
+        status:
+          type: string
+        status_num:
+          format: int64
+          type: integer
+        process_type:
+          type: string
+        process_type_num:
+          format: int64
+          type: integer
+        start_time:
+          type: string
+        end_time:
+          type: string
+        order_limit:
+          format: int64
+          type: integer
+        max_order:
+          format: int64
+          type: integer
+        process_day:
+          format: int64
+          type: integer
+        process_time:
+          format: int64
+          type: integer
+      type: object
+    getBundleInfo_200_response_data_bundle_info_inner:
+      example:
+        original_quota: 6
+        Name: Name
+        shop_id: 5
+        bundle_item:
+        - original_price: 6
+          selection:
+          - identifier: identifier
+            variant_id: 4
+            variant_unit_id: 7
+            position: 1
+            product_variant_id: 2
+            option:
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            Name: Name
+          - identifier: identifier
+            variant_id: 4
+            variant_unit_id: 7
+            position: 1
+            product_variant_id: 2
+            option:
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            Name: Name
+          product_id: 9
+          product_status: product_status
+          min_order: 9
+          pic_url: pic_url
+          stock: 8
+          bundle_price: 9
+          Name: Name
+          status: 3
+          child:
+          - original_price: 4
+            is_buyable: true
+            product_id: 6
+            option_id:
+            - 9
+            - 9
+            min_order: 7
+            pic_url: pic_url
+            stock: 5
+            bundle_price: 1
+            Name: Name
+          - original_price: 4
+            is_buyable: true
+            product_id: 6
+            option_id:
+            - 9
+            - 9
+            min_order: 7
+            pic_url: pic_url
+            stock: 5
+            bundle_price: 1
+            Name: Name
+        - original_price: 6
+          selection:
+          - identifier: identifier
+            variant_id: 4
+            variant_unit_id: 7
+            position: 1
+            product_variant_id: 2
+            option:
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            Name: Name
+          - identifier: identifier
+            variant_id: 4
+            variant_unit_id: 7
+            position: 1
+            product_variant_id: 2
+            option:
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            - unit_value_id: 1
+              hex: hex
+              product_variant_option_id: 1
+              value: value
+              picture:
+                file_path: file_path
+                file_name: file_name
+                url200: url200
+                url100: url100
+                url: url
+            Name: Name
+          product_id: 9
+          product_status: product_status
+          min_order: 9
+          pic_url: pic_url
+          stock: 8
+          bundle_price: 9
+          Name: Name
+          status: 3
+          child:
+          - original_price: 4
+            is_buyable: true
+            product_id: 6
+            option_id:
+            - 9
+            - 9
+            min_order: 7
+            pic_url: pic_url
+            stock: 5
+            bundle_price: 1
+            Name: Name
+          - original_price: 4
+            is_buyable: true
+            product_id: 6
+            option_id:
+            - 9
+            - 9
+            min_order: 7
+            pic_url: pic_url
+            stock: 5
+            bundle_price: 1
+            Name: Name
+        Type: 1
+        group_id: 6
+        bundle_id: 0
+        quota: 3
+        stop_time_unix: 7
+        max_order: 1
+        start_time_unix: 2
+        preorder:
+          start_time: start_time
+          status_num: 2
+          process_type_num: 6
+          end_time: end_time
+          process_type: process_type
+          process_day: 6
+          order_limit: 6
+          max_order: 5
+          process_time: 3
+          status: status
+        status: 5
+        warehouse_id: 6
+      properties:
+        bundle_id:
+          format: int64
+          type: integer
+        group_id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        Type:
+          format: int64
+          type: integer
+        status:
+          format: int64
+          type: integer
+        shop_id:
+          format: int64
+          type: integer
+        start_time_unix:
+          format: int64
+          type: integer
+        stop_time_unix:
+          format: int64
+          type: integer
+        bundle_item:
+          items:
+            $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner'
+          type: array
+        warehouse_id:
+          format: int64
+          type: integer
+        quota:
+          format: int64
+          type: integer
+        original_quota:
+          format: int64
+          type: integer
+        max_order:
+          format: int64
+          type: integer
+        preorder:
+          $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_preorder'
+      type: object
+    getBundleInfo_200_response_data:
+      example:
+        bundle_info:
+        - original_quota: 6
+          Name: Name
+          shop_id: 5
+          bundle_item:
+          - original_price: 6
+            selection:
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            product_id: 9
+            product_status: product_status
+            min_order: 9
+            pic_url: pic_url
+            stock: 8
+            bundle_price: 9
+            Name: Name
+            status: 3
+            child:
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+          - original_price: 6
+            selection:
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            product_id: 9
+            product_status: product_status
+            min_order: 9
+            pic_url: pic_url
+            stock: 8
+            bundle_price: 9
+            Name: Name
+            status: 3
+            child:
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+          Type: 1
+          group_id: 6
+          bundle_id: 0
+          quota: 3
+          stop_time_unix: 7
+          max_order: 1
+          start_time_unix: 2
+          preorder:
+            start_time: start_time
+            status_num: 2
+            process_type_num: 6
+            end_time: end_time
+            process_type: process_type
+            process_day: 6
+            order_limit: 6
+            max_order: 5
+            process_time: 3
+            status: status
+          status: 5
+          warehouse_id: 6
+        - original_quota: 6
+          Name: Name
+          shop_id: 5
+          bundle_item:
+          - original_price: 6
+            selection:
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            product_id: 9
+            product_status: product_status
+            min_order: 9
+            pic_url: pic_url
+            stock: 8
+            bundle_price: 9
+            Name: Name
+            status: 3
+            child:
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+          - original_price: 6
+            selection:
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            - identifier: identifier
+              variant_id: 4
+              variant_unit_id: 7
+              position: 1
+              product_variant_id: 2
+              option:
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              - unit_value_id: 1
+                hex: hex
+                product_variant_option_id: 1
+                value: value
+                picture:
+                  file_path: file_path
+                  file_name: file_name
+                  url200: url200
+                  url100: url100
+                  url: url
+              Name: Name
+            product_id: 9
+            product_status: product_status
+            min_order: 9
+            pic_url: pic_url
+            stock: 8
+            bundle_price: 9
+            Name: Name
+            status: 3
+            child:
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+            - original_price: 4
+              is_buyable: true
+              product_id: 6
+              option_id:
+              - 9
+              - 9
+              min_order: 7
+              pic_url: pic_url
+              stock: 5
+              bundle_price: 1
+              Name: Name
+          Type: 1
+          group_id: 6
+          bundle_id: 0
+          quota: 3
+          stop_time_unix: 7
+          max_order: 1
+          start_time_unix: 2
+          preorder:
+            start_time: start_time
+            status_num: 2
+            process_type_num: 6
+            end_time: end_time
+            process_type: process_type
+            process_day: 6
+            order_limit: 6
+            max_order: 5
+            process_time: 3
+            status: status
+          status: 5
+          warehouse_id: 6
+        error:
+          key: ""
+      properties:
+        bundle_info:
+          items:
+            $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner'
+          type: array
+        error:
+          additionalProperties: true
+          nullable: true
+          type: object
+      type: object
+    getBundleInfo_200_response:
+      example:
+        data:
+          bundle_info:
+          - original_quota: 6
+            Name: Name
+            shop_id: 5
+            bundle_item:
+            - original_price: 6
+              selection:
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              product_id: 9
+              product_status: product_status
+              min_order: 9
+              pic_url: pic_url
+              stock: 8
+              bundle_price: 9
+              Name: Name
+              status: 3
+              child:
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+            - original_price: 6
+              selection:
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              product_id: 9
+              product_status: product_status
+              min_order: 9
+              pic_url: pic_url
+              stock: 8
+              bundle_price: 9
+              Name: Name
+              status: 3
+              child:
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+            Type: 1
+            group_id: 6
+            bundle_id: 0
+            quota: 3
+            stop_time_unix: 7
+            max_order: 1
+            start_time_unix: 2
+            preorder:
+              start_time: start_time
+              status_num: 2
+              process_type_num: 6
+              end_time: end_time
+              process_type: process_type
+              process_day: 6
+              order_limit: 6
+              max_order: 5
+              process_time: 3
+              status: status
+            status: 5
+            warehouse_id: 6
+          - original_quota: 6
+            Name: Name
+            shop_id: 5
+            bundle_item:
+            - original_price: 6
+              selection:
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              product_id: 9
+              product_status: product_status
+              min_order: 9
+              pic_url: pic_url
+              stock: 8
+              bundle_price: 9
+              Name: Name
+              status: 3
+              child:
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+            - original_price: 6
+              selection:
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              - identifier: identifier
+                variant_id: 4
+                variant_unit_id: 7
+                position: 1
+                product_variant_id: 2
+                option:
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                - unit_value_id: 1
+                  hex: hex
+                  product_variant_option_id: 1
+                  value: value
+                  picture:
+                    file_path: file_path
+                    file_name: file_name
+                    url200: url200
+                    url100: url100
+                    url: url
+                Name: Name
+              product_id: 9
+              product_status: product_status
+              min_order: 9
+              pic_url: pic_url
+              stock: 8
+              bundle_price: 9
+              Name: Name
+              status: 3
+              child:
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+              - original_price: 4
+                is_buyable: true
+                product_id: 6
+                option_id:
+                - 9
+                - 9
+                min_order: 7
+                pic_url: pic_url
+                stock: 5
+                bundle_price: 1
+                Name: Name
+            Type: 1
+            group_id: 6
+            bundle_id: 0
+            quota: 3
+            stop_time_unix: 7
+            max_order: 1
+            start_time_unix: 2
+            preorder:
+              start_time: start_time
+              status_num: 2
+              process_type_num: 6
+              end_time: end_time
+              process_type: process_type
+              process_day: 6
+              order_limit: 6
+              max_order: 5
+              process_time: 3
+              status: status
+            status: 5
+            warehouse_id: 6
+          error:
+            key: ""
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getBundleInfo_200_response_data'
+      type: object
+    cancelBundle_request:
+      description: Bundle object to create
+      properties:
+        bundle_id:
+          description: Bundle unique identifier
+          format: int64
+          type: integer
+      required:
+      - bundle_id
+      type: object
+    cancelBundle_200_response_data:
+      example:
+        bundle_id: 0
+      properties:
+        bundle_id:
+          format: int64
+          type: integer
+      type: object
+    cancelBundle_200_response:
+      example:
+        data:
+          bundle_id: 0
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/cancelBundle_200_response_data'
+      type: object
+    createBundle_request_bundle_bundle_items_inner_children:
+      description: The variant of the product. It has product_id and bundle_price
+      properties:
+        variant_id:
+          format: int64
+          type: integer
+        variant_price:
+          format: int64
+          type: integer
+      required:
+      - variant_id
+      - variant_price
+      type: object
+    createBundle_request_bundle_bundle_items_inner:
+      properties:
+        product_id:
+          description: Product unique identifier to include in the bundle
+          format: int64
+          type: integer
+        status:
+          description: Status of the product where 1 is SHOWN and 2 is UNSHOWN
+          format: int64
+          type: integer
+        bundle_price:
+          description: The product’s price in this bundle
+          format: int64
+          type: integer
+        min_order:
+          description: Minimum order for this product. Used for PAKET DISKON type
+            bundle.
+          format: int64
+          type: integer
+        children:
+          $ref: '#/components/schemas/createBundle_request_bundle_bundle_items_inner_children'
+      required:
+      - bundle_price
+      - product_id
+      - status
+      type: object
+    createBundle_request_bundle:
+      description: Bundle object to create
+      properties:
+        bundle_name:
+          description: Name of the bundle with length less than or equals 15 characters
+            and greater than or equals 3 characters
+          type: string
+        bundle_type:
+          description: "Type of the bundle where 1 is PAKET DISKON and 2 is BUNDLING\
+            \ , refers to Seller Education"
+          format: int64
+          type: integer
+        bundle_status:
+          description: Status of the bundle where `1 is ACTIVE
+          format: int64
+          type: integer
+        start_time_unix:
+          description: Start time of bundle in UNIX format must be greater than the
+            current time
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse unique identifier
+          items:
+            format: int64
+            type: integer
+          type: array
+        max_order:
+          description: Maximum bundle package in one order
+          format: int64
+          type: integer
+        stop_time_unix:
+          description: Stop time of bundle in UNIX format must be greater than start
+            time. Set to 0 for making a bundle with no time limit / until product
+            stock is 0
+          format: int64
+          type: integer
+        original_quota:
+          description: Original quota for bundle
+          format: int64
+          type: integer
+        bundle_items:
+          description: List of products in this bundle
+          items:
+            $ref: '#/components/schemas/createBundle_request_bundle_bundle_items_inner'
+          type: array
+      required:
+      - bundle_items
+      - bundle_name
+      - bundle_status
+      - bundle_type
+      - start_time_unix
+      - warehouse_id
+      type: object
+    createBundle_request:
+      properties:
+        bundle:
+          $ref: '#/components/schemas/createBundle_request_bundle'
+      required:
+      - bundle
+      type: object
+    createBundle_200_response_data:
+      example:
+        bundle_ids:
+        - 0
+        - 0
+      properties:
+        bundle_ids:
+          items:
+            format: int64
+            type: integer
+          type: array
+      type: object
+    createBundle_200_response:
+      example:
+        data:
+          bundle_ids:
+          - 0
+          - 0
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/createBundle_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:
@@ -4091,14 +6498,6 @@ components:
           format: int64
           type: integer
       type: object
-    WebhookErrorProductEdit_header:
-      properties:
-        process_time:
-          format: int64
-          type: integer
-        messages:
-          type: string
-      type: object
     WebhookErrorProductEdit_data_failed_rows_data_inner:
       properties:
         product_id:
@@ -4188,17 +6587,6 @@ components:
           format: int64
           type: integer
         message:
-          type: string
-      type: object
-    UpdateStockResponse_header:
-      example:
-        messages: messages
-        process_time: 0.8008281904610115
-      properties:
-        process_time:
-          format: double
-          type: number
-        messages:
           type: string
       type: object
     UpdateStockResponse_data_failed_rows_data_inner:

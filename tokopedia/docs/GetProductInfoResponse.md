@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | Pointer to [**Header**](Header.md) |  | [optional] 
+**Header** | Pointer to [**ResponseHeader**](ResponseHeader.md) |  | [optional] 
 **Data** | Pointer to [**[]Product**](Product.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHeader
 
-`func (o *GetProductInfoResponse) GetHeader() Header`
+`func (o *GetProductInfoResponse) GetHeader() ResponseHeader`
 
 GetHeader returns the Header field if non-nil, zero value otherwise.
 
 ### GetHeaderOk
 
-`func (o *GetProductInfoResponse) GetHeaderOk() (*Header, bool)`
+`func (o *GetProductInfoResponse) GetHeaderOk() (*ResponseHeader, bool)`
 
 GetHeaderOk returns a tuple with the Header field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeader
 
-`func (o *GetProductInfoResponse) SetHeader(v Header)`
+`func (o *GetProductInfoResponse) SetHeader(v ResponseHeader)`
 
 SetHeader sets Header field to given value.
 

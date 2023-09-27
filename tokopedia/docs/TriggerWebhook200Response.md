@@ -1,0 +1,92 @@
+# TriggerWebhook200Response
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Header** | Pointer to [**ResponseHeader**](ResponseHeader.md) |  | [optional] 
+**Data** | Pointer to **NullableString** |  | [optional] 
+
+## Methods
+
+### NewTriggerWebhook200Response
+
+`func NewTriggerWebhook200Response() *TriggerWebhook200Response`
+
+NewTriggerWebhook200Response instantiates a new TriggerWebhook200Response object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewTriggerWebhook200ResponseWithDefaults
+
+`func NewTriggerWebhook200ResponseWithDefaults() *TriggerWebhook200Response`
+
+NewTriggerWebhook200ResponseWithDefaults instantiates a new TriggerWebhook200Response object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetHeader
+
+`func (o *TriggerWebhook200Response) GetHeader() ResponseHeader`
+
+GetHeader returns the Header field if non-nil, zero value otherwise.
+
+### GetHeaderOk
+
+`func (o *TriggerWebhook200Response) GetHeaderOk() (*ResponseHeader, bool)`
+
+GetHeaderOk returns a tuple with the Header field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHeader
+
+`func (o *TriggerWebhook200Response) SetHeader(v ResponseHeader)`
+
+SetHeader sets Header field to given value.
+
+### HasHeader
+
+`func (o *TriggerWebhook200Response) HasHeader() bool`
+
+HasHeader returns a boolean if a field has been set.
+
+### GetData
+
+`func (o *TriggerWebhook200Response) GetData() string`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *TriggerWebhook200Response) GetDataOk() (*string, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *TriggerWebhook200Response) SetData(v string)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *TriggerWebhook200Response) HasData() bool`
+
+HasData returns a boolean if a field has been set.
+
+### SetDataNil
+
+`func (o *TriggerWebhook200Response) SetDataNil(b bool)`
+
+ SetDataNil sets the value for Data to be an explicit nil
+
+### UnsetData
+`func (o *TriggerWebhook200Response) UnsetData()`
+
+UnsetData ensures that no value is present for Data, not even an explicit nil
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

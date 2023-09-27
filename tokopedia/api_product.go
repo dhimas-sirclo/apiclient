@@ -871,7 +871,7 @@ func (a *ProductAPIService) UpdateStock(ctx context.Context, fsId int64) Product
 //  @return UpdateStockResponse
 func (a *ProductAPIService) UpdateStockExecute(r ProductAPIUpdateStockRequest) (*UpdateStockResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *UpdateStockResponse
@@ -970,7 +970,7 @@ func (a *ProductAPIService) UpdateStockExecute(r ProductAPIUpdateStockRequest) (
 //  @return UpdateStockResponse
 func (a *ProductAPIService) UpdateStockExecuteWithRetry(r ProductAPIUpdateStockRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *UpdateStockResponse

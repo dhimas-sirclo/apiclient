@@ -12,6 +12,18 @@ servers:
     description: Seller API
 components:
   schemas:
+    ResponseHeader:
+      type: object
+      properties:
+        process_time:
+          type: number
+          format: double
+        messages:
+          type: string
+        reason:
+          type: string
+        error_code:
+          $ref: "#/components/schemas/ErrorCodes"
     ProductStatusCode:
       type: integer
       format: int64
@@ -1004,13 +1016,7 @@ components:
       type: object
       properties:
         header:
-          type: object
-          properties:
-            process_time:
-              type: integer
-              format: int64
-            messages:
-              type: string
+          $ref: "#/components/schemas/ResponseHeader"
         data:
           type: object
           properties:
@@ -1305,38 +1311,20 @@ components:
         token_type:
           type: string
           example: "Bearer"
-    Header:
-      type: object
-      properties:
-        process_time:
-          type: number
-          format: double
-          example: 5.871520385
-        messages:
-          type: string
-          example: "Your request has been processed successfully"
-    ErrorHeader:
-      allOf:
-        - $ref: "#/components/schemas/Header"
-        - type: object
-          properties:
-            reason:
-              type: string
-              example: "Error Convert number format into string"
-            error_code:
-              $ref: "#/components/schemas/ErrorCodes"
     BaseErrorResponse:
       type: object
       properties:
         header:
-          $ref: "#/components/schemas/ErrorHeader"
+          $ref: "#/components/schemas/ResponseHeader"
         data:
           type: object
+          additionalProperties: true
+          nullable: true
     BaseResponse:
       type: object
       properties:
         header:
-          $ref: "#/components/schemas/Header"
+          $ref: "#/components/schemas/ResponseHeader"
     ProductBasic:
       type: object
       properties:
@@ -1993,13 +1981,7 @@ components:
       type: object
       properties:
         header:
-          type: object
-          properties:
-            process_time:
-              type: number
-              format: double
-            messages:
-              type: string
+          $ref: "#/components/schemas/ResponseHeader"
         data:
           type: object
           properties:
@@ -2175,7 +2157,7 @@ paths:
           schema:
             type: string
       responses:
-        "default":
+        default:
           description: Default error
           headers:
             X-Ratelimit-Limit:
@@ -2242,7 +2224,7 @@ paths:
             type: integer
             format: int64
       responses:
-        "default":
+        default:
           description: Default error
           headers:
             X-Ratelimit-Limit:
@@ -2302,7 +2284,7 @@ paths:
       operationId: getVariantsByProductId
       description: "This endpoint retrieves a list of variants related to a product_id."
       responses:
-        "default":
+        default:
           description: Default error
           headers:
             X-Ratelimit-Limit:
@@ -2355,7 +2337,7 @@ paths:
   /inventory/v1/fs/{fs_id}/stock/update:
     parameters:
       - $ref: "#/components/parameters/fs_id"
-    get:
+    post:
       operationId: updateStock
       tags:
         - Product
@@ -2385,7 +2367,7 @@ paths:
             schema:
               $ref: "#/components/schemas/BulkUpdateStockInput"
       responses:
-        "default":
+        default:
           description: Default error
           headers:
             X-Ratelimit-Limit:
@@ -2686,17 +2668,7 @@ paths:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     oneOf:
                       - type: object
@@ -2973,23 +2945,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
-                  data:
-                    type: string
-                    nullable: true
+                $ref: "#/components/schemas/BaseErrorResponse"
         "200":
           description: OK
           headers:
@@ -3017,17 +2973,7 @@ paths:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     type: string
                     nullable: true
@@ -3093,82 +3039,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
-                  data:
-                    type: array
-                    nullable: true
-                    items:
-                      type: object
-                      properties:
-                        message_key:
-                          type: string
-                          description: Message Key, Field messages_key is an identic key for related buyer and related seller that communicate at the chat.
-                        msg_id:
-                          type: integer
-                          format: int64
-                          description: Message Unique Identifier
-                        attributes:
-                          type: object
-                          properties:
-                            contact:
-                              type: object
-                              properties:
-                                id:
-                                  type: integer
-                                  format: int64
-                                  description: User Unique Identifier
-                                role:
-                                  type: string
-                                  description: User Role, Field role has User, Shop Owner, Shop Admin, and Tokopedia Admin.
-                                  enum:
-                                    - User
-                                    - Shop Owner
-                                    - Shop Admin
-                                    - Tokopedia Admin
-                                attributes:
-                                  type: object
-                                  properties:
-                                    Name:
-                                      type: string
-                                      description: User Name
-                                    tag:
-                                      type: string
-                                      description: User Tag
-                                    thumbnail:
-                                      type: string
-                                      description: User thumbnail
-                            last_reply_msg:
-                              type: string
-                              description: Last Reply Message
-                            last_reply_time:
-                              type: integer
-                              format: int64
-                              description: Last Reply Time in UNIX
-                            read_status:
-                              type: integer
-                              format: int64
-                              description: Read Status, Field read status is to identify that status = 1 is not read yet and status = 2 is already read.
-                            unreads:
-                              type: integer
-                              format: int64
-                              description: Unreads Count, Field unreads is the number of unread messages in the related message.
-                            pin_status:
-                              type: integer
-                              format: int64
-                              description: Pin Status, Field pin_status is for chat pinned or not, when pinned it is 1 and for not it is 0.
+                $ref: "#/components/schemas/BaseErrorResponse"
         "200":
           description: OK
           headers:
@@ -3196,17 +3067,7 @@ paths:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     type: array
                     nullable: true
@@ -3301,23 +3162,32 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     type: array
                     nullable: true
@@ -3383,23 +3253,32 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     type: object
                     nullable: true
@@ -3496,23 +3375,32 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     type: object
                     nullable: true
@@ -3601,23 +3489,32 @@ paths:
       responses:
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   header:
-                    type: object
-                    properties:
-                      process_time:
-                        type: number
-                        format: double
-                      messages:
-                        type: string
-                      reason:
-                        type: string
-                      error_code:
-                        $ref: "#/components/schemas/ErrorCodes"
+                    $ref: "#/components/schemas/ResponseHeader"
                   data:
                     type: object
                     nullable: true
@@ -3656,6 +3553,717 @@ paths:
                               format: int64
                             image:
                               type: string
+  /v1/products/bundle/fs/{fs_id}/list:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getBundleList
+      tags:
+        - Campaign
+        - Bundle
+      description: "Get Bundle List"
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: type
+          in: query
+          required: true
+          description: >
+            Filter type of bundle list:
+            * 1 - SINGLE
+            * 2 - MULTIPLE
+          schema:
+            type: integer
+            format: int64
+        - name: status
+          in: query
+          required: false
+          description: >
+            Filter status of bundle list:
+            * 1 = ACTIVE
+            * 2 = UPCOMING
+            * -5 = CANCELED
+            fill with 0 or keep it empty to show all bundle list status
+          schema:
+            type: integer
+            format: int64
+        - name: last_group_id
+          in: query
+          required: false
+          description: For pagination purpose. Fill with 0 or keep it empty to show all bundle list
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      bundle_list_info:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            group_id:
+                              type: integer
+                              format: int64
+                            bundle_id:
+                              type: integer
+                              format: int64
+                            Name:
+                              type: string
+                            Type:
+                              type: integer
+                              format: int64
+                            status:
+                              type: integer
+                              format: int64
+                            shop_id:
+                              type: integer
+                              format: int64
+                            start_time_unix:
+                              type: integer
+                              format: int64
+                            stop_time_unix:
+                              type: integer
+                              format: int64
+                            bundle_list_item:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  bundle_id:
+                                    type: integer
+                                    format: int64
+                                  product_id:
+                                    type: integer
+                                    format: int64
+                                  Name:
+                                    type: string
+                                  pic_url:
+                                    type: string
+                                  product_url:
+                                    type: string
+                                  status:
+                                    type: integer
+                                    format: int64
+                                  quantity:
+                                    type: integer
+                                    format: int64
+                                  child_ids:
+                                    type: array
+                                    items:
+                                      type: integer
+                                      format: int64
+                                  discount_percentage:
+                                    type: integer
+                                    format: int64
+                                  min_order:
+                                    type: integer
+                                    format: int64
+                            sold:
+                              type: integer
+                              format: int64
+                            total_bundle_group:
+                              type: integer
+                              format: int64
+                      is_last_page:
+                        type: boolean
+                      last_group_id:
+                        type: integer
+                        format: int64
+  /v1/products/bundle/fs/{fs_id}/info:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getBundleInfo
+      tags:
+        - Campaign
+        - Bundle
+      description: "This endpoint is used to get bundle info using either the bundle_id or product_id."
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: bundle_id
+          in: query
+          required: false
+          description: >
+            Bundle IDs, could add more than one. Example: 4360,4361
+          schema:
+            type: integer
+            format: int64
+        - name: product_id
+          in: query
+          required: false
+          description: The product unique identifier that associated with the bundle
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      bundle_info:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            bundle_id:
+                              type: integer
+                              format: int64
+                            group_id:
+                              type: integer
+                              format: int64
+                            Name:
+                              type: string
+                            Type:
+                              type: integer
+                              format: int64
+                            status:
+                              type: integer
+                              format: int64
+                            shop_id:
+                              type: integer
+                              format: int64
+                            start_time_unix:
+                              type: integer
+                              format: int64
+                            stop_time_unix:
+                              type: integer
+                              format: int64
+                            bundle_item:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  product_id:
+                                    type: integer
+                                    format: int64
+                                  Name:
+                                    type: string
+                                  pic_url:
+                                    type: string
+                                  status:
+                                    type: integer
+                                    format: int64
+                                  selection:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        product_variant_id:
+                                          type: integer
+                                          format: int64
+                                        variant_id:
+                                          type: integer
+                                          format: int64
+                                        variant_unit_id:
+                                          type: integer
+                                          format: int64
+                                        position:
+                                          type: integer
+                                          format: int64
+                                        option:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              product_variant_option_id:
+                                                type: integer
+                                                format: int64
+                                              unit_value_id:
+                                                type: integer
+                                                format: int64
+                                              value:
+                                                type: string
+                                              hex:
+                                                type: string
+                                              picture:
+                                                type: object
+                                                properties:
+                                                  file_name:
+                                                    type: string
+                                                  file_path:
+                                                    type: string
+                                                  url:
+                                                    type: string
+                                                  url100:
+                                                    type: string
+                                                  url200:
+                                                    type: string
+                                        Name:
+                                          type: string
+                                        identifier:
+                                          type: string
+                                  child:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        product_id:
+                                          type: integer
+                                          format: int64
+                                        Name:
+                                          type: string
+                                        pic_url:
+                                          type: string
+                                        min_order:
+                                          type: integer
+                                          format: int64
+                                        bundle_price:
+                                          type: integer
+                                          format: int64
+                                        original_price:
+                                          type: integer
+                                          format: int64
+                                        stock:
+                                          type: integer
+                                          format: int64
+                                        option_id:
+                                          type: array
+                                          items:
+                                            type: integer
+                                            format: int64
+                                        is_buyable:
+                                          type: boolean
+                                  bundle_price:
+                                    type: integer
+                                    format: int64
+                                  original_price:
+                                    type: integer
+                                    format: int64
+                                  stock:
+                                    type: integer
+                                    format: int64
+                                  min_order:
+                                    type: integer
+                                    format: int64
+                                  product_status:
+                                    type: string
+                            warehouse_id:
+                              type: integer
+                              format: int64
+                            quota:
+                              type: integer
+                              format: int64
+                            original_quota:
+                              type: integer
+                              format: int64
+                            max_order:
+                              type: integer
+                              format: int64
+                            preorder:
+                              type: object
+                              properties:
+                                status:
+                                  type: string
+                                status_num:
+                                  type: integer
+                                  format: int64
+                                process_type:
+                                  type: string
+                                process_type_num:
+                                  type: integer
+                                  format: int64
+                                start_time:
+                                  type: string
+                                end_time:
+                                  type: string
+                                order_limit:
+                                  type: integer
+                                  format: int64
+                                max_order:
+                                  type: integer
+                                  format: int64
+                                process_day:
+                                  type: integer
+                                  format: int64
+                                process_time:
+                                  type: integer
+                                  format: int64
+                      # ada di contoh payload, tapi tidak ada di dokumentasi
+                      error:
+                        type: object
+                        additionalProperties: true
+                        nullable: true
+  /v1/products/bundle/fs/{fs_id}/edit:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    patch:
+      operationId: cancelBundle
+      tags:
+        - Campaign
+        - Bundle
+      description: "This endpoint is used to cancel the bundle."
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Bundle object to create
+              required:
+                - bundle_id
+              properties:
+                bundle_id:
+                  type: integer
+                  format: int64
+                  description: Bundle unique identifier
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      bundle_id:
+                        type: integer
+                        format: int64
+  /v1/products/bundle/fs/{fs_id}/create:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: createBundle
+      tags:
+        - Campaign
+        - Bundle
+      description: "This endpoint is used to create a bundle."
+      parameters:
+        - name: shop_id
+          in: query
+          description: Shop unique identifier
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - bundle
+              properties:
+                bundle:
+                  description: Bundle object to create
+                  type: object
+                  required:
+                    - bundle_name
+                    - bundle_type
+                    - bundle_status
+                    - start_time_unix
+                    - warehouse_id
+                    - bundle_items
+                  properties:
+                    bundle_name:
+                      type: string
+                      description: Name of the bundle with length less than or equals 15 characters and greater than or equals 3 characters
+                    bundle_type:
+                      type: integer
+                      format: int64
+                      description: Type of the bundle where 1 is PAKET DISKON and 2 is BUNDLING , refers to Seller Education
+                    bundle_status:
+                      type: integer
+                      format: int64
+                      description: Status of the bundle where `1 is ACTIVE
+                    start_time_unix:
+                      type: integer
+                      format: int64
+                      description: Start time of bundle in UNIX format must be greater than the current time
+                    # NOTE: warehosue_id di dokumentasi bukan array, di contoh array
+                    warehouse_id:
+                      type: array
+                      description: Warehouse unique identifier
+                      items:
+                        type: integer
+                        format: int64
+                    max_order:
+                      type: integer
+                      format: int64
+                      description: Maximum bundle package in one order
+                    stop_time_unix:
+                      type: integer
+                      format: int64
+                      description: Stop time of bundle in UNIX format must be greater than start time. Set to 0 for making a bundle with no time limit / until product stock is 0
+                    original_quota:
+                      type: integer
+                      format: int64
+                      description: Original quota for bundle
+                    bundle_items:
+                      type: array
+                      description: List of products in this bundle
+                      items:
+                        type: object
+                        required:
+                          - product_id
+                          - status
+                          - bundle_price
+                        properties:
+                          product_id:
+                            type: integer
+                            format: int64
+                            description: Product unique identifier to include in the bundle
+                          status:
+                            type: integer
+                            format: int64
+                            description: Status of the product where 1 is SHOWN and 2 is UNSHOWN
+                          bundle_price:
+                            type: integer
+                            format: int64
+                            description: The product’s price in this bundle
+                          min_order:
+                            type: integer
+                            format: int64
+                            description: Minimum order for this product. Used for PAKET DISKON type bundle.
+                          children:
+                            type: object
+                            description: The variant of the product. It has product_id and bundle_price
+                            required:
+                              - variant_id
+                              - variant_price
+                            properties:
+                              variant_id:
+                                type: integer
+                                format: int64
+                              variant_price:
+                                type: integer
+                                format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      bundle_ids:
+                        type: array
+                        items:
+                          type: integer
+                          format: int64
 
 security:
   - bearer: []
@@ -3667,3 +4275,5 @@ tags:
   - name: Order
   - name: Interaction
   - name: Finance
+  - name: Campaign
+  - name: Bundle

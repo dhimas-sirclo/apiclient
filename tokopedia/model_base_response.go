@@ -20,7 +20,7 @@ var _ MappedNullable = &BaseResponse{}
 
 // BaseResponse struct for BaseResponse
 type BaseResponse struct {
-	Header *Header `json:"header,omitempty"`
+	Header *ResponseHeader `json:"header,omitempty"`
 }
 
 // NewBaseResponse instantiates a new BaseResponse object
@@ -41,9 +41,9 @@ func NewBaseResponseWithDefaults() *BaseResponse {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *BaseResponse) GetHeader() Header {
+func (o *BaseResponse) GetHeader() ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret Header
+		var ret ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -51,7 +51,7 @@ func (o *BaseResponse) GetHeader() Header {
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseResponse) GetHeaderOk() (*Header, bool) {
+func (o *BaseResponse) GetHeaderOk() (*ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *BaseResponse) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given Header and assigns it to the Header field.
-func (o *BaseResponse) SetHeader(v Header) {
+// SetHeader gets a reference to the given ResponseHeader and assigns it to the Header field.
+func (o *BaseResponse) SetHeader(v ResponseHeader) {
 	o.Header = &v
 }
 

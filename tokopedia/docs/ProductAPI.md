@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
-[**UpdateStock**](ProductAPI.md#UpdateStock) | **Get** /inventory/v1/fs/{fs_id}/stock/update | 
+[**UpdateStock**](ProductAPI.md#UpdateStock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 
 
 

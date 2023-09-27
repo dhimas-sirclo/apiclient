@@ -79,6 +79,14 @@ All URIs are relative to *https://fs.tokopedia.net*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AuthenticationAPI* | [**Authentication**](docs/AuthenticationAPI.md#authentication) | **Post** /token | 
+*BundleAPI* | [**CancelBundle**](docs/BundleAPI.md#cancelbundle) | **Patch** /v1/products/bundle/fs/{fs_id}/edit | 
+*BundleAPI* | [**CreateBundle**](docs/BundleAPI.md#createbundle) | **Post** /v1/products/bundle/fs/{fs_id}/create | 
+*BundleAPI* | [**GetBundleInfo**](docs/BundleAPI.md#getbundleinfo) | **Get** /v1/products/bundle/fs/{fs_id}/info | 
+*BundleAPI* | [**GetBundleList**](docs/BundleAPI.md#getbundlelist) | **Get** /v1/products/bundle/fs/{fs_id}/list | 
+*CampaignAPI* | [**CancelBundle**](docs/CampaignAPI.md#cancelbundle) | **Patch** /v1/products/bundle/fs/{fs_id}/edit | 
+*CampaignAPI* | [**CreateBundle**](docs/CampaignAPI.md#createbundle) | **Post** /v1/products/bundle/fs/{fs_id}/create | 
+*CampaignAPI* | [**GetBundleInfo**](docs/CampaignAPI.md#getbundleinfo) | **Get** /v1/products/bundle/fs/{fs_id}/info | 
+*CampaignAPI* | [**GetBundleList**](docs/CampaignAPI.md#getbundlelist) | **Get** /v1/products/bundle/fs/{fs_id}/list | 
 *FinanceAPI* | [**GetSaldoHistory**](docs/FinanceAPI.md#getsaldohistory) | **Get** /v1/fs/{fs_id}/shop/{shop_id}/saldo-history | 
 *InteractionAPI* | [**GetListMessage**](docs/InteractionAPI.md#getlistmessage) | **Get** /v1/chat/fs/{fs_id}/messages | 
 *InteractionAPI* | [**GetListReply**](docs/InteractionAPI.md#getlistreply) | **Get** /v1/chat/fs/{fs_id}/messages/{msg_id}/replies | 
@@ -89,7 +97,7 @@ Class | Method | HTTP request | Description
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
-*ProductAPI* | [**UpdateStock**](docs/ProductAPI.md#updatestock) | **Get** /inventory/v1/fs/{fs_id}/stock/update | 
+*ProductAPI* | [**UpdateStock**](docs/ProductAPI.md#updatestock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 *WebhookAPI* | [**GetOrderWebhook**](docs/WebhookAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
 *WebhookAPI* | [**GetRegisteredWebhooks**](docs/WebhookAPI.md#getregisteredwebhooks) | **Get** /v1/fs/{fs_id} | 
 *WebhookAPI* | [**RegisterWebhook**](docs/WebhookAPI.md#registerwebhook) | **Post** /v1/fs/{fs_id}/register | 
@@ -100,17 +108,38 @@ Class | Method | HTTP request | Description
 
  - [BaseErrorResponse](docs/BaseErrorResponse.md)
  - [BaseResponse](docs/BaseResponse.md)
+ - [CancelBundle200Response](docs/CancelBundle200Response.md)
+ - [CancelBundle200ResponseData](docs/CancelBundle200ResponseData.md)
+ - [CancelBundleRequest](docs/CancelBundleRequest.md)
  - [CategoryVariant](docs/CategoryVariant.md)
  - [CategoryVariantDetail](docs/CategoryVariantDetail.md)
  - [CategoryVariantUnit](docs/CategoryVariantUnit.md)
  - [CategoryVariantUnitValue](docs/CategoryVariantUnitValue.md)
  - [CategoryVariants](docs/CategoryVariants.md)
- - [ErrorHeader](docs/ErrorHeader.md)
- - [GetListMessageDefaultResponse](docs/GetListMessageDefaultResponse.md)
- - [GetListMessageDefaultResponseDataInner](docs/GetListMessageDefaultResponseDataInner.md)
- - [GetListMessageDefaultResponseDataInnerAttributes](docs/GetListMessageDefaultResponseDataInnerAttributes.md)
- - [GetListMessageDefaultResponseDataInnerAttributesContact](docs/GetListMessageDefaultResponseDataInnerAttributesContact.md)
- - [GetListMessageDefaultResponseDataInnerAttributesContactAttributes](docs/GetListMessageDefaultResponseDataInnerAttributesContactAttributes.md)
+ - [CreateBundle200Response](docs/CreateBundle200Response.md)
+ - [CreateBundle200ResponseData](docs/CreateBundle200ResponseData.md)
+ - [CreateBundleRequest](docs/CreateBundleRequest.md)
+ - [CreateBundleRequestBundle](docs/CreateBundleRequestBundle.md)
+ - [CreateBundleRequestBundleBundleItemsInner](docs/CreateBundleRequestBundleBundleItemsInner.md)
+ - [CreateBundleRequestBundleBundleItemsInnerChildren](docs/CreateBundleRequestBundleBundleItemsInnerChildren.md)
+ - [GetBundleInfo200Response](docs/GetBundleInfo200Response.md)
+ - [GetBundleInfo200ResponseData](docs/GetBundleInfo200ResponseData.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInner](docs/GetBundleInfo200ResponseDataBundleInfoInner.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner](docs/GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerChildInner](docs/GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerChildInner.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInner](docs/GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInner.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOptionInner](docs/GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOptionInner.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOptionInnerPicture](docs/GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOptionInnerPicture.md)
+ - [GetBundleInfo200ResponseDataBundleInfoInnerPreorder](docs/GetBundleInfo200ResponseDataBundleInfoInnerPreorder.md)
+ - [GetBundleList200Response](docs/GetBundleList200Response.md)
+ - [GetBundleList200ResponseData](docs/GetBundleList200ResponseData.md)
+ - [GetBundleList200ResponseDataBundleListInfoInner](docs/GetBundleList200ResponseDataBundleListInfoInner.md)
+ - [GetBundleList200ResponseDataBundleListInfoInnerBundleListItemInner](docs/GetBundleList200ResponseDataBundleListInfoInnerBundleListItemInner.md)
+ - [GetListMessage200Response](docs/GetListMessage200Response.md)
+ - [GetListMessage200ResponseDataInner](docs/GetListMessage200ResponseDataInner.md)
+ - [GetListMessage200ResponseDataInnerAttributes](docs/GetListMessage200ResponseDataInnerAttributes.md)
+ - [GetListMessage200ResponseDataInnerAttributesContact](docs/GetListMessage200ResponseDataInnerAttributesContact.md)
+ - [GetListMessage200ResponseDataInnerAttributesContactAttributes](docs/GetListMessage200ResponseDataInnerAttributesContactAttributes.md)
  - [GetListReply200Response](docs/GetListReply200Response.md)
  - [GetListReply200ResponseDataInner](docs/GetListReply200ResponseDataInner.md)
  - [GetOrderWebhook200Response](docs/GetOrderWebhook200Response.md)
@@ -125,7 +154,6 @@ Class | Method | HTTP request | Description
  - [GetOrderWebhook200ResponseDataOneOf1RecipientAddress](docs/GetOrderWebhook200ResponseDataOneOf1RecipientAddress.md)
  - [GetOrderWebhook200ResponseDataOneOf1VoucherInfo](docs/GetOrderWebhook200ResponseDataOneOf1VoucherInfo.md)
  - [GetOrderWebhook200ResponseDataOneOfProductDetailsInner](docs/GetOrderWebhook200ResponseDataOneOfProductDetailsInner.md)
- - [GetOrderWebhook200ResponseHeader](docs/GetOrderWebhook200ResponseHeader.md)
  - [GetProductInfoResponse](docs/GetProductInfoResponse.md)
  - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
  - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)
@@ -133,7 +161,6 @@ Class | Method | HTTP request | Description
  - [GetSaldoHistory200Response](docs/GetSaldoHistory200Response.md)
  - [GetSaldoHistory200ResponseData](docs/GetSaldoHistory200ResponseData.md)
  - [GetSaldoHistory200ResponseDataSaldoHistoryInner](docs/GetSaldoHistory200ResponseDataSaldoHistoryInner.md)
- - [Header](docs/Header.md)
  - [InitiateChat200Response](docs/InitiateChat200Response.md)
  - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
  - [InitiateChat200ResponseDataContact](docs/InitiateChat200ResponseDataContact.md)
@@ -161,6 +188,7 @@ Class | Method | HTTP request | Description
  - [ProductWholesalePrice](docs/ProductWholesalePrice.md)
  - [RegisterWebhookDefaultResponse](docs/RegisterWebhookDefaultResponse.md)
  - [RegisterWebhookRequest](docs/RegisterWebhookRequest.md)
+ - [ResponseHeader](docs/ResponseHeader.md)
  - [SendReply200Response](docs/SendReply200Response.md)
  - [SendReply200ResponseData](docs/SendReply200ResponseData.md)
  - [SendReply200ResponseDataAttachment](docs/SendReply200ResponseDataAttachment.md)
@@ -171,13 +199,12 @@ Class | Method | HTTP request | Description
  - [SendReplyRequestOneOf1](docs/SendReplyRequestOneOf1.md)
  - [SendReplyRequestOneOf1Payload](docs/SendReplyRequestOneOf1Payload.md)
  - [Token](docs/Token.md)
- - [TriggerWebhookDefaultResponse](docs/TriggerWebhookDefaultResponse.md)
+ - [TriggerWebhook200Response](docs/TriggerWebhook200Response.md)
  - [TriggerWebhookRequest](docs/TriggerWebhookRequest.md)
  - [UpdateStockInput](docs/UpdateStockInput.md)
  - [UpdateStockResponse](docs/UpdateStockResponse.md)
  - [UpdateStockResponseData](docs/UpdateStockResponseData.md)
  - [UpdateStockResponseDataFailedRowsDataInner](docs/UpdateStockResponseDataFailedRowsDataInner.md)
- - [UpdateStockResponseHeader](docs/UpdateStockResponseHeader.md)
  - [Variant](docs/Variant.md)
  - [VariantCampaign](docs/VariantCampaign.md)
  - [VariantChildren](docs/VariantChildren.md)
@@ -190,7 +217,6 @@ Class | Method | HTTP request | Description
  - [WebhookErrorProductEdit](docs/WebhookErrorProductEdit.md)
  - [WebhookErrorProductEditData](docs/WebhookErrorProductEditData.md)
  - [WebhookErrorProductEditDataFailedRowsDataInner](docs/WebhookErrorProductEditDataFailedRowsDataInner.md)
- - [WebhookErrorProductEditHeader](docs/WebhookErrorProductEditHeader.md)
  - [WebhookInactiveFlashSaleNotification](docs/WebhookInactiveFlashSaleNotification.md)
  - [WebhookInactiveSlashPriceNotification](docs/WebhookInactiveSlashPriceNotification.md)
  - [WebhookOrderNotification](docs/WebhookOrderNotification.md)

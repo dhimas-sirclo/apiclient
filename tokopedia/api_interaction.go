@@ -35,12 +35,12 @@ type InteractionAPI interface {
 	GetListMessage(ctx context.Context, fsId int64) InteractionAPIGetListMessageRequest
 
 	// GetListMessageExecute executes the request
-	//  @return GetListMessageDefaultResponse
-	GetListMessageExecute(r InteractionAPIGetListMessageRequest) (*GetListMessageDefaultResponse, *http.Response, error)
+	//  @return GetListMessage200Response
+	GetListMessageExecute(r InteractionAPIGetListMessageRequest) (*GetListMessage200Response, *http.Response, error)
 
 	// GetListMessageExecuteWithRetry executes the request with retry
-	//  @return GetListMessageDefaultResponse
-	GetListMessageExecuteWithRetry(r InteractionAPIGetListMessageRequest, maxRetry, maxDelayMs int) (*GetListMessageDefaultResponse, *http.Response, error)
+	//  @return GetListMessage200Response
+	GetListMessageExecuteWithRetry(r InteractionAPIGetListMessageRequest, maxRetry, maxDelayMs int) (*GetListMessage200Response, *http.Response, error)
 
 	/*
 	GetListReply Method for GetListReply
@@ -139,11 +139,11 @@ func (r InteractionAPIGetListMessageRequest) Filter(filter string) InteractionAP
 	return r
 }
 
-func (r InteractionAPIGetListMessageRequest) Execute() (*GetListMessageDefaultResponse, *http.Response, error) {
+func (r InteractionAPIGetListMessageRequest) Execute() (*GetListMessage200Response, *http.Response, error) {
 	return r.ApiService.GetListMessageExecute(r)
 }
 
-func (r InteractionAPIGetListMessageRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetListMessageDefaultResponse, *http.Response, error) {
+func (r InteractionAPIGetListMessageRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetListMessage200Response, *http.Response, error) {
 	return r.ApiService.GetListMessageExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -165,13 +165,13 @@ func (a *InteractionAPIService) GetListMessage(ctx context.Context, fsId int64) 
 }
 
 // Execute executes the request
-//  @return GetListMessageDefaultResponse
-func (a *InteractionAPIService) GetListMessageExecute(r InteractionAPIGetListMessageRequest) (*GetListMessageDefaultResponse, *http.Response, error) {
+//  @return GetListMessage200Response
+func (a *InteractionAPIService) GetListMessageExecute(r InteractionAPIGetListMessageRequest) (*GetListMessage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetListMessageDefaultResponse
+		localVarReturnValue  *GetListMessage200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InteractionAPIService.GetListMessage")
@@ -238,7 +238,7 @@ func (a *InteractionAPIService) GetListMessageExecute(r InteractionAPIGetListMes
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GetListMessageDefaultResponse
+			var v BaseErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -262,13 +262,13 @@ func (a *InteractionAPIService) GetListMessageExecute(r InteractionAPIGetListMes
 }
 
 // ExecuteWithRetry executes the request with retry
-//  @return GetListMessageDefaultResponse
-func (a *InteractionAPIService) GetListMessageExecuteWithRetry(r InteractionAPIGetListMessageRequest, maxRetry, maxDelayMs int) (*GetListMessageDefaultResponse, *http.Response, error) {
+//  @return GetListMessage200Response
+func (a *InteractionAPIService) GetListMessageExecuteWithRetry(r InteractionAPIGetListMessageRequest, maxRetry, maxDelayMs int) (*GetListMessage200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetListMessageDefaultResponse
+		localVarReturnValue  *GetListMessage200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "InteractionAPIService.GetListMessage")
@@ -335,7 +335,7 @@ func (a *InteractionAPIService) GetListMessageExecuteWithRetry(r InteractionAPIG
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v GetListMessageDefaultResponse
+			var v BaseErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -20,7 +20,7 @@ var _ MappedNullable = &UpdateStockResponse{}
 
 // UpdateStockResponse struct for UpdateStockResponse
 type UpdateStockResponse struct {
-	Header *UpdateStockResponseHeader `json:"header,omitempty"`
+	Header *ResponseHeader `json:"header,omitempty"`
 	Data *UpdateStockResponseData `json:"data,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewUpdateStockResponseWithDefaults() *UpdateStockResponse {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *UpdateStockResponse) GetHeader() UpdateStockResponseHeader {
+func (o *UpdateStockResponse) GetHeader() ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret UpdateStockResponseHeader
+		var ret ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -52,7 +52,7 @@ func (o *UpdateStockResponse) GetHeader() UpdateStockResponseHeader {
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStockResponse) GetHeaderOk() (*UpdateStockResponseHeader, bool) {
+func (o *UpdateStockResponse) GetHeaderOk() (*ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *UpdateStockResponse) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given UpdateStockResponseHeader and assigns it to the Header field.
-func (o *UpdateStockResponse) SetHeader(v UpdateStockResponseHeader) {
+// SetHeader gets a reference to the given ResponseHeader and assigns it to the Header field.
+func (o *UpdateStockResponse) SetHeader(v ResponseHeader) {
 	o.Header = &v
 }
 

@@ -93,12 +93,12 @@ type WebhookAPI interface {
 	TriggerWebhook(ctx context.Context, fsId int64) WebhookAPITriggerWebhookRequest
 
 	// TriggerWebhookExecute executes the request
-	//  @return TriggerWebhookDefaultResponse
-	TriggerWebhookExecute(r WebhookAPITriggerWebhookRequest) (*TriggerWebhookDefaultResponse, *http.Response, error)
+	//  @return TriggerWebhook200Response
+	TriggerWebhookExecute(r WebhookAPITriggerWebhookRequest) (*TriggerWebhook200Response, *http.Response, error)
 
 	// TriggerWebhookExecuteWithRetry executes the request with retry
-	//  @return TriggerWebhookDefaultResponse
-	TriggerWebhookExecuteWithRetry(r WebhookAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhookDefaultResponse, *http.Response, error)
+	//  @return TriggerWebhook200Response
+	TriggerWebhookExecuteWithRetry(r WebhookAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhook200Response, *http.Response, error)
 }
 
 // WebhookAPIService WebhookAPI service
@@ -716,11 +716,11 @@ func (r WebhookAPITriggerWebhookRequest) TriggerWebhookRequest(triggerWebhookReq
 	return r
 }
 
-func (r WebhookAPITriggerWebhookRequest) Execute() (*TriggerWebhookDefaultResponse, *http.Response, error) {
+func (r WebhookAPITriggerWebhookRequest) Execute() (*TriggerWebhook200Response, *http.Response, error) {
 	return r.ApiService.TriggerWebhookExecute(r)
 }
 
-func (r WebhookAPITriggerWebhookRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*TriggerWebhookDefaultResponse, *http.Response, error) {
+func (r WebhookAPITriggerWebhookRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*TriggerWebhook200Response, *http.Response, error) {
 	return r.ApiService.TriggerWebhookExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
@@ -742,13 +742,13 @@ func (a *WebhookAPIService) TriggerWebhook(ctx context.Context, fsId int64) Webh
 }
 
 // Execute executes the request
-//  @return TriggerWebhookDefaultResponse
-func (a *WebhookAPIService) TriggerWebhookExecute(r WebhookAPITriggerWebhookRequest) (*TriggerWebhookDefaultResponse, *http.Response, error) {
+//  @return TriggerWebhook200Response
+func (a *WebhookAPIService) TriggerWebhookExecute(r WebhookAPITriggerWebhookRequest) (*TriggerWebhook200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TriggerWebhookDefaultResponse
+		localVarReturnValue  *TriggerWebhook200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.TriggerWebhook")
@@ -807,7 +807,7 @@ func (a *WebhookAPIService) TriggerWebhookExecute(r WebhookAPITriggerWebhookRequ
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v TriggerWebhookDefaultResponse
+			var v BaseErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -831,13 +831,13 @@ func (a *WebhookAPIService) TriggerWebhookExecute(r WebhookAPITriggerWebhookRequ
 }
 
 // ExecuteWithRetry executes the request with retry
-//  @return TriggerWebhookDefaultResponse
-func (a *WebhookAPIService) TriggerWebhookExecuteWithRetry(r WebhookAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhookDefaultResponse, *http.Response, error) {
+//  @return TriggerWebhook200Response
+func (a *WebhookAPIService) TriggerWebhookExecuteWithRetry(r WebhookAPITriggerWebhookRequest, maxRetry, maxDelayMs int) (*TriggerWebhook200Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TriggerWebhookDefaultResponse
+		localVarReturnValue  *TriggerWebhook200Response
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookAPIService.TriggerWebhook")
@@ -896,7 +896,7 @@ func (a *WebhookAPIService) TriggerWebhookExecuteWithRetry(r WebhookAPITriggerWe
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v TriggerWebhookDefaultResponse
+			var v BaseErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
