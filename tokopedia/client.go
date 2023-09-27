@@ -305,7 +305,7 @@ func (c *APIClient) callAPIWithRetry(request *http.Request, maxRetry, maxDelayMs
 
 	var resp *http.Response
 	var err error
-	for {
+	loop:for {
 		if retryCount += 1; retryCount > maxRetry {
 			err = errors.New("Max retry exceeded")
 			return resp, err
@@ -336,11 +336,11 @@ func (c *APIClient) callAPIWithRetry(request *http.Request, maxRetry, maxDelayMs
 				delayMs = maxDelayMs
 			}
 		case 403, 405, 412, 501: // not retriable status
-			break
+			break loop
 		case 500, 502, 504: // might be retriable status
-			break
+			break loop
 		default:
-			break
+			break loop
 		}
 	}
 
