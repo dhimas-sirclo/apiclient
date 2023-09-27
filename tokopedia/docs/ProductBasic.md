@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProductID** | Pointer to **int64** | Product Unique Identifier | [optional] 
 **ShopID** | Pointer to **int64** | Shop Unique Identifier | [optional] 
-**Status** | Pointer to **int64** | Product Status (e.g., -2 for Banned, -1 for Pending, 0 for Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive (Warehouse)) | [optional] 
+**Status** | Pointer to **int64** | Product status code: * -2 - Banned * -1 - Pending * 0 - Deleted * 1 - Active * 3 - Inactive (Warehouse)  | [optional] 
 **Name** | Pointer to **string** | Product Name | [optional] 
 **Condition** | Pointer to **int64** | Product Condition (e.g., 1 for New, 2 for Used) | [optional] 
 **ChildCategoryID** | Pointer to **int64** | Product Category Unique Identifier | [optional] 

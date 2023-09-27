@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | Pointer to [**GetListMessageDefaultResponseHeader**](GetListMessageDefaultResponseHeader.md) |  | [optional] 
+**Header** | Pointer to [**GetOrderWebhook200ResponseHeader**](GetOrderWebhook200ResponseHeader.md) |  | [optional] 
 **Data** | Pointer to [**[]GetListMessageDefaultResponseDataInner**](GetListMessageDefaultResponseDataInner.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHeader
 
-`func (o *GetListMessageDefaultResponse) GetHeader() GetListMessageDefaultResponseHeader`
+`func (o *GetListMessageDefaultResponse) GetHeader() GetOrderWebhook200ResponseHeader`
 
 GetHeader returns the Header field if non-nil, zero value otherwise.
 
 ### GetHeaderOk
 
-`func (o *GetListMessageDefaultResponse) GetHeaderOk() (*GetListMessageDefaultResponseHeader, bool)`
+`func (o *GetListMessageDefaultResponse) GetHeaderOk() (*GetOrderWebhook200ResponseHeader, bool)`
 
 GetHeaderOk returns a tuple with the Header field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeader
 
-`func (o *GetListMessageDefaultResponse) SetHeader(v GetListMessageDefaultResponseHeader)`
+`func (o *GetListMessageDefaultResponse) SetHeader(v GetOrderWebhook200ResponseHeader)`
 
 SetHeader sets Header field to given value.
 

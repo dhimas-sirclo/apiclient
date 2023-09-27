@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Header** | Pointer to [**GetListMessageDefaultResponseHeader**](GetListMessageDefaultResponseHeader.md) |  | [optional] 
+**Header** | Pointer to [**GetOrderWebhook200ResponseHeader**](GetOrderWebhook200ResponseHeader.md) |  | [optional] 
 **Data** | Pointer to [**NullableInitiateChat200ResponseData**](InitiateChat200ResponseData.md) |  | [optional] 
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetHeader
 
-`func (o *InitiateChat200Response) GetHeader() GetListMessageDefaultResponseHeader`
+`func (o *InitiateChat200Response) GetHeader() GetOrderWebhook200ResponseHeader`
 
 GetHeader returns the Header field if non-nil, zero value otherwise.
 
 ### GetHeaderOk
 
-`func (o *InitiateChat200Response) GetHeaderOk() (*GetListMessageDefaultResponseHeader, bool)`
+`func (o *InitiateChat200Response) GetHeaderOk() (*GetOrderWebhook200ResponseHeader, bool)`
 
 GetHeaderOk returns a tuple with the Header field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeader
 
-`func (o *InitiateChat200Response) SetHeader(v GetListMessageDefaultResponseHeader)`
+`func (o *InitiateChat200Response) SetHeader(v GetOrderWebhook200ResponseHeader)`
 
 SetHeader sets Header field to given value.
 

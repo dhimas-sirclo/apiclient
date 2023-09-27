@@ -24,7 +24,7 @@ type ProductBasic struct {
 	ProductID *int64 `json:"productID,omitempty"`
 	// Shop Unique Identifier
 	ShopID *int64 `json:"shopID,omitempty"`
-	// Product Status (e.g., -2 for Banned, -1 for Pending, 0 for Deleted, 1 for Active, 2 for Best (Feature Product), 3 for Inactive (Warehouse))
+	// Product status code: * -2 - Banned * -1 - Pending * 0 - Deleted * 1 - Active * 3 - Inactive (Warehouse) 
 	Status *int64 `json:"status,omitempty"`
 	// Product Name
 	Name *string `json:"Name,omitempty"`

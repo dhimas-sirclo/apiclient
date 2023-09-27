@@ -20,7 +20,7 @@ var _ MappedNullable = &InitiateChat200Response{}
 
 // InitiateChat200Response struct for InitiateChat200Response
 type InitiateChat200Response struct {
-	Header *GetListMessageDefaultResponseHeader `json:"header,omitempty"`
+	Header *GetOrderWebhook200ResponseHeader `json:"header,omitempty"`
 	Data NullableInitiateChat200ResponseData `json:"data,omitempty"`
 }
 
@@ -42,9 +42,9 @@ func NewInitiateChat200ResponseWithDefaults() *InitiateChat200Response {
 }
 
 // GetHeader returns the Header field value if set, zero value otherwise.
-func (o *InitiateChat200Response) GetHeader() GetListMessageDefaultResponseHeader {
+func (o *InitiateChat200Response) GetHeader() GetOrderWebhook200ResponseHeader {
 	if o == nil || IsNil(o.Header) {
-		var ret GetListMessageDefaultResponseHeader
+		var ret GetOrderWebhook200ResponseHeader
 		return ret
 	}
 	return *o.Header
@@ -52,7 +52,7 @@ func (o *InitiateChat200Response) GetHeader() GetListMessageDefaultResponseHeade
 
 // GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InitiateChat200Response) GetHeaderOk() (*GetListMessageDefaultResponseHeader, bool) {
+func (o *InitiateChat200Response) GetHeaderOk() (*GetOrderWebhook200ResponseHeader, bool) {
 	if o == nil || IsNil(o.Header) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *InitiateChat200Response) HasHeader() bool {
 	return false
 }
 
-// SetHeader gets a reference to the given GetListMessageDefaultResponseHeader and assigns it to the Header field.
-func (o *InitiateChat200Response) SetHeader(v GetListMessageDefaultResponseHeader) {
+// SetHeader gets a reference to the given GetOrderWebhook200ResponseHeader and assigns it to the Header field.
+func (o *InitiateChat200Response) SetHeader(v GetOrderWebhook200ResponseHeader) {
 	o.Header = &v
 }
 

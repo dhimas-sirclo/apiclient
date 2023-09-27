@@ -111,7 +111,6 @@ Class | Method | HTTP request | Description
  - [GetListMessageDefaultResponseDataInnerAttributes](docs/GetListMessageDefaultResponseDataInnerAttributes.md)
  - [GetListMessageDefaultResponseDataInnerAttributesContact](docs/GetListMessageDefaultResponseDataInnerAttributesContact.md)
  - [GetListMessageDefaultResponseDataInnerAttributesContactAttributes](docs/GetListMessageDefaultResponseDataInnerAttributesContactAttributes.md)
- - [GetListMessageDefaultResponseHeader](docs/GetListMessageDefaultResponseHeader.md)
  - [GetListReply200Response](docs/GetListReply200Response.md)
  - [GetListReply200ResponseDataInner](docs/GetListReply200ResponseDataInner.md)
  - [GetOrderWebhook200Response](docs/GetOrderWebhook200Response.md)
