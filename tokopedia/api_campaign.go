@@ -24,6 +24,25 @@ import (
 type CampaignAPI interface {
 
 	/*
+	AddSlashPrice Method for AddSlashPrice
+
+	This endpoint add slash price campaign into product (to specific warehouse).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return CampaignAPIAddSlashPriceRequest
+	*/
+	AddSlashPrice(ctx context.Context, fsId int64) CampaignAPIAddSlashPriceRequest
+
+	// AddSlashPriceExecute executes the request
+	//  @return CancelSlashPrice200Response
+	AddSlashPriceExecute(r CampaignAPIAddSlashPriceRequest) (*CancelSlashPrice200Response, *http.Response, error)
+
+	// AddSlashPriceExecuteWithRetry executes the request with retry
+	//  @return CancelSlashPrice200Response
+	AddSlashPriceExecuteWithRetry(r CampaignAPIAddSlashPriceRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error)
+
+	/*
 	CancelBundle Method for CancelBundle
 
 	This endpoint is used to cancel the bundle.
@@ -41,6 +60,25 @@ type CampaignAPI interface {
 	// CancelBundleExecuteWithRetry executes the request with retry
 	//  @return CancelBundle200Response
 	CancelBundleExecuteWithRetry(r CampaignAPICancelBundleRequest, maxRetry, maxDelayMs int) (*CancelBundle200Response, *http.Response, error)
+
+	/*
+	CancelSlashPrice Method for CancelSlashPrice
+
+	This endpoint cancel slash price campaign that already be set.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return CampaignAPICancelSlashPriceRequest
+	*/
+	CancelSlashPrice(ctx context.Context, fsId int64) CampaignAPICancelSlashPriceRequest
+
+	// CancelSlashPriceExecute executes the request
+	//  @return CancelSlashPrice200Response
+	CancelSlashPriceExecute(r CampaignAPICancelSlashPriceRequest) (*CancelSlashPrice200Response, *http.Response, error)
+
+	// CancelSlashPriceExecuteWithRetry executes the request with retry
+	//  @return CancelSlashPrice200Response
+	CancelSlashPriceExecuteWithRetry(r CampaignAPICancelSlashPriceRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error)
 
 	/*
 	CreateBundle Method for CreateBundle
@@ -98,10 +136,297 @@ type CampaignAPI interface {
 	// GetBundleListExecuteWithRetry executes the request with retry
 	//  @return GetBundleList200Response
 	GetBundleListExecuteWithRetry(r CampaignAPIGetBundleListRequest, maxRetry, maxDelayMs int) (*GetBundleList200Response, *http.Response, error)
+
+	/*
+	UpdateSlashPrice Method for UpdateSlashPrice
+
+	This endpoint update slash price campaign into product to specific shop or warehouse
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return CampaignAPIUpdateSlashPriceRequest
+	*/
+	UpdateSlashPrice(ctx context.Context, fsId int64) CampaignAPIUpdateSlashPriceRequest
+
+	// UpdateSlashPriceExecute executes the request
+	//  @return CancelSlashPrice200Response
+	UpdateSlashPriceExecute(r CampaignAPIUpdateSlashPriceRequest) (*CancelSlashPrice200Response, *http.Response, error)
+
+	// UpdateSlashPriceExecuteWithRetry executes the request with retry
+	//  @return CancelSlashPrice200Response
+	UpdateSlashPriceExecuteWithRetry(r CampaignAPIUpdateSlashPriceRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error)
+
+	/*
+	ViewCampaignProducts Method for ViewCampaignProducts
+
+	This endpoint view all active campaigns from certain products.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return CampaignAPIViewCampaignProductsRequest
+	*/
+	ViewCampaignProducts(ctx context.Context, fsId int64) CampaignAPIViewCampaignProductsRequest
+
+	// ViewCampaignProductsExecute executes the request
+	//  @return ViewCampaignProducts200Response
+	ViewCampaignProductsExecute(r CampaignAPIViewCampaignProductsRequest) (*ViewCampaignProducts200Response, *http.Response, error)
+
+	// ViewCampaignProductsExecuteWithRetry executes the request with retry
+	//  @return ViewCampaignProducts200Response
+	ViewCampaignProductsExecuteWithRetry(r CampaignAPIViewCampaignProductsRequest, maxRetry, maxDelayMs int) (*ViewCampaignProducts200Response, *http.Response, error)
+
+	/*
+	ViewSlashPrice Method for ViewSlashPrice
+
+	This endpoint view all slash price campaign that already set.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return CampaignAPIViewSlashPriceRequest
+	*/
+	ViewSlashPrice(ctx context.Context, fsId int64) CampaignAPIViewSlashPriceRequest
+
+	// ViewSlashPriceExecute executes the request
+	//  @return ViewSlashPrice200Response
+	ViewSlashPriceExecute(r CampaignAPIViewSlashPriceRequest) (*ViewSlashPrice200Response, *http.Response, error)
+
+	// ViewSlashPriceExecuteWithRetry executes the request with retry
+	//  @return ViewSlashPrice200Response
+	ViewSlashPriceExecuteWithRetry(r CampaignAPIViewSlashPriceRequest, maxRetry, maxDelayMs int) (*ViewSlashPrice200Response, *http.Response, error)
 }
 
 // CampaignAPIService CampaignAPI service
 type CampaignAPIService service
+
+type CampaignAPIAddSlashPriceRequest struct {
+	ctx context.Context
+	ApiService CampaignAPI
+	fsId int64
+	shopId *int64
+	updateSlashPriceRequestInner *[]UpdateSlashPriceRequestInner
+}
+
+// Shop unique identifier
+func (r CampaignAPIAddSlashPriceRequest) ShopId(shopId int64) CampaignAPIAddSlashPriceRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r CampaignAPIAddSlashPriceRequest) UpdateSlashPriceRequestInner(updateSlashPriceRequestInner []UpdateSlashPriceRequestInner) CampaignAPIAddSlashPriceRequest {
+	r.updateSlashPriceRequestInner = &updateSlashPriceRequestInner
+	return r
+}
+
+func (r CampaignAPIAddSlashPriceRequest) Execute() (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.AddSlashPriceExecute(r)
+}
+
+func (r CampaignAPIAddSlashPriceRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.AddSlashPriceExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+AddSlashPrice Method for AddSlashPrice
+
+This endpoint add slash price campaign into product (to specific warehouse).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return CampaignAPIAddSlashPriceRequest
+*/
+func (a *CampaignAPIService) AddSlashPrice(ctx context.Context, fsId int64) CampaignAPIAddSlashPriceRequest {
+	return CampaignAPIAddSlashPriceRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return CancelSlashPrice200Response
+func (a *CampaignAPIService) AddSlashPriceExecute(r CampaignAPIAddSlashPriceRequest) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.AddSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/slash-price/fs/{fs_id}/add"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateSlashPriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateSlashPriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateSlashPriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return CancelSlashPrice200Response
+func (a *CampaignAPIService) AddSlashPriceExecuteWithRetry(r CampaignAPIAddSlashPriceRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.AddSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/slash-price/fs/{fs_id}/add"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateSlashPriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateSlashPriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateSlashPriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type CampaignAPICancelBundleRequest struct {
 	ctx context.Context
@@ -311,6 +636,236 @@ func (a *CampaignAPIService) CancelBundleExecuteWithRetry(r CampaignAPICancelBun
 			error: localVarHTTPResponse.Status,
 		}
 			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CampaignAPICancelSlashPriceRequest struct {
+	ctx context.Context
+	ApiService CampaignAPI
+	fsId int64
+	shopId *int64
+	cancelSlashPriceRequestInner *[]CancelSlashPriceRequestInner
+}
+
+// Shop unique identifier
+func (r CampaignAPICancelSlashPriceRequest) ShopId(shopId int64) CampaignAPICancelSlashPriceRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r CampaignAPICancelSlashPriceRequest) CancelSlashPriceRequestInner(cancelSlashPriceRequestInner []CancelSlashPriceRequestInner) CampaignAPICancelSlashPriceRequest {
+	r.cancelSlashPriceRequestInner = &cancelSlashPriceRequestInner
+	return r
+}
+
+func (r CampaignAPICancelSlashPriceRequest) Execute() (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.CancelSlashPriceExecute(r)
+}
+
+func (r CampaignAPICancelSlashPriceRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.CancelSlashPriceExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+CancelSlashPrice Method for CancelSlashPrice
+
+This endpoint cancel slash price campaign that already be set.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return CampaignAPICancelSlashPriceRequest
+*/
+func (a *CampaignAPIService) CancelSlashPrice(ctx context.Context, fsId int64) CampaignAPICancelSlashPriceRequest {
+	return CampaignAPICancelSlashPriceRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return CancelSlashPrice200Response
+func (a *CampaignAPIService) CancelSlashPriceExecute(r CampaignAPICancelSlashPriceRequest) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.CancelSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/slash-price/fs/{fs_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.cancelSlashPriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("cancelSlashPriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.cancelSlashPriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return CancelSlashPrice200Response
+func (a *CampaignAPIService) CancelSlashPriceExecuteWithRetry(r CampaignAPICancelSlashPriceRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.CancelSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/slash-price/fs/{fs_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.cancelSlashPriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("cancelSlashPriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.cancelSlashPriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -995,6 +1550,752 @@ func (a *CampaignAPIService) GetBundleListExecuteWithRetry(r CampaignAPIGetBundl
 	}
 	if r.lastGroupId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "last_group_id", r.lastGroupId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CampaignAPIUpdateSlashPriceRequest struct {
+	ctx context.Context
+	ApiService CampaignAPI
+	fsId int64
+	shopId *int64
+	updateSlashPriceRequestInner *[]UpdateSlashPriceRequestInner
+}
+
+// Shop unique identifier
+func (r CampaignAPIUpdateSlashPriceRequest) ShopId(shopId int64) CampaignAPIUpdateSlashPriceRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r CampaignAPIUpdateSlashPriceRequest) UpdateSlashPriceRequestInner(updateSlashPriceRequestInner []UpdateSlashPriceRequestInner) CampaignAPIUpdateSlashPriceRequest {
+	r.updateSlashPriceRequestInner = &updateSlashPriceRequestInner
+	return r
+}
+
+func (r CampaignAPIUpdateSlashPriceRequest) Execute() (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.UpdateSlashPriceExecute(r)
+}
+
+func (r CampaignAPIUpdateSlashPriceRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.UpdateSlashPriceExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+UpdateSlashPrice Method for UpdateSlashPrice
+
+This endpoint update slash price campaign into product to specific shop or warehouse
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return CampaignAPIUpdateSlashPriceRequest
+*/
+func (a *CampaignAPIService) UpdateSlashPrice(ctx context.Context, fsId int64) CampaignAPIUpdateSlashPriceRequest {
+	return CampaignAPIUpdateSlashPriceRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return CancelSlashPrice200Response
+func (a *CampaignAPIService) UpdateSlashPriceExecute(r CampaignAPIUpdateSlashPriceRequest) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.UpdateSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/slash-price/fs/{fs_id}/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateSlashPriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateSlashPriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateSlashPriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return CancelSlashPrice200Response
+func (a *CampaignAPIService) UpdateSlashPriceExecuteWithRetry(r CampaignAPIUpdateSlashPriceRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.UpdateSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/slash-price/fs/{fs_id}/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateSlashPriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateSlashPriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateSlashPriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CampaignAPIViewCampaignProductsRequest struct {
+	ctx context.Context
+	ApiService CampaignAPI
+	fsId int64
+	shopId *int64
+	productId *int64
+}
+
+// Shop unique identifier
+func (r CampaignAPIViewCampaignProductsRequest) ShopId(shopId int64) CampaignAPIViewCampaignProductsRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// Product unique identifier
+func (r CampaignAPIViewCampaignProductsRequest) ProductId(productId int64) CampaignAPIViewCampaignProductsRequest {
+	r.productId = &productId
+	return r
+}
+
+func (r CampaignAPIViewCampaignProductsRequest) Execute() (*ViewCampaignProducts200Response, *http.Response, error) {
+	return r.ApiService.ViewCampaignProductsExecute(r)
+}
+
+func (r CampaignAPIViewCampaignProductsRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*ViewCampaignProducts200Response, *http.Response, error) {
+	return r.ApiService.ViewCampaignProductsExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+ViewCampaignProducts Method for ViewCampaignProducts
+
+This endpoint view all active campaigns from certain products.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return CampaignAPIViewCampaignProductsRequest
+*/
+func (a *CampaignAPIService) ViewCampaignProducts(ctx context.Context, fsId int64) CampaignAPIViewCampaignProductsRequest {
+	return CampaignAPIViewCampaignProductsRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return ViewCampaignProducts200Response
+func (a *CampaignAPIService) ViewCampaignProductsExecute(r CampaignAPIViewCampaignProductsRequest) (*ViewCampaignProducts200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ViewCampaignProducts200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.ViewCampaignProducts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/campaign/fs/{fs_id}/view"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.productId == nil {
+		return localVarReturnValue, nil, reportError("productId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "product_id", r.productId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return ViewCampaignProducts200Response
+func (a *CampaignAPIService) ViewCampaignProductsExecuteWithRetry(r CampaignAPIViewCampaignProductsRequest, maxRetry, maxDelayMs int) (*ViewCampaignProducts200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ViewCampaignProducts200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.ViewCampaignProducts")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/campaign/fs/{fs_id}/view"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.productId == nil {
+		return localVarReturnValue, nil, reportError("productId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "product_id", r.productId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type CampaignAPIViewSlashPriceRequest struct {
+	ctx context.Context
+	ApiService CampaignAPI
+	fsId int64
+	shopId *int64
+	warehouseId *int64
+	productId *int64
+	page *int64
+	perPage *int64
+	status *string
+}
+
+// Shop unique identifier
+func (r CampaignAPIViewSlashPriceRequest) ShopId(shopId int64) CampaignAPIViewSlashPriceRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// Warehouse unique identifier
+func (r CampaignAPIViewSlashPriceRequest) WarehouseId(warehouseId int64) CampaignAPIViewSlashPriceRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+// Product unique identifier
+func (r CampaignAPIViewSlashPriceRequest) ProductId(productId int64) CampaignAPIViewSlashPriceRequest {
+	r.productId = &productId
+	return r
+}
+
+// Determine which page the order list should start. The minimal value is 1
+func (r CampaignAPIViewSlashPriceRequest) Page(page int64) CampaignAPIViewSlashPriceRequest {
+	r.page = &page
+	return r
+}
+
+// Determine how many orders will be shown per page
+func (r CampaignAPIViewSlashPriceRequest) PerPage(perPage int64) CampaignAPIViewSlashPriceRequest {
+	r.perPage = &perPage
+	return r
+}
+
+// Filter data by slash price status. The possible values are SCHEDULED,ONGOING, and PAUSED. By default, it will show all status if we don’t include this into query parameter
+func (r CampaignAPIViewSlashPriceRequest) Status(status string) CampaignAPIViewSlashPriceRequest {
+	r.status = &status
+	return r
+}
+
+func (r CampaignAPIViewSlashPriceRequest) Execute() (*ViewSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.ViewSlashPriceExecute(r)
+}
+
+func (r CampaignAPIViewSlashPriceRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*ViewSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.ViewSlashPriceExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+ViewSlashPrice Method for ViewSlashPrice
+
+This endpoint view all slash price campaign that already set.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return CampaignAPIViewSlashPriceRequest
+*/
+func (a *CampaignAPIService) ViewSlashPrice(ctx context.Context, fsId int64) CampaignAPIViewSlashPriceRequest {
+	return CampaignAPIViewSlashPriceRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return ViewSlashPrice200Response
+func (a *CampaignAPIService) ViewSlashPriceExecute(r CampaignAPIViewSlashPriceRequest) (*ViewSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ViewSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.ViewSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/slash-price/fs/{fs_id}/view"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.warehouseId == nil {
+		return localVarReturnValue, nil, reportError("warehouseId is required and must be specified")
+	}
+	if r.productId == nil {
+		return localVarReturnValue, nil, reportError("productId is required and must be specified")
+	}
+	if r.page == nil {
+		return localVarReturnValue, nil, reportError("page is required and must be specified")
+	}
+	if r.perPage == nil {
+		return localVarReturnValue, nil, reportError("perPage is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "product_id", r.productId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return ViewSlashPrice200Response
+func (a *CampaignAPIService) ViewSlashPriceExecuteWithRetry(r CampaignAPIViewSlashPriceRequest, maxRetry, maxDelayMs int) (*ViewSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ViewSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CampaignAPIService.ViewSlashPrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/slash-price/fs/{fs_id}/view"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.warehouseId == nil {
+		return localVarReturnValue, nil, reportError("warehouseId is required and must be specified")
+	}
+	if r.productId == nil {
+		return localVarReturnValue, nil, reportError("productId is required and must be specified")
+	}
+	if r.page == nil {
+		return localVarReturnValue, nil, reportError("page is required and must be specified")
+	}
+	if r.perPage == nil {
+		return localVarReturnValue, nil, reportError("perPage is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "product_id", r.productId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

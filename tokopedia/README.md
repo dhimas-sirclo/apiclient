@@ -83,10 +83,15 @@ Class | Method | HTTP request | Description
 *BundleAPI* | [**CreateBundle**](docs/BundleAPI.md#createbundle) | **Post** /v1/products/bundle/fs/{fs_id}/create | 
 *BundleAPI* | [**GetBundleInfo**](docs/BundleAPI.md#getbundleinfo) | **Get** /v1/products/bundle/fs/{fs_id}/info | 
 *BundleAPI* | [**GetBundleList**](docs/BundleAPI.md#getbundlelist) | **Get** /v1/products/bundle/fs/{fs_id}/list | 
+*CampaignAPI* | [**AddSlashPrice**](docs/CampaignAPI.md#addslashprice) | **Post** /v1/slash-price/fs/{fs_id}/add | 
 *CampaignAPI* | [**CancelBundle**](docs/CampaignAPI.md#cancelbundle) | **Patch** /v1/products/bundle/fs/{fs_id}/edit | 
+*CampaignAPI* | [**CancelSlashPrice**](docs/CampaignAPI.md#cancelslashprice) | **Post** /v1/slash-price/fs/{fs_id}/cancel | 
 *CampaignAPI* | [**CreateBundle**](docs/CampaignAPI.md#createbundle) | **Post** /v1/products/bundle/fs/{fs_id}/create | 
 *CampaignAPI* | [**GetBundleInfo**](docs/CampaignAPI.md#getbundleinfo) | **Get** /v1/products/bundle/fs/{fs_id}/info | 
 *CampaignAPI* | [**GetBundleList**](docs/CampaignAPI.md#getbundlelist) | **Get** /v1/products/bundle/fs/{fs_id}/list | 
+*CampaignAPI* | [**UpdateSlashPrice**](docs/CampaignAPI.md#updateslashprice) | **Post** /v1/slash-price/fs/{fs_id}/update | 
+*CampaignAPI* | [**ViewCampaignProducts**](docs/CampaignAPI.md#viewcampaignproducts) | **Get** /v1/campaign/fs/{fs_id}/view | 
+*CampaignAPI* | [**ViewSlashPrice**](docs/CampaignAPI.md#viewslashprice) | **Get** /v2/slash-price/fs/{fs_id}/view | 
 *FinanceAPI* | [**GetSaldoHistory**](docs/FinanceAPI.md#getsaldohistory) | **Get** /v1/fs/{fs_id}/shop/{shop_id}/saldo-history | 
 *InteractionAPI* | [**GetListMessage**](docs/InteractionAPI.md#getlistmessage) | **Get** /v1/chat/fs/{fs_id}/messages | 
 *InteractionAPI* | [**GetListReply**](docs/InteractionAPI.md#getlistreply) | **Get** /v1/chat/fs/{fs_id}/messages/{msg_id}/replies | 
@@ -111,6 +116,11 @@ Class | Method | HTTP request | Description
  - [CancelBundle200Response](docs/CancelBundle200Response.md)
  - [CancelBundle200ResponseData](docs/CancelBundle200ResponseData.md)
  - [CancelBundleRequest](docs/CancelBundleRequest.md)
+ - [CancelSlashPrice200Response](docs/CancelSlashPrice200Response.md)
+ - [CancelSlashPrice200ResponseData](docs/CancelSlashPrice200ResponseData.md)
+ - [CancelSlashPriceDefaultResponse](docs/CancelSlashPriceDefaultResponse.md)
+ - [CancelSlashPriceDefaultResponseData](docs/CancelSlashPriceDefaultResponseData.md)
+ - [CancelSlashPriceRequestInner](docs/CancelSlashPriceRequestInner.md)
  - [CategoryVariant](docs/CategoryVariant.md)
  - [CategoryVariantDetail](docs/CategoryVariantDetail.md)
  - [CategoryVariantUnit](docs/CategoryVariantUnit.md)
@@ -201,6 +211,8 @@ Class | Method | HTTP request | Description
  - [Token](docs/Token.md)
  - [TriggerWebhook200Response](docs/TriggerWebhook200Response.md)
  - [TriggerWebhookRequest](docs/TriggerWebhookRequest.md)
+ - [UpdateSlashPriceRequestInner](docs/UpdateSlashPriceRequestInner.md)
+ - [UpdateSlashPriceRequestInnerSlashPriceWarehousesValue](docs/UpdateSlashPriceRequestInnerSlashPriceWarehousesValue.md)
  - [UpdateStockInput](docs/UpdateStockInput.md)
  - [UpdateStockResponse](docs/UpdateStockResponse.md)
  - [UpdateStockResponseData](docs/UpdateStockResponseData.md)
@@ -211,6 +223,15 @@ Class | Method | HTTP request | Description
  - [VariantOption](docs/VariantOption.md)
  - [VariantPicture](docs/VariantPicture.md)
  - [VariantVariant](docs/VariantVariant.md)
+ - [ViewCampaignProducts200Response](docs/ViewCampaignProducts200Response.md)
+ - [ViewCampaignProducts200ResponseData](docs/ViewCampaignProducts200ResponseData.md)
+ - [ViewCampaignProducts200ResponseDataProductsInner](docs/ViewCampaignProducts200ResponseDataProductsInner.md)
+ - [ViewCampaignProducts200ResponseDataProductsInnerCampaign](docs/ViewCampaignProducts200ResponseDataProductsInnerCampaign.md)
+ - [ViewCampaignProducts200ResponseDataProductsInnerCampaignAdditionalCartInfo](docs/ViewCampaignProducts200ResponseDataProductsInnerCampaignAdditionalCartInfo.md)
+ - [ViewSlashPrice200Response](docs/ViewSlashPrice200Response.md)
+ - [ViewSlashPrice200ResponseDataInner](docs/ViewSlashPrice200ResponseDataInner.md)
+ - [ViewSlashPrice200ResponseDataInnerPrice](docs/ViewSlashPrice200ResponseDataInnerPrice.md)
+ - [ViewSlashPrice200ResponseDataInnerWarehousesInner](docs/ViewSlashPrice200ResponseDataInnerWarehousesInner.md)
  - [WebhookActiveFlashSaleNotification](docs/WebhookActiveFlashSaleNotification.md)
  - [WebhookActiveSlashPriceNotification](docs/WebhookActiveSlashPriceNotification.md)
  - [WebhookChatReplyNotification](docs/WebhookChatReplyNotification.md)
