@@ -24,6 +24,66 @@ import (
 type OrderAPI interface {
 
 	/*
+	AcceptOrder Method for AcceptOrder
+
+	Acknowledge the order (fully or partially accept the order).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orderId Order service unique identifier
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIAcceptOrderRequest
+	*/
+	AcceptOrder(ctx context.Context, orderId int64, fsId int64) OrderAPIAcceptOrderRequest
+
+	// AcceptOrderExecute executes the request
+	//  @return UpdateShopStatusDefaultResponseData
+	AcceptOrderExecute(r OrderAPIAcceptOrderRequest) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
+
+	// AcceptOrderExecuteWithRetry executes the request with retry
+	//  @return UpdateShopStatusDefaultResponseData
+	AcceptOrderExecuteWithRetry(r OrderAPIAcceptOrderRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
+
+	/*
+	ConfirmShipping Method for ConfirmShipping
+
+	This endpoint updates the order status of an order_id.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orderId Order service unique identifier
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIConfirmShippingRequest
+	*/
+	ConfirmShipping(ctx context.Context, orderId int64, fsId int64) OrderAPIConfirmShippingRequest
+
+	// ConfirmShippingExecute executes the request
+	//  @return UpdateShopStatusDefaultResponseData
+	ConfirmShippingExecute(r OrderAPIConfirmShippingRequest) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
+
+	// ConfirmShippingExecuteWithRetry executes the request with retry
+	//  @return UpdateShopStatusDefaultResponseData
+	ConfirmShippingExecuteWithRetry(r OrderAPIConfirmShippingRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
+
+	/*
+	GetOrderCobCod Method for GetOrderCobCod
+
+	Courier Online Booking (COB) and Call On Delivery (COD) endpoint is used to get order data related to shipping process, especially when using Booking Code and/or Payment Amount COD. The booking code will appear when the order status reached 400. This endpoint can use to get order by order ID, get orders by Shop ID, or get orders by warehouse ID.
+
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIGetOrderCobCodRequest
+	*/
+	GetOrderCobCod(ctx context.Context, fsId int64) OrderAPIGetOrderCobCodRequest
+
+	// GetOrderCobCodExecute executes the request
+	//  @return GetOrderCobCod200Response
+	GetOrderCobCodExecute(r OrderAPIGetOrderCobCodRequest) (*GetOrderCobCod200Response, *http.Response, error)
+
+	// GetOrderCobCodExecuteWithRetry executes the request with retry
+	//  @return GetOrderCobCod200Response
+	GetOrderCobCodExecuteWithRetry(r OrderAPIGetOrderCobCodRequest, maxRetry, maxDelayMs int) (*GetOrderCobCod200Response, *http.Response, error)
+
+	/*
 	GetOrderWebhook Method for GetOrderWebhook
 
 	Get order webhook
@@ -42,6 +102,144 @@ type OrderAPI interface {
 	// GetOrderWebhookExecuteWithRetry executes the request with retry
 	//  @return GetOrderWebhook200Response
 	GetOrderWebhookExecuteWithRetry(r OrderAPIGetOrderWebhookRequest, maxRetry, maxDelayMs int) (*GetOrderWebhook200Response, *http.Response, error)
+
+	/*
+	GetResolutionTicket Method for GetResolutionTicket
+
+	This endpoint is used to get resolution ticket by shop_id.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIGetResolutionTicketRequest
+	*/
+	GetResolutionTicket(ctx context.Context, fsId int64) OrderAPIGetResolutionTicketRequest
+
+	// GetResolutionTicketExecute executes the request
+	//  @return GetResolutionTicket200Response
+	GetResolutionTicketExecute(r OrderAPIGetResolutionTicketRequest) (*GetResolutionTicket200Response, *http.Response, error)
+
+	// GetResolutionTicketExecuteWithRetry executes the request with retry
+	//  @return GetResolutionTicket200Response
+	GetResolutionTicketExecuteWithRetry(r OrderAPIGetResolutionTicketRequest, maxRetry, maxDelayMs int) (*GetResolutionTicket200Response, *http.Response, error)
+
+	/*
+	GetShippingLabel Method for GetShippingLabel
+
+	This endpoint is return html page that can be use to print shipping label for specific order. Shipping label can be seen after order status is on process (400). Shipping label contain Booking Code as barcode that can be scanned by Third-Party Logistic for automatic AWB
+
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orderId Order service unique identifier
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIGetShippingLabelRequest
+	*/
+	GetShippingLabel(ctx context.Context, orderId int64, fsId int64) OrderAPIGetShippingLabelRequest
+
+	// GetShippingLabelExecute executes the request
+	//  @return string
+	GetShippingLabelExecute(r OrderAPIGetShippingLabelRequest) (string, *http.Response, error)
+
+	// GetShippingLabelExecuteWithRetry executes the request with retry
+	//  @return string
+	GetShippingLabelExecuteWithRetry(r OrderAPIGetShippingLabelRequest, maxRetry, maxDelayMs int) (string, *http.Response, error)
+
+	/*
+	GetSingleOrder Method for GetSingleOrder
+
+	This endpoint retrieves single orders for your shop between given order id or invoice ref number.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIGetSingleOrderRequest
+	*/
+	GetSingleOrder(ctx context.Context, fsId int64) OrderAPIGetSingleOrderRequest
+
+	// GetSingleOrderExecute executes the request
+	//  @return GetSingleOrder200Response
+	GetSingleOrderExecute(r OrderAPIGetSingleOrderRequest) (*GetSingleOrder200Response, *http.Response, error)
+
+	// GetSingleOrderExecuteWithRetry executes the request with retry
+	//  @return GetSingleOrder200Response
+	GetSingleOrderExecuteWithRetry(r OrderAPIGetSingleOrderRequest, maxRetry, maxDelayMs int) (*GetSingleOrder200Response, *http.Response, error)
+
+	/*
+	RejectOrder Method for RejectOrder
+
+	Negative acknowledge the order (reject the order).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orderId Order service unique identifier
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIRejectOrderRequest
+	*/
+	RejectOrder(ctx context.Context, orderId int64, fsId int64) OrderAPIRejectOrderRequest
+
+	// RejectOrderExecute executes the request
+	//  @return UpdateShopStatusDefaultResponseData
+	RejectOrderExecute(r OrderAPIRejectOrderRequest) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
+
+	// RejectOrderExecuteWithRetry executes the request with retry
+	//  @return UpdateShopStatusDefaultResponseData
+	RejectOrderExecuteWithRetry(r OrderAPIRejectOrderRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
+
+	/*
+	RejectRequestCancel Method for RejectRequestCancel
+
+	This endpoint is used to reject the buyer request cancelation when the order has been accepted (400) and before the order has been accepted (600).
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orderId Order service unique identifier
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIRejectRequestCancelRequest
+	*/
+	RejectRequestCancel(ctx context.Context, orderId int64, fsId int64) OrderAPIRejectRequestCancelRequest
+
+	// RejectRequestCancelExecute executes the request
+	//  @return RejectRequestCancel200Response
+	RejectRequestCancelExecute(r OrderAPIRejectRequestCancelRequest) (*RejectRequestCancel200Response, *http.Response, error)
+
+	// RejectRequestCancelExecuteWithRetry executes the request with retry
+	//  @return RejectRequestCancel200Response
+	RejectRequestCancelExecuteWithRetry(r OrderAPIRejectRequestCancelRequest, maxRetry, maxDelayMs int) (*RejectRequestCancel200Response, *http.Response, error)
+
+	/*
+	RequestPartialOrderFulfillment Method for RequestPartialOrderFulfillment
+
+	Send a Partial Order Fulfillment (POF) request
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param orderId Order service unique identifier
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIRequestPartialOrderFulfillmentRequest
+	*/
+	RequestPartialOrderFulfillment(ctx context.Context, orderId int64, fsId int64) OrderAPIRequestPartialOrderFulfillmentRequest
+
+	// RequestPartialOrderFulfillmentExecute executes the request
+	//  @return RejectRequestCancel200Response
+	RequestPartialOrderFulfillmentExecute(r OrderAPIRequestPartialOrderFulfillmentRequest) (*RejectRequestCancel200Response, *http.Response, error)
+
+	// RequestPartialOrderFulfillmentExecuteWithRetry executes the request with retry
+	//  @return RejectRequestCancel200Response
+	RequestPartialOrderFulfillmentExecuteWithRetry(r OrderAPIRequestPartialOrderFulfillmentRequest, maxRetry, maxDelayMs int) (*RejectRequestCancel200Response, *http.Response, error)
+
+	/*
+	RequestPickup Method for RequestPickup
+
+	You can request pick-up using this endpoint. Please make sure that you make the 5-second delay after Accepting the Order before hitting this endpoint.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return OrderAPIRequestPickupRequest
+	*/
+	RequestPickup(ctx context.Context, fsId int64) OrderAPIRequestPickupRequest
+
+	// RequestPickupExecute executes the request
+	//  @return RequestPickup200Response
+	RequestPickupExecute(r OrderAPIRequestPickupRequest) (*RequestPickup200Response, *http.Response, error)
+
+	// RequestPickupExecuteWithRetry executes the request with retry
+	//  @return RequestPickup200Response
+	RequestPickupExecuteWithRetry(r OrderAPIRequestPickupRequest, maxRetry, maxDelayMs int) (*RequestPickup200Response, *http.Response, error)
 
 	/*
 	TriggerWebhook Method for TriggerWebhook
@@ -65,6 +263,721 @@ type OrderAPI interface {
 
 // OrderAPIService OrderAPI service
 type OrderAPIService service
+
+type OrderAPIAcceptOrderRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	orderId int64
+	fsId int64
+	warehouseId *int64
+}
+
+// Warehouse unique identifier
+func (r OrderAPIAcceptOrderRequest) WarehouseId(warehouseId int64) OrderAPIAcceptOrderRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+func (r OrderAPIAcceptOrderRequest) Execute() (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	return r.ApiService.AcceptOrderExecute(r)
+}
+
+func (r OrderAPIAcceptOrderRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	return r.ApiService.AcceptOrderExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+AcceptOrder Method for AcceptOrder
+
+Acknowledge the order (fully or partially accept the order).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orderId Order service unique identifier
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIAcceptOrderRequest
+*/
+func (a *OrderAPIService) AcceptOrder(ctx context.Context, orderId int64, fsId int64) OrderAPIAcceptOrderRequest {
+	return OrderAPIAcceptOrderRequest{
+		ApiService: a,
+		ctx: ctx,
+		orderId: orderId,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return UpdateShopStatusDefaultResponseData
+func (a *OrderAPIService) AcceptOrderExecute(r OrderAPIAcceptOrderRequest) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateShopStatusDefaultResponseData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.AcceptOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/ack"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return UpdateShopStatusDefaultResponseData
+func (a *OrderAPIService) AcceptOrderExecuteWithRetry(r OrderAPIAcceptOrderRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateShopStatusDefaultResponseData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.AcceptOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/ack"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIConfirmShippingRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	orderId int64
+	fsId int64
+	confirmShippingRequest *ConfirmShippingRequest
+}
+
+func (r OrderAPIConfirmShippingRequest) ConfirmShippingRequest(confirmShippingRequest ConfirmShippingRequest) OrderAPIConfirmShippingRequest {
+	r.confirmShippingRequest = &confirmShippingRequest
+	return r
+}
+
+func (r OrderAPIConfirmShippingRequest) Execute() (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	return r.ApiService.ConfirmShippingExecute(r)
+}
+
+func (r OrderAPIConfirmShippingRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	return r.ApiService.ConfirmShippingExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+ConfirmShipping Method for ConfirmShipping
+
+This endpoint updates the order status of an order_id.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orderId Order service unique identifier
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIConfirmShippingRequest
+*/
+func (a *OrderAPIService) ConfirmShipping(ctx context.Context, orderId int64, fsId int64) OrderAPIConfirmShippingRequest {
+	return OrderAPIConfirmShippingRequest{
+		ApiService: a,
+		ctx: ctx,
+		orderId: orderId,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return UpdateShopStatusDefaultResponseData
+func (a *OrderAPIService) ConfirmShippingExecute(r OrderAPIConfirmShippingRequest) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateShopStatusDefaultResponseData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.ConfirmShipping")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/status"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.confirmShippingRequest == nil {
+		return localVarReturnValue, nil, reportError("confirmShippingRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.confirmShippingRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return UpdateShopStatusDefaultResponseData
+func (a *OrderAPIService) ConfirmShippingExecuteWithRetry(r OrderAPIConfirmShippingRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateShopStatusDefaultResponseData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.ConfirmShipping")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/status"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.confirmShippingRequest == nil {
+		return localVarReturnValue, nil, reportError("confirmShippingRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.confirmShippingRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIGetOrderCobCodRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	fsId int64
+	orderId *int64
+	shopId *int64
+	warehouseId *int64
+	perPage *int64
+	firstOrderId *int64
+	nextOrderId *int64
+}
+
+// Order unique identifier. Will be prioritized over other parameter. Required when there is no other parameter
+func (r OrderAPIGetOrderCobCodRequest) OrderId(orderId int64) OrderAPIGetOrderCobCodRequest {
+	r.orderId = &orderId
+	return r
+}
+
+// Shop unique identifier where the order belongs. Used when get multiple order ID
+func (r OrderAPIGetOrderCobCodRequest) ShopId(shopId int64) OrderAPIGetOrderCobCodRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// Warehouse unique identifier where the order belongs. Used when get multiple order ID
+func (r OrderAPIGetOrderCobCodRequest) WarehouseId(warehouseId int64) OrderAPIGetOrderCobCodRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+// Number of order in one request. Default value is 10. Can be use together with warehouse_id or shop_id parameter
+func (r OrderAPIGetOrderCobCodRequest) PerPage(perPage int64) OrderAPIGetOrderCobCodRequest {
+	r.perPage = &perPage
+	return r
+}
+
+// Order ID that can be use get data after this order ID sequential by order created time
+func (r OrderAPIGetOrderCobCodRequest) FirstOrderId(firstOrderId int64) OrderAPIGetOrderCobCodRequest {
+	r.firstOrderId = &firstOrderId
+	return r
+}
+
+// Order ID that can be use get data before this order ID sequential by order created time
+func (r OrderAPIGetOrderCobCodRequest) NextOrderId(nextOrderId int64) OrderAPIGetOrderCobCodRequest {
+	r.nextOrderId = &nextOrderId
+	return r
+}
+
+func (r OrderAPIGetOrderCobCodRequest) Execute() (*GetOrderCobCod200Response, *http.Response, error) {
+	return r.ApiService.GetOrderCobCodExecute(r)
+}
+
+func (r OrderAPIGetOrderCobCodRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetOrderCobCod200Response, *http.Response, error) {
+	return r.ApiService.GetOrderCobCodExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetOrderCobCod Method for GetOrderCobCod
+
+Courier Online Booking (COB) and Call On Delivery (COD) endpoint is used to get order data related to shipping process, especially when using Booking Code and/or Payment Amount COD. The booking code will appear when the order status reached 400. This endpoint can use to get order by order ID, get orders by Shop ID, or get orders by warehouse ID.
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIGetOrderCobCodRequest
+*/
+func (a *OrderAPIService) GetOrderCobCod(ctx context.Context, fsId int64) OrderAPIGetOrderCobCodRequest {
+	return OrderAPIGetOrderCobCodRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return GetOrderCobCod200Response
+func (a *OrderAPIService) GetOrderCobCodExecute(r OrderAPIGetOrderCobCodRequest) (*GetOrderCobCod200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetOrderCobCod200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetOrderCobCod")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/fs/{fs_id}/fulfillment_order"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.orderId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order_id", r.orderId, "")
+	}
+	if r.shopId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	if r.perPage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	}
+	if r.firstOrderId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_order_id", r.firstOrderId, "")
+	}
+	if r.nextOrderId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next_order_id", r.nextOrderId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetOrderCobCod200Response
+func (a *OrderAPIService) GetOrderCobCodExecuteWithRetry(r OrderAPIGetOrderCobCodRequest, maxRetry, maxDelayMs int) (*GetOrderCobCod200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetOrderCobCod200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetOrderCobCod")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/fs/{fs_id}/fulfillment_order"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.orderId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order_id", r.orderId, "")
+	}
+	if r.shopId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	if r.perPage != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	}
+	if r.firstOrderId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "first_order_id", r.firstOrderId, "")
+	}
+	if r.nextOrderId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "next_order_id", r.nextOrderId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type OrderAPIGetOrderWebhookRequest struct {
 	ctx context.Context
@@ -253,6 +1166,1569 @@ func (a *OrderAPIService) GetOrderWebhookExecuteWithRetry(r OrderAPIGetOrderWebh
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIGetResolutionTicketRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	fsId int64
+	shopId *int64
+	fromDate *string
+	toDate *string
+}
+
+// Shop unique identifier
+func (r OrderAPIGetResolutionTicketRequest) ShopId(shopId int64) OrderAPIGetResolutionTicketRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// Shop unique identifier (format: YYYY-MM-DD) 
+func (r OrderAPIGetResolutionTicketRequest) FromDate(fromDate string) OrderAPIGetResolutionTicketRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// Shop unique identifier (format: YYYY-MM-DD) 
+func (r OrderAPIGetResolutionTicketRequest) ToDate(toDate string) OrderAPIGetResolutionTicketRequest {
+	r.toDate = &toDate
+	return r
+}
+
+func (r OrderAPIGetResolutionTicketRequest) Execute() (*GetResolutionTicket200Response, *http.Response, error) {
+	return r.ApiService.GetResolutionTicketExecute(r)
+}
+
+func (r OrderAPIGetResolutionTicketRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetResolutionTicket200Response, *http.Response, error) {
+	return r.ApiService.GetResolutionTicketExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetResolutionTicket Method for GetResolutionTicket
+
+This endpoint is used to get resolution ticket by shop_id.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIGetResolutionTicketRequest
+*/
+func (a *OrderAPIService) GetResolutionTicket(ctx context.Context, fsId int64) OrderAPIGetResolutionTicketRequest {
+	return OrderAPIGetResolutionTicketRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return GetResolutionTicket200Response
+func (a *OrderAPIService) GetResolutionTicketExecute(r OrderAPIGetResolutionTicketRequest) (*GetResolutionTicket200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetResolutionTicket200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetResolutionTicket")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/resolution/v1/fs/{fs_id}/ticket"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from_date", r.fromDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to_date", r.toDate, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetResolutionTicket200Response
+func (a *OrderAPIService) GetResolutionTicketExecuteWithRetry(r OrderAPIGetResolutionTicketRequest, maxRetry, maxDelayMs int) (*GetResolutionTicket200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetResolutionTicket200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetResolutionTicket")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/resolution/v1/fs/{fs_id}/ticket"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from_date", r.fromDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to_date", r.toDate, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIGetShippingLabelRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	orderId int64
+	fsId int64
+	printed *int64
+}
+
+// 0 or 1. Default value is 1. When flag set to 1 then the seller dashboard will show the order as already printed
+func (r OrderAPIGetShippingLabelRequest) Printed(printed int64) OrderAPIGetShippingLabelRequest {
+	r.printed = &printed
+	return r
+}
+
+func (r OrderAPIGetShippingLabelRequest) Execute() (string, *http.Response, error) {
+	return r.ApiService.GetShippingLabelExecute(r)
+}
+
+func (r OrderAPIGetShippingLabelRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (string, *http.Response, error) {
+	return r.ApiService.GetShippingLabelExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetShippingLabel Method for GetShippingLabel
+
+This endpoint is return html page that can be use to print shipping label for specific order. Shipping label can be seen after order status is on process (400). Shipping label contain Booking Code as barcode that can be scanned by Third-Party Logistic for automatic AWB
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orderId Order service unique identifier
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIGetShippingLabelRequest
+*/
+func (a *OrderAPIService) GetShippingLabel(ctx context.Context, orderId int64, fsId int64) OrderAPIGetShippingLabelRequest {
+	return OrderAPIGetShippingLabelRequest{
+		ApiService: a,
+		ctx: ctx,
+		orderId: orderId,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return string
+func (a *OrderAPIService) GetShippingLabelExecute(r OrderAPIGetShippingLabelRequest) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetShippingLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/shipping-label"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.printed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "printed", r.printed, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/html"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return string
+func (a *OrderAPIService) GetShippingLabelExecuteWithRetry(r OrderAPIGetShippingLabelRequest, maxRetry, maxDelayMs int) (string, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetShippingLabel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/shipping-label"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.printed != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "printed", r.printed, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/html"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIGetSingleOrderRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	fsId int64
+	orderId *int64
+	invoiceNum *string
+}
+
+// Order unique identifier
+func (r OrderAPIGetSingleOrderRequest) OrderId(orderId int64) OrderAPIGetSingleOrderRequest {
+	r.orderId = &orderId
+	return r
+}
+
+// Invoice Number
+func (r OrderAPIGetSingleOrderRequest) InvoiceNum(invoiceNum string) OrderAPIGetSingleOrderRequest {
+	r.invoiceNum = &invoiceNum
+	return r
+}
+
+func (r OrderAPIGetSingleOrderRequest) Execute() (*GetSingleOrder200Response, *http.Response, error) {
+	return r.ApiService.GetSingleOrderExecute(r)
+}
+
+func (r OrderAPIGetSingleOrderRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetSingleOrder200Response, *http.Response, error) {
+	return r.ApiService.GetSingleOrderExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetSingleOrder Method for GetSingleOrder
+
+This endpoint retrieves single orders for your shop between given order id or invoice ref number.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIGetSingleOrderRequest
+*/
+func (a *OrderAPIService) GetSingleOrder(ctx context.Context, fsId int64) OrderAPIGetSingleOrderRequest {
+	return OrderAPIGetSingleOrderRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return GetSingleOrder200Response
+func (a *OrderAPIService) GetSingleOrderExecute(r OrderAPIGetSingleOrderRequest) (*GetSingleOrder200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetSingleOrder200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetSingleOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/fs/{fs_id}/order"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.orderId == nil {
+		return localVarReturnValue, nil, reportError("orderId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "order_id", r.orderId, "")
+	if r.invoiceNum != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "invoice_num", r.invoiceNum, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetSingleOrder200Response
+func (a *OrderAPIService) GetSingleOrderExecuteWithRetry(r OrderAPIGetSingleOrderRequest, maxRetry, maxDelayMs int) (*GetSingleOrder200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetSingleOrder200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetSingleOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/fs/{fs_id}/order"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.orderId == nil {
+		return localVarReturnValue, nil, reportError("orderId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "order_id", r.orderId, "")
+	if r.invoiceNum != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "invoice_num", r.invoiceNum, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIRejectOrderRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	orderId int64
+	fsId int64
+	rejectOrderRequest *RejectOrderRequest
+}
+
+func (r OrderAPIRejectOrderRequest) RejectOrderRequest(rejectOrderRequest RejectOrderRequest) OrderAPIRejectOrderRequest {
+	r.rejectOrderRequest = &rejectOrderRequest
+	return r
+}
+
+func (r OrderAPIRejectOrderRequest) Execute() (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	return r.ApiService.RejectOrderExecute(r)
+}
+
+func (r OrderAPIRejectOrderRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	return r.ApiService.RejectOrderExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+RejectOrder Method for RejectOrder
+
+Negative acknowledge the order (reject the order).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orderId Order service unique identifier
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIRejectOrderRequest
+*/
+func (a *OrderAPIService) RejectOrder(ctx context.Context, orderId int64, fsId int64) OrderAPIRejectOrderRequest {
+	return OrderAPIRejectOrderRequest{
+		ApiService: a,
+		ctx: ctx,
+		orderId: orderId,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return UpdateShopStatusDefaultResponseData
+func (a *OrderAPIService) RejectOrderExecute(r OrderAPIRejectOrderRequest) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateShopStatusDefaultResponseData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RejectOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/nack"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.rejectOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("rejectOrderRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.rejectOrderRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return UpdateShopStatusDefaultResponseData
+func (a *OrderAPIService) RejectOrderExecuteWithRetry(r OrderAPIRejectOrderRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdateShopStatusDefaultResponseData
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RejectOrder")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/nack"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.rejectOrderRequest == nil {
+		return localVarReturnValue, nil, reportError("rejectOrderRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.rejectOrderRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIRejectRequestCancelRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	orderId int64
+	fsId int64
+	shopId *int64
+}
+
+// Shop unique identifier
+func (r OrderAPIRejectRequestCancelRequest) ShopId(shopId int64) OrderAPIRejectRequestCancelRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r OrderAPIRejectRequestCancelRequest) Execute() (*RejectRequestCancel200Response, *http.Response, error) {
+	return r.ApiService.RejectRequestCancelExecute(r)
+}
+
+func (r OrderAPIRejectRequestCancelRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*RejectRequestCancel200Response, *http.Response, error) {
+	return r.ApiService.RejectRequestCancelExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+RejectRequestCancel Method for RejectRequestCancel
+
+This endpoint is used to reject the buyer request cancelation when the order has been accepted (400) and before the order has been accepted (600).
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orderId Order service unique identifier
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIRejectRequestCancelRequest
+*/
+func (a *OrderAPIService) RejectRequestCancel(ctx context.Context, orderId int64, fsId int64) OrderAPIRejectRequestCancelRequest {
+	return OrderAPIRejectRequestCancelRequest{
+		ApiService: a,
+		ctx: ctx,
+		orderId: orderId,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return RejectRequestCancel200Response
+func (a *OrderAPIService) RejectRequestCancelExecute(r OrderAPIRejectRequestCancelRequest) (*RejectRequestCancel200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RejectRequestCancel200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RejectRequestCancel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/reject-cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return RejectRequestCancel200Response
+func (a *OrderAPIService) RejectRequestCancelExecuteWithRetry(r OrderAPIRejectRequestCancelRequest, maxRetry, maxDelayMs int) (*RejectRequestCancel200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RejectRequestCancel200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RejectRequestCancel")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/reject-cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIRequestPartialOrderFulfillmentRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	orderId int64
+	fsId int64
+	requestPartialOrderFulfillmentRequest *RequestPartialOrderFulfillmentRequest
+}
+
+func (r OrderAPIRequestPartialOrderFulfillmentRequest) RequestPartialOrderFulfillmentRequest(requestPartialOrderFulfillmentRequest RequestPartialOrderFulfillmentRequest) OrderAPIRequestPartialOrderFulfillmentRequest {
+	r.requestPartialOrderFulfillmentRequest = &requestPartialOrderFulfillmentRequest
+	return r
+}
+
+func (r OrderAPIRequestPartialOrderFulfillmentRequest) Execute() (*RejectRequestCancel200Response, *http.Response, error) {
+	return r.ApiService.RequestPartialOrderFulfillmentExecute(r)
+}
+
+func (r OrderAPIRequestPartialOrderFulfillmentRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*RejectRequestCancel200Response, *http.Response, error) {
+	return r.ApiService.RequestPartialOrderFulfillmentExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+RequestPartialOrderFulfillment Method for RequestPartialOrderFulfillment
+
+Send a Partial Order Fulfillment (POF) request
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param orderId Order service unique identifier
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIRequestPartialOrderFulfillmentRequest
+*/
+func (a *OrderAPIService) RequestPartialOrderFulfillment(ctx context.Context, orderId int64, fsId int64) OrderAPIRequestPartialOrderFulfillmentRequest {
+	return OrderAPIRequestPartialOrderFulfillmentRequest{
+		ApiService: a,
+		ctx: ctx,
+		orderId: orderId,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return RejectRequestCancel200Response
+func (a *OrderAPIService) RequestPartialOrderFulfillmentExecute(r OrderAPIRequestPartialOrderFulfillmentRequest) (*RejectRequestCancel200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RejectRequestCancel200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RequestPartialOrderFulfillment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/pof/request"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestPartialOrderFulfillmentRequest == nil {
+		return localVarReturnValue, nil, reportError("requestPartialOrderFulfillmentRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestPartialOrderFulfillmentRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return RejectRequestCancel200Response
+func (a *OrderAPIService) RequestPartialOrderFulfillmentExecuteWithRetry(r OrderAPIRequestPartialOrderFulfillmentRequest, maxRetry, maxDelayMs int) (*RejectRequestCancel200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RejectRequestCancel200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RequestPartialOrderFulfillment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/order/{order_id}/fs/{fs_id}/pof/request"
+	localVarPath = strings.Replace(localVarPath, "{"+"order_id"+"}", url.PathEscape(parameterValueToString(r.orderId, "orderId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestPartialOrderFulfillmentRequest == nil {
+		return localVarReturnValue, nil, reportError("requestPartialOrderFulfillmentRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestPartialOrderFulfillmentRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIRequestPickupRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	fsId int64
+	requestPickupRequest *RequestPickupRequest
+}
+
+func (r OrderAPIRequestPickupRequest) RequestPickupRequest(requestPickupRequest RequestPickupRequest) OrderAPIRequestPickupRequest {
+	r.requestPickupRequest = &requestPickupRequest
+	return r
+}
+
+func (r OrderAPIRequestPickupRequest) Execute() (*RequestPickup200Response, *http.Response, error) {
+	return r.ApiService.RequestPickupExecute(r)
+}
+
+func (r OrderAPIRequestPickupRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*RequestPickup200Response, *http.Response, error) {
+	return r.ApiService.RequestPickupExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+RequestPickup Method for RequestPickup
+
+You can request pick-up using this endpoint. Please make sure that you make the 5-second delay after Accepting the Order before hitting this endpoint.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return OrderAPIRequestPickupRequest
+*/
+func (a *OrderAPIService) RequestPickup(ctx context.Context, fsId int64) OrderAPIRequestPickupRequest {
+	return OrderAPIRequestPickupRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return RequestPickup200Response
+func (a *OrderAPIService) RequestPickupExecute(r OrderAPIRequestPickupRequest) (*RequestPickup200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RequestPickup200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RequestPickup")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/pick-up"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestPickupRequest == nil {
+		return localVarReturnValue, nil, reportError("requestPickupRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestPickupRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return RequestPickup200Response
+func (a *OrderAPIService) RequestPickupExecuteWithRetry(r OrderAPIRequestPickupRequest, maxRetry, maxDelayMs int) (*RequestPickup200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RequestPickup200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.RequestPickup")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/pick-up"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.requestPickupRequest == nil {
+		return localVarReturnValue, nil, reportError("requestPickupRequest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.requestPickupRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

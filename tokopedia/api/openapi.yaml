@@ -3599,6 +3599,1152 @@ paths:
               style: simple
       tags:
       - Shop
+  /v1/order/{order_id}/fs/{fs_id}/reject-cancel:
+    post:
+      description: This endpoint is used to reject the buyer request cancelation when
+        the order has been accepted (400) and before the order has been accepted (600).
+      operationId: rejectRequestCancel
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rejectRequestCancel_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v1/order/{order_id}/fs/{fs_id}/pof/request:
+    post:
+      description: Send a Partial Order Fulfillment (POF) request
+      operationId: requestPartialOrderFulfillment
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requestPartialOrderFulfillment_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rejectRequestCancel_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /resolution/v1/fs/{fs_id}/ticket:
+    get:
+      description: This endpoint is used to get resolution ticket by shop_id.
+      operationId: getResolutionTicket
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: |
+          Shop unique identifier (format: YYYY-MM-DD)
+        explode: true
+        in: query
+        name: from_date
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |
+          Shop unique identifier (format: YYYY-MM-DD)
+        explode: true
+        in: query
+        name: to_date
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getResolutionTicket_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v1/fs/{fs_id}/fulfillment_order:
+    get:
+      description: |
+        Courier Online Booking (COB) and Call On Delivery (COD) endpoint is used to get order data related to shipping process, especially when using Booking Code and/or Payment Amount COD. The booking code will appear when the order status reached 400. This endpoint can use to get order by order ID, get orders by Shop ID, or get orders by warehouse ID.
+      operationId: getOrderCobCod
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Order unique identifier. Will be prioritized over other parameter.
+          Required when there is no other parameter
+        explode: true
+        in: query
+        name: order_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Shop unique identifier where the order belongs. Used when get
+          multiple order ID
+        explode: true
+        in: query
+        name: shop_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Warehouse unique identifier where the order belongs. Used when
+          get multiple order ID
+        explode: true
+        in: query
+        name: warehouse_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Number of order in one request. Default value is 10. Can be use
+          together with warehouse_id or shop_id parameter
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Order ID that can be use get data after this order ID sequential
+          by order created time
+        explode: true
+        in: query
+        name: first_order_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Order ID that can be use get data before this order ID sequential
+          by order created time
+        explode: true
+        in: query
+        name: next_order_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getOrderCobCod_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /inventory/v1/fs/{fs_id}/pick-up:
+    post:
+      description: You can request pick-up using this endpoint. Please make sure that
+        you make the 5-second delay after Accepting the Order before hitting this
+        endpoint.
+      operationId: requestPickup
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requestPickup_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/requestPickup_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v1/order/{order_id}/fs/{fs_id}/status:
+    post:
+      description: This endpoint updates the order status of an order_id.
+      operationId: confirmShipping
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/confirmShipping_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateShopStatus_default_response_data'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v1/order/{order_id}/fs/{fs_id}/nack:
+    post:
+      description: Negative acknowledge the order (reject the order).
+      operationId: rejectOrder
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/rejectOrder_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateShopStatus_default_response_data'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v1/order/{order_id}/fs/{fs_id}/ack:
+    post:
+      description: Acknowledge the order (fully or partially accept the order).
+      operationId: acceptOrder
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Warehouse unique identifier
+        explode: true
+        in: query
+        name: warehouse_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updateShopStatus_default_response_data'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v1/order/{order_id}/fs/{fs_id}/shipping-label:
+    get:
+      description: |
+        This endpoint is return html page that can be use to print shipping label for specific order. Shipping label can be seen after order status is on process (400). Shipping label contain Booking Code as barcode that can be scanned by Third-Party Logistic for automatic AWB
+      operationId: getShippingLabel
+      parameters:
+      - description: Order service unique identifier
+        explode: false
+        in: path
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: 0 or 1. Default value is 1. When flag set to 1 then the seller
+          dashboard will show the order as already printed
+        explode: true
+        in: query
+        name: printed
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            text/html:
+              schema:
+                type: string
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
+  /v2/fs/{fs_id}/order:
+    get:
+      description: This endpoint retrieves single orders for your shop between given
+        order id or invoice ref number.
+      operationId: getSingleOrder
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Order unique identifier
+        explode: true
+        in: query
+        name: order_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Invoice Number
+        explode: true
+        in: query
+        name: invoice_num
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getSingleOrder_200_response'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
 components:
   parameters:
     fs_id:
@@ -6194,8 +7340,8 @@ components:
     getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner_option_inner_picture:
       example:
         file_path: file_path
+        url"200": url"200"
         file_name: file_name
-        url200: url200
         url100: url100
         url: url
       properties:
@@ -6207,7 +7353,7 @@ components:
           type: string
         url100:
           type: string
-        url200:
+        url"200":
           type: string
       type: object
     getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_selection_inner_option_inner:
@@ -6218,8 +7364,8 @@ components:
         value: value
         picture:
           file_path: file_path
+          url"200": url"200"
           file_name: file_name
-          url200: url200
           url100: url100
           url: url
       properties:
@@ -6250,8 +7396,8 @@ components:
           value: value
           picture:
             file_path: file_path
+            url"200": url"200"
             file_name: file_name
-            url200: url200
             url100: url100
             url: url
         - unit_value_id: 1
@@ -6260,8 +7406,8 @@ components:
           value: value
           picture:
             file_path: file_path
+            url"200": url"200"
             file_name: file_name
-            url200: url200
             url100: url100
             url: url
         Name: Name
@@ -6344,8 +7490,8 @@ components:
             value: value
             picture:
               file_path: file_path
+              url"200": url"200"
               file_name: file_name
-              url200: url200
               url100: url100
               url: url
           - unit_value_id: 1
@@ -6354,8 +7500,8 @@ components:
             value: value
             picture:
               file_path: file_path
+              url"200": url"200"
               file_name: file_name
-              url200: url200
               url100: url100
               url: url
           Name: Name
@@ -6371,8 +7517,8 @@ components:
             value: value
             picture:
               file_path: file_path
+              url"200": url"200"
               file_name: file_name
-              url200: url200
               url100: url100
               url: url
           - unit_value_id: 1
@@ -6381,8 +7527,8 @@ components:
             value: value
             picture:
               file_path: file_path
+              url"200": url"200"
               file_name: file_name
-              url200: url200
               url100: url100
               url: url
           Name: Name
@@ -6511,8 +7657,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             - unit_value_id: 1
@@ -6521,8 +7667,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             Name: Name
@@ -6538,8 +7684,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             - unit_value_id: 1
@@ -6548,8 +7694,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             Name: Name
@@ -6598,8 +7744,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             - unit_value_id: 1
@@ -6608,8 +7754,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             Name: Name
@@ -6625,8 +7771,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             - unit_value_id: 1
@@ -6635,8 +7781,8 @@ components:
               value: value
               picture:
                 file_path: file_path
+                url"200": url"200"
                 file_name: file_name
-                url200: url200
                 url100: url100
                 url: url
             Name: Name
@@ -6755,8 +7901,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -6765,8 +7911,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -6782,8 +7928,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -6792,8 +7938,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -6842,8 +7988,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -6852,8 +7998,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -6869,8 +8015,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -6879,8 +8025,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -6953,8 +8099,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -6963,8 +8109,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -6980,8 +8126,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -6990,8 +8136,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -7040,8 +8186,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -7050,8 +8196,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -7067,8 +8213,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               - unit_value_id: 1
@@ -7077,8 +8223,8 @@ components:
                 value: value
                 picture:
                   file_path: file_path
+                  url"200": url"200"
                   file_name: file_name
-                  url200: url200
                   url100: url100
                   url: url
               Name: Name
@@ -7167,8 +8313,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7177,8 +8323,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7194,8 +8340,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7204,8 +8350,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7254,8 +8400,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7264,8 +8410,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7281,8 +8427,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7291,8 +8437,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7365,8 +8511,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7375,8 +8521,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7392,8 +8538,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7402,8 +8548,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7452,8 +8598,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7462,8 +8608,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -7479,8 +8625,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 - unit_value_id: 1
@@ -7489,8 +8635,8 @@ components:
                   value: value
                   picture:
                     file_path: file_path
+                    url"200": url"200"
                     file_name: file_name
-                    url200: url200
                     url100: url100
                     url: url
                 Name: Name
@@ -9485,6 +10631,3217 @@ components:
           items:
             $ref: '#/components/schemas/getShopInfo_200_response_data_inner'
           type: array
+      type: object
+    rejectRequestCancel_200_response_data:
+      example:
+        success: true
+      properties:
+        success:
+          type: boolean
+      type: object
+    rejectRequestCancel_200_response:
+      example:
+        data:
+          success: true
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/rejectRequestCancel_200_response_data'
+      type: object
+    requestPartialOrderFulfillment_request_pof_detail_inner:
+      properties:
+        order_dtl_id:
+          description: Order detail unique identifier
+          format: int64
+          type: integer
+        quantity_request:
+          description: Requested quantity for POF request
+          format: int64
+          type: integer
+      type: object
+    requestPartialOrderFulfillment_request:
+      properties:
+        pof_detail:
+          description: Array of POF detail info
+          items:
+            $ref: '#/components/schemas/requestPartialOrderFulfillment_request_pof_detail_inner'
+          type: array
+      type: object
+    getResolutionTicket_200_response_data_shops_inner_ticket_inner_complaint_product_inner:
+      example:
+        image: image
+        final_price: 2
+        price: 5
+        qty: 5
+        id: 1
+        Name: Name
+      properties:
+        id:
+          format: int64
+          type: integer
+        Name:
+          type: string
+        qty:
+          format: int64
+          type: integer
+        price:
+          format: int64
+          type: integer
+        final_price:
+          format: int64
+          type: integer
+        image:
+          type: string
+      type: object
+    getResolutionTicket_200_response_data_shops_inner_ticket_inner:
+      example:
+        open_date: open_date
+        sla_date: sla_date
+        close_date: close_date
+        shipping_amt: 7
+        solution: solution
+        total_issued_funds: 9
+        fault: fault
+        problem_type: problem_type
+        id: 6
+        invoice_number: invoice_number
+        complaint_product:
+        - image: image
+          final_price: 2
+          price: 5
+          qty: 5
+          id: 1
+          Name: Name
+        - image: image
+          final_price: 2
+          price: 5
+          qty: 5
+          id: 1
+          Name: Name
+        status: status
+      properties:
+        id:
+          format: int64
+          type: integer
+        problem_type:
+          type: string
+        status:
+          type: string
+        open_date:
+          description: |
+            format: YYYY-MM-DD
+          type: string
+        sla_date:
+          description: |
+            format: YYYY-MM-DD
+          type: string
+        close_date:
+          description: |
+            format: YYYY-MM-DD
+          type: string
+        invoice_number:
+          type: string
+        solution:
+          type: string
+        complaint_product:
+          items:
+            $ref: '#/components/schemas/getResolutionTicket_200_response_data_shops_inner_ticket_inner_complaint_product_inner'
+          type: array
+        fault:
+          type: string
+        shipping_amt:
+          format: int64
+          type: integer
+        total_issued_funds:
+          format: int64
+          type: integer
+      type: object
+    getResolutionTicket_200_response_data_shops_inner:
+      example:
+        shop_id: 0
+        ticket:
+        - open_date: open_date
+          sla_date: sla_date
+          close_date: close_date
+          shipping_amt: 7
+          solution: solution
+          total_issued_funds: 9
+          fault: fault
+          problem_type: problem_type
+          id: 6
+          invoice_number: invoice_number
+          complaint_product:
+          - image: image
+            final_price: 2
+            price: 5
+            qty: 5
+            id: 1
+            Name: Name
+          - image: image
+            final_price: 2
+            price: 5
+            qty: 5
+            id: 1
+            Name: Name
+          status: status
+        - open_date: open_date
+          sla_date: sla_date
+          close_date: close_date
+          shipping_amt: 7
+          solution: solution
+          total_issued_funds: 9
+          fault: fault
+          problem_type: problem_type
+          id: 6
+          invoice_number: invoice_number
+          complaint_product:
+          - image: image
+            final_price: 2
+            price: 5
+            qty: 5
+            id: 1
+            Name: Name
+          - image: image
+            final_price: 2
+            price: 5
+            qty: 5
+            id: 1
+            Name: Name
+          status: status
+        shop_name: shop_name
+      properties:
+        shop_id:
+          format: int64
+          type: integer
+        shop_name:
+          type: string
+        ticket:
+          items:
+            $ref: '#/components/schemas/getResolutionTicket_200_response_data_shops_inner_ticket_inner'
+          type: array
+      type: object
+    getResolutionTicket_200_response_data:
+      example:
+        enddate: enddate
+        shops:
+        - shop_id: 0
+          ticket:
+          - open_date: open_date
+            sla_date: sla_date
+            close_date: close_date
+            shipping_amt: 7
+            solution: solution
+            total_issued_funds: 9
+            fault: fault
+            problem_type: problem_type
+            id: 6
+            invoice_number: invoice_number
+            complaint_product:
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            status: status
+          - open_date: open_date
+            sla_date: sla_date
+            close_date: close_date
+            shipping_amt: 7
+            solution: solution
+            total_issued_funds: 9
+            fault: fault
+            problem_type: problem_type
+            id: 6
+            invoice_number: invoice_number
+            complaint_product:
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            status: status
+          shop_name: shop_name
+        - shop_id: 0
+          ticket:
+          - open_date: open_date
+            sla_date: sla_date
+            close_date: close_date
+            shipping_amt: 7
+            solution: solution
+            total_issued_funds: 9
+            fault: fault
+            problem_type: problem_type
+            id: 6
+            invoice_number: invoice_number
+            complaint_product:
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            status: status
+          - open_date: open_date
+            sla_date: sla_date
+            close_date: close_date
+            shipping_amt: 7
+            solution: solution
+            total_issued_funds: 9
+            fault: fault
+            problem_type: problem_type
+            id: 6
+            invoice_number: invoice_number
+            complaint_product:
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            - image: image
+              final_price: 2
+              price: 5
+              qty: 5
+              id: 1
+              Name: Name
+            status: status
+          shop_name: shop_name
+        is_success: true
+        startdate: startdate
+      properties:
+        is_success:
+          type: boolean
+        startdate:
+          description: |
+            format: YYYY-MM-DD
+          type: string
+        enddate:
+          description: |
+            format: YYYY-MM-DD
+          type: string
+        shops:
+          items:
+            $ref: '#/components/schemas/getResolutionTicket_200_response_data_shops_inner'
+          type: array
+      type: object
+    getResolutionTicket_200_response:
+      example:
+        data:
+          enddate: enddate
+          shops:
+          - shop_id: 0
+            ticket:
+            - open_date: open_date
+              sla_date: sla_date
+              close_date: close_date
+              shipping_amt: 7
+              solution: solution
+              total_issued_funds: 9
+              fault: fault
+              problem_type: problem_type
+              id: 6
+              invoice_number: invoice_number
+              complaint_product:
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              status: status
+            - open_date: open_date
+              sla_date: sla_date
+              close_date: close_date
+              shipping_amt: 7
+              solution: solution
+              total_issued_funds: 9
+              fault: fault
+              problem_type: problem_type
+              id: 6
+              invoice_number: invoice_number
+              complaint_product:
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              status: status
+            shop_name: shop_name
+          - shop_id: 0
+            ticket:
+            - open_date: open_date
+              sla_date: sla_date
+              close_date: close_date
+              shipping_amt: 7
+              solution: solution
+              total_issued_funds: 9
+              fault: fault
+              problem_type: problem_type
+              id: 6
+              invoice_number: invoice_number
+              complaint_product:
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              status: status
+            - open_date: open_date
+              sla_date: sla_date
+              close_date: close_date
+              shipping_amt: 7
+              solution: solution
+              total_issued_funds: 9
+              fault: fault
+              problem_type: problem_type
+              id: 6
+              invoice_number: invoice_number
+              complaint_product:
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              - image: image
+                final_price: 2
+                price: 5
+                qty: 5
+                id: 1
+                Name: Name
+              status: status
+            shop_name: shop_name
+          is_success: true
+          startdate: startdate
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getResolutionTicket_200_response_data'
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_order:
+      example:
+        order_status: 5
+        open_amt: 2
+        payment_id: 5
+        invoice_pdf_link: invoice_pdf_link
+        payment_amt_cod: 7
+        buyer_id: 6
+        order_id: 0
+        invoice_number: invoice_number
+        seller_id: 1
+      properties:
+        order_id:
+          format: int64
+          type: integer
+        buyer_id:
+          format: int64
+          type: integer
+        seller_id:
+          format: int64
+          type: integer
+        payment_id:
+          format: int64
+          type: integer
+        order_status:
+          description: |
+            Order status code: * 0 - Seller cancel order. * 3 - Order Reject Due Empty Stock. * 5 - Order Canceled by Fraud * 6 - Order Rejected (Auto Cancel Out of Stock) * 10 - Order rejected by seller. * 15 - Instant Cancel by Buyer. * 100 - Order Created. * 103 - Wait for payment confirmation from third party. * 220 - Payment verified, order ready to process. * 221 - Waiting for partner approval. * 400 - Seller accept order. * 450 - Waiting for pickup. * 500 - Order shipment. * 501 - Status changed to waiting resi have no input. * 520 - Invalid shipment reference number (AWB). * 530 - Requested by user to correct invalid entry of shipment reference number. * 540 - Delivered to Pickup Point. * 550 - Return to Seller. * 600 - Order delivered. * 601 - Buyer open a case to finish an order. * 690 - Fraud Review * 700 - Order finished.
+          format: int64
+          type: integer
+        invoice_number:
+          type: string
+        invoice_pdf_link:
+          type: string
+        open_amt:
+          format: int64
+          type: integer
+        payment_amt_cod:
+          format: int64
+          type: integer
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_order_history_inner:
+      example:
+        create_by: 4
+        shipping_date: 2
+        order_hist_id: 9
+        status: 3
+      properties:
+        order_hist_id:
+          format: int64
+          type: integer
+        status:
+          description: |
+            Order status code: * 0 - Seller cancel order. * 3 - Order Reject Due Empty Stock. * 5 - Order Canceled by Fraud * 6 - Order Rejected (Auto Cancel Out of Stock) * 10 - Order rejected by seller. * 15 - Instant Cancel by Buyer. * 100 - Order Created. * 103 - Wait for payment confirmation from third party. * 220 - Payment verified, order ready to process. * 221 - Waiting for partner approval. * 400 - Seller accept order. * 450 - Waiting for pickup. * 500 - Order shipment. * 501 - Status changed to waiting resi have no input. * 520 - Invalid shipment reference number (AWB). * 530 - Requested by user to correct invalid entry of shipment reference number. * 540 - Delivered to Pickup Point. * 550 - Return to Seller. * 600 - Order delivered. * 601 - Buyer open a case to finish an order. * 690 - Fraud Review * 700 - Order finished.
+          format: int64
+          type: integer
+        shipping_date:
+          format: int64
+          type: integer
+        create_by:
+          format: int64
+          type: integer
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_order_detail_inner:
+      example:
+        order_detail_id: 7
+        quantity: 1
+        insurance_price: 6
+        product_id: 1
+        product_price: 1
+        product_name: product_name
+      properties:
+        order_detail_id:
+          format: int64
+          type: integer
+        product_id:
+          format: int64
+          type: integer
+        product_name:
+          type: string
+        quantity:
+          format: int64
+          type: integer
+        product_price:
+          format: int64
+          type: integer
+        insurance_price:
+          format: int64
+          type: integer
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_drop_shipper:
+      example:
+        dropship_telp: dropship_telp
+        dropship_name: dropship_name
+        order_id: 7
+      properties:
+        order_id:
+          format: int64
+          type: integer
+        dropship_name:
+          type: string
+        dropship_telp:
+          type: string
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_type_meta:
+      example:
+        ppp:
+          key: ""
+        kelontong:
+          key: ""
+        trade_in:
+          key: ""
+        now:
+          key: ""
+        cod:
+          key: ""
+        vehicle_leasing:
+          key: ""
+        sampai:
+          key: ""
+      properties:
+        kelontong:
+          additionalProperties: true
+          type: object
+        cod:
+          additionalProperties: true
+          type: object
+        sampai:
+          additionalProperties: true
+          type: object
+        now:
+          additionalProperties: true
+          type: object
+        ppp:
+          additionalProperties: true
+          type: object
+        trade_in:
+          additionalProperties: true
+          type: object
+        vehicle_leasing:
+          additionalProperties: true
+          type: object
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_order_shipment_fulfillment_item_delivered_deadline:
+      example:
+        Valid: true
+        Time: Time
+      properties:
+        Time:
+          description: |
+            format: 2019-07-18T14:58:01.998063Z
+          type: string
+        Valid:
+          type: boolean
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_order_shipment_fulfillment:
+      example:
+        is_accepted: true
+        fulfillment_status: 5
+        accept_deadline: accept_deadline
+        is_item_delivered: true
+        payment_date_time: payment_date_time
+        is_same_day: true
+        confirm_shipping_deadline: confirm_shipping_deadline
+        is_confirm_shipping: true
+        id: 1
+        order_id: 4
+        item_delivered_deadline:
+          Valid: true
+          Time: Time
+      properties:
+        id:
+          format: int64
+          type: integer
+        order_id:
+          format: int64
+          type: integer
+        payment_date_time:
+          description: |
+            format: 2019-07-18T14:58:01.998063Z
+          type: string
+        is_same_day:
+          type: boolean
+        accept_deadline:
+          description: |
+            format: 2019-07-18T14:58:01.998063Z
+          type: string
+        confirm_shipping_deadline:
+          description: |
+            format: 2019-07-18T14:58:01.998063Z
+          type: string
+        item_delivered_deadline:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_order_shipment_fulfillment_item_delivered_deadline'
+        is_accepted:
+          type: boolean
+        is_confirm_shipping:
+          type: boolean
+        is_item_delivered:
+          type: boolean
+        fulfillment_status:
+          format: int64
+          type: integer
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner_booking_data:
+      example:
+        booking_code: booking_code
+        booking_status: 9
+        order_id: 9
+      properties:
+        order_id:
+          format: int64
+          type: integer
+        booking_code:
+          type: string
+        booking_status:
+          format: int64
+          type: integer
+      type: object
+    getOrderCobCod_200_response_data_order_data_inner:
+      example:
+        order_history:
+        - create_by: 4
+          shipping_date: 2
+          order_hist_id: 9
+          status: 3
+        - create_by: 4
+          shipping_date: 2
+          order_hist_id: 9
+          status: 3
+        booking_data:
+          booking_code: booking_code
+          booking_status: 9
+          order_id: 9
+        drop_shipper:
+          dropship_telp: dropship_telp
+          dropship_name: dropship_name
+          order_id: 7
+        type_meta:
+          ppp:
+            key: ""
+          kelontong:
+            key: ""
+          trade_in:
+            key: ""
+          now:
+            key: ""
+          cod:
+            key: ""
+          vehicle_leasing:
+            key: ""
+          sampai:
+            key: ""
+        order_detail:
+        - order_detail_id: 7
+          quantity: 1
+          insurance_price: 6
+          product_id: 1
+          product_price: 1
+          product_name: product_name
+        - order_detail_id: 7
+          quantity: 1
+          insurance_price: 6
+          product_id: 1
+          product_price: 1
+          product_name: product_name
+        order_shipment_fulfillment:
+          is_accepted: true
+          fulfillment_status: 5
+          accept_deadline: accept_deadline
+          is_item_delivered: true
+          payment_date_time: payment_date_time
+          is_same_day: true
+          confirm_shipping_deadline: confirm_shipping_deadline
+          is_confirm_shipping: true
+          id: 1
+          order_id: 4
+          item_delivered_deadline:
+            Valid: true
+            Time: Time
+        order:
+          order_status: 5
+          open_amt: 2
+          payment_id: 5
+          invoice_pdf_link: invoice_pdf_link
+          payment_amt_cod: 7
+          buyer_id: 6
+          order_id: 0
+          invoice_number: invoice_number
+          seller_id: 1
+      properties:
+        order:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_order'
+        order_history:
+          items:
+            $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_order_history_inner'
+          type: array
+        order_detail:
+          items:
+            $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_order_detail_inner'
+          type: array
+        drop_shipper:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_drop_shipper'
+        type_meta:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_type_meta'
+        order_shipment_fulfillment:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_order_shipment_fulfillment'
+        booking_data:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner_booking_data'
+      type: object
+    getOrderCobCod_200_response_data:
+      example:
+        order_data:
+        - order_history:
+          - create_by: 4
+            shipping_date: 2
+            order_hist_id: 9
+            status: 3
+          - create_by: 4
+            shipping_date: 2
+            order_hist_id: 9
+            status: 3
+          booking_data:
+            booking_code: booking_code
+            booking_status: 9
+            order_id: 9
+          drop_shipper:
+            dropship_telp: dropship_telp
+            dropship_name: dropship_name
+            order_id: 7
+          type_meta:
+            ppp:
+              key: ""
+            kelontong:
+              key: ""
+            trade_in:
+              key: ""
+            now:
+              key: ""
+            cod:
+              key: ""
+            vehicle_leasing:
+              key: ""
+            sampai:
+              key: ""
+          order_detail:
+          - order_detail_id: 7
+            quantity: 1
+            insurance_price: 6
+            product_id: 1
+            product_price: 1
+            product_name: product_name
+          - order_detail_id: 7
+            quantity: 1
+            insurance_price: 6
+            product_id: 1
+            product_price: 1
+            product_name: product_name
+          order_shipment_fulfillment:
+            is_accepted: true
+            fulfillment_status: 5
+            accept_deadline: accept_deadline
+            is_item_delivered: true
+            payment_date_time: payment_date_time
+            is_same_day: true
+            confirm_shipping_deadline: confirm_shipping_deadline
+            is_confirm_shipping: true
+            id: 1
+            order_id: 4
+            item_delivered_deadline:
+              Valid: true
+              Time: Time
+          order:
+            order_status: 5
+            open_amt: 2
+            payment_id: 5
+            invoice_pdf_link: invoice_pdf_link
+            payment_amt_cod: 7
+            buyer_id: 6
+            order_id: 0
+            invoice_number: invoice_number
+            seller_id: 1
+        - order_history:
+          - create_by: 4
+            shipping_date: 2
+            order_hist_id: 9
+            status: 3
+          - create_by: 4
+            shipping_date: 2
+            order_hist_id: 9
+            status: 3
+          booking_data:
+            booking_code: booking_code
+            booking_status: 9
+            order_id: 9
+          drop_shipper:
+            dropship_telp: dropship_telp
+            dropship_name: dropship_name
+            order_id: 7
+          type_meta:
+            ppp:
+              key: ""
+            kelontong:
+              key: ""
+            trade_in:
+              key: ""
+            now:
+              key: ""
+            cod:
+              key: ""
+            vehicle_leasing:
+              key: ""
+            sampai:
+              key: ""
+          order_detail:
+          - order_detail_id: 7
+            quantity: 1
+            insurance_price: 6
+            product_id: 1
+            product_price: 1
+            product_name: product_name
+          - order_detail_id: 7
+            quantity: 1
+            insurance_price: 6
+            product_id: 1
+            product_price: 1
+            product_name: product_name
+          order_shipment_fulfillment:
+            is_accepted: true
+            fulfillment_status: 5
+            accept_deadline: accept_deadline
+            is_item_delivered: true
+            payment_date_time: payment_date_time
+            is_same_day: true
+            confirm_shipping_deadline: confirm_shipping_deadline
+            is_confirm_shipping: true
+            id: 1
+            order_id: 4
+            item_delivered_deadline:
+              Valid: true
+              Time: Time
+          order:
+            order_status: 5
+            open_amt: 2
+            payment_id: 5
+            invoice_pdf_link: invoice_pdf_link
+            payment_amt_cod: 7
+            buyer_id: 6
+            order_id: 0
+            invoice_number: invoice_number
+            seller_id: 1
+        first_order_id: 8
+        next_order_id: 6
+      properties:
+        order_data:
+          items:
+            $ref: '#/components/schemas/getOrderCobCod_200_response_data_order_data_inner'
+          type: array
+        next_order_id:
+          description: Next Order Unique Identifier
+          format: int64
+          type: integer
+        first_order_id:
+          description: FirstOrder Unique Identifier
+          format: int64
+          type: integer
+      type: object
+    getOrderCobCod_200_response:
+      example:
+        data:
+          order_data:
+          - order_history:
+            - create_by: 4
+              shipping_date: 2
+              order_hist_id: 9
+              status: 3
+            - create_by: 4
+              shipping_date: 2
+              order_hist_id: 9
+              status: 3
+            booking_data:
+              booking_code: booking_code
+              booking_status: 9
+              order_id: 9
+            drop_shipper:
+              dropship_telp: dropship_telp
+              dropship_name: dropship_name
+              order_id: 7
+            type_meta:
+              ppp:
+                key: ""
+              kelontong:
+                key: ""
+              trade_in:
+                key: ""
+              now:
+                key: ""
+              cod:
+                key: ""
+              vehicle_leasing:
+                key: ""
+              sampai:
+                key: ""
+            order_detail:
+            - order_detail_id: 7
+              quantity: 1
+              insurance_price: 6
+              product_id: 1
+              product_price: 1
+              product_name: product_name
+            - order_detail_id: 7
+              quantity: 1
+              insurance_price: 6
+              product_id: 1
+              product_price: 1
+              product_name: product_name
+            order_shipment_fulfillment:
+              is_accepted: true
+              fulfillment_status: 5
+              accept_deadline: accept_deadline
+              is_item_delivered: true
+              payment_date_time: payment_date_time
+              is_same_day: true
+              confirm_shipping_deadline: confirm_shipping_deadline
+              is_confirm_shipping: true
+              id: 1
+              order_id: 4
+              item_delivered_deadline:
+                Valid: true
+                Time: Time
+            order:
+              order_status: 5
+              open_amt: 2
+              payment_id: 5
+              invoice_pdf_link: invoice_pdf_link
+              payment_amt_cod: 7
+              buyer_id: 6
+              order_id: 0
+              invoice_number: invoice_number
+              seller_id: 1
+          - order_history:
+            - create_by: 4
+              shipping_date: 2
+              order_hist_id: 9
+              status: 3
+            - create_by: 4
+              shipping_date: 2
+              order_hist_id: 9
+              status: 3
+            booking_data:
+              booking_code: booking_code
+              booking_status: 9
+              order_id: 9
+            drop_shipper:
+              dropship_telp: dropship_telp
+              dropship_name: dropship_name
+              order_id: 7
+            type_meta:
+              ppp:
+                key: ""
+              kelontong:
+                key: ""
+              trade_in:
+                key: ""
+              now:
+                key: ""
+              cod:
+                key: ""
+              vehicle_leasing:
+                key: ""
+              sampai:
+                key: ""
+            order_detail:
+            - order_detail_id: 7
+              quantity: 1
+              insurance_price: 6
+              product_id: 1
+              product_price: 1
+              product_name: product_name
+            - order_detail_id: 7
+              quantity: 1
+              insurance_price: 6
+              product_id: 1
+              product_price: 1
+              product_name: product_name
+            order_shipment_fulfillment:
+              is_accepted: true
+              fulfillment_status: 5
+              accept_deadline: accept_deadline
+              is_item_delivered: true
+              payment_date_time: payment_date_time
+              is_same_day: true
+              confirm_shipping_deadline: confirm_shipping_deadline
+              is_confirm_shipping: true
+              id: 1
+              order_id: 4
+              item_delivered_deadline:
+                Valid: true
+                Time: Time
+            order:
+              order_status: 5
+              open_amt: 2
+              payment_id: 5
+              invoice_pdf_link: invoice_pdf_link
+              payment_amt_cod: 7
+              buyer_id: 6
+              order_id: 0
+              invoice_number: invoice_number
+              seller_id: 1
+          first_order_id: 8
+          next_order_id: 6
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+        status: 9
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getOrderCobCod_200_response_data'
+        status:
+          description: Response Status
+          format: int64
+          type: integer
+      type: object
+    requestPickup_request:
+      properties:
+        order_id:
+          format: int64
+          type: integer
+        shop_id:
+          format: int64
+          type: integer
+      required:
+      - order_id
+      - shop_id
+      type: object
+    requestPickup_200_response_data:
+      example:
+        result: result
+        shop_id: 6
+        request_time: request_time
+        order_id: 0
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        request_time:
+          description: |
+            Request Timestamp (format: 2018-06-12 10:24:00)
+          type: string
+        result:
+          description: Result Message
+          type: string
+      type: object
+    requestPickup_200_response:
+      example:
+        data:
+          result: result
+          shop_id: 6
+          request_time: request_time
+          order_id: 0
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/requestPickup_200_response_data'
+      type: object
+    confirmShipping_request:
+      properties:
+        order_status:
+          description: |
+            Order status code: * 0 - Seller cancel order. * 3 - Order Reject Due Empty Stock. * 5 - Order Canceled by Fraud * 6 - Order Rejected (Auto Cancel Out of Stock) * 10 - Order rejected by seller. * 15 - Instant Cancel by Buyer. * 100 - Order Created. * 103 - Wait for payment confirmation from third party. * 220 - Payment verified, order ready to process. * 221 - Waiting for partner approval. * 400 - Seller accept order. * 450 - Waiting for pickup. * 500 - Order shipment. * 501 - Status changed to waiting resi have no input. * 520 - Invalid shipment reference number (AWB). * 530 - Requested by user to correct invalid entry of shipment reference number. * 540 - Delivered to Pickup Point. * 550 - Return to Seller. * 600 - Order delivered. * 601 - Buyer open a case to finish an order. * 690 - Fraud Review * 700 - Order finished.
+          format: int64
+          type: integer
+        shipping_ref_num:
+          type: string
+      required:
+      - order_status
+      - shipping_ref_num
+      type: object
+    rejectOrder_request:
+      properties:
+        reason_code:
+          description: |
+            Order reject reason: * empty/0 - Only for reject shipping case - reason required with max length 200 characters * 1 - Product(s) out of stock * 2 - Product variant unavailable * 3 - Wrong price or weight * 4 - Shop closed. close_end and closed_note required * 5 - Others * 7 - Courier problem - reason required with max length 200 characters * 8 - Buyer’s request - reason required with max length 200 characters
+          format: int64
+          type: integer
+        reason:
+          type: string
+        shop_close_end_date:
+          description: |
+            format: 17/05/2017
+          type: string
+        shop_close_note:
+          type: string
+        empty_products:
+          items:
+            format: int64
+            type: integer
+          type: array
+      type: object
+    getSingleOrder_200_response_data_order_warehouse_meta_data:
+      example:
+        latitude: latitude
+        is_default: 1
+        is_fulfillment: true
+        province_name: province_name
+        address_detail: address_detail
+        shop_id: 3
+        district_name: district_name
+        city_name: city_name
+        partner_id: 9
+        warehouse_name: warehouse_name
+        latlon: latlon
+        province_id: 7
+        country_name: country_name
+        district_id: 2
+        postal_code: postal_code
+        email: email
+        warehouse_id: 7
+        city_id: 4
+        status: 1
+        longitude: longitude
+      properties:
+        warehouse_id:
+          description: Warehouse Unique Identifier
+          format: int64
+          type: integer
+        partner_id:
+          description: Partner Unique Identifier
+          format: int64
+          type: integer
+        shop_id:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        warehouse_name:
+          description: Warehouse Name
+          type: string
+        district_id:
+          description: Warehouse Distric Unique Identifier
+          format: int64
+          type: integer
+        district_name:
+          description: Warehouse Distric Name
+          type: string
+        city_id:
+          description: Warehouse City Unique Identifier
+          format: int64
+          type: integer
+        city_name:
+          description: Warehouse City Name
+          type: string
+        province_id:
+          description: Warehouse Province Unique Identifier
+          format: int64
+          type: integer
+        province_name:
+          description: Warehouse Province Name
+          type: string
+        status:
+          description: Warehouse Status
+          format: int64
+          type: integer
+        postal_code:
+          description: Warehouse Postal Code
+          type: string
+        is_default:
+          description: Is default warehouse?
+          format: int64
+          type: integer
+        latlon:
+          description: Geolocation Coordinate
+          type: string
+        latitude:
+          description: Latitude Coordinate
+          type: string
+        longitude:
+          description: Longitude Coordinate
+          type: string
+        email:
+          description: Warehouse Email
+          type: string
+        address_detail:
+          description: Warehouse Detail Address
+          type: string
+        country_name:
+          description: Warehouse Country Name
+          type: string
+        is_fulfillment:
+          description: Is fulfillment warehouse?
+          type: boolean
+      type: object
+    getSingleOrder_200_response_data_order_warehouse:
+      example:
+        fulfill_by: 2
+        meta_data:
+          latitude: latitude
+          is_default: 1
+          is_fulfillment: true
+          province_name: province_name
+          address_detail: address_detail
+          shop_id: 3
+          district_name: district_name
+          city_name: city_name
+          partner_id: 9
+          warehouse_name: warehouse_name
+          latlon: latlon
+          province_id: 7
+          country_name: country_name
+          district_id: 2
+          postal_code: postal_code
+          email: email
+          warehouse_id: 7
+          city_id: 4
+          status: 1
+          longitude: longitude
+        warehouse_id: 5
+      properties:
+        warehouse_id:
+          description: Warehouse Unique Identifier
+          format: int64
+          type: integer
+        fulfill_by:
+          description: "Order Fulfilled by Tokocabang (1), Order Fulfilled by Shop\
+            \ (0)"
+          format: int64
+          type: integer
+        meta_data:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_order_warehouse_meta_data'
+      type: object
+    getSingleOrder_200_response_data_buyer_info:
+      example:
+        buyer_fullname: buyer_fullname
+        buyer_email: buyer_email
+        buyer_phone: buyer_phone
+        buyer_id: 5
+      properties:
+        buyer_id:
+          description: Buyer User Unique Identifier
+          format: int64
+          type: integer
+        buyer_fullname:
+          description: Buyer Fullname
+          type: string
+        buyer_email:
+          description: Buyer Email Address
+          type: string
+        buyer_phone:
+          description: Buyer Phone Number
+          type: string
+      type: object
+    getSingleOrder_200_response_data_shop_info:
+      example:
+        shop_id: 9
+        shop_owner_email: shop_owner_email
+        shop_owner_phone: shop_owner_phone
+        shop_owner_id: 9
+        shop_domain: shop_domain
+        shop_name: shop_name
+      properties:
+        shop_owner_id:
+          description: Shop Owner User Unique Identifier
+          format: int64
+          type: integer
+        shop_owner_email:
+          description: Shop Owner Email Address
+          type: string
+        shop_owner_phone:
+          description: Shop Owner Phone Number
+          type: string
+        shop_name:
+          description: Shop Name
+          type: string
+        shop_domain:
+          description: Shop Domain
+          type: string
+        shop_id:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_shipment_fulfillment_item_delivered_deadline:
+      example:
+        Valid: true
+        Time: Time
+      properties:
+        Time:
+          description: |
+            Item Delivered Deadline Timestamp (format: 0001-01-01T00:00:00Z)
+          type: string
+        Valid:
+          description: Is valid?
+          type: boolean
+      type: object
+    getSingleOrder_200_response_data_shipment_fulfillment:
+      example:
+        is_accepted: true
+        fulfillment_status: 9
+        accept_deadline: accept_deadline
+        is_item_delivered: true
+        payment_date_time: payment_date_time
+        is_same_day: true
+        confirm_shipping_deadline: confirm_shipping_deadline
+        is_confirm_shipping: true
+        id: 6
+        order_id: 8
+        item_delivered_deadline:
+          Valid: true
+          Time: Time
+      properties:
+        id:
+          description: Shipment Fulfillment Unique Identifier
+          format: int64
+          type: integer
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        payment_date_time:
+          description: |
+            Payment Date Time (format: 0001-01-01T00:00:00Z)
+          type: string
+        is_same_day:
+          description: Is same day delivery?
+          type: boolean
+        accept_deadline:
+          description: |
+            Accept Deadline (format: 0001-01-01T00:00:00Z)
+          type: string
+        confirm_shipping_deadline:
+          description: |
+            Accept Deadline (format: 0001-01-01T00:00:00Z)
+          type: string
+        item_delivered_deadline:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_shipment_fulfillment_item_delivered_deadline'
+        is_accepted:
+          description: Is order accepted?
+          type: boolean
+        is_confirm_shipping:
+          description: Is shipping confirmed?
+          type: boolean
+        is_item_delivered:
+          description: Is item delivered?
+          type: boolean
+        fulfillment_status:
+          description: Fullfilment Status
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_preorder:
+      example:
+        preorder_type: 3
+        shop_id: 1
+        preorder_process_time: 6
+        preorder_deadline: preorder_deadline
+        customer_id: 2
+        order_id: 6
+        preorder_process_start: preorder_process_start
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        preorder_type:
+          description: Preorder Type
+          format: int64
+          type: integer
+        preorder_process_time:
+          description: Preorder Process Time in UNIX Format
+          format: int64
+          type: integer
+        preorder_process_start:
+          description: |
+            Preorder Process Start Time (format: 2017-07-20T17:50:58.061156Z)
+          type: string
+        preorder_deadline:
+          description: |
+            Preorder Deadline Time (format: 0001-01-01T00:00:00Z)
+          type: string
+        shop_id:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        customer_id:
+          description: Customer User Unique Identifier
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_order_info_order_detail_inner:
+      example:
+        subtotal_price: 6
+        quantity: 7
+        is_free_returns: true
+        product_desc_atc: product_desc_atc
+        quantity_reject: 7
+        weight: 3.353193347011243
+        product_desc_pdp: product_desc_pdp
+        product_price: 5
+        product_picture: product_picture
+        snapshot_url: snapshot_url
+        product_name: product_name
+        total_weight: 3.0937452626664474
+        order_detail_id: 6
+        currency_rate: 8
+        insurance_price: 6
+        normal_price: 0
+        product_id: 6
+        quantity_deliver: 0
+        min_order: 7
+        child_cat_id: 3
+        sku: sku
+        currency_id: 4
+        campaign_id: campaign_id
+      properties:
+        order_detail_id:
+          description: Order Detail Unique Identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        product_name:
+          description: Product Name
+          type: string
+        product_desc_pdp:
+          description: Product Description PDP
+          type: string
+        product_desc_atc:
+          description: Product Description ATC
+          type: string
+        product_price:
+          description: Product Price
+          format: int64
+          type: integer
+        subtotal_price:
+          description: Product Order Total Price
+          format: int64
+          type: integer
+        weight:
+          description: Product Weight
+          format: double
+          type: number
+        total_weight:
+          description: Product Order Total Weight
+          format: double
+          type: number
+        quantity:
+          description: Product Order Quantity
+          format: int64
+          type: integer
+        quantity_deliver:
+          description: Product Order Quantity Deliver Count
+          format: int64
+          type: integer
+        quantity_reject:
+          description: Product Order Quantity Reject Count
+          format: int64
+          type: integer
+        is_free_returns:
+          description: Is free returns?
+          type: boolean
+        insurance_price:
+          description: Product Order Insurance Price
+          format: int64
+          type: integer
+        normal_price:
+          description: Product Order Normal Price
+          format: int64
+          type: integer
+        currency_id:
+          description: Currency Unique Identifier
+          format: int64
+          type: integer
+        currency_rate:
+          description: Currency Rate
+          format: int64
+          type: integer
+        min_order:
+          description: Product Minimum Order
+          format: int64
+          type: integer
+        child_cat_id:
+          description: Product Child Category Unique Identifier
+          format: int64
+          type: integer
+        campaign_id:
+          description: Campaign Unique Identifier
+          type: string
+        product_picture:
+          description: Product Picture URL
+          type: string
+        snapshot_url:
+          description: Product Snapshot URL
+          type: string
+        sku:
+          description: SKU
+          type: string
+      type: object
+    getSingleOrder_200_response_data_order_info_order_history_inner:
+      example:
+        create_by: 7
+        action_by: action_by
+        hist_status_code: 3
+        comment: comment
+        message: message
+        update_by: update_by
+        timestamp: timestamp
+      properties:
+        action_by:
+          description: Order Action Change Actor
+          type: string
+        hist_status_code:
+          description: History Status Code
+          format: int64
+          type: integer
+        message:
+          description: Order History Message
+          type: string
+        timestamp:
+          description: |
+            Order History Timestamp (format: 2017-07-24T08:01:07.073696Z)
+          type: string
+        comment:
+          description: Order History Comment
+          type: string
+        create_by:
+          description: Order History Created By
+          format: int64
+          type: integer
+        update_by:
+          description: Order History Updated By
+          type: string
+      type: object
+    getSingleOrder_200_response_data_order_info_shipping_info_recommended_courier_info_inner:
+      example:
+        sequence: 4
+        milestone: milestone
+        name: name
+      properties:
+        name:
+          type: string
+        sequence:
+          format: int64
+          type: integer
+        milestone:
+          type: string
+      type: object
+    getSingleOrder_200_response_data_order_info_shipping_info:
+      example:
+        shipping_id: 6
+        recommended_courier_info:
+        - sequence: 4
+          milestone: milestone
+          name: name
+        - sequence: 4
+          milestone: milestone
+          name: name
+        second_sp_id: 0
+        fee: 9
+        is_fake_delivery: true
+        logistic_name: logistic_name
+        second_shipping_id: 9
+        second_logistic_name: second_logistic_name
+        second_logistic_service: second_logistic_service
+        second_rate: 5
+        shipping_price: 4
+        second_agency_fee: 0
+        autoresi_shipping_price: 6
+        isCashless: true
+        logistic_service: logistic_service
+        shipping_price_rate: 1
+        count_awb: 8
+        awb: awb
+        shipping_fee: 4
+        autoresi_awb: autoresi_awb
+        autoresi_cashless_status: 4
+        insurance_price: 7
+        sp_id: 0
+        is_change_courier: true
+        second_insurance: 7
+      properties:
+        sp_id:
+          description: Shipper Unique Identifier
+          format: int64
+          type: integer
+        shipping_id:
+          description: Shipping Unique Identifier
+          format: int64
+          type: integer
+        logistic_name:
+          description: Logistic Name
+          type: string
+        logistic_service:
+          description: Logistic Service Name
+          type: string
+        shipping_price:
+          description: Shipping Price
+          format: int64
+          type: integer
+        shipping_price_rate:
+          description: Shipping Price Rate
+          format: int64
+          type: integer
+        shipping_fee:
+          description: Shipping Fee
+          format: int64
+          type: integer
+        insurance_price:
+          description: Insurance Price
+          format: int64
+          type: integer
+        fee:
+          description: Fee
+          format: int64
+          type: integer
+        is_change_courier:
+          description: Is change courirer?
+          type: boolean
+        second_sp_id:
+          description: Second Shipper Unique Identifier
+          format: int64
+          type: integer
+        second_shipping_id:
+          description: Second Shipping Unique Identifier
+          format: int64
+          type: integer
+        second_logistic_name:
+          description: Second Logistic Name
+          type: string
+        second_logistic_service:
+          description: Second Logistic Service Name
+          type: string
+        second_agency_fee:
+          description: Second Agency Fee
+          format: int64
+          type: integer
+        second_insurance:
+          description: Second Insurance
+          format: int64
+          type: integer
+        second_rate:
+          description: Second Shipping Price Rate
+          format: int64
+          type: integer
+        awb:
+          description: Airway Bill (Resi)
+          type: string
+        autoresi_cashless_status:
+          description: Autoresi Cashless Status
+          format: int64
+          type: integer
+        autoresi_awb:
+          description: Airway Bill (Auto Resi)
+          type: string
+        autoresi_shipping_price:
+          description: AWB Shipping Price
+          format: int64
+          type: integer
+        count_awb:
+          description: AWB Count
+          format: int64
+          type: integer
+        isCashless:
+          description: Is cashless?
+          type: boolean
+        is_fake_delivery:
+          description: Is fake delivery?
+          type: boolean
+        recommended_courier_info:
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_order_info_shipping_info_recommended_courier_info_inner'
+          type: array
+      type: object
+    getSingleOrder_200_response_data_order_info_destination:
+      example:
+        address_province: address_province
+        customer_address_id: 3
+        address_postal: address_postal
+        province_id: 1
+        address_street: address_street
+        receiver_name: receiver_name
+        district_id: 0
+        receiver_phone: receiver_phone
+        address_district: address_district
+        address_city: address_city
+        city_id: 2
+      properties:
+        receiver_name:
+          description: Receiver Name
+          type: string
+        receiver_phone:
+          description: Receiver Phone Number
+          type: string
+        address_street:
+          description: Receiver Address Street
+          type: string
+        address_district:
+          description: Receiver Address Distric
+          type: string
+        address_city:
+          description: Receiver Address City
+          type: string
+        address_province:
+          description: Receiver Address Province
+          type: string
+        address_postal:
+          description: Receiver Address Postal Code
+          type: string
+        customer_address_id:
+          description: Receiver Customer Address Identifier
+          format: int64
+          type: integer
+        district_id:
+          description: Receiver District Unique Identifier
+          format: int64
+          type: integer
+        city_id:
+          description: Receiver City Unique Identifier
+          format: int64
+          type: integer
+        province_id:
+          description: Receiver Province Unique Identifier
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_order_info:
+      example:
+        order_history:
+        - create_by: 7
+          action_by: action_by
+          hist_status_code: 3
+          comment: comment
+          message: message
+          update_by: update_by
+          timestamp: timestamp
+        - create_by: 7
+          action_by: action_by
+          hist_status_code: 3
+          comment: comment
+          message: message
+          update_by: update_by
+          timestamp: timestamp
+        shipping_info:
+          shipping_id: 6
+          recommended_courier_info:
+          - sequence: 4
+            milestone: milestone
+            name: name
+          - sequence: 4
+            milestone: milestone
+            name: name
+          second_sp_id: 0
+          fee: 9
+          is_fake_delivery: true
+          logistic_name: logistic_name
+          second_shipping_id: 9
+          second_logistic_name: second_logistic_name
+          second_logistic_service: second_logistic_service
+          second_rate: 5
+          shipping_price: 4
+          second_agency_fee: 0
+          autoresi_shipping_price: 6
+          isCashless: true
+          logistic_service: logistic_service
+          shipping_price_rate: 1
+          count_awb: 8
+          awb: awb
+          shipping_fee: 4
+          autoresi_awb: autoresi_awb
+          autoresi_cashless_status: 4
+          insurance_price: 7
+          sp_id: 0
+          is_change_courier: true
+          second_insurance: 7
+        is_replacement: true
+        delivered_age_day: 4
+        order_age_day: 5
+        is_plus: true
+        shipping_age_day: 3
+        destination:
+          address_province: address_province
+          customer_address_id: 3
+          address_postal: address_postal
+          province_id: 1
+          address_street: address_street
+          receiver_name: receiver_name
+          district_id: 0
+          receiver_phone: receiver_phone
+          address_district: address_district
+          address_city: address_city
+          city_id: 2
+        replacement_multiplier: 8
+        order_detail:
+        - subtotal_price: 6
+          quantity: 7
+          is_free_returns: true
+          product_desc_atc: product_desc_atc
+          quantity_reject: 7
+          weight: 3.353193347011243
+          product_desc_pdp: product_desc_pdp
+          product_price: 5
+          product_picture: product_picture
+          snapshot_url: snapshot_url
+          product_name: product_name
+          total_weight: 3.0937452626664474
+          order_detail_id: 6
+          currency_rate: 8
+          insurance_price: 6
+          normal_price: 0
+          product_id: 6
+          quantity_deliver: 0
+          min_order: 7
+          child_cat_id: 3
+          sku: sku
+          currency_id: 4
+          campaign_id: campaign_id
+        - subtotal_price: 6
+          quantity: 7
+          is_free_returns: true
+          product_desc_atc: product_desc_atc
+          quantity_reject: 7
+          weight: 3.353193347011243
+          product_desc_pdp: product_desc_pdp
+          product_price: 5
+          product_picture: product_picture
+          snapshot_url: snapshot_url
+          product_name: product_name
+          total_weight: 3.0937452626664474
+          order_detail_id: 6
+          currency_rate: 8
+          insurance_price: 6
+          normal_price: 0
+          product_id: 6
+          quantity_deliver: 0
+          min_order: 7
+          child_cat_id: 3
+          sku: sku
+          currency_id: 4
+          campaign_id: campaign_id
+        partial_process: true
+      properties:
+        order_detail:
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_order_info_order_detail_inner'
+          type: array
+        order_history:
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_order_info_order_history_inner'
+          type: array
+        order_age_day:
+          description: Order Age in Day
+          format: int64
+          type: integer
+        shipping_age_day:
+          description: Shipping Age in Day
+          format: int64
+          type: integer
+        delivered_age_day:
+          description: Delivered Age in Day
+          format: int64
+          type: integer
+        partial_process:
+          description: Is partial process?
+          type: boolean
+        shipping_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_order_info_shipping_info'
+        destination:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_order_info_destination'
+        is_replacement:
+          description: Is replacement?
+          type: boolean
+        replacement_multiplier:
+          description: Replacement Multiplier
+          format: int64
+          type: integer
+        is_plus:
+          description: Plus Order Flag
+          type: boolean
+      type: object
+    getSingleOrder_200_response_data_origin_info_destination_loc:
+      example:
+        lon: 8.761432466225475
+        lat: 9.183123594773994
+      properties:
+        lat:
+          description: Latitude Coordinate
+          format: double
+          type: number
+        lon:
+          description: Longitude Coordinate
+          format: double
+          type: number
+      type: object
+    getSingleOrder_200_response_data_origin_info:
+      example:
+        destination_address: destination_address
+        destination_postal_code: destination_postal_code
+        origin_address: origin_address
+        sender_name: sender_name
+        origin_province: 6
+        destination_city: 1
+        origin_geo: origin_geo
+        origin_city: 4
+        origin_city_name: origin_city_name
+        destination_province: 9
+        origin_district_name: origin_district_name
+        destination_geo: destination_geo
+        destination_district: 3
+        origin_postal_code: origin_postal_code
+        origin_province_name: origin_province_name
+        receiver_name: receiver_name
+        destination_loc:
+          lon: 8.761432466225475
+          lat: 9.183123594773994
+        origin_district: 8
+      properties:
+        sender_name:
+          description: Sender Name
+          type: string
+        origin_province:
+          description: Origin Province Unique Identifier
+          format: int64
+          type: integer
+        origin_province_name:
+          description: Origin Province Name
+          type: string
+        origin_city:
+          description: Origin City Unique Identifier
+          format: int64
+          type: integer
+        origin_city_name:
+          description: Origin City Name
+          type: string
+        origin_address:
+          description: Origin Address
+          type: string
+        origin_district:
+          description: Origin District Unique Identifier
+          format: int64
+          type: integer
+        origin_district_name:
+          description: Origin District Name
+          type: string
+        origin_postal_code:
+          description: Origin Postal Code
+          type: string
+        origin_geo:
+          description: Origin Geolocation Coordinate
+          type: string
+        receiver_name:
+          description: Receiver Name
+          type: string
+        destination_address:
+          description: Destination Address
+          type: string
+        destination_province:
+          description: Destination Province Unique Identifier
+          format: int64
+          type: integer
+        destination_city:
+          description: Destination City Unique Identifier
+          format: int64
+          type: integer
+        destination_district:
+          description: Destination Disctrict Unique Identifier
+          format: int64
+          type: integer
+        destination_postal_code:
+          description: Destination Disctrict Postal Code
+          type: string
+        destination_geo:
+          description: Destination Geolocation Coordinate
+          type: string
+        destination_loc:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_origin_info_destination_loc'
+      type: object
+    getSingleOrder_200_response_data_payment_info:
+      example:
+        payment_status_id: 5
+        create_time: create_time
+        payment_id: 0
+        discount_amount: 7
+        payment_status: payment_status
+        pg_id: 8
+        voucher_id: 3
+        voucher_code: voucher_code
+        payment_date: payment_date
+        payment_method: 5
+        payment_ref_num: payment_ref_num
+        gateway_name: gateway_name
+      properties:
+        payment_id:
+          description: Payment Unique Identifier
+          format: int64
+          type: integer
+        payment_ref_num:
+          description: Payment Ref Number
+          type: string
+        payment_date:
+          description: |
+            Payment Date Timestamp (format: 2017-07-20T17:50:06Z)
+          type: string
+        payment_method:
+          description: Payment Method
+          format: int64
+          type: integer
+        payment_status:
+          description: Payment Status
+          type: string
+        payment_status_id:
+          description: Payment Status
+          format: int64
+          type: integer
+        create_time:
+          description: |
+            Create Time Timestamp (format: 2017-07-20T17:50:06Z)
+          type: string
+        pg_id:
+          description: Payment Gateway Identifier
+          format: int64
+          type: integer
+        gateway_name:
+          description: Gateway Name
+          type: string
+        discount_amount:
+          description: Discount Amount
+          format: int64
+          type: integer
+        voucher_code:
+          description: Voucher Code
+          type: string
+        voucher_id:
+          description: Voucher Unique Identifier
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_insurance_info:
+      example:
+        insurance_type: 3
+      properties:
+        insurance_type:
+          description: Insurance Type
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_promo_order_detail_total_discount_details_inner:
+      example:
+        amount: 2
+        type: type
+      properties:
+        amount:
+          format: int64
+          type: integer
+        type:
+          type: string
+      type: object
+    getSingleOrder_200_response_data_promo_order_detail_summary_promo_inner_discount_details_inner_budget_details_inner:
+      example:
+        budget_type: 0
+        benefit_amount: 7
+        actual_benefit_amount: 4
+      properties:
+        budget_type:
+          description: |
+            Type of Budget. 1 : Tokopedia, 2 : Partner*, 3 : Brand*.
+          format: int64
+          type: integer
+        benefit_amount:
+          description: Benefit amount per budget type
+          format: int64
+          type: integer
+        actual_benefit_amount:
+          description: Actual benefit amount given to user per budget type
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_promo_order_detail_summary_promo_inner_discount_details_inner:
+      example:
+        amount: 0
+        type: type
+        budget_details:
+        - budget_type: 0
+          benefit_amount: 7
+          actual_benefit_amount: 4
+        - budget_type: 0
+          benefit_amount: 7
+          actual_benefit_amount: 4
+      properties:
+        amount:
+          description: Discount amount per discount type
+          format: int64
+          type: integer
+        type:
+          description: "Discount type. (discount_shipping, discount_product)"
+          type: string
+        budget_details:
+          description: Details of budget in 1 promo with breakdown of benefit amount
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_promo_order_detail_summary_promo_inner_discount_details_inner_budget_details_inner'
+          type: array
+      type: object
+    getSingleOrder_200_response_data_promo_order_detail_summary_promo_inner:
+      example:
+        is_coupon: true
+        show_discount_amount: true
+        cashback_points: 8
+        cashback_amount: 3
+        show_cashback_amount: true
+        cashback_details: "{}"
+        discount_amount: 4
+        name: name
+        discount_details:
+        - amount: 0
+          type: type
+          budget_details:
+          - budget_type: 0
+            benefit_amount: 7
+            actual_benefit_amount: 4
+          - budget_type: 0
+            benefit_amount: 7
+            actual_benefit_amount: 4
+        - amount: 0
+          type: type
+          budget_details:
+          - budget_type: 0
+            benefit_amount: 7
+            actual_benefit_amount: 4
+          - budget_type: 0
+            benefit_amount: 7
+            actual_benefit_amount: 4
+        type: type
+        invoice_desc: invoice_desc
+      properties:
+        name:
+          description: Promo Title
+          type: string
+        is_coupon:
+          description: Is promo a coupon or not
+          type: boolean
+        show_cashback_amount:
+          description: Flag to show cashback amount (hardcoded true)
+          type: boolean
+        show_discount_amount:
+          description: Flag to show discount amount (hardcoded true)
+          type: boolean
+        cashback_amount:
+          description: Cashback amount in IDR
+          format: int64
+          type: integer
+        cashback_points:
+          description: Cashback amount in Points currency
+          format: int64
+          type: integer
+        cashback_details:
+          description: Details of cashback in 1 promo
+          nullable: true
+          type: object
+        type:
+          description: "Promo benefit type. (discount, cashback)"
+          type: string
+        discount_amount:
+          description: Discount amount
+          format: int64
+          type: integer
+        discount_details:
+          description: Details of discount in 1 promo
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_promo_order_detail_summary_promo_inner_discount_details_inner'
+          type: array
+        invoice_desc:
+          type: string
+      type: object
+    getSingleOrder_200_response_data_promo_order_detail:
+      example:
+        total_discount: 7
+        summary_promo:
+        - is_coupon: true
+          show_discount_amount: true
+          cashback_points: 8
+          cashback_amount: 3
+          show_cashback_amount: true
+          cashback_details: "{}"
+          discount_amount: 4
+          name: name
+          discount_details:
+          - amount: 0
+            type: type
+            budget_details:
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+          - amount: 0
+            type: type
+            budget_details:
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+          type: type
+          invoice_desc: invoice_desc
+        - is_coupon: true
+          show_discount_amount: true
+          cashback_points: 8
+          cashback_amount: 3
+          show_cashback_amount: true
+          cashback_details: "{}"
+          discount_amount: 4
+          name: name
+          discount_details:
+          - amount: 0
+            type: type
+            budget_details:
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+          - amount: 0
+            type: type
+            budget_details:
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+            - budget_type: 0
+              benefit_amount: 7
+              actual_benefit_amount: 4
+          type: type
+          invoice_desc: invoice_desc
+        total_cashback: 5
+        total_discount_product: 0
+        total_discount_shipping: 3
+        order_id: 9
+        total_discount_details:
+        - amount: 2
+          type: type
+        - amount: 2
+          type: type
+      properties:
+        order_id:
+          format: int64
+          type: integer
+        total_cashback:
+          format: int64
+          type: integer
+        total_discount:
+          format: int64
+          type: integer
+        total_discount_product:
+          format: int64
+          type: integer
+        total_discount_shipping:
+          format: int64
+          type: integer
+        total_discount_details:
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_promo_order_detail_total_discount_details_inner'
+          type: array
+        summary_promo:
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_promo_order_detail_summary_promo_inner'
+          type: array
+      type: object
+    getSingleOrder_200_response_data_pof_info_pof_detail_info_inner:
+      example:
+        quantity_request: 5
+        order_dtl_id: 1
+        product_id: 3
+        total_price_request: 1
+        order_id: 1
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        order_dtl_id:
+          description: Order Detail Unique Identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        quantity_request:
+          description: Requested Product Quantity
+          format: int64
+          type: integer
+        total_price_request:
+          description: Requested Total Price
+          format: int64
+          type: integer
+      type: object
+    getSingleOrder_200_response_data_pof_info:
+      example:
+        create_by: 6
+        shipping_price: 0
+        update_time: update_time
+        insurance_price: 2
+        create_time: create_time
+        pof_detail_info:
+        - quantity_request: 5
+          order_dtl_id: 1
+          product_id: 3
+          total_price_request: 1
+          order_id: 1
+        - quantity_request: 5
+          order_dtl_id: 1
+          product_id: 3
+          total_price_request: 1
+          order_id: 1
+        pof_status: 9
+        update_by: 6
+        order_id: 2
+        update_by_type: 9
+        create_by_type: 4
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        pof_status:
+          description: Partial Order Fulfillment Status Code
+          format: int64
+          type: integer
+        shipping_price:
+          description: Shipping Price
+          format: int64
+          type: integer
+        insurance_price:
+          description: Insurance Price
+          format: int64
+          type: integer
+        create_time:
+          description: |
+            POF Request Create Timestamp (format: 2023-04-03T08:36:29.331837Z)
+          type: string
+        create_by:
+          description: POF Request Create By
+          format: int64
+          type: integer
+        create_by_type:
+          description: POF Request Create By Type
+          format: int64
+          type: integer
+        update_time:
+          description: |
+            POF Request Update Timestamp (format: 2023-04-03T08:36:36.482397Z)
+          type: string
+        update_by:
+          description: POF Request Update By
+          format: int64
+          type: integer
+        update_by_type:
+          description: POF Request Update By Type
+          format: int64
+          type: integer
+        pof_detail_info:
+          items:
+            $ref: '#/components/schemas/getSingleOrder_200_response_data_pof_info_pof_detail_info_inner'
+          type: array
+      type: object
+    getSingleOrder_200_response_data:
+      example:
+        shop_info:
+          shop_id: 9
+          shop_owner_email: shop_owner_email
+          shop_owner_phone: shop_owner_phone
+          shop_owner_id: 9
+          shop_domain: shop_domain
+          shop_name: shop_name
+        shipment_fulfillment:
+          is_accepted: true
+          fulfillment_status: 9
+          accept_deadline: accept_deadline
+          is_item_delivered: true
+          payment_date_time: payment_date_time
+          is_same_day: true
+          confirm_shipping_deadline: confirm_shipping_deadline
+          is_confirm_shipping: true
+          id: 6
+          order_id: 8
+          item_delivered_deadline:
+            Valid: true
+            Time: Time
+        invoice_pdf: invoice_pdf
+        shipping_date: shipping_date
+        est_shipping_date: est_shipping_date
+        related_invoices: "{}"
+        promo_order_detail:
+          total_discount: 7
+          summary_promo:
+          - is_coupon: true
+            show_discount_amount: true
+            cashback_points: 8
+            cashback_amount: 3
+            show_cashback_amount: true
+            cashback_details: "{}"
+            discount_amount: 4
+            name: name
+            discount_details:
+            - amount: 0
+              type: type
+              budget_details:
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+            - amount: 0
+              type: type
+              budget_details:
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+            type: type
+            invoice_desc: invoice_desc
+          - is_coupon: true
+            show_discount_amount: true
+            cashback_points: 8
+            cashback_amount: 3
+            show_cashback_amount: true
+            cashback_details: "{}"
+            discount_amount: 4
+            name: name
+            discount_details:
+            - amount: 0
+              type: type
+              budget_details:
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+            - amount: 0
+              type: type
+              budget_details:
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+              - budget_type: 0
+                benefit_amount: 7
+                actual_benefit_amount: 4
+            type: type
+            invoice_desc: invoice_desc
+          total_cashback: 5
+          total_discount_product: 0
+          total_discount_shipping: 3
+          order_id: 9
+          total_discount_details:
+          - amount: 2
+            type: type
+          - amount: 2
+            type: type
+        buyer_id: 6
+        hold_info: "{}"
+        order_status: 1
+        est_delivery_date: est_delivery_date
+        update_time: update_time
+        payment_id: 5
+        payment_info:
+          payment_status_id: 5
+          create_time: create_time
+          payment_id: 0
+          discount_amount: 7
+          payment_status: payment_status
+          pg_id: 8
+          voucher_id: 3
+          voucher_code: voucher_code
+          payment_date: payment_date
+          payment_method: 5
+          payment_ref_num: payment_ref_num
+          gateway_name: gateway_name
+        invoice_number: invoice_number
+        seller_id: 1
+        payment_date: payment_date
+        info: info
+        delivered_date: delivered_date
+        order_warehouse:
+          fulfill_by: 2
+          meta_data:
+            latitude: latitude
+            is_default: 1
+            is_fulfillment: true
+            province_name: province_name
+            address_detail: address_detail
+            shop_id: 3
+            district_name: district_name
+            city_name: city_name
+            partner_id: 9
+            warehouse_name: warehouse_name
+            latlon: latlon
+            province_id: 7
+            country_name: country_name
+            district_id: 2
+            postal_code: postal_code
+            email: email
+            warehouse_id: 7
+            city_id: 4
+            status: 1
+            longitude: longitude
+          warehouse_id: 5
+        open_amt: 6
+        create_time: create_time
+        item_price: 4
+        buyer_info:
+          buyer_fullname: buyer_fullname
+          buyer_email: buyer_email
+          buyer_phone: buyer_phone
+          buyer_id: 5
+        custom_fields: "{}"
+        is_fulfillment: true
+        lp_amt: 7
+        order_info:
+          order_history:
+          - create_by: 7
+            action_by: action_by
+            hist_status_code: 3
+            comment: comment
+            message: message
+            update_by: update_by
+            timestamp: timestamp
+          - create_by: 7
+            action_by: action_by
+            hist_status_code: 3
+            comment: comment
+            message: message
+            update_by: update_by
+            timestamp: timestamp
+          shipping_info:
+            shipping_id: 6
+            recommended_courier_info:
+            - sequence: 4
+              milestone: milestone
+              name: name
+            - sequence: 4
+              milestone: milestone
+              name: name
+            second_sp_id: 0
+            fee: 9
+            is_fake_delivery: true
+            logistic_name: logistic_name
+            second_shipping_id: 9
+            second_logistic_name: second_logistic_name
+            second_logistic_service: second_logistic_service
+            second_rate: 5
+            shipping_price: 4
+            second_agency_fee: 0
+            autoresi_shipping_price: 6
+            isCashless: true
+            logistic_service: logistic_service
+            shipping_price_rate: 1
+            count_awb: 8
+            awb: awb
+            shipping_fee: 4
+            autoresi_awb: autoresi_awb
+            autoresi_cashless_status: 4
+            insurance_price: 7
+            sp_id: 0
+            is_change_courier: true
+            second_insurance: 7
+          is_replacement: true
+          delivered_age_day: 4
+          order_age_day: 5
+          is_plus: true
+          shipping_age_day: 3
+          destination:
+            address_province: address_province
+            customer_address_id: 3
+            address_postal: address_postal
+            province_id: 1
+            address_street: address_street
+            receiver_name: receiver_name
+            district_id: 0
+            receiver_phone: receiver_phone
+            address_district: address_district
+            address_city: address_city
+            city_id: 2
+          replacement_multiplier: 8
+          order_detail:
+          - subtotal_price: 6
+            quantity: 7
+            is_free_returns: true
+            product_desc_atc: product_desc_atc
+            quantity_reject: 7
+            weight: 3.353193347011243
+            product_desc_pdp: product_desc_pdp
+            product_price: 5
+            product_picture: product_picture
+            snapshot_url: snapshot_url
+            product_name: product_name
+            total_weight: 3.0937452626664474
+            order_detail_id: 6
+            currency_rate: 8
+            insurance_price: 6
+            normal_price: 0
+            product_id: 6
+            quantity_deliver: 0
+            min_order: 7
+            child_cat_id: 3
+            sku: sku
+            currency_id: 4
+            campaign_id: campaign_id
+          - subtotal_price: 6
+            quantity: 7
+            is_free_returns: true
+            product_desc_atc: product_desc_atc
+            quantity_reject: 7
+            weight: 3.353193347011243
+            product_desc_pdp: product_desc_pdp
+            product_price: 5
+            product_picture: product_picture
+            snapshot_url: snapshot_url
+            product_name: product_name
+            total_weight: 3.0937452626664474
+            order_detail_id: 6
+            currency_rate: 8
+            insurance_price: 6
+            normal_price: 0
+            product_id: 6
+            quantity_deliver: 0
+            min_order: 7
+            child_cat_id: 3
+            sku: sku
+            currency_id: 4
+            campaign_id: campaign_id
+          partial_process: true
+        origin_info:
+          destination_address: destination_address
+          destination_postal_code: destination_postal_code
+          origin_address: origin_address
+          sender_name: sender_name
+          origin_province: 6
+          destination_city: 1
+          origin_geo: origin_geo
+          origin_city: 4
+          origin_city_name: origin_city_name
+          destination_province: 9
+          origin_district_name: origin_district_name
+          destination_geo: destination_geo
+          destination_district: 3
+          origin_postal_code: origin_postal_code
+          origin_province_name: origin_province_name
+          receiver_name: receiver_name
+          destination_loc:
+            lon: 8.761432466225475
+            lat: 9.183123594773994
+          origin_district: 8
+        is_affiliate: true
+        cashback_amt: 1
+        pof_info:
+          create_by: 6
+          shipping_price: 0
+          update_time: update_time
+          insurance_price: 2
+          create_time: create_time
+          pof_detail_info:
+          - quantity_request: 5
+            order_dtl_id: 1
+            product_id: 3
+            total_price_request: 1
+            order_id: 1
+          - quantity_request: 5
+            order_dtl_id: 1
+            product_id: 3
+            total_price_request: 1
+            order_id: 1
+          pof_status: 9
+          update_by: 6
+          order_id: 2
+          update_by_type: 9
+          create_by_type: 4
+        cancel_request_info: "{}"
+        comment: comment
+        insurance_info:
+          insurance_type: 3
+        order_id: 0
+        invoice_url: invoice_url
+        preorder:
+          preorder_type: 3
+          shop_id: 1
+          preorder_process_time: 6
+          preorder_deadline: preorder_deadline
+          customer_id: 2
+          order_id: 6
+          preorder_process_start: preorder_process_start
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        buyer_id:
+          description: Buyer User Unique Identifier
+          format: int64
+          type: integer
+        seller_id:
+          description: Seller User Unique Identifier
+          format: int64
+          type: integer
+        payment_id:
+          description: Payment Unique Identifier
+          format: int64
+          type: integer
+        is_affiliate:
+          description: Is affiliate?
+          type: boolean
+        is_fulfillment:
+          description: "Order Fulfilled by Tokocabang (true), Order Fulfilled by Shop\
+            \ (false)"
+          type: boolean
+        order_warehouse:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_order_warehouse'
+        order_status:
+          description: |
+            Order status code: * 0 - Seller cancel order. * 3 - Order Reject Due Empty Stock. * 5 - Order Canceled by Fraud * 6 - Order Rejected (Auto Cancel Out of Stock) * 10 - Order rejected by seller. * 15 - Instant Cancel by Buyer. * 100 - Order Created. * 103 - Wait for payment confirmation from third party. * 220 - Payment verified, order ready to process. * 221 - Waiting for partner approval. * 400 - Seller accept order. * 450 - Waiting for pickup. * 500 - Order shipment. * 501 - Status changed to waiting resi have no input. * 520 - Invalid shipment reference number (AWB). * 530 - Requested by user to correct invalid entry of shipment reference number. * 540 - Delivered to Pickup Point. * 550 - Return to Seller. * 600 - Order delivered. * 601 - Buyer open a case to finish an order. * 690 - Fraud Review * 700 - Order finished.
+          format: int64
+          type: integer
+        invoice_number:
+          description: Invoice Number
+          type: string
+        invoice_pdf:
+          description: Invoice PDF Filename
+          type: string
+        invoice_url:
+          description: Invoice URL
+          type: string
+        open_amt:
+          description: Total Price Amount
+          format: int64
+          type: integer
+        lp_amt:
+          format: int64
+          type: integer
+        cashback_amt:
+          description: Cashback Amount
+          format: int64
+          type: integer
+        info:
+          description: Info
+          type: string
+        comment:
+          description: Order Comment
+          type: string
+        item_price:
+          description: Item Price
+          format: int64
+          type: integer
+        buyer_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_buyer_info'
+        shop_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_shop_info'
+        shipment_fulfillment:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_shipment_fulfillment'
+        preorder:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_preorder'
+        order_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_order_info'
+        origin_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_origin_info'
+        payment_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_payment_info'
+        insurance_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_insurance_info'
+        hold_info:
+          nullable: true
+          type: object
+        cancel_request_info:
+          nullable: true
+          type: object
+        create_time:
+          description: |
+            Order Creation Date (format: 2017-07-20T17:50:58.061156Z)
+          type: string
+        shipping_date:
+          description: Order Shipping Date
+          nullable: true
+          type: string
+        update_time:
+          description: |
+            Order Update Date (format: 2017-07-24T08:01:07.073696Z)
+          type: string
+        payment_date:
+          description: |
+            Order Payment Date (format: 2017-07-20T17:50:58.061156Z)
+          type: string
+        delivered_date:
+          description: Order Delivered Date
+          nullable: true
+          type: string
+        est_shipping_date:
+          description: Estimated Order Shipping Date
+          nullable: true
+          type: string
+        est_delivery_date:
+          description: Estimated Order Delivered Date
+          nullable: true
+          type: string
+        related_invoices:
+          description: Related Invoices
+          nullable: true
+          type: object
+        custom_fields:
+          description: Custom Fields
+          nullable: true
+          type: object
+        promo_order_detail:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_promo_order_detail'
+        pof_info:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data_pof_info'
+      type: object
+    getSingleOrder_200_response:
+      example:
+        data:
+          shop_info:
+            shop_id: 9
+            shop_owner_email: shop_owner_email
+            shop_owner_phone: shop_owner_phone
+            shop_owner_id: 9
+            shop_domain: shop_domain
+            shop_name: shop_name
+          shipment_fulfillment:
+            is_accepted: true
+            fulfillment_status: 9
+            accept_deadline: accept_deadline
+            is_item_delivered: true
+            payment_date_time: payment_date_time
+            is_same_day: true
+            confirm_shipping_deadline: confirm_shipping_deadline
+            is_confirm_shipping: true
+            id: 6
+            order_id: 8
+            item_delivered_deadline:
+              Valid: true
+              Time: Time
+          invoice_pdf: invoice_pdf
+          shipping_date: shipping_date
+          est_shipping_date: est_shipping_date
+          related_invoices: "{}"
+          promo_order_detail:
+            total_discount: 7
+            summary_promo:
+            - is_coupon: true
+              show_discount_amount: true
+              cashback_points: 8
+              cashback_amount: 3
+              show_cashback_amount: true
+              cashback_details: "{}"
+              discount_amount: 4
+              name: name
+              discount_details:
+              - amount: 0
+                type: type
+                budget_details:
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+              - amount: 0
+                type: type
+                budget_details:
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+              type: type
+              invoice_desc: invoice_desc
+            - is_coupon: true
+              show_discount_amount: true
+              cashback_points: 8
+              cashback_amount: 3
+              show_cashback_amount: true
+              cashback_details: "{}"
+              discount_amount: 4
+              name: name
+              discount_details:
+              - amount: 0
+                type: type
+                budget_details:
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+              - amount: 0
+                type: type
+                budget_details:
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+                - budget_type: 0
+                  benefit_amount: 7
+                  actual_benefit_amount: 4
+              type: type
+              invoice_desc: invoice_desc
+            total_cashback: 5
+            total_discount_product: 0
+            total_discount_shipping: 3
+            order_id: 9
+            total_discount_details:
+            - amount: 2
+              type: type
+            - amount: 2
+              type: type
+          buyer_id: 6
+          hold_info: "{}"
+          order_status: 1
+          est_delivery_date: est_delivery_date
+          update_time: update_time
+          payment_id: 5
+          payment_info:
+            payment_status_id: 5
+            create_time: create_time
+            payment_id: 0
+            discount_amount: 7
+            payment_status: payment_status
+            pg_id: 8
+            voucher_id: 3
+            voucher_code: voucher_code
+            payment_date: payment_date
+            payment_method: 5
+            payment_ref_num: payment_ref_num
+            gateway_name: gateway_name
+          invoice_number: invoice_number
+          seller_id: 1
+          payment_date: payment_date
+          info: info
+          delivered_date: delivered_date
+          order_warehouse:
+            fulfill_by: 2
+            meta_data:
+              latitude: latitude
+              is_default: 1
+              is_fulfillment: true
+              province_name: province_name
+              address_detail: address_detail
+              shop_id: 3
+              district_name: district_name
+              city_name: city_name
+              partner_id: 9
+              warehouse_name: warehouse_name
+              latlon: latlon
+              province_id: 7
+              country_name: country_name
+              district_id: 2
+              postal_code: postal_code
+              email: email
+              warehouse_id: 7
+              city_id: 4
+              status: 1
+              longitude: longitude
+            warehouse_id: 5
+          open_amt: 6
+          create_time: create_time
+          item_price: 4
+          buyer_info:
+            buyer_fullname: buyer_fullname
+            buyer_email: buyer_email
+            buyer_phone: buyer_phone
+            buyer_id: 5
+          custom_fields: "{}"
+          is_fulfillment: true
+          lp_amt: 7
+          order_info:
+            order_history:
+            - create_by: 7
+              action_by: action_by
+              hist_status_code: 3
+              comment: comment
+              message: message
+              update_by: update_by
+              timestamp: timestamp
+            - create_by: 7
+              action_by: action_by
+              hist_status_code: 3
+              comment: comment
+              message: message
+              update_by: update_by
+              timestamp: timestamp
+            shipping_info:
+              shipping_id: 6
+              recommended_courier_info:
+              - sequence: 4
+                milestone: milestone
+                name: name
+              - sequence: 4
+                milestone: milestone
+                name: name
+              second_sp_id: 0
+              fee: 9
+              is_fake_delivery: true
+              logistic_name: logistic_name
+              second_shipping_id: 9
+              second_logistic_name: second_logistic_name
+              second_logistic_service: second_logistic_service
+              second_rate: 5
+              shipping_price: 4
+              second_agency_fee: 0
+              autoresi_shipping_price: 6
+              isCashless: true
+              logistic_service: logistic_service
+              shipping_price_rate: 1
+              count_awb: 8
+              awb: awb
+              shipping_fee: 4
+              autoresi_awb: autoresi_awb
+              autoresi_cashless_status: 4
+              insurance_price: 7
+              sp_id: 0
+              is_change_courier: true
+              second_insurance: 7
+            is_replacement: true
+            delivered_age_day: 4
+            order_age_day: 5
+            is_plus: true
+            shipping_age_day: 3
+            destination:
+              address_province: address_province
+              customer_address_id: 3
+              address_postal: address_postal
+              province_id: 1
+              address_street: address_street
+              receiver_name: receiver_name
+              district_id: 0
+              receiver_phone: receiver_phone
+              address_district: address_district
+              address_city: address_city
+              city_id: 2
+            replacement_multiplier: 8
+            order_detail:
+            - subtotal_price: 6
+              quantity: 7
+              is_free_returns: true
+              product_desc_atc: product_desc_atc
+              quantity_reject: 7
+              weight: 3.353193347011243
+              product_desc_pdp: product_desc_pdp
+              product_price: 5
+              product_picture: product_picture
+              snapshot_url: snapshot_url
+              product_name: product_name
+              total_weight: 3.0937452626664474
+              order_detail_id: 6
+              currency_rate: 8
+              insurance_price: 6
+              normal_price: 0
+              product_id: 6
+              quantity_deliver: 0
+              min_order: 7
+              child_cat_id: 3
+              sku: sku
+              currency_id: 4
+              campaign_id: campaign_id
+            - subtotal_price: 6
+              quantity: 7
+              is_free_returns: true
+              product_desc_atc: product_desc_atc
+              quantity_reject: 7
+              weight: 3.353193347011243
+              product_desc_pdp: product_desc_pdp
+              product_price: 5
+              product_picture: product_picture
+              snapshot_url: snapshot_url
+              product_name: product_name
+              total_weight: 3.0937452626664474
+              order_detail_id: 6
+              currency_rate: 8
+              insurance_price: 6
+              normal_price: 0
+              product_id: 6
+              quantity_deliver: 0
+              min_order: 7
+              child_cat_id: 3
+              sku: sku
+              currency_id: 4
+              campaign_id: campaign_id
+            partial_process: true
+          origin_info:
+            destination_address: destination_address
+            destination_postal_code: destination_postal_code
+            origin_address: origin_address
+            sender_name: sender_name
+            origin_province: 6
+            destination_city: 1
+            origin_geo: origin_geo
+            origin_city: 4
+            origin_city_name: origin_city_name
+            destination_province: 9
+            origin_district_name: origin_district_name
+            destination_geo: destination_geo
+            destination_district: 3
+            origin_postal_code: origin_postal_code
+            origin_province_name: origin_province_name
+            receiver_name: receiver_name
+            destination_loc:
+              lon: 8.761432466225475
+              lat: 9.183123594773994
+            origin_district: 8
+          is_affiliate: true
+          cashback_amt: 1
+          pof_info:
+            create_by: 6
+            shipping_price: 0
+            update_time: update_time
+            insurance_price: 2
+            create_time: create_time
+            pof_detail_info:
+            - quantity_request: 5
+              order_dtl_id: 1
+              product_id: 3
+              total_price_request: 1
+              order_id: 1
+            - quantity_request: 5
+              order_dtl_id: 1
+              product_id: 3
+              total_price_request: 1
+              order_id: 1
+            pof_status: 9
+            update_by: 6
+            order_id: 2
+            update_by_type: 9
+            create_by_type: 4
+          cancel_request_info: "{}"
+          comment: comment
+          insurance_info:
+            insurance_type: 3
+          order_id: 0
+          invoice_url: invoice_url
+          preorder:
+            preorder_type: 3
+            shop_id: 1
+            preorder_process_time: 6
+            preorder_deadline: preorder_deadline
+            customer_id: 2
+            order_id: 6
+            preorder_process_start: preorder_process_start
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getSingleOrder_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:

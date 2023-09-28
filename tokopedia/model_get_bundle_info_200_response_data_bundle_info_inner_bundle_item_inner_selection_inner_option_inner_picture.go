@@ -24,7 +24,7 @@ type GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOpt
 	FilePath *string `json:"file_path,omitempty"`
 	Url *string `json:"url,omitempty"`
 	Url100 *string `json:"url100,omitempty"`
-	Url200 *string `json:"url200,omitempty"`
+	Url200 *string `json:"url&quot;200&quot;,omitempty"`
 }
 
 // NewGetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOptionInnerPicture instantiates a new GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInnerOptionInnerPicture object
@@ -227,7 +227,7 @@ func (o GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInner
 		toSerialize["url100"] = o.Url100
 	}
 	if !IsNil(o.Url200) {
-		toSerialize["url200"] = o.Url200
+		toSerialize["url&quot;200&quot;"] = o.Url200
 	}
 	return toSerialize, nil
 }

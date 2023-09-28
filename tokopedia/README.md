@@ -100,7 +100,17 @@ Class | Method | HTTP request | Description
 *LogisticAPI* | [**GetActiveCourier**](docs/LogisticAPI.md#getactivecourier) | **Get** /v1/logistic/fs/{fs_id}/active-info | 
 *LogisticAPI* | [**GetShipmentInfo**](docs/LogisticAPI.md#getshipmentinfo) | **Get** /v2/logistic/fs/{fs_id}/info | 
 *LogisticAPI* | [**UpdateShipmentInfo**](docs/LogisticAPI.md#updateshipmentinfo) | **Post** /v2/logistic/fs/{fs_id}/update | 
+*OrderAPI* | [**AcceptOrder**](docs/OrderAPI.md#acceptorder) | **Post** /v1/order/{order_id}/fs/{fs_id}/ack | 
+*OrderAPI* | [**ConfirmShipping**](docs/OrderAPI.md#confirmshipping) | **Post** /v1/order/{order_id}/fs/{fs_id}/status | 
+*OrderAPI* | [**GetOrderCobCod**](docs/OrderAPI.md#getordercobcod) | **Get** /v1/fs/{fs_id}/fulfillment_order | 
 *OrderAPI* | [**GetOrderWebhook**](docs/OrderAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
+*OrderAPI* | [**GetResolutionTicket**](docs/OrderAPI.md#getresolutionticket) | **Get** /resolution/v1/fs/{fs_id}/ticket | 
+*OrderAPI* | [**GetShippingLabel**](docs/OrderAPI.md#getshippinglabel) | **Get** /v1/order/{order_id}/fs/{fs_id}/shipping-label | 
+*OrderAPI* | [**GetSingleOrder**](docs/OrderAPI.md#getsingleorder) | **Get** /v2/fs/{fs_id}/order | 
+*OrderAPI* | [**RejectOrder**](docs/OrderAPI.md#rejectorder) | **Post** /v1/order/{order_id}/fs/{fs_id}/nack | 
+*OrderAPI* | [**RejectRequestCancel**](docs/OrderAPI.md#rejectrequestcancel) | **Post** /v1/order/{order_id}/fs/{fs_id}/reject-cancel | 
+*OrderAPI* | [**RequestPartialOrderFulfillment**](docs/OrderAPI.md#requestpartialorderfulfillment) | **Post** /v1/order/{order_id}/fs/{fs_id}/pof/request | 
+*OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
@@ -136,6 +146,7 @@ Class | Method | HTTP request | Description
  - [CategoryVariantUnit](docs/CategoryVariantUnit.md)
  - [CategoryVariantUnitValue](docs/CategoryVariantUnitValue.md)
  - [CategoryVariants](docs/CategoryVariants.md)
+ - [ConfirmShippingRequest](docs/ConfirmShippingRequest.md)
  - [CreateBundle200Response](docs/CreateBundle200Response.md)
  - [CreateBundle200ResponseData](docs/CreateBundle200ResponseData.md)
  - [CreateBundleRequest](docs/CreateBundleRequest.md)
@@ -173,6 +184,17 @@ Class | Method | HTTP request | Description
  - [GetListMessage200ResponseDataInnerAttributesContactAttributes](docs/GetListMessage200ResponseDataInnerAttributesContactAttributes.md)
  - [GetListReply200Response](docs/GetListReply200Response.md)
  - [GetListReply200ResponseDataInner](docs/GetListReply200ResponseDataInner.md)
+ - [GetOrderCobCod200Response](docs/GetOrderCobCod200Response.md)
+ - [GetOrderCobCod200ResponseData](docs/GetOrderCobCod200ResponseData.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInner](docs/GetOrderCobCod200ResponseDataOrderDataInner.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerBookingData](docs/GetOrderCobCod200ResponseDataOrderDataInnerBookingData.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerDropShipper](docs/GetOrderCobCod200ResponseDataOrderDataInnerDropShipper.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerOrder](docs/GetOrderCobCod200ResponseDataOrderDataInnerOrder.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner](docs/GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerOrderHistoryInner](docs/GetOrderCobCod200ResponseDataOrderDataInnerOrderHistoryInner.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerOrderShipmentFulfillment](docs/GetOrderCobCod200ResponseDataOrderDataInnerOrderShipmentFulfillment.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerOrderShipmentFulfillmentItemDeliveredDeadline](docs/GetOrderCobCod200ResponseDataOrderDataInnerOrderShipmentFulfillmentItemDeliveredDeadline.md)
+ - [GetOrderCobCod200ResponseDataOrderDataInnerTypeMeta](docs/GetOrderCobCod200ResponseDataOrderDataInnerTypeMeta.md)
  - [GetOrderWebhook200Response](docs/GetOrderWebhook200Response.md)
  - [GetOrderWebhook200ResponseData](docs/GetOrderWebhook200ResponseData.md)
  - [GetOrderWebhook200ResponseDataOneOf](docs/GetOrderWebhook200ResponseDataOneOf.md)
@@ -189,6 +211,11 @@ Class | Method | HTTP request | Description
  - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
  - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)
  - [GetRegisteredWebhooks200ResponseData](docs/GetRegisteredWebhooks200ResponseData.md)
+ - [GetResolutionTicket200Response](docs/GetResolutionTicket200Response.md)
+ - [GetResolutionTicket200ResponseData](docs/GetResolutionTicket200ResponseData.md)
+ - [GetResolutionTicket200ResponseDataShopsInner](docs/GetResolutionTicket200ResponseDataShopsInner.md)
+ - [GetResolutionTicket200ResponseDataShopsInnerTicketInner](docs/GetResolutionTicket200ResponseDataShopsInnerTicketInner.md)
+ - [GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner](docs/GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner.md)
  - [GetSaldoHistory200Response](docs/GetSaldoHistory200Response.md)
  - [GetSaldoHistory200ResponseData](docs/GetSaldoHistory200ResponseData.md)
  - [GetSaldoHistory200ResponseDataSaldoHistoryInner](docs/GetSaldoHistory200ResponseDataSaldoHistoryInner.md)
@@ -208,6 +235,32 @@ Class | Method | HTTP request | Description
  - [GetShowcaseAllEtalase200ResponseData](docs/GetShowcaseAllEtalase200ResponseData.md)
  - [GetShowcaseAllEtalase200ResponseDataEtalaseInner](docs/GetShowcaseAllEtalase200ResponseDataEtalaseInner.md)
  - [GetShowcaseAllEtalase200ResponseDataShop](docs/GetShowcaseAllEtalase200ResponseDataShop.md)
+ - [GetSingleOrder200Response](docs/GetSingleOrder200Response.md)
+ - [GetSingleOrder200ResponseData](docs/GetSingleOrder200ResponseData.md)
+ - [GetSingleOrder200ResponseDataBuyerInfo](docs/GetSingleOrder200ResponseDataBuyerInfo.md)
+ - [GetSingleOrder200ResponseDataInsuranceInfo](docs/GetSingleOrder200ResponseDataInsuranceInfo.md)
+ - [GetSingleOrder200ResponseDataOrderInfo](docs/GetSingleOrder200ResponseDataOrderInfo.md)
+ - [GetSingleOrder200ResponseDataOrderInfoDestination](docs/GetSingleOrder200ResponseDataOrderInfoDestination.md)
+ - [GetSingleOrder200ResponseDataOrderInfoOrderDetailInner](docs/GetSingleOrder200ResponseDataOrderInfoOrderDetailInner.md)
+ - [GetSingleOrder200ResponseDataOrderInfoOrderHistoryInner](docs/GetSingleOrder200ResponseDataOrderInfoOrderHistoryInner.md)
+ - [GetSingleOrder200ResponseDataOrderInfoShippingInfo](docs/GetSingleOrder200ResponseDataOrderInfoShippingInfo.md)
+ - [GetSingleOrder200ResponseDataOrderInfoShippingInfoRecommendedCourierInfoInner](docs/GetSingleOrder200ResponseDataOrderInfoShippingInfoRecommendedCourierInfoInner.md)
+ - [GetSingleOrder200ResponseDataOrderWarehouse](docs/GetSingleOrder200ResponseDataOrderWarehouse.md)
+ - [GetSingleOrder200ResponseDataOrderWarehouseMetaData](docs/GetSingleOrder200ResponseDataOrderWarehouseMetaData.md)
+ - [GetSingleOrder200ResponseDataOriginInfo](docs/GetSingleOrder200ResponseDataOriginInfo.md)
+ - [GetSingleOrder200ResponseDataOriginInfoDestinationLoc](docs/GetSingleOrder200ResponseDataOriginInfoDestinationLoc.md)
+ - [GetSingleOrder200ResponseDataPaymentInfo](docs/GetSingleOrder200ResponseDataPaymentInfo.md)
+ - [GetSingleOrder200ResponseDataPofInfo](docs/GetSingleOrder200ResponseDataPofInfo.md)
+ - [GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner](docs/GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner.md)
+ - [GetSingleOrder200ResponseDataPreorder](docs/GetSingleOrder200ResponseDataPreorder.md)
+ - [GetSingleOrder200ResponseDataPromoOrderDetail](docs/GetSingleOrder200ResponseDataPromoOrderDetail.md)
+ - [GetSingleOrder200ResponseDataPromoOrderDetailSummaryPromoInner](docs/GetSingleOrder200ResponseDataPromoOrderDetailSummaryPromoInner.md)
+ - [GetSingleOrder200ResponseDataPromoOrderDetailSummaryPromoInnerDiscountDetailsInner](docs/GetSingleOrder200ResponseDataPromoOrderDetailSummaryPromoInnerDiscountDetailsInner.md)
+ - [GetSingleOrder200ResponseDataPromoOrderDetailSummaryPromoInnerDiscountDetailsInnerBudgetDetailsInner](docs/GetSingleOrder200ResponseDataPromoOrderDetailSummaryPromoInnerDiscountDetailsInnerBudgetDetailsInner.md)
+ - [GetSingleOrder200ResponseDataPromoOrderDetailTotalDiscountDetailsInner](docs/GetSingleOrder200ResponseDataPromoOrderDetailTotalDiscountDetailsInner.md)
+ - [GetSingleOrder200ResponseDataShipmentFulfillment](docs/GetSingleOrder200ResponseDataShipmentFulfillment.md)
+ - [GetSingleOrder200ResponseDataShipmentFulfillmentItemDeliveredDeadline](docs/GetSingleOrder200ResponseDataShipmentFulfillmentItemDeliveredDeadline.md)
+ - [GetSingleOrder200ResponseDataShopInfo](docs/GetSingleOrder200ResponseDataShopInfo.md)
  - [InitiateChat200Response](docs/InitiateChat200Response.md)
  - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
  - [InitiateChat200ResponseDataContact](docs/InitiateChat200ResponseDataContact.md)
@@ -235,6 +288,14 @@ Class | Method | HTTP request | Description
  - [ProductWholesalePrice](docs/ProductWholesalePrice.md)
  - [RegisterWebhookDefaultResponse](docs/RegisterWebhookDefaultResponse.md)
  - [RegisterWebhookRequest](docs/RegisterWebhookRequest.md)
+ - [RejectOrderRequest](docs/RejectOrderRequest.md)
+ - [RejectRequestCancel200Response](docs/RejectRequestCancel200Response.md)
+ - [RejectRequestCancel200ResponseData](docs/RejectRequestCancel200ResponseData.md)
+ - [RequestPartialOrderFulfillmentRequest](docs/RequestPartialOrderFulfillmentRequest.md)
+ - [RequestPartialOrderFulfillmentRequestPofDetailInner](docs/RequestPartialOrderFulfillmentRequestPofDetailInner.md)
+ - [RequestPickup200Response](docs/RequestPickup200Response.md)
+ - [RequestPickup200ResponseData](docs/RequestPickup200ResponseData.md)
+ - [RequestPickupRequest](docs/RequestPickupRequest.md)
  - [ResponseHeader](docs/ResponseHeader.md)
  - [SendReply200Response](docs/SendReply200Response.md)
  - [SendReply200ResponseData](docs/SendReply200ResponseData.md)

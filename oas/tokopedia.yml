@@ -3904,7 +3904,7 @@ paths:
                                                     type: string
                                                   url100:
                                                     type: string
-                                                  url200:
+                                                  url"200":
                                                     type: string
                                         Name:
                                           type: string
@@ -6311,6 +6311,2002 @@ paths:
                           type: boolean
                         is_mitra:
                           type: boolean
+  /v1/order/{order_id}/fs/{fs_id}/reject-cancel:
+    parameters:
+      - $ref: "#/components/parameters/order_id"
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: rejectRequestCancel
+      tags:
+        - Order
+      description: "This endpoint is used to reject the buyer request cancelation when the order has been accepted (400) and before the order has been accepted (600)."
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  # WARN: di dokumentasi string, di contoh object
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+  /v1/order/{order_id}/fs/{fs_id}/pof/request:
+    parameters:
+      - $ref: "#/components/parameters/order_id"
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: requestPartialOrderFulfillment
+      tags:
+        - Order
+      description: "Send a Partial Order Fulfillment (POF) request"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pof_detail:
+                  type: array
+                  description: Array of POF detail info
+                  items:
+                    type: object
+                    properties:
+                      order_dtl_id:
+                        type: integer
+                        format: int64
+                        description: Order detail unique identifier
+                      quantity_request:
+                        type: integer
+                        format: int64
+                        description: Requested quantity for POF request
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              # WARN: di dokumentasi tidak ada schema, hanya ada contoh
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      success:
+                        type: boolean
+  /resolution/v1/fs/{fs_id}/ticket:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getResolutionTicket
+      tags:
+        - Order
+      description: "This endpoint is used to get resolution ticket by shop_id."
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        # WARN: di dokumentasi di body, di contoh di query
+        - name: from_date
+          in: query
+          required: true
+          description: >
+            Shop unique identifier (format: YYYY-MM-DD)
+          schema:
+            type: string
+        # WARN: di dokumentasi di body, di contoh di query
+        - name: to_date
+          in: query
+          required: true
+          description: >
+            Shop unique identifier (format: YYYY-MM-DD)
+          schema:
+            type: string
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      is_success:
+                        type: boolean
+                      startdate:
+                        type: string
+                        description: >
+                          format: YYYY-MM-DD
+                      enddate:
+                        type: string
+                        description: >
+                          format: YYYY-MM-DD
+                      shops:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            shop_id:
+                              type: integer
+                              format: int64
+                            shop_name:
+                              type: string
+                            ticket:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                    format: int64
+                                  problem_type:
+                                    type: string
+                                  status:
+                                    type: string
+                                  open_date:
+                                    type: string
+                                    description: >
+                                      format: YYYY-MM-DD
+                                  sla_date:
+                                    type: string
+                                    description: >
+                                      format: YYYY-MM-DD
+                                  close_date:
+                                    type: string
+                                    description: >
+                                      format: YYYY-MM-DD
+                                  invoice_number:
+                                    type: string
+                                  solution:
+                                    type: string
+                                  complaint_product:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        id:
+                                          type: integer
+                                          format: int64
+                                        Name:
+                                          type: string
+                                        qty:
+                                          type: integer
+                                          format: int64
+                                        price:
+                                          type: integer
+                                          format: int64
+                                        final_price:
+                                          type: integer
+                                          format: int64
+                                        image:
+                                          type: string
+                                  fault:
+                                    type: string
+                                  shipping_amt:
+                                    type: integer
+                                    format: int64
+                                  total_issued_funds:
+                                    type: integer
+                                    format: int64
+  /v1/fs/{fs_id}/fulfillment_order:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getOrderCobCod
+      tags:
+        - Order
+      description: >
+        Courier Online Booking (COB) and Call On Delivery (COD) endpoint is used to get order data related to shipping process, especially when using Booking Code and/or Payment Amount COD. The booking code will appear when the order status reached 400. This endpoint can use to get order by order ID, get orders by Shop ID, or get orders by warehouse ID.
+      parameters:
+        - name: order_id
+          in: query
+          required: false
+          description: Order unique identifier. Will be prioritized over other parameter. Required when there is no other parameter
+          schema:
+            type: integer
+            format: int64
+        - name: shop_id
+          in: query
+          required: false
+          description: Shop unique identifier where the order belongs. Used when get multiple order ID
+          schema:
+            type: integer
+            format: int64
+        - name: warehouse_id
+          in: query
+          required: false
+          description: Warehouse unique identifier where the order belongs. Used when get multiple order ID
+          schema:
+            type: integer
+            format: int64
+        - name: per_page
+          in: query
+          required: false
+          description: Number of order in one request. Default value is 10. Can be use together with warehouse_id or shop_id parameter
+          schema:
+            type: integer
+            format: int64
+        - name: first_order_id
+          in: query
+          required: false
+          description: Order ID that can be use get data after this order ID sequential by order created time
+          schema:
+            type: integer
+            format: int64
+        - name: next_order_id
+          in: query
+          required: false
+          description: Order ID that can be use get data before this order ID sequential by order created time
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      order_data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            order:
+                              type: object
+                              properties:
+                                order_id:
+                                  type: integer
+                                  format: int64
+                                buyer_id:
+                                  type: integer
+                                  format: int64
+                                seller_id:
+                                  type: integer
+                                  format: int64
+                                payment_id:
+                                  type: integer
+                                  format: int64
+                                order_status:
+                                  $ref: "#/components/schemas/OrderStatusCode"
+                                invoice_number:
+                                  type: string
+                                invoice_pdf_link:
+                                  type: string
+                                open_amt:
+                                  type: integer
+                                  format: int64
+                                payment_amt_cod:
+                                  type: integer
+                                  format: int64
+                            order_history:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  order_hist_id:
+                                    type: integer
+                                    format: int64
+                                  status:
+                                    $ref: "#/components/schemas/OrderStatusCode"
+                                  shipping_date:
+                                    type: integer
+                                    format: int64
+                                  create_by:
+                                    type: integer
+                                    format: int64
+                            order_detail:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  order_detail_id:
+                                    type: integer
+                                    format: int64
+                                  product_id:
+                                    type: integer
+                                    format: int64
+                                  product_name:
+                                    type: string
+                                  quantity:
+                                    type: integer
+                                    format: int64
+                                  product_price:
+                                    type: integer
+                                    format: int64
+                                  insurance_price:
+                                    type: integer
+                                    format: int64
+                            drop_shipper:
+                              type: object
+                              properties:
+                                order_id:
+                                  type: integer
+                                  format: int64
+                                dropship_name:
+                                  type: string
+                                dropship_telp:
+                                  type: string
+                            type_meta:
+                              type: object
+                              properties:
+                                kelontong:
+                                  type: object
+                                  additionalProperties: true
+                                cod:
+                                  type: object
+                                  additionalProperties: true
+                                sampai:
+                                  type: object
+                                  additionalProperties: true
+                                now:
+                                  type: object
+                                  additionalProperties: true
+                                ppp:
+                                  type: object
+                                  additionalProperties: true
+                                trade_in:
+                                  type: object
+                                  additionalProperties: true
+                                vehicle_leasing:
+                                  type: object
+                                  additionalProperties: true
+                            order_shipment_fulfillment:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  format: int64
+                                order_id:
+                                  type: integer
+                                  format: int64
+                                payment_date_time:
+                                  type: string
+                                  description: >
+                                    format: 2019-07-18T14:58:01.998063Z
+                                is_same_day:
+                                  type: boolean
+                                accept_deadline:
+                                  type: string
+                                  description: >
+                                    format: 2019-07-18T14:58:01.998063Z
+                                confirm_shipping_deadline:
+                                  type: string
+                                  description: >
+                                    format: 2019-07-18T14:58:01.998063Z
+                                item_delivered_deadline:
+                                  type: object
+                                  properties:
+                                    Time:
+                                      type: string
+                                      description: >
+                                        format: 2019-07-18T14:58:01.998063Z
+                                    Valid:
+                                      type: boolean
+                                is_accepted:
+                                  type: boolean
+                                is_confirm_shipping:
+                                  type: boolean
+                                is_item_delivered:
+                                  type: boolean
+                                fulfillment_status:
+                                  type: integer
+                                  format: int64
+                            booking_data:
+                              type: object
+                              properties:
+                                order_id:
+                                  type: integer
+                                  format: int64
+                                booking_code:
+                                  type: string
+                                booking_status:
+                                  type: integer
+                                  format: int64
+                      next_order_id:
+                        type: integer
+                        format: int64
+                        description: Next Order Unique Identifier
+                      first_order_id:
+                        type: integer
+                        format: int64
+                        description: FirstOrder Unique Identifier
+                  status:
+                    type: integer
+                    format: int64
+                    description: Response Status
+  /inventory/v1/fs/{fs_id}/pick-up:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: requestPickup
+      tags:
+        - Order
+      description: "You can request pick-up using this endpoint. Please make sure that you make the 5-second delay after Accepting the Order before hitting this endpoint."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - order_id
+                - shop_id
+              properties:
+                order_id:
+                  type: integer
+                  format: int64
+                shop_id:
+                  type: integer
+                  format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      order_id:
+                        type: integer
+                        format: int64
+                        description: Order Unique Identifier
+                      shop_id:
+                        type: integer
+                        format: int64
+                        description: Shop Unique Identifier
+                      request_time:
+                        type: string
+                        description: >
+                          Request Timestamp (format: 2018-06-12 10:24:00)
+                      result:
+                        type: string
+                        description: Result Message
+  /v1/order/{order_id}/fs/{fs_id}/status:
+    parameters:
+      - $ref: "#/components/parameters/order_id"
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: confirmShipping
+      tags:
+        - Order
+      description: "This endpoint updates the order status of an order_id."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - order_status
+                - shipping_ref_num
+              properties:
+                order_status:
+                  $ref: "#/components/schemas/OrderStatusCode"
+                shipping_ref_num:
+                  type: string
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: string
+  /v1/order/{order_id}/fs/{fs_id}/nack:
+    parameters:
+      - $ref: "#/components/parameters/order_id"
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: rejectOrder
+      tags:
+        - Order
+      description: "Negative acknowledge the order (reject the order)."
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason_code:
+                  $ref: "#/components/schemas/OrderRejectReason"
+                reason:
+                  type: string
+                shop_close_end_date:
+                  type: string
+                  description: >
+                    format: 17/05/2017
+                shop_close_note:
+                  type: string
+                empty_products:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: string
+  /v1/order/{order_id}/fs/{fs_id}/ack:
+    parameters:
+      - $ref: "#/components/parameters/order_id"
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: acceptOrder
+      tags:
+        - Order
+      description: "Acknowledge the order (fully or partially accept the order)."
+      parameters:
+        - name: warehouse_id
+          in: query
+          required: false
+          description: Warehouse unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: string
+  /v1/order/{order_id}/fs/{fs_id}/shipping-label:
+    parameters:
+      - $ref: "#/components/parameters/order_id"
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getShippingLabel
+      tags:
+        - Order
+      description: >
+        This endpoint is return html page that can be use to print shipping label for specific order. Shipping label can be seen after order status is on process (400). Shipping label contain Booking Code as barcode that can be scanned by Third-Party Logistic for automatic AWB
+      parameters:
+        - name: printed
+          in: query
+          required: false
+          description: 0 or 1. Default value is 1. When flag set to 1 then the seller dashboard will show the order as already printed
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            text/html:
+              schema:
+                type: string
+  /v2/fs/{fs_id}/order:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getSingleOrder
+      tags:
+        - Order
+      description: "This endpoint retrieves single orders for your shop between given order id or invoice ref number."
+      parameters:
+        - name: order_id
+          in: query
+          required: true
+          description: Order unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: invoice_num
+          in: query
+          required: false
+          description: Invoice Number
+          schema:
+            type: string
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      order_id:
+                        type: integer
+                        format: int64
+                        description: Order Unique Identifier
+                      buyer_id:
+                        type: integer
+                        format: int64
+                        description: Buyer User Unique Identifier
+                      seller_id:
+                        type: integer
+                        format: int64
+                        description: Seller User Unique Identifier
+                      payment_id:
+                        type: integer
+                        format: int64
+                        description: Payment Unique Identifier
+                      is_affiliate:
+                        type: boolean
+                        description: Is affiliate?
+                      is_fulfillment:
+                        type: boolean
+                        description: Order Fulfilled by Tokocabang (true), Order Fulfilled by Shop (false)
+                      order_warehouse:
+                        type: object
+                        properties:
+                          warehouse_id:
+                            type: integer
+                            format: int64
+                            description: Warehouse Unique Identifier
+                          fulfill_by:
+                            type: integer
+                            format: int64
+                            description: Order Fulfilled by Tokocabang (1), Order Fulfilled by Shop (0)
+                          meta_data:
+                            type: object
+                            properties:
+                              # WARN: di dokumentasi double
+                              warehouse_id:
+                                type: integer
+                                format: int64
+                                description: Warehouse Unique Identifier
+                              partner_id:
+                                type: integer
+                                format: int64
+                                description: Partner Unique Identifier
+                              shop_id:
+                                type: integer
+                                format: int64
+                                description: Shop Unique Identifier
+                              warehouse_name:
+                                type: string
+                                description: Warehouse Name
+                              district_id:
+                                type: integer
+                                format: int64
+                                description: Warehouse Distric Unique Identifier
+                              district_name:
+                                type: string
+                                description: Warehouse Distric Name
+                              city_id:
+                                type: integer
+                                format: int64
+                                description: Warehouse City Unique Identifier
+                              city_name:
+                                type: string
+                                description: Warehouse City Name
+                              province_id:
+                                type: integer
+                                format: int64
+                                description: Warehouse Province Unique Identifier
+                              province_name:
+                                type: string
+                                description: Warehouse Province Name
+                              status:
+                                type: integer
+                                format: int64
+                                description: Warehouse Status
+                              postal_code:
+                                type: string
+                                description: Warehouse Postal Code
+                              is_default:
+                                type: integer
+                                format: int64
+                                description: Is default warehouse?
+                              latlon:
+                                type: string
+                                description: Geolocation Coordinate
+                              latitude:
+                                type: string
+                                description: Latitude Coordinate
+                              longitude:
+                                type: string
+                                description: Longitude Coordinate
+                              email:
+                                type: string
+                                description: Warehouse Email
+                              address_detail:
+                                type: string
+                                description: Warehouse Detail Address
+                              country_name:
+                                type: string
+                                description: Warehouse Country Name
+                              is_fulfillment:
+                                type: boolean
+                                description: Is fulfillment warehouse?
+                      order_status:
+                        $ref: "#/components/schemas/OrderStatusCode"
+                      invoice_number:
+                        type: string
+                        description: Invoice Number
+                      invoice_pdf:
+                        type: string
+                        description: Invoice PDF Filename
+                      invoice_url:
+                        type: string
+                        description: Invoice URL
+                      open_amt:
+                        type: integer
+                        format: int64
+                        description: Total Price Amount
+                      lp_amt:
+                        type: integer
+                        format: int64
+                      cashback_amt:
+                        type: integer
+                        format: int64
+                        description: Cashback Amount
+                      info:
+                        type: string
+                        description: Info
+                      comment:
+                        type: string
+                        description: Order Comment
+                      item_price:
+                        type: integer
+                        format: int64
+                        description: Item Price
+                      buyer_info:
+                        type: object
+                        properties:
+                          buyer_id:
+                            type: integer
+                            format: int64
+                            description: Buyer User Unique Identifier
+                          buyer_fullname:
+                            type: string
+                            description: Buyer Fullname
+                          buyer_email:
+                            type: string
+                            description: Buyer Email Address
+                          buyer_phone:
+                            type: string
+                            description: Buyer Phone Number
+                      shop_info:
+                        type: object
+                        properties:
+                          shop_owner_id:
+                            type: integer
+                            format: int64
+                            description: Shop Owner User Unique Identifier
+                          shop_owner_email:
+                            type: string
+                            description: Shop Owner Email Address
+                          shop_owner_phone:
+                            type: string
+                            description: Shop Owner Phone Number
+                          shop_name:
+                            type: string
+                            description: Shop Name
+                          shop_domain:
+                            type: string
+                            description: Shop Domain
+                          shop_id:
+                            type: integer
+                            format: int64
+                            description: Shop Unique Identifier
+                      shipment_fulfillment:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                            description: Shipment Fulfillment Unique Identifier
+                          order_id:
+                            type: integer
+                            format: int64
+                            description: Order Unique Identifier
+                          payment_date_time:
+                            type: string
+                            description: >
+                              Payment Date Time (format: 0001-01-01T00:00:00Z)
+                          is_same_day:
+                            type: boolean
+                            description: Is same day delivery?
+                          accept_deadline:
+                            type: string
+                            description: >
+                              Accept Deadline (format: 0001-01-01T00:00:00Z)
+                          confirm_shipping_deadline:
+                            type: string
+                            description: >
+                              Accept Deadline (format: 0001-01-01T00:00:00Z)
+                          item_delivered_deadline:
+                            type: object
+                            properties:
+                              Time:
+                                type: string
+                                description: >
+                                  Item Delivered Deadline Timestamp (format: 0001-01-01T00:00:00Z)
+                              Valid:
+                                type: boolean
+                                description: Is valid?
+                          is_accepted:
+                            type: boolean
+                            description: Is order accepted?
+                          is_confirm_shipping:
+                            type: boolean
+                            description: Is shipping confirmed?
+                          is_item_delivered:
+                            type: boolean
+                            description: Is item delivered?
+                          fulfillment_status:
+                            type: integer
+                            format: int64
+                            description: Fullfilment Status
+                      preorder:
+                        type: object
+                        properties:
+                          order_id:
+                            type: integer
+                            format: int64
+                            description: Order Unique Identifier
+                          preorder_type:
+                            type: integer
+                            format: int64
+                            description: Preorder Type
+                          preorder_process_time:
+                            type: integer
+                            format: int64
+                            description: Preorder Process Time in UNIX Format
+                          preorder_process_start:
+                            type: string
+                            description: >
+                              Preorder Process Start Time (format: 2017-07-20T17:50:58.061156Z)
+                          preorder_deadline:
+                            type: string
+                            description: >
+                              Preorder Deadline Time (format: 0001-01-01T00:00:00Z)
+                          shop_id:
+                            type: integer
+                            format: int64
+                            description: Shop Unique Identifier
+                          customer_id:
+                            type: integer
+                            format: int64
+                            description: Customer User Unique Identifier
+                      order_info:
+                        type: object
+                        properties:
+                          order_detail:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                order_detail_id:
+                                  type: integer
+                                  format: int64
+                                  description: Order Detail Unique Identifier
+                                product_id:
+                                  type: integer
+                                  format: int64
+                                  description: Product Unique Identifier
+                                product_name:
+                                  type: string
+                                  description: Product Name
+                                product_desc_pdp:
+                                  type: string
+                                  description: Product Description PDP
+                                product_desc_atc:
+                                  type: string
+                                  description: Product Description ATC
+                                product_price:
+                                  type: integer
+                                  format: int64
+                                  description: Product Price
+                                subtotal_price:
+                                  type: integer
+                                  format: int64
+                                  description: Product Order Total Price
+                                weight:
+                                  type: number
+                                  format: double
+                                  description: Product Weight
+                                total_weight:
+                                  type: number
+                                  format: double
+                                  description: Product Order Total Weight
+                                quantity:
+                                  type: integer
+                                  format: int64
+                                  description: Product Order Quantity
+                                quantity_deliver:
+                                  type: integer
+                                  format: int64
+                                  description: Product Order Quantity Deliver Count
+                                quantity_reject:
+                                  type: integer
+                                  format: int64
+                                  description: Product Order Quantity Reject Count
+                                is_free_returns:
+                                  type: boolean
+                                  description: Is free returns?
+                                insurance_price:
+                                  type: integer
+                                  format: int64
+                                  description: Product Order Insurance Price
+                                normal_price:
+                                  type: integer
+                                  format: int64
+                                  description: Product Order Normal Price
+                                currency_id:
+                                  type: integer
+                                  format: int64
+                                  description: Currency Unique Identifier
+                                currency_rate:
+                                  type: integer
+                                  format: int64
+                                  description: Currency Rate
+                                min_order:
+                                  type: integer
+                                  format: int64
+                                  description: Product Minimum Order
+                                child_cat_id:
+                                  type: integer
+                                  format: int64
+                                  description: Product Child Category Unique Identifier
+                                campaign_id:
+                                  type: string
+                                  description: Campaign Unique Identifier
+                                product_picture:
+                                  type: string
+                                  description: Product Picture URL
+                                snapshot_url:
+                                  type: string
+                                  description: Product Snapshot URL
+                                sku:
+                                  type: string
+                                  description: SKU
+                          order_history:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                action_by:
+                                  type: string
+                                  description: Order Action Change Actor
+                                hist_status_code:
+                                  type: integer
+                                  format: int64
+                                  description: History Status Code
+                                message:
+                                  type: string
+                                  description: Order History Message
+                                timestamp:
+                                  type: string
+                                  description: >
+                                    Order History Timestamp (format: 2017-07-24T08:01:07.073696Z)
+                                comment:
+                                  type: string
+                                  description: Order History Comment
+                                create_by:
+                                  type: integer
+                                  format: int64
+                                  description: Order History Created By
+                                update_by:
+                                  type: string
+                                  description: Order History Updated By
+                          order_age_day:
+                            type: integer
+                            format: int64
+                            description: Order Age in Day
+                          shipping_age_day:
+                            type: integer
+                            format: int64
+                            description: Shipping Age in Day
+                          delivered_age_day:
+                            type: integer
+                            format: int64
+                            description: Delivered Age in Day
+                          partial_process:
+                            type: boolean
+                            description: Is partial process?
+                          shipping_info:
+                            type: object
+                            properties:
+                              sp_id:
+                                type: integer
+                                format: int64
+                                description: Shipper Unique Identifier
+                              shipping_id:
+                                type: integer
+                                format: int64
+                                description: Shipping Unique Identifier
+                              logistic_name:
+                                type: string
+                                description: Logistic Name
+                              logistic_service:
+                                type: string
+                                description: Logistic Service Name
+                              shipping_price:
+                                type: integer
+                                format: int64
+                                description: Shipping Price
+                              shipping_price_rate:
+                                type: integer
+                                format: int64
+                                description: Shipping Price Rate
+                              shipping_fee:
+                                type: integer
+                                format: int64
+                                description: Shipping Fee
+                              insurance_price:
+                                type: integer
+                                format: int64
+                                description: Insurance Price
+                              fee:
+                                type: integer
+                                format: int64
+                                description: Fee
+                              is_change_courier:
+                                type: boolean
+                                description: Is change courirer?
+                              second_sp_id:
+                                type: integer
+                                format: int64
+                                description: Second Shipper Unique Identifier
+                              second_shipping_id:
+                                type: integer
+                                format: int64
+                                description: Second Shipping Unique Identifier
+                              second_logistic_name:
+                                type: string
+                                description: Second Logistic Name
+                              second_logistic_service:
+                                type: string
+                                description: Second Logistic Service Name
+                              second_agency_fee:
+                                type: integer
+                                format: int64
+                                description: Second Agency Fee
+                              second_insurance:
+                                type: integer
+                                format: int64
+                                description: Second Insurance
+                              second_rate:
+                                type: integer
+                                format: int64
+                                description: Second Shipping Price Rate
+                              awb:
+                                type: string
+                                description: Airway Bill (Resi)
+                              autoresi_cashless_status:
+                                type: integer
+                                format: int64
+                                description: Autoresi Cashless Status
+                              autoresi_awb:
+                                type: string
+                                description: Airway Bill (Auto Resi)
+                              autoresi_shipping_price:
+                                type: integer
+                                format: int64
+                                description: AWB Shipping Price
+                              count_awb:
+                                type: integer
+                                format: int64
+                                description: AWB Count
+                              isCashless:
+                                type: boolean
+                                description: Is cashless?
+                              is_fake_delivery:
+                                type: boolean
+                                description: Is fake delivery?
+                              # WARN: tidak ada di dokumentasi
+                              recommended_courier_info:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    sequence:
+                                      type: integer
+                                      format: int64
+                                    milestone:
+                                      type: string
+                          destination:
+                            type: object
+                            properties:
+                              receiver_name:
+                                type: string
+                                description: Receiver Name
+                              receiver_phone:
+                                type: string
+                                description: Receiver Phone Number
+                              address_street:
+                                type: string
+                                description: Receiver Address Street
+                              address_district:
+                                type: string
+                                description: Receiver Address Distric
+                              address_city:
+                                type: string
+                                description: Receiver Address City
+                              address_province:
+                                type: string
+                                description: Receiver Address Province
+                              address_postal:
+                                type: string
+                                description: Receiver Address Postal Code
+                              customer_address_id:
+                                type: integer
+                                format: int64
+                                description: Receiver Customer Address Identifier
+                              district_id:
+                                type: integer
+                                format: int64
+                                description: Receiver District Unique Identifier
+                              city_id:
+                                type: integer
+                                format: int64
+                                description: Receiver City Unique Identifier
+                              province_id:
+                                type: integer
+                                format: int64
+                                description: Receiver Province Unique Identifier
+                          is_replacement:
+                            type: boolean
+                            description: Is replacement?
+                          replacement_multiplier:
+                            type: integer
+                            format: int64
+                            description: Replacement Multiplier
+                          is_plus:
+                            type: boolean
+                            description: Plus Order Flag
+                      origin_info:
+                        type: object
+                        properties:
+                          sender_name:
+                            type: string
+                            description: Sender Name
+                          origin_province:
+                            type: integer
+                            format: int64
+                            description: Origin Province Unique Identifier
+                          origin_province_name:
+                            type: string
+                            description: Origin Province Name
+                          origin_city:
+                            type: integer
+                            format: int64
+                            description: Origin City Unique Identifier
+                          origin_city_name:
+                            type: string
+                            description: Origin City Name
+                          origin_address:
+                            type: string
+                            description: Origin Address
+                          origin_district:
+                            type: integer
+                            format: int64
+                            description: Origin District Unique Identifier
+                          origin_district_name:
+                            type: string
+                            description: Origin District Name
+                          origin_postal_code:
+                            type: string
+                            description: Origin Postal Code
+                          origin_geo:
+                            type: string
+                            description: Origin Geolocation Coordinate
+                          receiver_name:
+                            type: string
+                            description: Receiver Name
+                          destination_address:
+                            type: string
+                            description: Destination Address
+                          destination_province:
+                            type: integer
+                            format: int64
+                            description: Destination Province Unique Identifier
+                          destination_city:
+                            type: integer
+                            format: int64
+                            description: Destination City Unique Identifier
+                          destination_district:
+                            type: integer
+                            format: int64
+                            description: Destination Disctrict Unique Identifier
+                          destination_postal_code:
+                            type: string
+                            description: Destination Disctrict Postal Code
+                          destination_geo:
+                            type: string
+                            description: Destination Geolocation Coordinate
+                          destination_loc:
+                            type: object
+                            properties:
+                              # WARN: di dokumentasi integer
+                              lat:
+                                type: number
+                                format: double
+                                description: Latitude Coordinate
+                              # WARN: di dokumentasi integer
+                              lon:
+                                type: number
+                                format: double
+                                description: Longitude Coordinate
+                      payment_info:
+                        type: object
+                        properties:
+                          payment_id:
+                            type: integer
+                            format: int64
+                            description: Payment Unique Identifier
+                          payment_ref_num:
+                            type: string
+                            description: Payment Ref Number
+                          payment_date:
+                            type: string
+                            description: >
+                              Payment Date Timestamp (format: 2017-07-20T17:50:06Z)
+                          payment_method:
+                            type: integer
+                            format: int64
+                            description: Payment Method
+                          payment_status:
+                            type: string
+                            description: Payment Status
+                          payment_status_id:
+                            type: integer
+                            format: int64
+                            description: Payment Status
+                          create_time:
+                            type: string
+                            description: >
+                              Create Time Timestamp (format: 2017-07-20T17:50:06Z)
+                          pg_id:
+                            type: integer
+                            format: int64
+                            description: Payment Gateway Identifier
+                          gateway_name:
+                            type: string
+                            description: Gateway Name
+                          discount_amount:
+                            type: integer
+                            format: int64
+                            description: Discount Amount
+                          voucher_code:
+                            type: string
+                            description: Voucher Code
+                          voucher_id:
+                            type: integer
+                            format: int64
+                            description: Voucher Unique Identifier
+                      insurance_info:
+                        type: object
+                        properties:
+                          insurance_type:
+                            type: integer
+                            format: int64
+                            description: Insurance Type
+                      # WARN: tidak jelas, di contoh hanya null
+                      hold_info:
+                        type: object
+                        nullable: true
+                      # WARN: tidak jelas, di contoh hanya null
+                      cancel_request_info:
+                        type: object
+                        nullable: true
+                      create_time:
+                        type: string
+                        description: >
+                          Order Creation Date (format: 2017-07-20T17:50:58.061156Z)
+                      # WARN: tidak jelas, di contoh hanya null
+                      shipping_date:
+                        type: string
+                        nullable: true
+                        description: Order Shipping Date
+                      update_time:
+                        type: string
+                        description: >
+                          Order Update Date (format: 2017-07-24T08:01:07.073696Z)
+                      payment_date:
+                        type: string
+                        description: >
+                          Order Payment Date (format: 2017-07-20T17:50:58.061156Z)
+                      # WARN: tidak jelas, di contoh hanya null
+                      delivered_date:
+                        type: string
+                        nullable: true
+                        description: Order Delivered Date
+                      # WARN: tidak jelas, di contoh hanya null
+                      est_shipping_date:
+                        type: string
+                        nullable: true
+                        description: Estimated Order Shipping Date
+                      # WARN: tidak jelas, di contoh hanya null
+                      est_delivery_date:
+                        type: string
+                        nullable: true
+                        description: Estimated Order Delivered Date
+                      # WARN: tidak jelas, di contoh hanya null
+                      related_invoices:
+                        type: object
+                        nullable: true
+                        description: Related Invoices
+                      # WARN: tidak jelas, di contoh hanya null
+                      custom_fields:
+                        type: object
+                        nullable: true
+                        description: Custom Fields
+                      # WARN: tidak ada di dokumentasi
+                      promo_order_detail:
+                        type: object
+                        properties:
+                          order_id:
+                            type: integer
+                            format: int64
+                          total_cashback:
+                            type: integer
+                            format: int64
+                          total_discount:
+                            type: integer
+                            format: int64
+                          total_discount_product:
+                            type: integer
+                            format: int64
+                          total_discount_shipping:
+                            type: integer
+                            format: int64
+                          total_discount_details:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                amount:
+                                  type: integer
+                                  format: int64
+                                type:
+                                  type: string
+                          # WARN: di dokumentasi ditulis promo_order_detail
+                          summary_promo:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                  description: Promo Title
+                                is_coupon:
+                                  type: boolean
+                                  description: Is promo a coupon or not
+                                show_cashback_amount:
+                                  type: boolean
+                                  description: Flag to show cashback amount (hardcoded true)
+                                show_discount_amount:
+                                  type: boolean
+                                  description: Flag to show discount amount (hardcoded true)
+                                # WARN: di dokumentasi float
+                                cashback_amount:
+                                  type: integer
+                                  format: int64
+                                  description: Cashback amount in IDR
+                                # WARN: di dokumentasi float
+                                cashback_points:
+                                  type: integer
+                                  format: int64
+                                  description: Cashback amount in Points currency
+                                # WARN: di dokumentasi ditulis struct, di contoh juga cuma null
+                                cashback_details:
+                                  type: object
+                                  nullable: true
+                                  description: Details of cashback in 1 promo
+                                type:
+                                  type: string
+                                  description: Promo benefit type. (discount, cashback)
+                                # WARN: di dokumentasi float
+                                discount_amount:
+                                  type: integer
+                                  format: int64
+                                  description: Discount amount
+                                # WARN: di dokumentasi ditulis summary promo
+                                discount_details:
+                                  type: array
+                                  description: Details of discount in 1 promo
+                                  items:
+                                    type: object
+                                    properties:
+                                      amount:
+                                        type: integer
+                                        format: int64
+                                        description: Discount amount per discount type
+                                      type:
+                                        type: string
+                                        description: Discount type. (discount_shipping, discount_product)
+                                      # WARN: di dokumentasi ditulis struct
+                                      budget_details:
+                                        type: array
+                                        description: Details of budget in 1 promo with breakdown of benefit amount
+                                        items:
+                                          # WARN: di dokumentasi ditulis 1 level dengan budget details
+                                          type: object
+                                          properties:
+                                            budget_type:
+                                              type: integer
+                                              format: int64
+                                              description: >
+                                                Type of Budget. 1 : Tokopedia, 2 : Partner*, 3 : Brand*.
+                                            # WARN: di dokumentasi float
+                                            benefit_amount:
+                                              type: integer
+                                              format: int64
+                                              description: Benefit amount per budget type
+                                            # WARN: di dokumentasi float
+                                            actual_benefit_amount:
+                                              type: integer
+                                              format: int64
+                                              description: Actual benefit amount given to user per budget type
+                                invoice_desc:
+                                  type: string
+                      pof_info:
+                        type: object
+                        properties:
+                          order_id:
+                            type: integer
+                            format: int64
+                            description: Order Unique Identifier
+                          pof_status:
+                            type: integer
+                            format: int64
+                            description: Partial Order Fulfillment Status Code
+                          # WARN: di dokumentasi float
+                          shipping_price:
+                            type: integer
+                            format: int64
+                            description: Shipping Price
+                          # WARN: di dokumentasi float
+                          insurance_price:
+                            type: integer
+                            format: int64
+                            description: Insurance Price
+                          create_time:
+                            type: string
+                            description: >
+                              POF Request Create Timestamp (format: 2023-04-03T08:36:29.331837Z)
+                          create_by:
+                            type: integer
+                            format: int64
+                            description: POF Request Create By
+                          create_by_type:
+                            type: integer
+                            format: int64
+                            description: POF Request Create By Type
+                          update_time:
+                            type: string
+                            description: >
+                              POF Request Update Timestamp (format: 2023-04-03T08:36:36.482397Z)
+                          # WARN: di dokumentasi create_by
+                          update_by:
+                            type: integer
+                            format: int64
+                            description: POF Request Update By
+                          # WARN: di dokumentasi create_by_type
+                          update_by_type:
+                            type: integer
+                            format: int64
+                            description: POF Request Update By Type
+                          pof_detail_info:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                order_id:
+                                  type: integer
+                                  format: int64
+                                  description: Order Unique Identifier
+                                order_dtl_id:
+                                  type: integer
+                                  format: int64
+                                  description: Order Detail Unique Identifier
+                                product_id:
+                                  type: integer
+                                  format: int64
+                                  description: Product Unique Identifier
+                                quantity_request:
+                                  type: integer
+                                  format: int64
+                                  description: Requested Product Quantity
+                                total_price_request:
+                                  type: integer
+                                  format: int64
+                                  description: Requested Total Price
 
 security:
   - bearer: []
