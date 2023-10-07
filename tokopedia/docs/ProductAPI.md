@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAllCategories**](ProductAPI.md#GetAllCategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 [**GetProductAnnotationByCategoryId**](ProductAPI.md#GetProductAnnotationByCategoryId) | **Get** /v1/fs/{fs_id}/product/annotation | 
+[**GetProductDiscussion**](ProductAPI.md#GetProductDiscussion) | **Get** /v1/discussion/fs/{fs_id}/list | 
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
@@ -142,6 +143,84 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetProductAnnotationByCategoryId200Response**](GetProductAnnotationByCategoryId200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProductDiscussion
+
+> GetProductDiscussion200Response GetProductDiscussion(ctx, fsId).ShopId(shopId).ProductId(productId).Page(page).PerPage(perPage).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    productId := int64(789) // int64 | List of Product ID
+    page := int64(789) // int64 | Determine which page the order list should start. The minimal value is 1 (default to 1)
+    perPage := int64(789) // int64 | Determine how many orders will be shown per page. The maximal value is 10 (default to 10)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.GetProductDiscussion(context.Background(), fsId).ShopId(shopId).ProductId(productId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.GetProductDiscussion``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProductDiscussion`: GetProductDiscussion200Response
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.GetProductDiscussion`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProductDiscussionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **productId** | **int64** | List of Product ID | 
+ **page** | **int64** | Determine which page the order list should start. The minimal value is 1 | [default to 1]
+ **perPage** | **int64** | Determine how many orders will be shown per page. The maximal value is 10 | [default to 10]
+
+### Return type
+
+[**GetProductDiscussion200Response**](GetProductDiscussion200Response.md)
 
 ### Authorization
 

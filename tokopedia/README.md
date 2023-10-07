@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 *ProductAPI* | [**GetProductAnnotationByCategoryId**](docs/ProductAPI.md#getproductannotationbycategoryid) | **Get** /v1/fs/{fs_id}/product/annotation | 
+*ProductAPI* | [**GetProductDiscussion**](docs/ProductAPI.md#getproductdiscussion) | **Get** /v1/discussion/fs/{fs_id}/list | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
@@ -241,6 +242,11 @@ Class | Method | HTTP request | Description
  - [GetProductAnnotationByCategoryId200Response](docs/GetProductAnnotationByCategoryId200Response.md)
  - [GetProductAnnotationByCategoryId200ResponseDataInner](docs/GetProductAnnotationByCategoryId200ResponseDataInner.md)
  - [GetProductAnnotationByCategoryId200ResponseDataInnerValuesInner](docs/GetProductAnnotationByCategoryId200ResponseDataInnerValuesInner.md)
+ - [GetProductDiscussion200Response](docs/GetProductDiscussion200Response.md)
+ - [GetProductDiscussion200ResponseData](docs/GetProductDiscussion200ResponseData.md)
+ - [GetProductDiscussion200ResponseDataQuestionInner](docs/GetProductDiscussion200ResponseDataQuestionInner.md)
+ - [GetProductDiscussion200ResponseDataQuestionInnerAnswerInner](docs/GetProductDiscussion200ResponseDataQuestionInnerAnswerInner.md)
+ - [GetProductDiscussion200ResponseDataQuestionInnerAnswerInnerAttachedProductInner](docs/GetProductDiscussion200ResponseDataQuestionInnerAnswerInnerAttachedProductInner.md)
  - [GetProductInfoResponse](docs/GetProductInfoResponse.md)
  - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
  - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)

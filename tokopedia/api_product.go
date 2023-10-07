@@ -62,6 +62,25 @@ type ProductAPI interface {
 	GetProductAnnotationByCategoryIdExecuteWithRetry(r ProductAPIGetProductAnnotationByCategoryIdRequest, maxRetry, maxDelayMs int) (*GetProductAnnotationByCategoryId200Response, *http.Response, error)
 
 	/*
+	GetProductDiscussion Method for GetProductDiscussion
+
+	This endpoint retrieves a list of all Discussion owned by a product_id, shop_id needed for validate that product is owned by shop.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIGetProductDiscussionRequest
+	*/
+	GetProductDiscussion(ctx context.Context, fsId int64) ProductAPIGetProductDiscussionRequest
+
+	// GetProductDiscussionExecute executes the request
+	//  @return GetProductDiscussion200Response
+	GetProductDiscussionExecute(r ProductAPIGetProductDiscussionRequest) (*GetProductDiscussion200Response, *http.Response, error)
+
+	// GetProductDiscussionExecuteWithRetry executes the request with retry
+	//  @return GetProductDiscussion200Response
+	GetProductDiscussionExecuteWithRetry(r ProductAPIGetProductDiscussionRequest, maxRetry, maxDelayMs int) (*GetProductDiscussion200Response, *http.Response, error)
+
+	/*
 	GetProductInfo Method for GetProductInfo
 
 	This method will retrieve single product information either by product id as parameter (choose one of those two parameters to use) from related fs_id.
@@ -490,6 +509,277 @@ func (a *ProductAPIService) GetProductAnnotationByCategoryIdExecuteWithRetry(r P
 	}
 
 	parameterAddToHeaderOrQuery(localVarQueryParams, "cat_id", r.catId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIGetProductDiscussionRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	productId *int64
+	page *int64
+	perPage *int64
+}
+
+// Shop unique identifier
+func (r ProductAPIGetProductDiscussionRequest) ShopId(shopId int64) ProductAPIGetProductDiscussionRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// List of Product ID
+func (r ProductAPIGetProductDiscussionRequest) ProductId(productId int64) ProductAPIGetProductDiscussionRequest {
+	r.productId = &productId
+	return r
+}
+
+// Determine which page the order list should start. The minimal value is 1
+func (r ProductAPIGetProductDiscussionRequest) Page(page int64) ProductAPIGetProductDiscussionRequest {
+	r.page = &page
+	return r
+}
+
+// Determine how many orders will be shown per page. The maximal value is 10
+func (r ProductAPIGetProductDiscussionRequest) PerPage(perPage int64) ProductAPIGetProductDiscussionRequest {
+	r.perPage = &perPage
+	return r
+}
+
+func (r ProductAPIGetProductDiscussionRequest) Execute() (*GetProductDiscussion200Response, *http.Response, error) {
+	return r.ApiService.GetProductDiscussionExecute(r)
+}
+
+func (r ProductAPIGetProductDiscussionRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetProductDiscussion200Response, *http.Response, error) {
+	return r.ApiService.GetProductDiscussionExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetProductDiscussion Method for GetProductDiscussion
+
+This endpoint retrieves a list of all Discussion owned by a product_id, shop_id needed for validate that product is owned by shop.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIGetProductDiscussionRequest
+*/
+func (a *ProductAPIService) GetProductDiscussion(ctx context.Context, fsId int64) ProductAPIGetProductDiscussionRequest {
+	return ProductAPIGetProductDiscussionRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return GetProductDiscussion200Response
+func (a *ProductAPIService) GetProductDiscussionExecute(r ProductAPIGetProductDiscussionRequest) (*GetProductDiscussion200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetProductDiscussion200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.GetProductDiscussion")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/discussion/fs/{fs_id}/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.productId == nil {
+		return localVarReturnValue, nil, reportError("productId is required and must be specified")
+	}
+	if r.page == nil {
+		return localVarReturnValue, nil, reportError("page is required and must be specified")
+	}
+	if *r.page < 1 {
+		return localVarReturnValue, nil, reportError("page must be greater than 1")
+	}
+	if r.perPage == nil {
+		return localVarReturnValue, nil, reportError("perPage is required and must be specified")
+	}
+	if *r.perPage > 10 {
+		return localVarReturnValue, nil, reportError("perPage must be less than 10")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "product_id", r.productId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetProductDiscussion200Response
+func (a *ProductAPIService) GetProductDiscussionExecuteWithRetry(r ProductAPIGetProductDiscussionRequest, maxRetry, maxDelayMs int) (*GetProductDiscussion200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetProductDiscussion200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.GetProductDiscussion")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/discussion/fs/{fs_id}/list"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.productId == nil {
+		return localVarReturnValue, nil, reportError("productId is required and must be specified")
+	}
+	if r.page == nil {
+		return localVarReturnValue, nil, reportError("page is required and must be specified")
+	}
+	if *r.page < 1 {
+		return localVarReturnValue, nil, reportError("page must be greater than 1")
+	}
+	if r.perPage == nil {
+		return localVarReturnValue, nil, reportError("perPage is required and must be specified")
+	}
+	if *r.perPage > 10 {
+		return localVarReturnValue, nil, reportError("perPage must be less than 10")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "product_id", r.productId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

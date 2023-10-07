@@ -9297,6 +9297,224 @@ paths:
                               data:
                                 type: string
                                 description: Variant Values Hexcode
+  /v1/discussion/fs/{fs_id}/list:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getProductDiscussion
+      tags:
+        - Product
+      description: This endpoint retrieves a list of all Discussion owned by a product_id, shop_id needed for validate that product is owned by shop.
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: product_id
+          in: query
+          required: true
+          description: List of Product ID
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          description: Determine which page the order list should start. The minimal value is 1
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            default: 1
+        - name: per_page
+          in: query
+          required: true
+          description: Determine how many orders will be shown per page. The maximal value is 10
+          schema:
+            type: integer
+            format: int64
+            maximum: 10
+            default: 10
+      responses:
+        default:
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      HasNext:
+                        type: boolean
+                      TotalQuestion:
+                        type: integer
+                        format: int64
+                        description: Total Question Count
+                      Question:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Content:
+                              type: string
+                              description: Discussion Content
+                            MaskedContent:
+                              type: string
+                              description: Discussion Masked Content
+                            UserName:
+                              type: string
+                              description: User username
+                            UserID:
+                              type: integer
+                              format: int64
+                              description: User userID
+                            CreateTime:
+                              type: string
+                              description: >-
+                                Discussion Timestamp (format: 2020-12-04T13:40:19Z)
+                            CreateTimeFormatted:
+                              type: string
+                              description: Discussion Timestamp Formatted
+                            TotalAnswer:
+                              type: integer
+                              format: int64
+                              description: Total Answer Count
+                            Answer:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  Content:
+                                    type: string
+                                    description: Answer Content
+                                  MaskedContent:
+                                    type: string
+                                    description: Answer Masked Content
+                                  UserName:
+                                    type: string
+                                    description: Answerer Username
+                                  UserThumbnail:
+                                    type: string
+                                    description: User Thumbnail URL
+                                  UserID:
+                                    type: integer
+                                    format: int64
+                                    description: User Unique Identifier
+                                  CreateTime:
+                                    type: string
+                                    description: >-
+                                      Answer Timestamp (format; 2020-12-04T14:14:44Z)
+                                  # WARN: wrong description
+                                  CreateTimeFormatted:
+                                    type: string
+                                    description: Total Answer Count
+                                  AttachedProduct:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        ProductID:
+                                          type: integer
+                                          format: int64
+                                          description: Product Unique Identifier
+                                        Name:
+                                          type: string
+                                          description: Product Name
+                                        PriceFormatted:
+                                          type: string
+                                          description: Product Price Formatted
+                                        URL:
+                                          type: string
+                                          description: Product URL
+                                        Thumbnail:
+                                          type: string
+                                          description: Product Thumbnail
+                                  # WARN: wrong description
+                                  LikeCount:
+                                    type: integer
+                                    format: int64
+                                    description: Total Answer Count
+                                  # WARN: wrong description
+                                  AnswerID:
+                                    type: integer
+                                    format: int64
+                                    description: Total Answer Count
+                                  # WARN: wrong description
+                                  IsSeller:
+                                    type: boolean
+                                    description: Total Answer Count
+                            QuestionID:
+                              type: integer
+                              format: int64
+                              description: Question Unique Identifier
+                            AnswererThumbnail:
+                              type: string
+                              description: Answerer Thumbnail URL
+                            UserThumbnail:
+                              type: string
+                              description: User Thumbnail URL
+                      ProductID:
+                        type: integer
+                        format: int64
+                        description: Product Unique Identifier
+                      ShopID:
+                        type: integer
+                        format: int64
+                        description: Shop Unique Identifier
+                      ShopURL:
+                        type: string
+                        description: Shop URL
 security:
   - bearer: []
 

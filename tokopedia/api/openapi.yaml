@@ -5114,6 +5114,142 @@ paths:
               style: simple
       tags:
       - Product
+  /v1/discussion/fs/{fs_id}/list:
+    get:
+      description: "This endpoint retrieves a list of all Discussion owned by a product_id,\
+        \ shop_id needed for validate that product is owned by shop."
+      operationId: getProductDiscussion
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: List of Product ID
+        explode: true
+        in: query
+        name: product_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine which page the order list should start. The minimal
+          value is 1
+        explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          default: 1
+          format: int64
+          minimum: 1
+          type: integer
+        style: form
+      - description: Determine how many orders will be shown per page. The maximal
+          value is 10
+        explode: true
+        in: query
+        name: per_page
+        required: true
+        schema:
+          default: 10
+          format: int64
+          maximum: 10
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getProductDiscussion_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
 components:
   parameters:
     fs_id:
@@ -16745,6 +16881,450 @@ components:
           items:
             $ref: '#/components/schemas/getProductAnnotationByCategoryId_200_response_data_inner'
           type: array
+      type: object
+    getProductDiscussion_200_response_data_Question_inner_Answer_inner_AttachedProduct_inner:
+      example:
+        ProductID: 5
+        Thumbnail: Thumbnail
+        URL: URL
+        Name: Name
+        PriceFormatted: PriceFormatted
+      properties:
+        ProductID:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        Name:
+          description: Product Name
+          type: string
+        PriceFormatted:
+          description: Product Price Formatted
+          type: string
+        URL:
+          description: Product URL
+          type: string
+        Thumbnail:
+          description: Product Thumbnail
+          type: string
+      type: object
+    getProductDiscussion_200_response_data_Question_inner_Answer_inner:
+      example:
+        MaskedContent: MaskedContent
+        UserName: UserName
+        CreateTimeFormatted: CreateTimeFormatted
+        Content: Content
+        UserID: 5
+        CreateTime: CreateTime
+        AnswerID: 7
+        UserThumbnail: UserThumbnail
+        LikeCount: 2
+        AttachedProduct:
+        - ProductID: 5
+          Thumbnail: Thumbnail
+          URL: URL
+          Name: Name
+          PriceFormatted: PriceFormatted
+        - ProductID: 5
+          Thumbnail: Thumbnail
+          URL: URL
+          Name: Name
+          PriceFormatted: PriceFormatted
+        IsSeller: true
+      properties:
+        Content:
+          description: Answer Content
+          type: string
+        MaskedContent:
+          description: Answer Masked Content
+          type: string
+        UserName:
+          description: Answerer Username
+          type: string
+        UserThumbnail:
+          description: User Thumbnail URL
+          type: string
+        UserID:
+          description: User Unique Identifier
+          format: int64
+          type: integer
+        CreateTime:
+          description: Answer Timestamp (format; 2020-12-04T14:14:44Z)
+          type: string
+        CreateTimeFormatted:
+          description: Total Answer Count
+          type: string
+        AttachedProduct:
+          items:
+            $ref: '#/components/schemas/getProductDiscussion_200_response_data_Question_inner_Answer_inner_AttachedProduct_inner'
+          type: array
+        LikeCount:
+          description: Total Answer Count
+          format: int64
+          type: integer
+        AnswerID:
+          description: Total Answer Count
+          format: int64
+          type: integer
+        IsSeller:
+          description: Total Answer Count
+          type: boolean
+      type: object
+    getProductDiscussion_200_response_data_Question_inner:
+      example:
+        Answer:
+        - MaskedContent: MaskedContent
+          UserName: UserName
+          CreateTimeFormatted: CreateTimeFormatted
+          Content: Content
+          UserID: 5
+          CreateTime: CreateTime
+          AnswerID: 7
+          UserThumbnail: UserThumbnail
+          LikeCount: 2
+          AttachedProduct:
+          - ProductID: 5
+            Thumbnail: Thumbnail
+            URL: URL
+            Name: Name
+            PriceFormatted: PriceFormatted
+          - ProductID: 5
+            Thumbnail: Thumbnail
+            URL: URL
+            Name: Name
+            PriceFormatted: PriceFormatted
+          IsSeller: true
+        - MaskedContent: MaskedContent
+          UserName: UserName
+          CreateTimeFormatted: CreateTimeFormatted
+          Content: Content
+          UserID: 5
+          CreateTime: CreateTime
+          AnswerID: 7
+          UserThumbnail: UserThumbnail
+          LikeCount: 2
+          AttachedProduct:
+          - ProductID: 5
+            Thumbnail: Thumbnail
+            URL: URL
+            Name: Name
+            PriceFormatted: PriceFormatted
+          - ProductID: 5
+            Thumbnail: Thumbnail
+            URL: URL
+            Name: Name
+            PriceFormatted: PriceFormatted
+          IsSeller: true
+        MaskedContent: MaskedContent
+        UserName: UserName
+        CreateTimeFormatted: CreateTimeFormatted
+        TotalAnswer: 1
+        QuestionID: 9
+        AnswererThumbnail: AnswererThumbnail
+        Content: Content
+        UserID: 6
+        CreateTime: CreateTime
+        UserThumbnail: UserThumbnail
+      properties:
+        Content:
+          description: Discussion Content
+          type: string
+        MaskedContent:
+          description: Discussion Masked Content
+          type: string
+        UserName:
+          description: User username
+          type: string
+        UserID:
+          description: User userID
+          format: int64
+          type: integer
+        CreateTime:
+          description: "Discussion Timestamp (format: 2020-12-04T13:40:19Z)"
+          type: string
+        CreateTimeFormatted:
+          description: Discussion Timestamp Formatted
+          type: string
+        TotalAnswer:
+          description: Total Answer Count
+          format: int64
+          type: integer
+        Answer:
+          items:
+            $ref: '#/components/schemas/getProductDiscussion_200_response_data_Question_inner_Answer_inner'
+          type: array
+        QuestionID:
+          description: Question Unique Identifier
+          format: int64
+          type: integer
+        AnswererThumbnail:
+          description: Answerer Thumbnail URL
+          type: string
+        UserThumbnail:
+          description: User Thumbnail URL
+          type: string
+      type: object
+    getProductDiscussion_200_response_data:
+      example:
+        ShopURL: ShopURL
+        Question:
+        - Answer:
+          - MaskedContent: MaskedContent
+            UserName: UserName
+            CreateTimeFormatted: CreateTimeFormatted
+            Content: Content
+            UserID: 5
+            CreateTime: CreateTime
+            AnswerID: 7
+            UserThumbnail: UserThumbnail
+            LikeCount: 2
+            AttachedProduct:
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            IsSeller: true
+          - MaskedContent: MaskedContent
+            UserName: UserName
+            CreateTimeFormatted: CreateTimeFormatted
+            Content: Content
+            UserID: 5
+            CreateTime: CreateTime
+            AnswerID: 7
+            UserThumbnail: UserThumbnail
+            LikeCount: 2
+            AttachedProduct:
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            IsSeller: true
+          MaskedContent: MaskedContent
+          UserName: UserName
+          CreateTimeFormatted: CreateTimeFormatted
+          TotalAnswer: 1
+          QuestionID: 9
+          AnswererThumbnail: AnswererThumbnail
+          Content: Content
+          UserID: 6
+          CreateTime: CreateTime
+          UserThumbnail: UserThumbnail
+        - Answer:
+          - MaskedContent: MaskedContent
+            UserName: UserName
+            CreateTimeFormatted: CreateTimeFormatted
+            Content: Content
+            UserID: 5
+            CreateTime: CreateTime
+            AnswerID: 7
+            UserThumbnail: UserThumbnail
+            LikeCount: 2
+            AttachedProduct:
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            IsSeller: true
+          - MaskedContent: MaskedContent
+            UserName: UserName
+            CreateTimeFormatted: CreateTimeFormatted
+            Content: Content
+            UserID: 5
+            CreateTime: CreateTime
+            AnswerID: 7
+            UserThumbnail: UserThumbnail
+            LikeCount: 2
+            AttachedProduct:
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            - ProductID: 5
+              Thumbnail: Thumbnail
+              URL: URL
+              Name: Name
+              PriceFormatted: PriceFormatted
+            IsSeller: true
+          MaskedContent: MaskedContent
+          UserName: UserName
+          CreateTimeFormatted: CreateTimeFormatted
+          TotalAnswer: 1
+          QuestionID: 9
+          AnswererThumbnail: AnswererThumbnail
+          Content: Content
+          UserID: 6
+          CreateTime: CreateTime
+          UserThumbnail: UserThumbnail
+        ProductID: 3
+        HasNext: true
+        ShopID: 2
+        TotalQuestion: 0
+      properties:
+        HasNext:
+          type: boolean
+        TotalQuestion:
+          description: Total Question Count
+          format: int64
+          type: integer
+        Question:
+          items:
+            $ref: '#/components/schemas/getProductDiscussion_200_response_data_Question_inner'
+          type: array
+        ProductID:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        ShopID:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        ShopURL:
+          description: Shop URL
+          type: string
+      type: object
+    getProductDiscussion_200_response:
+      example:
+        data:
+          ShopURL: ShopURL
+          Question:
+          - Answer:
+            - MaskedContent: MaskedContent
+              UserName: UserName
+              CreateTimeFormatted: CreateTimeFormatted
+              Content: Content
+              UserID: 5
+              CreateTime: CreateTime
+              AnswerID: 7
+              UserThumbnail: UserThumbnail
+              LikeCount: 2
+              AttachedProduct:
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              IsSeller: true
+            - MaskedContent: MaskedContent
+              UserName: UserName
+              CreateTimeFormatted: CreateTimeFormatted
+              Content: Content
+              UserID: 5
+              CreateTime: CreateTime
+              AnswerID: 7
+              UserThumbnail: UserThumbnail
+              LikeCount: 2
+              AttachedProduct:
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              IsSeller: true
+            MaskedContent: MaskedContent
+            UserName: UserName
+            CreateTimeFormatted: CreateTimeFormatted
+            TotalAnswer: 1
+            QuestionID: 9
+            AnswererThumbnail: AnswererThumbnail
+            Content: Content
+            UserID: 6
+            CreateTime: CreateTime
+            UserThumbnail: UserThumbnail
+          - Answer:
+            - MaskedContent: MaskedContent
+              UserName: UserName
+              CreateTimeFormatted: CreateTimeFormatted
+              Content: Content
+              UserID: 5
+              CreateTime: CreateTime
+              AnswerID: 7
+              UserThumbnail: UserThumbnail
+              LikeCount: 2
+              AttachedProduct:
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              IsSeller: true
+            - MaskedContent: MaskedContent
+              UserName: UserName
+              CreateTimeFormatted: CreateTimeFormatted
+              Content: Content
+              UserID: 5
+              CreateTime: CreateTime
+              AnswerID: 7
+              UserThumbnail: UserThumbnail
+              LikeCount: 2
+              AttachedProduct:
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              - ProductID: 5
+                Thumbnail: Thumbnail
+                URL: URL
+                Name: Name
+                PriceFormatted: PriceFormatted
+              IsSeller: true
+            MaskedContent: MaskedContent
+            UserName: UserName
+            CreateTimeFormatted: CreateTimeFormatted
+            TotalAnswer: 1
+            QuestionID: 9
+            AnswererThumbnail: AnswererThumbnail
+            Content: Content
+            UserID: 6
+            CreateTime: CreateTime
+            UserThumbnail: UserThumbnail
+          ProductID: 3
+          HasNext: true
+          ShopID: 2
+          TotalQuestion: 0
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getProductDiscussion_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:
