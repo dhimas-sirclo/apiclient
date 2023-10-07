@@ -120,6 +120,7 @@ Class | Method | HTTP request | Description
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
+*ProductAPI* | [**UpdatePrice**](docs/ProductAPI.md#updateprice) | **Post** /inventory/v1/fs/{fs_id}/price/update | 
 *ProductAPI* | [**UpdateStockDecrement**](docs/ProductAPI.md#updatestockdecrement) | **Post** /inventory/v1/fs/{fs_id}/stock/decrement | 
 *ProductAPI* | [**UpdateStockIncrement**](docs/ProductAPI.md#updatestockincrement) | **Post** /inventory/v1/fs/{fs_id}/stock/increment | 
 *ProductAPI* | [**UpdateStockOverwrite**](docs/ProductAPI.md#updatestockoverwrite) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
@@ -360,6 +361,10 @@ Class | Method | HTTP request | Description
  - [Token](docs/Token.md)
  - [TriggerWebhook200Response](docs/TriggerWebhook200Response.md)
  - [TriggerWebhookRequest](docs/TriggerWebhookRequest.md)
+ - [UpdatePriceDefaultResponse](docs/UpdatePriceDefaultResponse.md)
+ - [UpdatePriceDefaultResponseData](docs/UpdatePriceDefaultResponseData.md)
+ - [UpdatePriceDefaultResponseDataFailedRowsDataInner](docs/UpdatePriceDefaultResponseDataFailedRowsDataInner.md)
+ - [UpdatePriceRequestInner](docs/UpdatePriceRequestInner.md)
  - [UpdateShipmentInfo200Response](docs/UpdateShipmentInfo200Response.md)
  - [UpdateShipmentInfo200ResponseData](docs/UpdateShipmentInfo200ResponseData.md)
  - [UpdateShipmentInfo200ResponseDataData](docs/UpdateShipmentInfo200ResponseDataData.md)

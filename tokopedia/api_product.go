@@ -158,6 +158,25 @@ type ProductAPI interface {
 	GetVariantsByProductIdExecuteWithRetry(r ProductAPIGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error)
 
 	/*
+	UpdatePrice Method for UpdatePrice
+
+	This endpoint used for update product’s price. You can update up to 100 products or SKUs in a single request to this endpoint.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIUpdatePriceRequest
+	*/
+	UpdatePrice(ctx context.Context, fsId int64) ProductAPIUpdatePriceRequest
+
+	// UpdatePriceExecute executes the request
+	//  @return UpdatePriceDefaultResponse
+	UpdatePriceExecute(r ProductAPIUpdatePriceRequest) (*UpdatePriceDefaultResponse, *http.Response, error)
+
+	// UpdatePriceExecuteWithRetry executes the request with retry
+	//  @return UpdatePriceDefaultResponse
+	UpdatePriceExecuteWithRetry(r ProductAPIUpdatePriceRequest, maxRetry, maxDelayMs int) (*UpdatePriceDefaultResponse, *http.Response, error)
+
+	/*
 	UpdateStockDecrement Method for UpdateStockDecrement
 
 	This endpoint is used to update stock by decreasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
@@ -1815,6 +1834,249 @@ func (a *ProductAPIService) GetVariantsByProductIdExecuteWithRetry(r ProductAPIG
 			error: localVarHTTPResponse.Status,
 		}
 			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIUpdatePriceRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	updatePriceRequestInner *[]UpdatePriceRequestInner
+	warehouseId *int64
+}
+
+// Shop unique identifier
+func (r ProductAPIUpdatePriceRequest) ShopId(shopId int64) ProductAPIUpdatePriceRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPIUpdatePriceRequest) UpdatePriceRequestInner(updatePriceRequestInner []UpdatePriceRequestInner) ProductAPIUpdatePriceRequest {
+	r.updatePriceRequestInner = &updatePriceRequestInner
+	return r
+}
+
+// Warehouse unique identifer
+func (r ProductAPIUpdatePriceRequest) WarehouseId(warehouseId int64) ProductAPIUpdatePriceRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+func (r ProductAPIUpdatePriceRequest) Execute() (*UpdatePriceDefaultResponse, *http.Response, error) {
+	return r.ApiService.UpdatePriceExecute(r)
+}
+
+func (r ProductAPIUpdatePriceRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdatePriceDefaultResponse, *http.Response, error) {
+	return r.ApiService.UpdatePriceExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+UpdatePrice Method for UpdatePrice
+
+This endpoint used for update product’s price. You can update up to 100 products or SKUs in a single request to this endpoint.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIUpdatePriceRequest
+*/
+func (a *ProductAPIService) UpdatePrice(ctx context.Context, fsId int64) ProductAPIUpdatePriceRequest {
+	return ProductAPIUpdatePriceRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return UpdatePriceDefaultResponse
+func (a *ProductAPIService) UpdatePriceExecute(r ProductAPIUpdatePriceRequest) (*UpdatePriceDefaultResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdatePriceDefaultResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdatePrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/price/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updatePriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updatePriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updatePriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v UpdatePriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return UpdatePriceDefaultResponse
+func (a *ProductAPIService) UpdatePriceExecuteWithRetry(r ProductAPIUpdatePriceRequest, maxRetry, maxDelayMs int) (*UpdatePriceDefaultResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *UpdatePriceDefaultResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdatePrice")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/price/update"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updatePriceRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updatePriceRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updatePriceRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v UpdatePriceDefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

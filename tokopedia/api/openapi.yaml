@@ -5621,6 +5621,126 @@ paths:
               style: simple
       tags:
       - Product
+  /inventory/v1/fs/{fs_id}/price/update:
+    post:
+      description: This endpoint used for update product’s price. You can update up
+        to 100 products or SKUs in a single request to this endpoint.
+      operationId: updatePrice
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Warehouse unique identifer
+        explode: true
+        in: query
+        name: warehouse_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/updatePrice_request_inner'
+              type: array
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updatePrice_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/updatePrice_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
 components:
   parameters:
     fs_id:
@@ -17835,6 +17955,98 @@ components:
           $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/deleteProduct_default_response_data'
+      type: object
+    updatePrice_request_inner:
+      properties:
+        sku:
+          description: SKU of products that will be updated. Maximum characters allowed
+            is 50
+          type: string
+        product_id:
+          description: Product ID to update
+          format: int64
+          type: integer
+        new_price:
+          description: New price to be set
+          format: int64
+          type: integer
+      required:
+      - stock_value
+      type: object
+    updatePrice_default_response_data_failed_rows_data_inner:
+      example:
+        product_url: product_url
+        product_id: 1
+        new_price: 5
+        sku: sku
+        message: message
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        sku:
+          type: string
+        product_url:
+          type: string
+        new_price:
+          format: int64
+          type: integer
+        message:
+          type: string
+      type: object
+    updatePrice_default_response_data:
+      example:
+        failed_rows: 6
+        succeed_rows: 0
+        failed_rows_data:
+        - product_url: product_url
+          product_id: 1
+          new_price: 5
+          sku: sku
+          message: message
+        - product_url: product_url
+          product_id: 1
+          new_price: 5
+          sku: sku
+          message: message
+      properties:
+        succeed_rows:
+          format: int64
+          type: integer
+        failed_rows:
+          format: int64
+          type: integer
+        failed_rows_data:
+          items:
+            $ref: '#/components/schemas/updatePrice_default_response_data_failed_rows_data_inner'
+          type: array
+      type: object
+    updatePrice_default_response:
+      example:
+        data:
+          failed_rows: 6
+          succeed_rows: 0
+          failed_rows_data:
+          - product_url: product_url
+            product_id: 1
+            new_price: 5
+            sku: sku
+            message: message
+          - product_url: product_url
+            product_id: 1
+            new_price: 5
+            sku: sku
+            message: message
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/updatePrice_default_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:

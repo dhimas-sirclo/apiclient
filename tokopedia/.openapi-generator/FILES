@@ -245,6 +245,10 @@ docs/ShopAPI.md
 docs/Token.md
 docs/TriggerWebhook200Response.md
 docs/TriggerWebhookRequest.md
+docs/UpdatePriceDefaultResponse.md
+docs/UpdatePriceDefaultResponseData.md
+docs/UpdatePriceDefaultResponseDataFailedRowsDataInner.md
+docs/UpdatePriceRequestInner.md
 docs/UpdateShipmentInfo200Response.md
 docs/UpdateShipmentInfo200ResponseData.md
 docs/UpdateShipmentInfo200ResponseDataData.md
@@ -544,6 +548,10 @@ model_send_reply_request_one_of_1_payload.go
 model_token.go
 model_trigger_webhook_200_response.go
 model_trigger_webhook_request.go
+model_update_price_default_response.go
+model_update_price_default_response_data.go
+model_update_price_default_response_data_failed_rows_data_inner.go
+model_update_price_request_inner.go
 model_update_shipment_info_200_response.go
 model_update_shipment_info_200_response_data.go
 model_update_shipment_info_200_response_data_data.go

@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
+[**UpdatePrice**](ProductAPI.md#UpdatePrice) | **Post** /inventory/v1/fs/{fs_id}/price/update | 
 [**UpdateStockDecrement**](ProductAPI.md#UpdateStockDecrement) | **Post** /inventory/v1/fs/{fs_id}/stock/decrement | 
 [**UpdateStockIncrement**](ProductAPI.md#UpdateStockIncrement) | **Post** /inventory/v1/fs/{fs_id}/stock/increment | 
 [**UpdateStockOverwrite**](ProductAPI.md#UpdateStockOverwrite) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
@@ -535,6 +536,82 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdatePrice
+
+> UpdatePriceDefaultResponse UpdatePrice(ctx, fsId).ShopId(shopId).UpdatePriceRequestInner(updatePriceRequestInner).WarehouseId(warehouseId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    updatePriceRequestInner := []openapiclient.UpdatePriceRequestInner{*openapiclient.NewUpdatePriceRequestInner()} // []UpdatePriceRequestInner | 
+    warehouseId := int64(789) // int64 | Warehouse unique identifer (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.UpdatePrice(context.Background(), fsId).ShopId(shopId).UpdatePriceRequestInner(updatePriceRequestInner).WarehouseId(warehouseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.UpdatePrice``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdatePrice`: UpdatePriceDefaultResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.UpdatePrice`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdatePriceRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **updatePriceRequestInner** | [**[]UpdatePriceRequestInner**](UpdatePriceRequestInner.md) |  | 
+ **warehouseId** | **int64** | Warehouse unique identifer | 
+
+### Return type
+
+[**UpdatePriceDefaultResponse**](UpdatePriceDefaultResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
