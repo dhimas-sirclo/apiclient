@@ -241,6 +241,7 @@ docs/SendReplyRequest.md
 docs/SendReplyRequestOneOf.md
 docs/SendReplyRequestOneOf1.md
 docs/SendReplyRequestOneOf1Payload.md
+docs/SetInactiveProductRequest.md
 docs/ShopAPI.md
 docs/Token.md
 docs/TriggerWebhook200Response.md
@@ -545,6 +546,7 @@ model_send_reply_request.go
 model_send_reply_request_one_of.go
 model_send_reply_request_one_of_1.go
 model_send_reply_request_one_of_1_payload.go
+model_set_inactive_product_request.go
 model_token.go
 model_trigger_webhook_200_response.go
 model_trigger_webhook_request.go

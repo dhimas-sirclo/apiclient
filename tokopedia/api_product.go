@@ -158,6 +158,25 @@ type ProductAPI interface {
 	GetVariantsByProductIdExecuteWithRetry(r ProductAPIGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error)
 
 	/*
+	SetInactiveProduct Method for SetInactiveProduct
+
+	This endpoint use to set the product into inactive product status without changing the product’s current stock. The product that can be updated is up to 25 products at one request.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPISetInactiveProductRequest
+	*/
+	SetInactiveProduct(ctx context.Context, fsId int64) ProductAPISetInactiveProductRequest
+
+	// SetInactiveProductExecute executes the request
+	//  @return CancelSlashPrice200Response
+	SetInactiveProductExecute(r ProductAPISetInactiveProductRequest) (*CancelSlashPrice200Response, *http.Response, error)
+
+	// SetInactiveProductExecuteWithRetry executes the request with retry
+	//  @return CancelSlashPrice200Response
+	SetInactiveProductExecuteWithRetry(r ProductAPISetInactiveProductRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error)
+
+	/*
 	UpdatePrice Method for UpdatePrice
 
 	This endpoint used for update product’s price. You can update up to 100 products or SKUs in a single request to this endpoint.
@@ -1834,6 +1853,236 @@ func (a *ProductAPIService) GetVariantsByProductIdExecuteWithRetry(r ProductAPIG
 			error: localVarHTTPResponse.Status,
 		}
 			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPISetInactiveProductRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	setInactiveProductRequest *SetInactiveProductRequest
+}
+
+// Shop unique identifier
+func (r ProductAPISetInactiveProductRequest) ShopId(shopId int64) ProductAPISetInactiveProductRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPISetInactiveProductRequest) SetInactiveProductRequest(setInactiveProductRequest SetInactiveProductRequest) ProductAPISetInactiveProductRequest {
+	r.setInactiveProductRequest = &setInactiveProductRequest
+	return r
+}
+
+func (r ProductAPISetInactiveProductRequest) Execute() (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.SetInactiveProductExecute(r)
+}
+
+func (r ProductAPISetInactiveProductRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	return r.ApiService.SetInactiveProductExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+SetInactiveProduct Method for SetInactiveProduct
+
+This endpoint use to set the product into inactive product status without changing the product’s current stock. The product that can be updated is up to 25 products at one request.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPISetInactiveProductRequest
+*/
+func (a *ProductAPIService) SetInactiveProduct(ctx context.Context, fsId int64) ProductAPISetInactiveProductRequest {
+	return ProductAPISetInactiveProductRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return CancelSlashPrice200Response
+func (a *ProductAPIService) SetInactiveProductExecute(r ProductAPISetInactiveProductRequest) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.SetInactiveProduct")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/products/fs/{fs_id}/inactive"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.setInactiveProductRequest == nil {
+		return localVarReturnValue, nil, reportError("setInactiveProductRequest is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setInactiveProductRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return CancelSlashPrice200Response
+func (a *ProductAPIService) SetInactiveProductExecuteWithRetry(r ProductAPISetInactiveProductRequest, maxRetry, maxDelayMs int) (*CancelSlashPrice200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CancelSlashPrice200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.SetInactiveProduct")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/products/fs/{fs_id}/inactive"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.setInactiveProductRequest == nil {
+		return localVarReturnValue, nil, reportError("setInactiveProductRequest is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.setInactiveProductRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v CancelSlashPriceDefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
