@@ -4,6 +4,7 @@ All URIs are relative to *https://fs.tokopedia.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**DeleteProduct**](ProductAPI.md#DeleteProduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
 [**GetAllCategories**](ProductAPI.md#GetAllCategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 [**GetProductAnnotationByCategoryId**](ProductAPI.md#GetProductAnnotationByCategoryId) | **Get** /v1/fs/{fs_id}/product/annotation | 
 [**GetProductDiscussion**](ProductAPI.md#GetProductDiscussion) | **Get** /v1/discussion/fs/{fs_id}/list | 
@@ -12,6 +13,80 @@ Method | HTTP request | Description
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
 [**UpdateStock**](ProductAPI.md#UpdateStock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 
+
+
+## DeleteProduct
+
+> DeleteProductDefaultResponse DeleteProduct(ctx, fsId).ShopId(shopId).DeleteProductRequest(deleteProductRequest).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    deleteProductRequest := *openapiclient.NewDeleteProductRequest([]int64{int64(123)}) // DeleteProductRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.DeleteProduct(context.Background(), fsId).ShopId(shopId).DeleteProductRequest(deleteProductRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.DeleteProduct``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteProduct`: DeleteProductDefaultResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.DeleteProduct`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteProductRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **deleteProductRequest** | [**DeleteProductRequest**](DeleteProductRequest.md) |  | 
+
+### Return type
+
+[**DeleteProductDefaultResponse**](DeleteProductDefaultResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetAllCategories

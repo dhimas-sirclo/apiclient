@@ -42,6 +42,9 @@ docs/CreateBundleRequestBundleBundleItemsInnerChildren.md
 docs/CreateShowcase200Response.md
 docs/CreateShowcase200ResponseData.md
 docs/CreateShowcaseRequest.md
+docs/DeleteProductDefaultResponse.md
+docs/DeleteProductDefaultResponseData.md
+docs/DeleteProductRequest.md
 docs/DeleteShowcase200Response.md
 docs/DeleteShowcase200ResponseData.md
 docs/DeleteShowcaseRequest.md
@@ -338,6 +341,9 @@ model_create_bundle_request_bundle_bundle_items_inner_children.go
 model_create_showcase_200_response.go
 model_create_showcase_200_response_data.go
 model_create_showcase_request.go
+model_delete_product_default_response.go
+model_delete_product_default_response_data.go
+model_delete_product_request.go
 model_delete_showcase_200_response.go
 model_delete_showcase_200_response_data.go
 model_delete_showcase_request.go

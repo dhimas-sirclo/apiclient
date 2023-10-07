@@ -5250,6 +5250,115 @@ paths:
               style: simple
       tags:
       - Product
+  /v3/products/fs/{fs_id}/delete:
+    delete:
+      description: "This endpoint use to delete product from a shop, this endpoint\
+        \ could do bulk delete product by product_id."
+      operationId: deleteProduct
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deleteProduct_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteProduct_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deleteProduct_default_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
 components:
   parameters:
     fs_id:
@@ -17325,6 +17434,60 @@ components:
           $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/getProductDiscussion_200_response_data'
+      type: object
+    deleteProduct_request:
+      properties:
+        product_id:
+          items:
+            description: List of Product ID
+            format: int64
+            type: integer
+          type: array
+      required:
+      - product_id
+      type: object
+    deleteProduct_default_response_data:
+      example:
+        failed_rows: 1
+        succeed_rows: 6
+        total_data: 0
+        failed_rows_data:
+        - failed_rows_data
+        - failed_rows_data
+      properties:
+        total_data:
+          format: int64
+          type: integer
+        succeed_rows:
+          format: int64
+          type: integer
+        failed_rows:
+          format: int64
+          type: integer
+        failed_rows_data:
+          items:
+            type: string
+          type: array
+      type: object
+    deleteProduct_default_response:
+      example:
+        data:
+          failed_rows: 1
+          succeed_rows: 6
+          total_data: 0
+          failed_rows_data:
+          - failed_rows_data
+          - failed_rows_data
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/deleteProduct_default_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:

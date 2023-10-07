@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**RequestPartialOrderFulfillment**](docs/OrderAPI.md#requestpartialorderfulfillment) | **Post** /v1/order/{order_id}/fs/{fs_id}/pof/request | 
 *OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
+*ProductAPI* | [**DeleteProduct**](docs/ProductAPI.md#deleteproduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
 *ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 *ProductAPI* | [**GetProductAnnotationByCategoryId**](docs/ProductAPI.md#getproductannotationbycategoryid) | **Get** /v1/fs/{fs_id}/product/annotation | 
 *ProductAPI* | [**GetProductDiscussion**](docs/ProductAPI.md#getproductdiscussion) | **Get** /v1/discussion/fs/{fs_id}/list | 
@@ -160,6 +161,9 @@ Class | Method | HTTP request | Description
  - [CreateShowcase200Response](docs/CreateShowcase200Response.md)
  - [CreateShowcase200ResponseData](docs/CreateShowcase200ResponseData.md)
  - [CreateShowcaseRequest](docs/CreateShowcaseRequest.md)
+ - [DeleteProductDefaultResponse](docs/DeleteProductDefaultResponse.md)
+ - [DeleteProductDefaultResponseData](docs/DeleteProductDefaultResponseData.md)
+ - [DeleteProductRequest](docs/DeleteProductRequest.md)
  - [DeleteShowcase200Response](docs/DeleteShowcase200Response.md)
  - [DeleteShowcase200ResponseData](docs/DeleteShowcase200ResponseData.md)
  - [DeleteShowcaseRequest](docs/DeleteShowcaseRequest.md)
