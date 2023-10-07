@@ -120,7 +120,9 @@ Class | Method | HTTP request | Description
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
-*ProductAPI* | [**UpdateStock**](docs/ProductAPI.md#updatestock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
+*ProductAPI* | [**UpdateStockDecrement**](docs/ProductAPI.md#updatestockdecrement) | **Post** /inventory/v1/fs/{fs_id}/stock/decrement | 
+*ProductAPI* | [**UpdateStockIncrement**](docs/ProductAPI.md#updatestockincrement) | **Post** /inventory/v1/fs/{fs_id}/stock/increment | 
+*ProductAPI* | [**UpdateStockOverwrite**](docs/ProductAPI.md#updatestockoverwrite) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 *ShopAPI* | [**CreateShowcase**](docs/ShopAPI.md#createshowcase) | **Post** /v1/showcase/fs/{fs_id}/create | 
 *ShopAPI* | [**DeleteShowcase**](docs/ShopAPI.md#deleteshowcase) | **Post** /v1/showcase/fs/{fs_id}/delete | 
 *ShopAPI* | [**GetShopInfo**](docs/ShopAPI.md#getshopinfo) | **Get** /v1/shop/fs/{fs_id}/shop-info | 
@@ -161,6 +163,7 @@ Class | Method | HTTP request | Description
  - [CreateShowcase200Response](docs/CreateShowcase200Response.md)
  - [CreateShowcase200ResponseData](docs/CreateShowcase200ResponseData.md)
  - [CreateShowcaseRequest](docs/CreateShowcaseRequest.md)
+ - [DecreaseStockResponse](docs/DecreaseStockResponse.md)
  - [DeleteProductDefaultResponse](docs/DeleteProductDefaultResponse.md)
  - [DeleteProductDefaultResponseData](docs/DeleteProductDefaultResponseData.md)
  - [DeleteProductRequest](docs/DeleteProductRequest.md)
@@ -305,6 +308,10 @@ Class | Method | HTTP request | Description
  - [GetSingleOrder200ResponseDataShipmentFulfillment](docs/GetSingleOrder200ResponseDataShipmentFulfillment.md)
  - [GetSingleOrder200ResponseDataShipmentFulfillmentItemDeliveredDeadline](docs/GetSingleOrder200ResponseDataShipmentFulfillmentItemDeliveredDeadline.md)
  - [GetSingleOrder200ResponseDataShopInfo](docs/GetSingleOrder200ResponseDataShopInfo.md)
+ - [IncreaseStockResponse](docs/IncreaseStockResponse.md)
+ - [IncreaseStockResponseData](docs/IncreaseStockResponseData.md)
+ - [IncreaseStockResponseDataFailedRowsDataInner](docs/IncreaseStockResponseDataFailedRowsDataInner.md)
+ - [IncreaseStockResponseDataSucceedRowsDataInner](docs/IncreaseStockResponseDataSucceedRowsDataInner.md)
  - [InitiateChat200Response](docs/InitiateChat200Response.md)
  - [InitiateChat200ResponseData](docs/InitiateChat200ResponseData.md)
  - [InitiateChat200ResponseDataContact](docs/InitiateChat200ResponseDataContact.md)
@@ -362,6 +369,7 @@ Class | Method | HTTP request | Description
  - [UpdateShowcaseRequest](docs/UpdateShowcaseRequest.md)
  - [UpdateSlashPriceRequestInner](docs/UpdateSlashPriceRequestInner.md)
  - [UpdateSlashPriceRequestInnerSlashPriceWarehousesValue](docs/UpdateSlashPriceRequestInnerSlashPriceWarehousesValue.md)
+ - [UpdateStockIncrementRequestInner](docs/UpdateStockIncrementRequestInner.md)
  - [UpdateStockInput](docs/UpdateStockInput.md)
  - [UpdateStockResponse](docs/UpdateStockResponse.md)
  - [UpdateStockResponseData](docs/UpdateStockResponseData.md)

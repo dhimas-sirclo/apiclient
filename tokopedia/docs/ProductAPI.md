@@ -11,7 +11,9 @@ Method | HTTP request | Description
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
-[**UpdateStock**](ProductAPI.md#UpdateStock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
+[**UpdateStockDecrement**](ProductAPI.md#UpdateStockDecrement) | **Post** /inventory/v1/fs/{fs_id}/stock/decrement | 
+[**UpdateStockIncrement**](ProductAPI.md#UpdateStockIncrement) | **Post** /inventory/v1/fs/{fs_id}/stock/increment | 
+[**UpdateStockOverwrite**](ProductAPI.md#UpdateStockOverwrite) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 
 
 
@@ -540,9 +542,165 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateStock
+## UpdateStockDecrement
 
-> UpdateStockResponse UpdateStock(ctx, fsId).ShopId(shopId).UpdateStockInput(updateStockInput).BypassUpdateProductStatus(bypassUpdateProductStatus).WarehouseId(warehouseId).Execute()
+> DecreaseStockResponse UpdateStockDecrement(ctx, fsId).ShopId(shopId).UpdateStockIncrementRequestInner(updateStockIncrementRequestInner).RequestId(requestId).WarehouseId(warehouseId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    updateStockIncrementRequestInner := []openapiclient.UpdateStockIncrementRequestInner{*openapiclient.NewUpdateStockIncrementRequestInner(int64(123))} // []UpdateStockIncrementRequestInner | 
+    requestId := true // bool | The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long (optional)
+    warehouseId := int64(789) // int64 | Warehouse unique identifer (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.UpdateStockDecrement(context.Background(), fsId).ShopId(shopId).UpdateStockIncrementRequestInner(updateStockIncrementRequestInner).RequestId(requestId).WarehouseId(warehouseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.UpdateStockDecrement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateStockDecrement`: DecreaseStockResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.UpdateStockDecrement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateStockDecrementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **updateStockIncrementRequestInner** | [**[]UpdateStockIncrementRequestInner**](UpdateStockIncrementRequestInner.md) |  | 
+ **requestId** | **bool** | The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long | 
+ **warehouseId** | **int64** | Warehouse unique identifer | 
+
+### Return type
+
+[**DecreaseStockResponse**](DecreaseStockResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateStockIncrement
+
+> IncreaseStockResponse UpdateStockIncrement(ctx, fsId).ShopId(shopId).UpdateStockIncrementRequestInner(updateStockIncrementRequestInner).RequestId(requestId).WarehouseId(warehouseId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    updateStockIncrementRequestInner := []openapiclient.UpdateStockIncrementRequestInner{*openapiclient.NewUpdateStockIncrementRequestInner(int64(123))} // []UpdateStockIncrementRequestInner | 
+    requestId := true // bool | The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long (optional)
+    warehouseId := int64(789) // int64 | Warehouse unique identifer (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.UpdateStockIncrement(context.Background(), fsId).ShopId(shopId).UpdateStockIncrementRequestInner(updateStockIncrementRequestInner).RequestId(requestId).WarehouseId(warehouseId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.UpdateStockIncrement``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateStockIncrement`: IncreaseStockResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.UpdateStockIncrement`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateStockIncrementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **updateStockIncrementRequestInner** | [**[]UpdateStockIncrementRequestInner**](UpdateStockIncrementRequestInner.md) |  | 
+ **requestId** | **bool** | The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long | 
+ **warehouseId** | **int64** | Warehouse unique identifer | 
+
+### Return type
+
+[**IncreaseStockResponse**](IncreaseStockResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateStockOverwrite
+
+> UpdateStockResponse UpdateStockOverwrite(ctx, fsId).ShopId(shopId).UpdateStockInput(updateStockInput).BypassUpdateProductStatus(bypassUpdateProductStatus).WarehouseId(warehouseId).Execute()
 
 
 
@@ -569,13 +727,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.ProductAPI.UpdateStock(context.Background(), fsId).ShopId(shopId).UpdateStockInput(updateStockInput).BypassUpdateProductStatus(bypassUpdateProductStatus).WarehouseId(warehouseId).Execute()
+    resp, r, err := apiClient.ProductAPI.UpdateStockOverwrite(context.Background(), fsId).ShopId(shopId).UpdateStockInput(updateStockInput).BypassUpdateProductStatus(bypassUpdateProductStatus).WarehouseId(warehouseId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.UpdateStock``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.UpdateStockOverwrite``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateStock`: UpdateStockResponse
-    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.UpdateStock`: %v\n", resp)
+    // response from `UpdateStockOverwrite`: UpdateStockResponse
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.UpdateStockOverwrite`: %v\n", resp)
 }
 ```
 
@@ -589,7 +747,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateStockRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateStockOverwriteRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

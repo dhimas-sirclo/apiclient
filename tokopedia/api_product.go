@@ -158,23 +158,61 @@ type ProductAPI interface {
 	GetVariantsByProductIdExecuteWithRetry(r ProductAPIGetVariantsByProductIdRequest, maxRetry, maxDelayMs int) (*GetProductVariantResponse, *http.Response, error)
 
 	/*
-	UpdateStock Method for UpdateStock
+	UpdateStockDecrement Method for UpdateStockDecrement
+
+	This endpoint is used to update stock by decreasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIUpdateStockDecrementRequest
+	*/
+	UpdateStockDecrement(ctx context.Context, fsId int64) ProductAPIUpdateStockDecrementRequest
+
+	// UpdateStockDecrementExecute executes the request
+	//  @return DecreaseStockResponse
+	UpdateStockDecrementExecute(r ProductAPIUpdateStockDecrementRequest) (*DecreaseStockResponse, *http.Response, error)
+
+	// UpdateStockDecrementExecuteWithRetry executes the request with retry
+	//  @return DecreaseStockResponse
+	UpdateStockDecrementExecuteWithRetry(r ProductAPIUpdateStockDecrementRequest, maxRetry, maxDelayMs int) (*DecreaseStockResponse, *http.Response, error)
+
+	/*
+	UpdateStockIncrement Method for UpdateStockIncrement
+
+	This endpoint is used to update stock by increasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIUpdateStockIncrementRequest
+	*/
+	UpdateStockIncrement(ctx context.Context, fsId int64) ProductAPIUpdateStockIncrementRequest
+
+	// UpdateStockIncrementExecute executes the request
+	//  @return IncreaseStockResponse
+	UpdateStockIncrementExecute(r ProductAPIUpdateStockIncrementRequest) (*IncreaseStockResponse, *http.Response, error)
+
+	// UpdateStockIncrementExecuteWithRetry executes the request with retry
+	//  @return IncreaseStockResponse
+	UpdateStockIncrementExecuteWithRetry(r ProductAPIUpdateStockIncrementRequest, maxRetry, maxDelayMs int) (*IncreaseStockResponse, *http.Response, error)
+
+	/*
+	UpdateStockOverwrite Method for UpdateStockOverwrite
 
 	This endpoint used for update product stock. You can update up to 100 products or SKUs in a single request to this endpoint.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param fsId Fulfillment service unique identifier
-	@return ProductAPIUpdateStockRequest
+	@return ProductAPIUpdateStockOverwriteRequest
 	*/
-	UpdateStock(ctx context.Context, fsId int64) ProductAPIUpdateStockRequest
+	UpdateStockOverwrite(ctx context.Context, fsId int64) ProductAPIUpdateStockOverwriteRequest
 
-	// UpdateStockExecute executes the request
+	// UpdateStockOverwriteExecute executes the request
 	//  @return UpdateStockResponse
-	UpdateStockExecute(r ProductAPIUpdateStockRequest) (*UpdateStockResponse, *http.Response, error)
+	UpdateStockOverwriteExecute(r ProductAPIUpdateStockOverwriteRequest) (*UpdateStockResponse, *http.Response, error)
 
-	// UpdateStockExecuteWithRetry executes the request with retry
+	// UpdateStockOverwriteExecuteWithRetry executes the request with retry
 	//  @return UpdateStockResponse
-	UpdateStockExecuteWithRetry(r ProductAPIUpdateStockRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error)
+	UpdateStockOverwriteExecuteWithRetry(r ProductAPIUpdateStockOverwriteRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error)
 }
 
 // ProductAPIService ProductAPI service
@@ -1799,7 +1837,519 @@ func (a *ProductAPIService) GetVariantsByProductIdExecuteWithRetry(r ProductAPIG
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ProductAPIUpdateStockRequest struct {
+type ProductAPIUpdateStockDecrementRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	updateStockIncrementRequestInner *[]UpdateStockIncrementRequestInner
+	requestId *bool
+	warehouseId *int64
+}
+
+// Shop unique identifier
+func (r ProductAPIUpdateStockDecrementRequest) ShopId(shopId int64) ProductAPIUpdateStockDecrementRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPIUpdateStockDecrementRequest) UpdateStockIncrementRequestInner(updateStockIncrementRequestInner []UpdateStockIncrementRequestInner) ProductAPIUpdateStockDecrementRequest {
+	r.updateStockIncrementRequestInner = &updateStockIncrementRequestInner
+	return r
+}
+
+// The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long
+func (r ProductAPIUpdateStockDecrementRequest) RequestId(requestId bool) ProductAPIUpdateStockDecrementRequest {
+	r.requestId = &requestId
+	return r
+}
+
+// Warehouse unique identifer
+func (r ProductAPIUpdateStockDecrementRequest) WarehouseId(warehouseId int64) ProductAPIUpdateStockDecrementRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+func (r ProductAPIUpdateStockDecrementRequest) Execute() (*DecreaseStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockDecrementExecute(r)
+}
+
+func (r ProductAPIUpdateStockDecrementRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*DecreaseStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockDecrementExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+UpdateStockDecrement Method for UpdateStockDecrement
+
+This endpoint is used to update stock by decreasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIUpdateStockDecrementRequest
+*/
+func (a *ProductAPIService) UpdateStockDecrement(ctx context.Context, fsId int64) ProductAPIUpdateStockDecrementRequest {
+	return ProductAPIUpdateStockDecrementRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return DecreaseStockResponse
+func (a *ProductAPIService) UpdateStockDecrementExecute(r ProductAPIUpdateStockDecrementRequest) (*DecreaseStockResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DecreaseStockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStockDecrement")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/stock/decrement"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateStockIncrementRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateStockIncrementRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.requestId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "request_id", r.requestId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateStockIncrementRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return DecreaseStockResponse
+func (a *ProductAPIService) UpdateStockDecrementExecuteWithRetry(r ProductAPIUpdateStockDecrementRequest, maxRetry, maxDelayMs int) (*DecreaseStockResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DecreaseStockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStockDecrement")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/stock/decrement"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateStockIncrementRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateStockIncrementRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.requestId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "request_id", r.requestId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateStockIncrementRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIUpdateStockIncrementRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	updateStockIncrementRequestInner *[]UpdateStockIncrementRequestInner
+	requestId *bool
+	warehouseId *int64
+}
+
+// Shop unique identifier
+func (r ProductAPIUpdateStockIncrementRequest) ShopId(shopId int64) ProductAPIUpdateStockIncrementRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPIUpdateStockIncrementRequest) UpdateStockIncrementRequestInner(updateStockIncrementRequestInner []UpdateStockIncrementRequestInner) ProductAPIUpdateStockIncrementRequest {
+	r.updateStockIncrementRequestInner = &updateStockIncrementRequestInner
+	return r
+}
+
+// The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long
+func (r ProductAPIUpdateStockIncrementRequest) RequestId(requestId bool) ProductAPIUpdateStockIncrementRequest {
+	r.requestId = &requestId
+	return r
+}
+
+// Warehouse unique identifer
+func (r ProductAPIUpdateStockIncrementRequest) WarehouseId(warehouseId int64) ProductAPIUpdateStockIncrementRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+func (r ProductAPIUpdateStockIncrementRequest) Execute() (*IncreaseStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockIncrementExecute(r)
+}
+
+func (r ProductAPIUpdateStockIncrementRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*IncreaseStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockIncrementExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+UpdateStockIncrement Method for UpdateStockIncrement
+
+This endpoint is used to update stock by increasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIUpdateStockIncrementRequest
+*/
+func (a *ProductAPIService) UpdateStockIncrement(ctx context.Context, fsId int64) ProductAPIUpdateStockIncrementRequest {
+	return ProductAPIUpdateStockIncrementRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return IncreaseStockResponse
+func (a *ProductAPIService) UpdateStockIncrementExecute(r ProductAPIUpdateStockIncrementRequest) (*IncreaseStockResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *IncreaseStockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStockIncrement")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/stock/increment"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateStockIncrementRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateStockIncrementRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.requestId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "request_id", r.requestId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateStockIncrementRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return IncreaseStockResponse
+func (a *ProductAPIService) UpdateStockIncrementExecuteWithRetry(r ProductAPIUpdateStockIncrementRequest, maxRetry, maxDelayMs int) (*IncreaseStockResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *IncreaseStockResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStockIncrement")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/stock/increment"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.updateStockIncrementRequestInner == nil {
+		return localVarReturnValue, nil, reportError("updateStockIncrementRequestInner is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	if r.requestId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "request_id", r.requestId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.updateStockIncrementRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIUpdateStockOverwriteRequest struct {
 	ctx context.Context
 	ApiService ProductAPI
 	fsId int64
@@ -1809,45 +2359,45 @@ type ProductAPIUpdateStockRequest struct {
 	warehouseId *int64
 }
 
-func (r ProductAPIUpdateStockRequest) ShopId(shopId int64) ProductAPIUpdateStockRequest {
+func (r ProductAPIUpdateStockOverwriteRequest) ShopId(shopId int64) ProductAPIUpdateStockOverwriteRequest {
 	r.shopId = &shopId
 	return r
 }
 
-func (r ProductAPIUpdateStockRequest) UpdateStockInput(updateStockInput []UpdateStockInput) ProductAPIUpdateStockRequest {
+func (r ProductAPIUpdateStockOverwriteRequest) UpdateStockInput(updateStockInput []UpdateStockInput) ProductAPIUpdateStockOverwriteRequest {
 	r.updateStockInput = &updateStockInput
 	return r
 }
 
-func (r ProductAPIUpdateStockRequest) BypassUpdateProductStatus(bypassUpdateProductStatus bool) ProductAPIUpdateStockRequest {
+func (r ProductAPIUpdateStockOverwriteRequest) BypassUpdateProductStatus(bypassUpdateProductStatus bool) ProductAPIUpdateStockOverwriteRequest {
 	r.bypassUpdateProductStatus = &bypassUpdateProductStatus
 	return r
 }
 
-func (r ProductAPIUpdateStockRequest) WarehouseId(warehouseId int64) ProductAPIUpdateStockRequest {
+func (r ProductAPIUpdateStockOverwriteRequest) WarehouseId(warehouseId int64) ProductAPIUpdateStockOverwriteRequest {
 	r.warehouseId = &warehouseId
 	return r
 }
 
-func (r ProductAPIUpdateStockRequest) Execute() (*UpdateStockResponse, *http.Response, error) {
-	return r.ApiService.UpdateStockExecute(r)
+func (r ProductAPIUpdateStockOverwriteRequest) Execute() (*UpdateStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockOverwriteExecute(r)
 }
 
-func (r ProductAPIUpdateStockRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
-	return r.ApiService.UpdateStockExecuteWithRetry(r, maxRetry, maxDelayMs)
+func (r ProductAPIUpdateStockOverwriteRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
+	return r.ApiService.UpdateStockOverwriteExecuteWithRetry(r, maxRetry, maxDelayMs)
 }
 
 /*
-UpdateStock Method for UpdateStock
+UpdateStockOverwrite Method for UpdateStockOverwrite
 
 This endpoint used for update product stock. You can update up to 100 products or SKUs in a single request to this endpoint.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param fsId Fulfillment service unique identifier
- @return ProductAPIUpdateStockRequest
+ @return ProductAPIUpdateStockOverwriteRequest
 */
-func (a *ProductAPIService) UpdateStock(ctx context.Context, fsId int64) ProductAPIUpdateStockRequest {
-	return ProductAPIUpdateStockRequest{
+func (a *ProductAPIService) UpdateStockOverwrite(ctx context.Context, fsId int64) ProductAPIUpdateStockOverwriteRequest {
+	return ProductAPIUpdateStockOverwriteRequest{
 		ApiService: a,
 		ctx: ctx,
 		fsId: fsId,
@@ -1856,7 +2406,7 @@ func (a *ProductAPIService) UpdateStock(ctx context.Context, fsId int64) Product
 
 // Execute executes the request
 //  @return UpdateStockResponse
-func (a *ProductAPIService) UpdateStockExecute(r ProductAPIUpdateStockRequest) (*UpdateStockResponse, *http.Response, error) {
+func (a *ProductAPIService) UpdateStockOverwriteExecute(r ProductAPIUpdateStockOverwriteRequest) (*UpdateStockResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1864,7 +2414,7 @@ func (a *ProductAPIService) UpdateStockExecute(r ProductAPIUpdateStockRequest) (
 		localVarReturnValue  *UpdateStockResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStock")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStockOverwrite")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1955,7 +2505,7 @@ func (a *ProductAPIService) UpdateStockExecute(r ProductAPIUpdateStockRequest) (
 
 // ExecuteWithRetry executes the request with retry
 //  @return UpdateStockResponse
-func (a *ProductAPIService) UpdateStockExecuteWithRetry(r ProductAPIUpdateStockRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
+func (a *ProductAPIService) UpdateStockOverwriteExecuteWithRetry(r ProductAPIUpdateStockOverwriteRequest, maxRetry, maxDelayMs int) (*UpdateStockResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -1963,7 +2513,7 @@ func (a *ProductAPIService) UpdateStockExecuteWithRetry(r ProductAPIUpdateStockR
 		localVarReturnValue  *UpdateStockResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStock")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.UpdateStockOverwrite")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

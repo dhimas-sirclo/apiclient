@@ -2008,6 +2008,100 @@ components:
             succeed_rows:
               type: integer
               format: int64
+    IncreaseStockResponse:
+      type: object
+      properties:
+        header:
+          $ref: "#/components/schemas/ResponseHeader"
+        data:
+          type: object
+          properties:
+            failed_rows:
+              type: integer
+              format: int64
+            failed_rows_data:
+              type: array
+              items:
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    format: int64
+                  new_stock:
+                    type: integer
+                    format: int64
+                  message:
+                    type: string
+            succeed_rows:
+              type: integer
+              format: int64
+            succeed_rows_data:
+              type: array
+              items:
+                type: object
+                properties:
+                  productID:
+                    type: integer
+                    format: int64
+                  warehouseID:
+                    type: integer
+                    format: int64
+                  shopID:
+                    type: integer
+                    format: int64
+                  stock:
+                    type: integer
+                    format: int64
+                  price:
+                    type: integer
+                    format: int64
+    DecreaseStockResponse:
+      type: object
+      properties:
+        header:
+          $ref: "#/components/schemas/ResponseHeader"
+        data:
+          type: object
+          properties:
+            failed_rows:
+              type: integer
+              format: int64
+            failed_rows_data:
+              type: array
+              items:
+                type: object
+                properties:
+                  product_id:
+                    type: integer
+                    format: int64
+                  new_stock:
+                    type: integer
+                    format: int64
+                  message:
+                    type: string
+            succeed_rows:
+              type: integer
+              format: int64
+            succeed_rows_data:
+              type: array
+              items:
+                type: object
+                properties:
+                  productID:
+                    type: integer
+                    format: int64
+                  warehouseID:
+                    type: integer
+                    format: int64
+                  shopID:
+                    type: integer
+                    format: int64
+                  stock:
+                    type: integer
+                    format: int64
+                  price:
+                    type: integer
+                    format: int64
   parameters:
     fs_id:
       name: fs_id
@@ -2338,7 +2432,7 @@ paths:
     parameters:
       - $ref: "#/components/parameters/fs_id"
     post:
-      operationId: updateStock
+      operationId: updateStockOverwrite
       tags:
         - Product
       description: This endpoint used for update product stock. You can update up to 100 products or SKUs in a single request to this endpoint.
@@ -2417,6 +2511,212 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UpdateStockResponse"
+  /inventory/v1/fs/{fs_id}/stock/increment:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: updateStockIncrement
+      tags:
+        - Product
+      description: This endpoint is used to update stock by increasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: request_id
+          in: query
+          required: false
+          description: The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long
+          schema:
+            type: boolean
+        - name: warehouse_id
+          in: query
+          required: false
+          description: Warehouse unique identifer
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - stock_value
+                properties:
+                  sku:
+                    type: string
+                    description: SKU of products that will be updated. Maximum characters allowed is 50
+                  product_id:
+                    type: integer
+                    format: int64
+                    description: Product ID to update
+                  # WARN: di dokumentasi new_stock, di contoh stock_value
+                  stock_value:
+                    type: integer
+                    format: int64
+                    description: New stock to be set
+      responses:
+        default:
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IncreaseStockResponse"
+  /inventory/v1/fs/{fs_id}/stock/decrement:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: updateStockDecrement
+      tags:
+        - Product
+      description: This endpoint is used to update stock by decreasing based on input value. You can update up to 100 products or SKUs in a single request by using this endpoint.
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: request_id
+          in: query
+          required: false
+          description: The ID of the request to be used for duplicate request validation. Only alphanumeric (case insensitive), ‘-‘, and ‘_’ characters are allowed with a maximum of 20 characters long
+          schema:
+            type: boolean
+        - name: warehouse_id
+          in: query
+          required: false
+          description: Warehouse unique identifer
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                required:
+                  - stock_value
+                properties:
+                  sku:
+                    type: string
+                    description: SKU of products that will be updated. Maximum characters allowed is 50
+                  product_id:
+                    type: integer
+                    format: int64
+                    description: Product ID to update
+                  # WARN: di dokumentasi new_stock, di contoh stock_value
+                  stock_value:
+                    type: integer
+                    format: int64
+                    description: New stock to be set
+      responses:
+        default:
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DecreaseStockResponse"
   /v1/fs/{fs_id}:
     parameters:
       - $ref: "#/components/parameters/fs_id"
