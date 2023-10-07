@@ -25,7 +25,7 @@ type WebhookErrorProductEditData struct {
 	UnprocessedRows *int64 `json:"unprocessed_rows,omitempty"`
 	SuccessRows *int64 `json:"success_rows,omitempty"`
 	FailedRows *int64 `json:"failed_rows,omitempty"`
-	FailedRowsData []WebhookErrorProductEditDataFailedRowsDataInner `json:"failed_rows_data,omitempty"`
+	FailedRowsData []EditProductV3DefaultResponseDataFailedRowsDataInner `json:"failed_rows_data,omitempty"`
 	ProcessedRows *int64 `json:"processed_rows,omitempty"`
 }
 
@@ -207,9 +207,9 @@ func (o *WebhookErrorProductEditData) SetFailedRows(v int64) {
 }
 
 // GetFailedRowsData returns the FailedRowsData field value if set, zero value otherwise.
-func (o *WebhookErrorProductEditData) GetFailedRowsData() []WebhookErrorProductEditDataFailedRowsDataInner {
+func (o *WebhookErrorProductEditData) GetFailedRowsData() []EditProductV3DefaultResponseDataFailedRowsDataInner {
 	if o == nil || IsNil(o.FailedRowsData) {
-		var ret []WebhookErrorProductEditDataFailedRowsDataInner
+		var ret []EditProductV3DefaultResponseDataFailedRowsDataInner
 		return ret
 	}
 	return o.FailedRowsData
@@ -217,7 +217,7 @@ func (o *WebhookErrorProductEditData) GetFailedRowsData() []WebhookErrorProductE
 
 // GetFailedRowsDataOk returns a tuple with the FailedRowsData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookErrorProductEditData) GetFailedRowsDataOk() ([]WebhookErrorProductEditDataFailedRowsDataInner, bool) {
+func (o *WebhookErrorProductEditData) GetFailedRowsDataOk() ([]EditProductV3DefaultResponseDataFailedRowsDataInner, bool) {
 	if o == nil || IsNil(o.FailedRowsData) {
 		return nil, false
 	}
@@ -233,8 +233,8 @@ func (o *WebhookErrorProductEditData) HasFailedRowsData() bool {
 	return false
 }
 
-// SetFailedRowsData gets a reference to the given []WebhookErrorProductEditDataFailedRowsDataInner and assigns it to the FailedRowsData field.
-func (o *WebhookErrorProductEditData) SetFailedRowsData(v []WebhookErrorProductEditDataFailedRowsDataInner) {
+// SetFailedRowsData gets a reference to the given []EditProductV3DefaultResponseDataFailedRowsDataInner and assigns it to the FailedRowsData field.
+func (o *WebhookErrorProductEditData) SetFailedRowsData(v []EditProductV3DefaultResponseDataFailedRowsDataInner) {
 	o.FailedRowsData = v
 }
 

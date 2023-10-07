@@ -6075,6 +6075,116 @@ paths:
               style: simple
       tags:
       - Product
+  /v3/products/fs/{fs_id}/edit:
+    patch:
+      description: This is the new version of edit products endpoint. This endpoint
+        just need to pass field that needed to edit into payload request. This endpoint
+        can’t edit/update name for the product that already has a transaction.
+      operationId: editProductV3
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/editProductV3_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/editProductV3_default_response'
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/editProductV3_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
 components:
   parameters:
     fs_id:
@@ -18483,6 +18593,372 @@ components:
         data:
           $ref: '#/components/schemas/checkUploadStatus_200_response_data'
       type: object
+    editProductV3_request_products_inner_dimension:
+      description: "Dimension of the product. The object contains height, width, and\
+        \ length. If want to use dimensions then three of this object must be filled"
+      properties:
+        height:
+          format: int64
+          type: integer
+        width:
+          format: int64
+          type: integer
+        length:
+          format: int64
+          type: integer
+      type: object
+    editProductV3_request_products_inner_menu:
+      properties:
+        id:
+          format: int64
+          type: integer
+      type: object
+    editProductV3_request_products_inner_pictures_inner:
+      properties:
+        file_path:
+          type: string
+      type: object
+    editProductV3_request_products_inner_wholesale_inner:
+      properties:
+        min_qty:
+          format: int64
+          type: integer
+        price:
+          format: int64
+          type: integer
+      type: object
+    editProductV3_request_products_inner_preorder:
+      description: |
+        Preorder information. The object keys includes: is_active, duration, and time_unit. Remove preorder from related product by passing empty object ({}) in this request
+      properties:
+        is_active:
+          type: boolean
+        duration:
+          format: int64
+          type: integer
+        time_unit:
+          type: string
+      type: object
+    editProductV3_request_products_inner_videos_inner:
+      properties:
+        url:
+          type: string
+        source:
+          type: string
+      type: object
+    editProductV3_request_products_inner_etalase:
+      description: "Etalase or Showcase of the product. The object contains id and\
+        \ name. To get available Showcase, please check Get Showcase. Required field\
+        \ to input just id with etalase_id responses from Get Showcase"
+      properties:
+        id:
+          format: int64
+          type: integer
+        name:
+          type: string
+      type: object
+    editProductV3_request_products_inner_variant_products_inner:
+      properties:
+        is_primary:
+          type: boolean
+        status:
+          type: string
+        price:
+          format: int64
+          type: integer
+        stock:
+          format: int64
+          type: integer
+        sku:
+          type: string
+        combination:
+          items:
+            format: int64
+            type: integer
+          type: array
+        pictures:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_pictures_inner'
+          type: array
+      type: object
+    editProductV3_request_products_inner_variant_selection_inner_options_inner:
+      properties:
+        hex_code:
+          type: string
+        unit_value_id:
+          format: int64
+          type: integer
+        value:
+          type: string
+      type: object
+    editProductV3_request_products_inner_variant_selection_inner:
+      properties:
+        id:
+          format: int64
+          type: integer
+        unit_id:
+          format: int64
+          type: integer
+        options:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_variant_selection_inner_options_inner'
+          type: array
+      type: object
+    editProductV3_request_products_inner_variant:
+      description: |
+        Variant of the product. The object keys includes: variant and product_variant. There are some field in variant entity that mandatory. For more detail please refer to this link
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_variant_products_inner'
+          type: array
+        selection:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_variant_selection_inner'
+          type: array
+        sizecharts:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_pictures_inner'
+          type: array
+      type: object
+    editProductV3_request_products_inner:
+      properties:
+        id:
+          description: Product Identifier
+          format: int64
+          type: integer
+        Name:
+          description: Name of the product with length less than or equals 70 characters
+          maximum: 70
+          type: string
+        condition:
+          description: The condition of the product with the following available values
+            NEW and USED
+          enum:
+          - NEW
+          - USED
+          type: string
+        Description:
+          description: Description of the product. Maximum characters allowed is 2000
+          maximum: 2000
+          type: string
+        sku:
+          description: The stock keeping unit for the product. Maximum characters
+            allowed is 50
+          maximum: 50
+          type: string
+        price:
+          description: "The possible value between 100 to 100.000.000. If the product\
+            \ variant is added, the price parameter is automatically set to the lowest\
+            \ price among the variant products"
+          format: int64
+          maximum: 100000000
+          minimum: 100
+          type: integer
+        status:
+          description: "Status for the product with the following available values\
+            \ UNLIMITED, LIMITED, and EMPTY"
+          enum:
+          - UNLIMITED
+          - LIMITED
+          - EMPTY
+          type: string
+        stock:
+          description: "The stock of the product. 0 indicates always available. Other\
+            \ than that, the possible values are from 1 to 1000. Stock should be 1\
+            \ if want to add variant product"
+          format: int64
+          type: integer
+        min_order:
+          description: Minimum order required to purchase the product. Can only be
+            a positive integer
+          format: int64
+          type: integer
+        category_id:
+          description: "Unique identifier for the product’s category. To get available\
+            \ categories, please check Get All Categories Please input the deepest\
+            \ category child ID"
+          format: int64
+          type: integer
+        dimension:
+          $ref: '#/components/schemas/editProductV3_request_products_inner_dimension'
+        custom_product_logistics:
+          description: "Custom product logistics of the product. To get the id, please\
+            \ check Get Active Courier. Required field to input just ShippingProductID\
+            \ value responses from Get Active Courier. Remove custom_product_logistics\
+            \ from related product by passing empty array ([]) in this request"
+          items:
+            format: int64
+            type: integer
+          type: array
+        annotations:
+          description: Product Specification (anotations) By Category ID. The value
+            is array of annotations id that can be retrieve by hit endpoint Get Product
+            Annotation by Category ID. The location of id is at values.id. Remove
+            annotations from related product by passing empty array (“”) in this request
+          items:
+            type: string
+          type: array
+        price_currency:
+          description: Currency code for stated price (IDR or USD)
+          enum:
+          - IDR
+          - USD
+          type: string
+        weight:
+          description: Weight of the product
+          format: double
+          type: number
+        weight_unit:
+          default: GR
+          description: The unit of the weight with the following available value GR
+            (gram)
+          type: string
+        is_free_return:
+          description: Determine if the product can be returned (true) by buyers or
+            not (false)
+          type: boolean
+        is_must_insurance:
+          description: Determine if the product must be insured (true) or not (false)
+          type: boolean
+        menu:
+          $ref: '#/components/schemas/editProductV3_request_products_inner_menu'
+        pictures:
+          description: |
+            Images information of the product. The object keys includes: file_path. Remove pictures from related product by passing empty array ([]) in this request
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_pictures_inner'
+          type: array
+        wholesale:
+          description: |
+            Wholesale price and quantity of the product. The object keys includes: min_qty and price. Remove wholesale from related product by passing empty array ([]) in this request
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_wholesale_inner'
+          type: array
+        preorder:
+          $ref: '#/components/schemas/editProductV3_request_products_inner_preorder'
+        videos:
+          description: |
+            Video link of the product. The object keys includes: url and source. url should only contain the YouTube video id e.g. dQw4w9WgXcQ. Where the type type should be youtube. Remove videos from related product by passing empty array ([]) in this request
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_videos_inner'
+          type: array
+        etalase:
+          $ref: '#/components/schemas/editProductV3_request_products_inner_etalase'
+        variant:
+          $ref: '#/components/schemas/editProductV3_request_products_inner_variant'
+      required:
+      - id
+      - is_must_insurance
+      - status
+      type: object
+    editProductV3_request:
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner'
+          type: array
+      required:
+      - products
+      type: object
+    editProductV3_default_response_data_failed_rows_data_inner:
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        product_name:
+          type: string
+        product_price:
+          format: int64
+          type: integer
+        sku:
+          type: string
+        error:
+          items:
+            type: string
+          type: array
+      type: object
+    editProductV3_default_response_data:
+      properties:
+        total_data:
+          format: int64
+          type: integer
+        success_data:
+          format: int64
+          type: integer
+        fail_data:
+          format: int64
+          type: integer
+        failed_rows_data:
+          items:
+            $ref: '#/components/schemas/editProductV3_default_response_data_failed_rows_data_inner'
+          type: array
+      type: object
+    editProductV3_default_response:
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/editProductV3_default_response_data'
+      type: object
+    editProductV3_200_response_data_success_rows_data_inner:
+      example:
+        product_sku: product_sku
+        product_id: 5
+      properties:
+        product_id:
+          format: int64
+          type: integer
+        product_sku:
+          type: string
+      type: object
+    editProductV3_200_response_data:
+      example:
+        fail_data: 1
+        total_data: 0
+        success_rows_data:
+        - product_sku: product_sku
+          product_id: 5
+        - product_sku: product_sku
+          product_id: 5
+        success_data: 6
+      properties:
+        total_data:
+          format: int64
+          type: integer
+        success_data:
+          format: int64
+          type: integer
+        fail_data:
+          format: int64
+          type: integer
+        success_rows_data:
+          items:
+            $ref: '#/components/schemas/editProductV3_200_response_data_success_rows_data_inner'
+          type: array
+      type: object
+    editProductV3_200_response:
+      example:
+        data:
+          fail_data: 1
+          total_data: 0
+          success_rows_data:
+          - product_sku: product_sku
+            product_id: 5
+          - product_sku: product_sku
+            product_id: 5
+          success_data: 6
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/editProductV3_200_response_data'
+      type: object
     WebhookOrderNotification_products_inner:
       properties:
         id:
@@ -18973,23 +19449,6 @@ components:
           format: int64
           type: integer
       type: object
-    WebhookErrorProductEdit_data_failed_rows_data_inner:
-      properties:
-        product_id:
-          format: int64
-          type: integer
-        product_name:
-          type: string
-        product_price:
-          format: int64
-          type: integer
-        sku:
-          type: string
-        error:
-          items:
-            type: string
-          type: array
-      type: object
     WebhookErrorProductEdit_data:
       properties:
         status:
@@ -19008,7 +19467,7 @@ components:
           type: integer
         failed_rows_data:
           items:
-            $ref: '#/components/schemas/WebhookErrorProductEdit_data_failed_rows_data_inner'
+            $ref: '#/components/schemas/editProductV3_default_response_data_failed_rows_data_inner'
           type: array
         processed_rows:
           format: int64

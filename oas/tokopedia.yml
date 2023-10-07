@@ -10448,6 +10448,368 @@ paths:
                             processed:
                               type: integer
                               format: int64
+  /v3/products/fs/{fs_id}/edit:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    patch:
+      operationId: editProductV3
+      tags:
+        - Product
+      description: This is the new version of edit products endpoint. This endpoint just need to pass field that needed to edit into payload request. This endpoint can’t edit/update name for the product that already has a transaction.
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - products
+              properties:
+                products:
+                  type: array
+                  items:
+                    type: object
+                    required:
+                      - id
+                      - status
+                      - is_must_insurance
+                    properties:
+                      id:
+                        type: integer
+                        format: int64
+                        description: Product Identifier
+                      Name:
+                        type: string
+                        description: Name of the product with length less than or equals 70 characters
+                        maximum: 70
+                      condition:
+                        type: string
+                        description: The condition of the product with the following available values NEW and USED
+                        enum:
+                          - NEW
+                          - USED
+                      Description:
+                        type: string
+                        maximum: 2000
+                        description: Description of the product. Maximum characters allowed is 2000
+                      sku:
+                        type: string
+                        description: The stock keeping unit for the product. Maximum characters allowed is 50
+                        maximum: 50
+                      price:
+                        type: integer
+                        format: int64
+                        description: The possible value between 100 to 100.000.000. If the product variant is added, the price parameter is automatically set to the lowest price among the variant products
+                        minimum: 100
+                        maximum: 100000000
+                      status:
+                        type: string
+                        description: Status for the product with the following available values UNLIMITED, LIMITED, and EMPTY
+                        enum:
+                          - UNLIMITED
+                          - LIMITED
+                          - EMPTY
+                      stock:
+                        type: integer
+                        format: int64
+                        description: The stock of the product. 0 indicates always available. Other than that, the possible values are from 1 to 1000. Stock should be 1 if want to add variant product
+                      min_order:
+                        type: integer
+                        format: int64
+                        description: Minimum order required to purchase the product. Can only be a positive integer
+                      category_id:
+                        type: integer
+                        format: int64
+                        description: Unique identifier for the product’s category. To get available categories, please check Get All Categories Please input the deepest category child ID
+                      dimension:
+                        type: object
+                        description: Dimension of the product. The object contains height, width, and length. If want to use dimensions then three of this object must be filled
+                        properties:
+                          height:
+                            type: integer
+                            format: int64
+                          width:
+                            type: integer
+                            format: int64
+                          length:
+                            type: integer
+                            format: int64
+                      custom_product_logistics:
+                        type: array
+                        description: Custom product logistics of the product. To get the id, please check Get Active Courier. Required field to input just ShippingProductID value responses from Get Active Courier. Remove custom_product_logistics from related product by passing empty array ([]) in this request
+                        items:
+                          type: integer
+                          format: int64
+                      annotations:
+                        type: array
+                        description: Product Specification (anotations) By Category ID. The value is array of annotations id that can be retrieve by hit endpoint Get Product Annotation by Category ID. The location of id is at values.id. Remove annotations from related product by passing empty array (“”) in this request
+                        items:
+                          type: string
+                      price_currency:
+                        type: string
+                        description: Currency code for stated price (IDR or USD)
+                        enum:
+                          - IDR
+                          - USD
+                      weight:
+                        type: number
+                        format: double
+                        description: Weight of the product
+                      weight_unit:
+                        type: string
+                        description: The unit of the weight with the following available value GR (gram)
+                        default: GR
+                      is_free_return:
+                        type: boolean
+                        description: Determine if the product can be returned (true) by buyers or not (false)
+                      is_must_insurance:
+                        type: boolean
+                        description: Determine if the product must be insured (true) or not (false)
+                      menu:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                      pictures:
+                        type: array
+                        description: >
+                          Images information of the product. The object keys includes: file_path. Remove pictures from related product by passing empty array ([]) in this request
+                        items:
+                          type: object
+                          properties:
+                            file_path:
+                              type: string
+                      wholesale:
+                        type: array
+                        description: >
+                          Wholesale price and quantity of the product. The object keys includes: min_qty and price. Remove wholesale from related product by passing empty array ([]) in this request
+                        items:
+                          type: object
+                          properties:
+                            min_qty:
+                              type: integer
+                              format: int64
+                            price:
+                              type: integer
+                              format: int64
+                      # WARN: tidak ada di contoh
+                      preorder:
+                        type: object
+                        description: >
+                          Preorder information. The object keys includes: is_active, duration, and time_unit. Remove preorder from related product by passing empty object ({}) in this request
+                        properties:
+                          is_active:
+                            type: boolean
+                          duration:
+                            type: integer
+                            format: int64
+                          time_unit:
+                            type: string
+                      # WARN: tidak ada di contoh
+                      videos:
+                        type: array
+                        description: >
+                          Video link of the product. The object keys includes: url and source. url should only contain the YouTube video id e.g. dQw4w9WgXcQ. Where the type type should be youtube. Remove videos from related product by passing empty array ([]) in this request
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                            source:
+                              type: string
+                      # WARN: tidak ada di contoh
+                      etalase:
+                        type: object
+                        description: Etalase or Showcase of the product. The object contains id and name. To get available Showcase, please check Get Showcase. Required field to input just id with etalase_id responses from Get Showcase
+                        properties:
+                          id:
+                            type: integer
+                            format: int64
+                          name:
+                            type: string
+                      variant:
+                        type: object
+                        description: >
+                          Variant of the product. The object keys includes: variant and product_variant. There are some field in variant entity that mandatory. For more detail please refer to this link
+                        properties:
+                          products:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                is_primary:
+                                  type: boolean
+                                status:
+                                  type: string
+                                price:
+                                  type: integer
+                                  format: int64
+                                stock:
+                                  type: integer
+                                  format: int64
+                                sku:
+                                  type: string
+                                combination:
+                                  type: array
+                                  items:
+                                    type: integer
+                                    format: int64
+                                pictures:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      file_path:
+                                        type: string
+                          selection:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  format: int64
+                                unit_id:
+                                  type: integer
+                                  format: int64
+                                options:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      hex_code:
+                                        type: string
+                                      unit_value_id:
+                                        type: integer
+                                        format: int64
+                                      value:
+                                        type: string
+                          sizecharts:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                file_path:
+                                  type: string
+      responses:
+        default:
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      total_data:
+                        type: integer
+                        format: int64
+                      success_data:
+                        type: integer
+                        format: int64
+                      fail_data:
+                        type: integer
+                        format: int64
+                      failed_rows_data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            product_id:
+                              type: integer
+                              format: int64
+                            product_name:
+                              type: string
+                            product_price:
+                              type: integer
+                              format: int64
+                            sku:
+                              type: string
+                            error:
+                              type: array
+                              items:
+                                type: string
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      total_data:
+                        type: integer
+                        format: int64
+                      success_data:
+                        type: integer
+                        format: int64
+                      fail_data:
+                        type: integer
+                        format: int64
+                      success_rows_data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            product_id:
+                              type: integer
+                              format: int64
+                            product_sku:
+                              type: string
 security:
   - bearer: []
 

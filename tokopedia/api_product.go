@@ -63,6 +63,25 @@ type ProductAPI interface {
 	DeleteProductExecuteWithRetry(r ProductAPIDeleteProductRequest, maxRetry, maxDelayMs int) (*DeleteProductDefaultResponse, *http.Response, error)
 
 	/*
+	EditProductV3 Method for EditProductV3
+
+	This is the new version of edit products endpoint. This endpoint just need to pass field that needed to edit into payload request. This endpoint can’t edit/update name for the product that already has a transaction.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIEditProductV3Request
+	*/
+	EditProductV3(ctx context.Context, fsId int64) ProductAPIEditProductV3Request
+
+	// EditProductV3Execute executes the request
+	//  @return EditProductV3200Response
+	EditProductV3Execute(r ProductAPIEditProductV3Request) (*EditProductV3200Response, *http.Response, error)
+
+	// EditProductV3ExecuteWithRetry executes the request with retry
+	//  @return EditProductV3200Response
+	EditProductV3ExecuteWithRetry(r ProductAPIEditProductV3Request, maxRetry, maxDelayMs int) (*EditProductV3200Response, *http.Response, error)
+
+	/*
 	GetAllCategories Method for GetAllCategories
 
 	This endpoint retrieves a list of all categories and its children.
@@ -722,6 +741,236 @@ func (a *ProductAPIService) DeleteProductExecuteWithRetry(r ProductAPIDeleteProd
 			error: localVarHTTPResponse.Status,
 		}
 			var v DeleteProductDefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIEditProductV3Request struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	shopId *int64
+	editProductV3Request *EditProductV3Request
+}
+
+// Shop unique identifier
+func (r ProductAPIEditProductV3Request) ShopId(shopId int64) ProductAPIEditProductV3Request {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPIEditProductV3Request) EditProductV3Request(editProductV3Request EditProductV3Request) ProductAPIEditProductV3Request {
+	r.editProductV3Request = &editProductV3Request
+	return r
+}
+
+func (r ProductAPIEditProductV3Request) Execute() (*EditProductV3200Response, *http.Response, error) {
+	return r.ApiService.EditProductV3Execute(r)
+}
+
+func (r ProductAPIEditProductV3Request) ExecuteWithRetry(maxRetry, maxDelayMs int) (*EditProductV3200Response, *http.Response, error) {
+	return r.ApiService.EditProductV3ExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+EditProductV3 Method for EditProductV3
+
+This is the new version of edit products endpoint. This endpoint just need to pass field that needed to edit into payload request. This endpoint can’t edit/update name for the product that already has a transaction.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIEditProductV3Request
+*/
+func (a *ProductAPIService) EditProductV3(ctx context.Context, fsId int64) ProductAPIEditProductV3Request {
+	return ProductAPIEditProductV3Request{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return EditProductV3200Response
+func (a *ProductAPIService) EditProductV3Execute(r ProductAPIEditProductV3Request) (*EditProductV3200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EditProductV3200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.EditProductV3")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v3/products/fs/{fs_id}/edit"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.editProductV3Request == nil {
+		return localVarReturnValue, nil, reportError("editProductV3Request is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.editProductV3Request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v EditProductV3DefaultResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return EditProductV3200Response
+func (a *ProductAPIService) EditProductV3ExecuteWithRetry(r ProductAPIEditProductV3Request, maxRetry, maxDelayMs int) (*EditProductV3200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *EditProductV3200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.EditProductV3")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v3/products/fs/{fs_id}/edit"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+	if r.editProductV3Request == nil {
+		return localVarReturnValue, nil, reportError("editProductV3Request is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.editProductV3Request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v EditProductV3DefaultResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **UnprocessedRows** | Pointer to **int64** |  | [optional] 
 **SuccessRows** | Pointer to **int64** |  | [optional] 
 **FailedRows** | Pointer to **int64** |  | [optional] 
-**FailedRowsData** | Pointer to [**[]WebhookErrorProductEditDataFailedRowsDataInner**](WebhookErrorProductEditDataFailedRowsDataInner.md) |  | [optional] 
+**FailedRowsData** | Pointer to [**[]EditProductV3DefaultResponseDataFailedRowsDataInner**](EditProductV3DefaultResponseDataFailedRowsDataInner.md) |  | [optional] 
 **ProcessedRows** | Pointer to **int64** |  | [optional] 
 
 ## Methods
@@ -158,20 +158,20 @@ HasFailedRows returns a boolean if a field has been set.
 
 ### GetFailedRowsData
 
-`func (o *WebhookErrorProductEditData) GetFailedRowsData() []WebhookErrorProductEditDataFailedRowsDataInner`
+`func (o *WebhookErrorProductEditData) GetFailedRowsData() []EditProductV3DefaultResponseDataFailedRowsDataInner`
 
 GetFailedRowsData returns the FailedRowsData field if non-nil, zero value otherwise.
 
 ### GetFailedRowsDataOk
 
-`func (o *WebhookErrorProductEditData) GetFailedRowsDataOk() (*[]WebhookErrorProductEditDataFailedRowsDataInner, bool)`
+`func (o *WebhookErrorProductEditData) GetFailedRowsDataOk() (*[]EditProductV3DefaultResponseDataFailedRowsDataInner, bool)`
 
 GetFailedRowsDataOk returns a tuple with the FailedRowsData field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFailedRowsData
 
-`func (o *WebhookErrorProductEditData) SetFailedRowsData(v []WebhookErrorProductEditDataFailedRowsDataInner)`
+`func (o *WebhookErrorProductEditData) SetFailedRowsData(v []EditProductV3DefaultResponseDataFailedRowsDataInner)`
 
 SetFailedRowsData sets FailedRowsData field to given value.
 

@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**CheckUploadStatus**](docs/ProductAPI.md#checkuploadstatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
 *ProductAPI* | [**DeleteProduct**](docs/ProductAPI.md#deleteproduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
+*ProductAPI* | [**EditProductV3**](docs/ProductAPI.md#editproductv3) | **Patch** /v3/products/fs/{fs_id}/edit | 
 *ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 *ProductAPI* | [**GetProductAnnotationByCategoryId**](docs/ProductAPI.md#getproductannotationbycategoryid) | **Get** /v1/fs/{fs_id}/product/annotation | 
 *ProductAPI* | [**GetProductDiscussion**](docs/ProductAPI.md#getproductdiscussion) | **Get** /v1/discussion/fs/{fs_id}/list | 
@@ -177,6 +178,25 @@ Class | Method | HTTP request | Description
  - [DeleteShowcase200Response](docs/DeleteShowcase200Response.md)
  - [DeleteShowcase200ResponseData](docs/DeleteShowcase200ResponseData.md)
  - [DeleteShowcaseRequest](docs/DeleteShowcaseRequest.md)
+ - [EditProductV3200Response](docs/EditProductV3200Response.md)
+ - [EditProductV3200ResponseData](docs/EditProductV3200ResponseData.md)
+ - [EditProductV3200ResponseDataSuccessRowsDataInner](docs/EditProductV3200ResponseDataSuccessRowsDataInner.md)
+ - [EditProductV3DefaultResponse](docs/EditProductV3DefaultResponse.md)
+ - [EditProductV3DefaultResponseData](docs/EditProductV3DefaultResponseData.md)
+ - [EditProductV3DefaultResponseDataFailedRowsDataInner](docs/EditProductV3DefaultResponseDataFailedRowsDataInner.md)
+ - [EditProductV3Request](docs/EditProductV3Request.md)
+ - [EditProductV3RequestProductsInner](docs/EditProductV3RequestProductsInner.md)
+ - [EditProductV3RequestProductsInnerDimension](docs/EditProductV3RequestProductsInnerDimension.md)
+ - [EditProductV3RequestProductsInnerEtalase](docs/EditProductV3RequestProductsInnerEtalase.md)
+ - [EditProductV3RequestProductsInnerMenu](docs/EditProductV3RequestProductsInnerMenu.md)
+ - [EditProductV3RequestProductsInnerPicturesInner](docs/EditProductV3RequestProductsInnerPicturesInner.md)
+ - [EditProductV3RequestProductsInnerPreorder](docs/EditProductV3RequestProductsInnerPreorder.md)
+ - [EditProductV3RequestProductsInnerVariant](docs/EditProductV3RequestProductsInnerVariant.md)
+ - [EditProductV3RequestProductsInnerVariantProductsInner](docs/EditProductV3RequestProductsInnerVariantProductsInner.md)
+ - [EditProductV3RequestProductsInnerVariantSelectionInner](docs/EditProductV3RequestProductsInnerVariantSelectionInner.md)
+ - [EditProductV3RequestProductsInnerVariantSelectionInnerOptionsInner](docs/EditProductV3RequestProductsInnerVariantSelectionInnerOptionsInner.md)
+ - [EditProductV3RequestProductsInnerVideosInner](docs/EditProductV3RequestProductsInnerVideosInner.md)
+ - [EditProductV3RequestProductsInnerWholesaleInner](docs/EditProductV3RequestProductsInnerWholesaleInner.md)
  - [GetActiveCourier200Response](docs/GetActiveCourier200Response.md)
  - [GetActiveCourier200ResponseData](docs/GetActiveCourier200ResponseData.md)
  - [GetActiveCourier200ResponseDataShopsInner](docs/GetActiveCourier200ResponseDataShopsInner.md)
@@ -406,7 +426,6 @@ Class | Method | HTTP request | Description
  - [WebhookChatReplyNotification](docs/WebhookChatReplyNotification.md)
  - [WebhookErrorProductEdit](docs/WebhookErrorProductEdit.md)
  - [WebhookErrorProductEditData](docs/WebhookErrorProductEditData.md)
- - [WebhookErrorProductEditDataFailedRowsDataInner](docs/WebhookErrorProductEditDataFailedRowsDataInner.md)
  - [WebhookInactiveFlashSaleNotification](docs/WebhookInactiveFlashSaleNotification.md)
  - [WebhookInactiveSlashPriceNotification](docs/WebhookInactiveSlashPriceNotification.md)
  - [WebhookOrderNotification](docs/WebhookOrderNotification.md)
