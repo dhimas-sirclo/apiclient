@@ -5,6 +5,7 @@ All URIs are relative to *https://fs.tokopedia.net*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAllCategories**](ProductAPI.md#GetAllCategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
+[**GetProductAnnotationByCategoryId**](ProductAPI.md#GetProductAnnotationByCategoryId) | **Get** /v1/fs/{fs_id}/product/annotation | 
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
@@ -78,6 +79,78 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: text/html, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetProductAnnotationByCategoryId
+
+> GetProductAnnotationByCategoryId200Response GetProductAnnotationByCategoryId(ctx, fsId).CatId(catId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    catId := int64(789) // int64 | Category unique identifier
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.GetProductAnnotationByCategoryId(context.Background(), fsId).CatId(catId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.GetProductAnnotationByCategoryId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetProductAnnotationByCategoryId`: GetProductAnnotationByCategoryId200Response
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.GetProductAnnotationByCategoryId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetProductAnnotationByCategoryIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **catId** | **int64** | Category unique identifier | 
+
+### Return type
+
+[**GetProductAnnotationByCategoryId200Response**](GetProductAnnotationByCategoryId200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -43,6 +43,25 @@ type ProductAPI interface {
 	GetAllCategoriesExecuteWithRetry(r ProductAPIGetAllCategoriesRequest, maxRetry, maxDelayMs int) (*GetAllCategories200Response, *http.Response, error)
 
 	/*
+	GetProductAnnotationByCategoryId Method for GetProductAnnotationByCategoryId
+
+	This endpoint retrieve list of product annotation (product specification) based on category ID
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIGetProductAnnotationByCategoryIdRequest
+	*/
+	GetProductAnnotationByCategoryId(ctx context.Context, fsId int64) ProductAPIGetProductAnnotationByCategoryIdRequest
+
+	// GetProductAnnotationByCategoryIdExecute executes the request
+	//  @return GetProductAnnotationByCategoryId200Response
+	GetProductAnnotationByCategoryIdExecute(r ProductAPIGetProductAnnotationByCategoryIdRequest) (*GetProductAnnotationByCategoryId200Response, *http.Response, error)
+
+	// GetProductAnnotationByCategoryIdExecuteWithRetry executes the request with retry
+	//  @return GetProductAnnotationByCategoryId200Response
+	GetProductAnnotationByCategoryIdExecuteWithRetry(r ProductAPIGetProductAnnotationByCategoryIdRequest, maxRetry, maxDelayMs int) (*GetProductAnnotationByCategoryId200Response, *http.Response, error)
+
+	/*
 	GetProductInfo Method for GetProductInfo
 
 	This method will retrieve single product information either by product id as parameter (choose one of those two parameters to use) from related fs_id.
@@ -304,6 +323,220 @@ func (a *ProductAPIService) GetAllCategoriesExecuteWithRetry(r ProductAPIGetAllC
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ProductAPIGetProductAnnotationByCategoryIdRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	catId *int64
+}
+
+// Category unique identifier
+func (r ProductAPIGetProductAnnotationByCategoryIdRequest) CatId(catId int64) ProductAPIGetProductAnnotationByCategoryIdRequest {
+	r.catId = &catId
+	return r
+}
+
+func (r ProductAPIGetProductAnnotationByCategoryIdRequest) Execute() (*GetProductAnnotationByCategoryId200Response, *http.Response, error) {
+	return r.ApiService.GetProductAnnotationByCategoryIdExecute(r)
+}
+
+func (r ProductAPIGetProductAnnotationByCategoryIdRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetProductAnnotationByCategoryId200Response, *http.Response, error) {
+	return r.ApiService.GetProductAnnotationByCategoryIdExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetProductAnnotationByCategoryId Method for GetProductAnnotationByCategoryId
+
+This endpoint retrieve list of product annotation (product specification) based on category ID
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIGetProductAnnotationByCategoryIdRequest
+*/
+func (a *ProductAPIService) GetProductAnnotationByCategoryId(ctx context.Context, fsId int64) ProductAPIGetProductAnnotationByCategoryIdRequest {
+	return ProductAPIGetProductAnnotationByCategoryIdRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return GetProductAnnotationByCategoryId200Response
+func (a *ProductAPIService) GetProductAnnotationByCategoryIdExecute(r ProductAPIGetProductAnnotationByCategoryIdRequest) (*GetProductAnnotationByCategoryId200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetProductAnnotationByCategoryId200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.GetProductAnnotationByCategoryId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/fs/{fs_id}/product/annotation"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.catId == nil {
+		return localVarReturnValue, nil, reportError("catId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "cat_id", r.catId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetProductAnnotationByCategoryId200Response
+func (a *ProductAPIService) GetProductAnnotationByCategoryIdExecuteWithRetry(r ProductAPIGetProductAnnotationByCategoryIdRequest, maxRetry, maxDelayMs int) (*GetProductAnnotationByCategoryId200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetProductAnnotationByCategoryId200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.GetProductAnnotationByCategoryId")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/fs/{fs_id}/product/annotation"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.catId == nil {
+		return localVarReturnValue, nil, reportError("catId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "cat_id", r.catId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 

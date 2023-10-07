@@ -5011,6 +5011,109 @@ paths:
               style: simple
       tags:
       - Product
+  /v1/fs/{fs_id}/product/annotation:
+    get:
+      description: This endpoint retrieve list of product annotation (product specification)
+        based on category ID
+      operationId: getProductAnnotationByCategoryId
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Category unique identifier
+        explode: true
+        in: query
+        name: cat_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getProductAnnotationByCategoryId_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
 components:
   parameters:
     fs_id:
@@ -16568,6 +16671,80 @@ components:
           $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/getAllCategories_200_response_data'
+      type: object
+    getProductAnnotationByCategoryId_200_response_data_inner_values_inner:
+      example:
+        data: data
+        id: 6
+        Name: Name
+      properties:
+        id:
+          description: Variant Values Unique Identifier
+          format: int64
+          type: integer
+        Name:
+          description: Variant Values Name
+          type: string
+        data:
+          description: Variant Values Hexcode
+          type: string
+      type: object
+    getProductAnnotationByCategoryId_200_response_data_inner:
+      example:
+        values:
+        - data: data
+          id: 6
+          Name: Name
+        - data: data
+          id: 6
+          Name: Name
+        variant: variant
+        sort_order: 0
+      properties:
+        variant:
+          description: Variant Name
+          type: string
+        sort_order:
+          format: int64
+          type: integer
+        values:
+          items:
+            $ref: '#/components/schemas/getProductAnnotationByCategoryId_200_response_data_inner_values_inner'
+          type: array
+      type: object
+    getProductAnnotationByCategoryId_200_response:
+      example:
+        data:
+        - values:
+          - data: data
+            id: 6
+            Name: Name
+          - data: data
+            id: 6
+            Name: Name
+          variant: variant
+          sort_order: 0
+        - values:
+          - data: data
+            id: 6
+            Name: Name
+          - data: data
+            id: 6
+            Name: Name
+          variant: variant
+          sort_order: 0
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          items:
+            $ref: '#/components/schemas/getProductAnnotationByCategoryId_200_response_data_inner'
+          type: array
       type: object
     WebhookOrderNotification_products_inner:
       properties:

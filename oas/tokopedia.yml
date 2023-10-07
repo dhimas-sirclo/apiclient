@@ -9201,7 +9201,102 @@ paths:
                                           type: string
                                         id:
                                           type: string
-
+  /v1/fs/{fs_id}/product/annotation:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    get:
+      operationId: getProductAnnotationByCategoryId
+      tags:
+        - Product
+      description: This endpoint retrieve list of product annotation (product specification) based on category ID
+      parameters:
+        - name: cat_id
+          in: query
+          required: true
+          description: Category unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        variant:
+                          type: string
+                          description: Variant Name
+                        sort_order:
+                          type: integer
+                          format: int64
+                        values:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                format: int64
+                                description: Variant Values Unique Identifier
+                              Name:
+                                type: string
+                                description: Variant Values Name
+                              data:
+                                type: string
+                                description: Variant Values Hexcode
 security:
   - bearer: []
 

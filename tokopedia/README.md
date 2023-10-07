@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
+*ProductAPI* | [**GetProductAnnotationByCategoryId**](docs/ProductAPI.md#getproductannotationbycategoryid) | **Get** /v1/fs/{fs_id}/product/annotation | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
@@ -237,6 +238,9 @@ Class | Method | HTTP request | Description
  - [GetOrderWebhook200ResponseDataOneOf1RecipientAddress](docs/GetOrderWebhook200ResponseDataOneOf1RecipientAddress.md)
  - [GetOrderWebhook200ResponseDataOneOf1VoucherInfo](docs/GetOrderWebhook200ResponseDataOneOf1VoucherInfo.md)
  - [GetOrderWebhook200ResponseDataOneOfProductDetailsInner](docs/GetOrderWebhook200ResponseDataOneOfProductDetailsInner.md)
+ - [GetProductAnnotationByCategoryId200Response](docs/GetProductAnnotationByCategoryId200Response.md)
+ - [GetProductAnnotationByCategoryId200ResponseDataInner](docs/GetProductAnnotationByCategoryId200ResponseDataInner.md)
+ - [GetProductAnnotationByCategoryId200ResponseDataInnerValuesInner](docs/GetProductAnnotationByCategoryId200ResponseDataInnerValuesInner.md)
  - [GetProductInfoResponse](docs/GetProductInfoResponse.md)
  - [GetProductVariantResponse](docs/GetProductVariantResponse.md)
  - [GetRegisteredWebhooks200Response](docs/GetRegisteredWebhooks200Response.md)
