@@ -24,6 +24,26 @@ import (
 type ProductAPI interface {
 
 	/*
+	CheckUploadStatus Method for CheckUploadStatus
+
+	This endpoint is used for checking whether product creation/edit is successful, to use this endpoint would have to obtain upload_id from (create product endpoint)[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/create-product] or (edit product endpoint)[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product].
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@param uploadId Upload id of the product to check
+	@return ProductAPICheckUploadStatusRequest
+	*/
+	CheckUploadStatus(ctx context.Context, fsId int64, uploadId int64) ProductAPICheckUploadStatusRequest
+
+	// CheckUploadStatusExecute executes the request
+	//  @return CheckUploadStatus200Response
+	CheckUploadStatusExecute(r ProductAPICheckUploadStatusRequest) (*CheckUploadStatus200Response, *http.Response, error)
+
+	// CheckUploadStatusExecuteWithRetry executes the request with retry
+	//  @return CheckUploadStatus200Response
+	CheckUploadStatusExecuteWithRetry(r ProductAPICheckUploadStatusRequest, maxRetry, maxDelayMs int) (*CheckUploadStatus200Response, *http.Response, error)
+
+	/*
 	DeleteProduct Method for DeleteProduct
 
 	This endpoint use to delete product from a shop, this endpoint could do bulk delete product by product_id.
@@ -274,6 +294,225 @@ type ProductAPI interface {
 
 // ProductAPIService ProductAPI service
 type ProductAPIService service
+
+type ProductAPICheckUploadStatusRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	uploadId int64
+	shopId *int64
+}
+
+// Shop unique identifier
+func (r ProductAPICheckUploadStatusRequest) ShopId(shopId int64) ProductAPICheckUploadStatusRequest {
+	r.shopId = &shopId
+	return r
+}
+
+func (r ProductAPICheckUploadStatusRequest) Execute() (*CheckUploadStatus200Response, *http.Response, error) {
+	return r.ApiService.CheckUploadStatusExecute(r)
+}
+
+func (r ProductAPICheckUploadStatusRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*CheckUploadStatus200Response, *http.Response, error) {
+	return r.ApiService.CheckUploadStatusExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+CheckUploadStatus Method for CheckUploadStatus
+
+This endpoint is used for checking whether product creation/edit is successful, to use this endpoint would have to obtain upload_id from (create product endpoint)[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/create-product] or (edit product endpoint)[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product].
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @param uploadId Upload id of the product to check
+ @return ProductAPICheckUploadStatusRequest
+*/
+func (a *ProductAPIService) CheckUploadStatus(ctx context.Context, fsId int64, uploadId int64) ProductAPICheckUploadStatusRequest {
+	return ProductAPICheckUploadStatusRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+		uploadId: uploadId,
+	}
+}
+
+// Execute executes the request
+//  @return CheckUploadStatus200Response
+func (a *ProductAPIService) CheckUploadStatusExecute(r ProductAPICheckUploadStatusRequest) (*CheckUploadStatus200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CheckUploadStatus200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.CheckUploadStatus")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/products/fs/{fs_id}/status/{upload_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"upload_id"+"}", url.PathEscape(parameterValueToString(r.uploadId, "uploadId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return CheckUploadStatus200Response
+func (a *ProductAPIService) CheckUploadStatusExecuteWithRetry(r ProductAPICheckUploadStatusRequest, maxRetry, maxDelayMs int) (*CheckUploadStatus200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *CheckUploadStatus200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.CheckUploadStatus")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/products/fs/{fs_id}/status/{upload_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"upload_id"+"}", url.PathEscape(parameterValueToString(r.uploadId, "uploadId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.shopId == nil {
+		return localVarReturnValue, nil, reportError("shopId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ProductAPIDeleteProductRequest struct {
 	ctx context.Context

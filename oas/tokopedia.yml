@@ -2111,6 +2111,14 @@ components:
       schema:
         type: integer
         format: int64
+    upload_id:
+      name: upload_id
+      in: path
+      required: true
+      description: Upload id of the product to check
+      schema:
+        type: integer
+        format: int64
     shop_id:
       name: shop_id
       in: path
@@ -10341,6 +10349,105 @@ paths:
                         description: Total Failed Data Count
                         items:
                           type: string
+  /v2/products/fs/{fs_id}/status/{upload_id}:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+      - $ref: "#/components/parameters/upload_id"
+    get:
+      operationId: checkUploadStatus
+      tags:
+        - Product
+      description: This endpoint is used for checking whether product creation/edit is successful, to use this endpoint would have to obtain upload_id from (create product endpoint)[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/create-product] or (edit product endpoint)[https://developer.tokopedia.com/openapi/guide/api-reference/tokopedia/product-api/edit-product].
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Default error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      upload_data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            upload_id:
+                              type: integer
+                              format: int64
+                            status:
+                              type: string
+                            total_data:
+                              type: integer
+                              format: int64
+                            unprocessed_rows:
+                              type: integer
+                              format: int64
+                            success_rows:
+                              type: integer
+                              format: int64
+                            failed_rows:
+                              type: integer
+                              format: int64
+                            processed:
+                              type: integer
+                              format: int64
 security:
   - bearer: []
 

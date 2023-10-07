@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**RequestPartialOrderFulfillment**](docs/OrderAPI.md#requestpartialorderfulfillment) | **Post** /v1/order/{order_id}/fs/{fs_id}/pof/request | 
 *OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
+*ProductAPI* | [**CheckUploadStatus**](docs/ProductAPI.md#checkuploadstatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
 *ProductAPI* | [**DeleteProduct**](docs/ProductAPI.md#deleteproduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
 *ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 *ProductAPI* | [**GetProductAnnotationByCategoryId**](docs/ProductAPI.md#getproductannotationbycategoryid) | **Get** /v1/fs/{fs_id}/product/annotation | 
@@ -156,6 +157,9 @@ Class | Method | HTTP request | Description
  - [CategoryVariantUnit](docs/CategoryVariantUnit.md)
  - [CategoryVariantUnitValue](docs/CategoryVariantUnitValue.md)
  - [CategoryVariants](docs/CategoryVariants.md)
+ - [CheckUploadStatus200Response](docs/CheckUploadStatus200Response.md)
+ - [CheckUploadStatus200ResponseData](docs/CheckUploadStatus200ResponseData.md)
+ - [CheckUploadStatus200ResponseDataUploadDataInner](docs/CheckUploadStatus200ResponseDataUploadDataInner.md)
  - [ConfirmShippingRequest](docs/ConfirmShippingRequest.md)
  - [CreateBundle200Response](docs/CreateBundle200Response.md)
  - [CreateBundle200ResponseData](docs/CreateBundle200ResponseData.md)

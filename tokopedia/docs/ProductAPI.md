@@ -4,6 +4,7 @@ All URIs are relative to *https://fs.tokopedia.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CheckUploadStatus**](ProductAPI.md#CheckUploadStatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
 [**DeleteProduct**](ProductAPI.md#DeleteProduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
 [**GetAllCategories**](ProductAPI.md#GetAllCategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 [**GetProductAnnotationByCategoryId**](ProductAPI.md#GetProductAnnotationByCategoryId) | **Get** /v1/fs/{fs_id}/product/annotation | 
@@ -18,6 +19,81 @@ Method | HTTP request | Description
 [**UpdateStockIncrement**](ProductAPI.md#UpdateStockIncrement) | **Post** /inventory/v1/fs/{fs_id}/stock/increment | 
 [**UpdateStockOverwrite**](ProductAPI.md#UpdateStockOverwrite) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 
+
+
+## CheckUploadStatus
+
+> CheckUploadStatus200Response CheckUploadStatus(ctx, fsId, uploadId).ShopId(shopId).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    uploadId := int64(789) // int64 | Upload id of the product to check
+    shopId := int64(789) // int64 | Shop unique identifier
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.CheckUploadStatus(context.Background(), fsId, uploadId).ShopId(shopId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.CheckUploadStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CheckUploadStatus`: CheckUploadStatus200Response
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.CheckUploadStatus`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+**uploadId** | **int64** | Upload id of the product to check | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCheckUploadStatusRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **shopId** | **int64** | Shop unique identifier | 
+
+### Return type
+
+[**CheckUploadStatus200Response**](CheckUploadStatus200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## DeleteProduct

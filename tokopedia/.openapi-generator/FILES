@@ -32,6 +32,9 @@ docs/CategoryVariantDetail.md
 docs/CategoryVariantUnit.md
 docs/CategoryVariantUnitValue.md
 docs/CategoryVariants.md
+docs/CheckUploadStatus200Response.md
+docs/CheckUploadStatus200ResponseData.md
+docs/CheckUploadStatus200ResponseDataUploadDataInner.md
 docs/ConfirmShippingRequest.md
 docs/CreateBundle200Response.md
 docs/CreateBundle200ResponseData.md
@@ -342,6 +345,9 @@ model_category_variant_detail.go
 model_category_variant_unit.go
 model_category_variant_unit_value.go
 model_category_variants.go
+model_check_upload_status_200_response.go
+model_check_upload_status_200_response_data.go
+model_check_upload_status_200_response_data_upload_data_inner.go
 model_confirm_shipping_request.go
 model_create_bundle_200_response.go
 model_create_bundle_200_response_data.go
