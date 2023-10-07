@@ -120,6 +120,7 @@ Class | Method | HTTP request | Description
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
+*ProductAPI* | [**SetActiveProduct**](docs/ProductAPI.md#setactiveproduct) | **Post** /v1/products/fs/{fs_id}/active | 
 *ProductAPI* | [**SetInactiveProduct**](docs/ProductAPI.md#setinactiveproduct) | **Post** /v1/products/fs/{fs_id}/inactive | 
 *ProductAPI* | [**UpdatePrice**](docs/ProductAPI.md#updateprice) | **Post** /inventory/v1/fs/{fs_id}/price/update | 
 *ProductAPI* | [**UpdateStockDecrement**](docs/ProductAPI.md#updatestockdecrement) | **Post** /inventory/v1/fs/{fs_id}/stock/decrement | 

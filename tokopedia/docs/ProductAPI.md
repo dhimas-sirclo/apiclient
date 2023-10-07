@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
+[**SetActiveProduct**](ProductAPI.md#SetActiveProduct) | **Post** /v1/products/fs/{fs_id}/active | 
 [**SetInactiveProduct**](ProductAPI.md#SetInactiveProduct) | **Post** /v1/products/fs/{fs_id}/inactive | 
 [**UpdatePrice**](ProductAPI.md#UpdatePrice) | **Post** /inventory/v1/fs/{fs_id}/price/update | 
 [**UpdateStockDecrement**](ProductAPI.md#UpdateStockDecrement) | **Post** /inventory/v1/fs/{fs_id}/stock/decrement | 
@@ -537,6 +538,80 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetActiveProduct
+
+> CancelSlashPrice200Response SetActiveProduct(ctx, fsId).ShopId(shopId).SetInactiveProductRequest(setInactiveProductRequest).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    setInactiveProductRequest := *openapiclient.NewSetInactiveProductRequest() // SetInactiveProductRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.SetActiveProduct(context.Background(), fsId).ShopId(shopId).SetInactiveProductRequest(setInactiveProductRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.SetActiveProduct``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetActiveProduct`: CancelSlashPrice200Response
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.SetActiveProduct`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetActiveProductRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **setInactiveProductRequest** | [**SetInactiveProductRequest**](SetInactiveProductRequest.md) |  | 
+
+### Return type
+
+[**CancelSlashPrice200Response**](CancelSlashPrice200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

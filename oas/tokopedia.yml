@@ -10215,6 +10215,132 @@ paths:
                         description: Total Failed Data Count
                         items:
                           type: string
+  /v1/products/fs/{fs_id}/active:
+    parameters:
+      - $ref: "#/components/parameters/fs_id"
+    post:
+      operationId: setActiveProduct
+      tags:
+        - Product
+      description: This endpoint use to set the product into active product status without changing the product’s current stock. The product that can be updated is up to 25 products at one request.
+      parameters:
+        - name: shop_id
+          in: query
+          required: true
+          description: Shop unique identifier
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: array
+                  items:
+                    type: integer
+                    format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    nullable: true
+                    properties:
+                      total_data:
+                        type: integer
+                        format: int64
+                        description: Total Data Count
+                      succeed_rows:
+                        type: integer
+                        format: int64
+                        description: Success Data Count
+                      failed_rows:
+                        type: integer
+                        format: int64
+                        description: Failed Data Count
+                      failed_rows_data:
+                        type: array
+                        description: Total Failed Data Count
+                        items:
+                          type: string
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: object
+                    properties:
+                      total_data:
+                        type: integer
+                        format: int64
+                        description: Total Data Count
+                      succeed_rows:
+                        type: integer
+                        format: int64
+                        description: Success Data Count
+                      failed_rows:
+                        type: integer
+                        format: int64
+                        description: Failed Data Count
+                      failed_rows_data:
+                        type: array
+                        description: Total Failed Data Count
+                        items:
+                          type: string
 security:
   - bearer: []
 
