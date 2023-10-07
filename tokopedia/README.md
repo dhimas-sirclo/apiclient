@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**RequestPartialOrderFulfillment**](docs/OrderAPI.md#requestpartialorderfulfillment) | **Post** /v1/order/{order_id}/fs/{fs_id}/pof/request | 
 *OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
+*ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 *ProductAPI* | [**GetProductInfo**](docs/ProductAPI.md#getproductinfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 *ProductAPI* | [**GetVariantsByCategoryId**](docs/ProductAPI.md#getvariantsbycategoryid) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 *ProductAPI* | [**GetVariantsByProductId**](docs/ProductAPI.md#getvariantsbyproductid) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
@@ -165,6 +166,11 @@ Class | Method | HTTP request | Description
  - [GetActiveCourier200ResponseDataShopsInner](docs/GetActiveCourier200ResponseDataShopsInner.md)
  - [GetActiveCourier200ResponseDataShopsInnerShipmentInfosInner](docs/GetActiveCourier200ResponseDataShopsInnerShipmentInfosInner.md)
  - [GetActiveCourier200ResponseDataShopsInnerShipmentInfosInnerShipmentPackagesInner](docs/GetActiveCourier200ResponseDataShopsInnerShipmentInfosInnerShipmentPackagesInner.md)
+ - [GetAllCategories200Response](docs/GetAllCategories200Response.md)
+ - [GetAllCategories200ResponseData](docs/GetAllCategories200ResponseData.md)
+ - [GetAllCategories200ResponseDataCategoriesInner](docs/GetAllCategories200ResponseDataCategoriesInner.md)
+ - [GetAllCategories200ResponseDataCategoriesInnerChildInner](docs/GetAllCategories200ResponseDataCategoriesInnerChildInner.md)
+ - [GetAllCategories200ResponseDataCategoriesInnerChildInnerChildInner](docs/GetAllCategories200ResponseDataCategoriesInnerChildInnerChildInner.md)
  - [GetAllOrders200Response](docs/GetAllOrders200Response.md)
  - [GetAllOrders200ResponseDataInner](docs/GetAllOrders200ResponseDataInner.md)
  - [GetAllOrders200ResponseDataInnerAmt](docs/GetAllOrders200ResponseDataInnerAmt.md)

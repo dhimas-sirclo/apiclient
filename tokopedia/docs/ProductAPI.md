@@ -4,11 +4,84 @@ All URIs are relative to *https://fs.tokopedia.net*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**GetAllCategories**](ProductAPI.md#GetAllCategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 [**GetProductInfo**](ProductAPI.md#GetProductInfo) | **Get** /inventory/v1/fs/{fs_id}/product/info | 
 [**GetVariantsByCategoryId**](ProductAPI.md#GetVariantsByCategoryId) | **Get** /inventory/v2/fs/{fs_id}/category/get_variant | 
 [**GetVariantsByProductId**](ProductAPI.md#GetVariantsByProductId) | **Get** /inventory/v1/fs/{fs_id}/product/variant/{product_id} | 
 [**UpdateStock**](ProductAPI.md#UpdateStock) | **Post** /inventory/v1/fs/{fs_id}/stock/update | 
 
+
+
+## GetAllCategories
+
+> GetAllCategories200Response GetAllCategories(ctx, fsId).Keyword(keyword).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    keyword := "keyword_example" // string | Keyword or Product Name to get recommended category. Leave it blank to get full categories (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.GetAllCategories(context.Background(), fsId).Keyword(keyword).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.GetAllCategories``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAllCategories`: GetAllCategories200Response
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.GetAllCategories`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllCategoriesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **keyword** | **string** | Keyword or Product Name to get recommended category. Leave it blank to get full categories | 
+
+### Return type
+
+[**GetAllCategories200Response**](GetAllCategories200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/html, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## GetProductInfo

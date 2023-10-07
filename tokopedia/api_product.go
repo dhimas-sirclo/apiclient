@@ -24,6 +24,25 @@ import (
 type ProductAPI interface {
 
 	/*
+	GetAllCategories Method for GetAllCategories
+
+	This endpoint retrieves a list of all categories and its children.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param fsId Fulfillment service unique identifier
+	@return ProductAPIGetAllCategoriesRequest
+	*/
+	GetAllCategories(ctx context.Context, fsId int64) ProductAPIGetAllCategoriesRequest
+
+	// GetAllCategoriesExecute executes the request
+	//  @return GetAllCategories200Response
+	GetAllCategoriesExecute(r ProductAPIGetAllCategoriesRequest) (*GetAllCategories200Response, *http.Response, error)
+
+	// GetAllCategoriesExecuteWithRetry executes the request with retry
+	//  @return GetAllCategories200Response
+	GetAllCategoriesExecuteWithRetry(r ProductAPIGetAllCategoriesRequest, maxRetry, maxDelayMs int) (*GetAllCategories200Response, *http.Response, error)
+
+	/*
 	GetProductInfo Method for GetProductInfo
 
 	This method will retrieve single product information either by product id as parameter (choose one of those two parameters to use) from related fs_id.
@@ -103,6 +122,202 @@ type ProductAPI interface {
 
 // ProductAPIService ProductAPI service
 type ProductAPIService service
+
+type ProductAPIGetAllCategoriesRequest struct {
+	ctx context.Context
+	ApiService ProductAPI
+	fsId int64
+	keyword *string
+}
+
+// Keyword or Product Name to get recommended category. Leave it blank to get full categories
+func (r ProductAPIGetAllCategoriesRequest) Keyword(keyword string) ProductAPIGetAllCategoriesRequest {
+	r.keyword = &keyword
+	return r
+}
+
+func (r ProductAPIGetAllCategoriesRequest) Execute() (*GetAllCategories200Response, *http.Response, error) {
+	return r.ApiService.GetAllCategoriesExecute(r)
+}
+
+func (r ProductAPIGetAllCategoriesRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetAllCategories200Response, *http.Response, error) {
+	return r.ApiService.GetAllCategoriesExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetAllCategories Method for GetAllCategories
+
+This endpoint retrieves a list of all categories and its children.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param fsId Fulfillment service unique identifier
+ @return ProductAPIGetAllCategoriesRequest
+*/
+func (a *ProductAPIService) GetAllCategories(ctx context.Context, fsId int64) ProductAPIGetAllCategoriesRequest {
+	return ProductAPIGetAllCategoriesRequest{
+		ApiService: a,
+		ctx: ctx,
+		fsId: fsId,
+	}
+}
+
+// Execute executes the request
+//  @return GetAllCategories200Response
+func (a *ProductAPIService) GetAllCategoriesExecute(r ProductAPIGetAllCategoriesRequest) (*GetAllCategories200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAllCategories200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.GetAllCategories")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/product/category"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.keyword != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "keyword", r.keyword, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/html", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetAllCategories200Response
+func (a *ProductAPIService) GetAllCategoriesExecuteWithRetry(r ProductAPIGetAllCategoriesRequest, maxRetry, maxDelayMs int) (*GetAllCategories200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAllCategories200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProductAPIService.GetAllCategories")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/inventory/v1/fs/{fs_id}/product/category"
+	localVarPath = strings.Replace(localVarPath, "{"+"fs_id"+"}", url.PathEscape(parameterValueToString(r.fsId, "fsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.keyword != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "keyword", r.keyword, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"text/html", "application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ProductAPIGetProductInfoRequest struct {
 	ctx context.Context

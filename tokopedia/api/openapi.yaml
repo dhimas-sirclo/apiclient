@@ -4911,6 +4911,106 @@ paths:
               style: simple
       tags:
       - Order
+  /inventory/v1/fs/{fs_id}/product/category:
+    get:
+      description: This endpoint retrieves a list of all categories and its children.
+      operationId: getAllCategories
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Keyword or Product Name to get recommended category. Leave it
+          blank to get full categories
+        explode: true
+        in: query
+        name: keyword
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            text/html: {}
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllCategories_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
 components:
   parameters:
     fs_id:
@@ -16318,6 +16418,156 @@ components:
           items:
             $ref: '#/components/schemas/getAllOrders_200_response_data_inner'
           type: array
+      type: object
+    getAllCategories_200_response_data_categories_inner_child_inner_child_inner:
+      example:
+        id: id
+        Name: Name
+      properties:
+        Name:
+          type: string
+        id:
+          type: string
+      type: object
+    getAllCategories_200_response_data_categories_inner_child_inner:
+      example:
+        id: id
+        Name: Name
+        child:
+        - id: id
+          Name: Name
+        - id: id
+          Name: Name
+      properties:
+        Name:
+          type: string
+        id:
+          type: string
+        child:
+          items:
+            $ref: '#/components/schemas/getAllCategories_200_response_data_categories_inner_child_inner_child_inner'
+          type: array
+      type: object
+    getAllCategories_200_response_data_categories_inner:
+      example:
+        id: id
+        Name: Name
+        child:
+        - id: id
+          Name: Name
+          child:
+          - id: id
+            Name: Name
+          - id: id
+            Name: Name
+        - id: id
+          Name: Name
+          child:
+          - id: id
+            Name: Name
+          - id: id
+            Name: Name
+      properties:
+        Name:
+          type: string
+        id:
+          type: string
+        child:
+          items:
+            $ref: '#/components/schemas/getAllCategories_200_response_data_categories_inner_child_inner'
+          type: array
+      type: object
+    getAllCategories_200_response_data:
+      example:
+        categories:
+        - id: id
+          Name: Name
+          child:
+          - id: id
+            Name: Name
+            child:
+            - id: id
+              Name: Name
+            - id: id
+              Name: Name
+          - id: id
+            Name: Name
+            child:
+            - id: id
+              Name: Name
+            - id: id
+              Name: Name
+        - id: id
+          Name: Name
+          child:
+          - id: id
+            Name: Name
+            child:
+            - id: id
+              Name: Name
+            - id: id
+              Name: Name
+          - id: id
+            Name: Name
+            child:
+            - id: id
+              Name: Name
+            - id: id
+              Name: Name
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/getAllCategories_200_response_data_categories_inner'
+          type: array
+      type: object
+    getAllCategories_200_response:
+      example:
+        data:
+          categories:
+          - id: id
+            Name: Name
+            child:
+            - id: id
+              Name: Name
+              child:
+              - id: id
+                Name: Name
+              - id: id
+                Name: Name
+            - id: id
+              Name: Name
+              child:
+              - id: id
+                Name: Name
+              - id: id
+                Name: Name
+          - id: id
+            Name: Name
+            child:
+            - id: id
+              Name: Name
+              child:
+              - id: id
+                Name: Name
+              - id: id
+                Name: Name
+            - id: id
+              Name: Name
+              child:
+              - id: id
+                Name: Name
+              - id: id
+                Name: Name
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          $ref: '#/components/schemas/getAllCategories_200_response_data'
       type: object
     WebhookOrderNotification_products_inner:
       properties:
