@@ -8307,6 +8307,803 @@ paths:
                                   type: integer
                                   format: int64
                                   description: Requested Total Price
+  /v2/order/list:
+    get:
+      operationId: getAllOrders
+      tags:
+        - Order
+      description: "This endpoint retrieves all orders for your shop between given timestamps. This endpoint retrieves all orders for your shop between given timestamps and the orders that already hit Payment Verified (220) Status"
+      parameters:
+        - name: fs_id
+          in: query
+          required: true
+          description: Fulfillment service unique identifier
+          schema:
+            type: integer
+            format: int64
+        - name: from_date
+          in: query
+          required: true
+          description: UNIX timestamp of date (hour, min, sec) from which the order details are requested
+          schema:
+            type: integer
+            format: int64
+        - name: to_date
+          in: query
+          required: true
+          description: UNIX timestamp of date (hour, min, sec) to which the order details are requested
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          required: true
+          description: Determine which page the order list should start. The minimal value is 1
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            default: 1
+        - name: per_page
+          in: query
+          required: true
+          description: Determine how many orders will be shown per page
+          schema:
+            type: integer
+            format: int64
+        - name: shop_id
+          in: query
+          required: false
+          description: Limit the order shown to the given shop_id. Please use either shop_id or warehouse_id
+          schema:
+            type: integer
+            format: int64
+        - name: warehouse_id
+          in: query
+          required: false
+          description: Limit the order shown to the given warehouse_id. Please use either shop_id or warehouse_id
+          schema:
+            type: integer
+            format: int64
+        - name: status
+          in: query
+          required: false
+          description: Limit the order shown to the given status. Check Order Status Code on Notes for more details.
+          schema:
+            type: integer
+            format: int64
+      responses:
+        default:
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BaseErrorResponse"
+        "200":
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  header:
+                    $ref: "#/components/schemas/ResponseHeader"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        fs_id:
+                          type: string
+                          description: Fullfilment Service Unique Identifier
+                        order_id:
+                          type: integer
+                          format: int64
+                          description: Order Unique Identifier
+                        is_cod_mitra:
+                          type: boolean
+                          description: Is COD mitra?
+                        accept_partial:
+                          type: boolean
+                          description: Is accept partial?
+                        invoice_ref_num:
+                          type: string
+                          description: Invoice Number
+                        have_product_bundle:
+                          type: boolean
+                          description: Have product bundle?
+                        products:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                format: int64
+                                description: Product Unique Identifier
+                              Name:
+                                type: string
+                                description: Product Name
+                              quantity:
+                                type: integer
+                                format: int64
+                                description: Product Order Quantity
+                              notes:
+                                type: string
+                                description: Product Order Notes
+                              weight:
+                                type: number
+                                format: double
+                                description: Product Weight
+                              total_weight:
+                                type: number
+                                format: double
+                                description: Product Order Total Weight
+                              price:
+                                type: integer
+                                format: int64
+                                description: Product Price
+                              total_price:
+                                type: integer
+                                format: int64
+                                description: Product Order Total Price
+                              currency:
+                                type: string
+                                description: Product Price Currency
+                              sku:
+                                type: string
+                                description: Product SKU
+                              is_wholesale:
+                                type: boolean
+                                description: Is product wholesale?
+                        products_fulfilled:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              product_id:
+                                type: integer
+                                format: int64
+                                description: Fulfilled Product Unique Identifier
+                              quantity_deliver:
+                                type: integer
+                                format: int64
+                                description: Fulfilled Product Delivered Quantity
+                              quantity_reject:
+                                type: integer
+                                format: int64
+                                description: Fulfilled Product Reject Quantiy
+                        bundle_detail:
+                          type: object
+                          properties:
+                            bundle:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  bundle_id:
+                                    type: integer
+                                    format: int64
+                                    description: Bundle Unique Identifier
+                                  bundle_variant_id:
+                                    type: string
+                                    description: Bundle Variant Unique Identifier
+                                  bundle_name:
+                                    type: string
+                                    description: Bundle Name
+                                  # WARN: wrong description
+                                  bundle_price:
+                                    type: integer
+                                    format: int64
+                                    description: Bundle Variant Unique Identifier
+                                  bundle_quantity:
+                                    type: integer
+                                    format: int64
+                                    description: Bundle Order Quantity
+                                  bundle_subtotal_price:
+                                    type: integer
+                                    format: int64
+                                    description: Bundle Order Total Price
+                                  order_detail:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        order_dtl_id:
+                                          type: integer
+                                          format: int64
+                                          description: Bundle Order Detail Unique Identifier
+                                        order_id:
+                                          type: integer
+                                          format: int64
+                                          description: Bundle Order Unique Identifier
+                                        product_id:
+                                          type: integer
+                                          format: int64
+                                          description: Product Unique Identifier
+                                        product_name:
+                                          type: string
+                                          description: Product Name
+                                        product_desc:
+                                          type: string
+                                          description: Product Descirption
+                                        quantity:
+                                          type: integer
+                                          format: int64
+                                          description: Product Order Quantity
+                                        product_price:
+                                          type: integer
+                                          format: int64
+                                          description: Product Price
+                                        product_weight:
+                                          type: number
+                                          format: double
+                                          description: Product Weight
+                                        total_weight:
+                                          type: number
+                                          format: double
+                                          description: Product Order Total Weight
+                                        subtotal_price:
+                                          type: integer
+                                          format: int64
+                                          description: Product Order Total Price
+                                        notes:
+                                          type: string
+                                          description: Product Order Notes
+                                        finsurance:
+                                          type: integer
+                                          format: int64
+                                          description: ""
+                                        returnable:
+                                          type: integer
+                                          format: int64
+                                          description: Is returnable?
+                                        child_cat_id:
+                                          type: integer
+                                          format: int64
+                                          description: Category Unique Identifier
+                                        currency_id:
+                                          type: integer
+                                          format: int64
+                                          description: Currency Unique Identifier
+                                        insurance_price:
+                                          type: integer
+                                          format: int64
+                                          description: Product Insurance Price
+                                        normal_price:
+                                          type: integer
+                                          format: int64
+                                          description: Product Normal Price
+                                        currency_rate:
+                                          type: integer
+                                          format: int64
+                                          description: ""
+                                        prod_pic:
+                                          type: string
+                                          description: ""
+                                        min_order:
+                                          type: integer
+                                          format: int64
+                                          description: Minimum Product Order
+                                        must_insurance:
+                                          type: integer
+                                          format: int64
+                                          description: Is product must include insurance?
+                                        condition:
+                                          type: integer
+                                          format: int64
+                                          description: Product Condition, 1 = New, 2 = Used
+                                        campaign_id:
+                                          type: integer
+                                          format: int64
+                                          description: Product Campaign Unique Identifier
+                                        sku:
+                                          type: string
+                                          description: Product SKU
+                                        is_slash_price:
+                                          type: boolean
+                                          description: Is product has slash price?
+                                        oms_detail_data:
+                                          type: string
+                                          description: ""
+                                        thumbnail:
+                                          type: string
+                                          description: Product Thumbnail URL
+                                        bundle_id:
+                                          type: integer
+                                          format: int64
+                                          description: Bundle Unique Identifier
+                                        bundle_variant_id:
+                                          type: string
+                                          description: Bundle Variant Unique Identifier
+                            non_bundle:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  order_dtl_id:
+                                    type: integer
+                                    format: int64
+                                    description: Bundle Order Detail Unique Identifier
+                                  order_id:
+                                    type: integer
+                                    format: int64
+                                    description: Bundle Order Unique Identifier
+                                  product_id:
+                                    type: integer
+                                    format: int64
+                                    description: Product Unique Identifier
+                                  product_name:
+                                    type: string
+                                    description: Product Name
+                                  product_desc:
+                                    type: string
+                                    description: Product Descirption
+                                  quantity:
+                                    type: integer
+                                    format: int64
+                                    description: Product Order Quantity
+                                  product_price:
+                                    type: integer
+                                    format: int64
+                                    description: Product Price
+                                  product_weight:
+                                    type: number
+                                    format: double
+                                    description: Product Weight
+                                  total_weight:
+                                    type: number
+                                    format: double
+                                    description: Product Order Total Weight
+                                  subtotal_price:
+                                    type: integer
+                                    format: int64
+                                    description: Product Order Total Price
+                                  notes:
+                                    type: string
+                                    description: Product Order Notes
+                                  finsurance:
+                                    type: integer
+                                    format: int64
+                                    description: ""
+                                  returnable:
+                                    type: integer
+                                    format: int64
+                                    description: Is returnable?
+                                  child_cat_id:
+                                    type: integer
+                                    format: int64
+                                    description: Category Unique Identifier
+                                  currency_id:
+                                    type: integer
+                                    format: int64
+                                    description: Currency Unique Identifier
+                                  insurance_price:
+                                    type: integer
+                                    format: int64
+                                    description: Product Insurance Price
+                                  normal_price:
+                                    type: integer
+                                    format: int64
+                                    description: Product Normal Price
+                                  currency_rate:
+                                    type: integer
+                                    format: int64
+                                    description: ""
+                                  prod_pic:
+                                    type: string
+                                    description: ""
+                                  min_order:
+                                    type: integer
+                                    format: int64
+                                    description: Minimum Product Order
+                                  must_insurance:
+                                    type: integer
+                                    format: int64
+                                    description: Is product must include insurance?
+                                  condition:
+                                    type: integer
+                                    format: int64
+                                    description: Product Condition, 1 = New, 2 = Used
+                                  campaign_id:
+                                    type: integer
+                                    format: int64
+                                    description: Product Campaign Unique Identifier
+                                  sku:
+                                    type: string
+                                    description: Product SKU
+                                  is_slash_price:
+                                    type: boolean
+                                    description: Is product has slash price?
+                                  oms_detail_data:
+                                    type: string
+                                    description: ""
+                                  thumbnail:
+                                    type: string
+                                    description: Product Thumbnail URL
+                            total_product:
+                              type: integer
+                              format: int64
+                              description: Total Bundle Product
+                        device_type:
+                          type: string
+                          description: Device Type
+                        buyer:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              format: int64
+                              description: Buyer User Unique Identifier
+                            Name:
+                              type: string
+                              description: Buyer Name
+                            phone:
+                              type: string
+                              description: Buyer Phone Number (Masked)
+                            email:
+                              type: string
+                              description: Buyer Email
+                        shop_id:
+                          type: integer
+                          format: int64
+                          description: Shop Unique Identifier
+                        payment_id:
+                          type: integer
+                          format: int64
+                          description: Payment Unique Identifier
+                        recipient:
+                          type: object
+                          properties:
+                            Name:
+                              type: string
+                              description: Recipient Name
+                            phone:
+                              type: string
+                              description: Recipient Phone Number
+                            address:
+                              type: object
+                              properties:
+                                address_full:
+                                  type: string
+                                  description: Full Address
+                                district:
+                                  type: string
+                                  description: Disctric Name
+                                city:
+                                  type: string
+                                  description: City Name
+                                province:
+                                  type: string
+                                  description: Province Name
+                                country:
+                                  type: string
+                                  description: Country Name
+                                postal_code:
+                                  type: string
+                                  description: Postal Code
+                                district_id:
+                                  type: integer
+                                  format: int64
+                                  description: Distric Unique Identifier
+                                city_id:
+                                  type: integer
+                                  format: int64
+                                  description: City Unique Identifier
+                                province_id:
+                                  type: integer
+                                  format: int64
+                                  description: Province Unique Identifier
+                                geo:
+                                  type: string
+                                  description: Geolocation Coordinate
+                        logistics:
+                          type: object
+                          properties:
+                            shipping_id:
+                              type: integer
+                              format: int64
+                              description: Shipping Unique Identifier
+                            district_id:
+                              type: integer
+                              format: int64
+                              description: Distric Unique Identifier
+                            city_id:
+                              type: integer
+                              format: int64
+                              description: City Unique Identifier
+                            province_id:
+                              type: integer
+                              format: int64
+                              description: Province Unique Identifier
+                            # WARN: di documentation integer, di contoh string
+                            geo:
+                              type: string
+                              description: Geolocation
+                            shipping_agency:
+                              type: string
+                              description: Shipping Agency Name
+                            service_type:
+                              type: string
+                              description: Shipping Service Type
+                        amt:
+                          type: object
+                          properties:
+                            ttl_product_price:
+                              type: integer
+                              format: int64
+                              description: Total Product Price
+                            shipping_cost:
+                              type: integer
+                              format: int64
+                              description: Shipping Cost
+                            insurance_cost:
+                              type: integer
+                              format: int64
+                              description: Insurance Cost
+                            ttl_amount:
+                              type: integer
+                              format: int64
+                              description: Total Amount
+                            voucher_amount:
+                              type: integer
+                              format: int64
+                              description: Voucher Amount
+                            toppoints_amount:
+                              type: integer
+                              format: int64
+                              description: Toppoints Amount
+                        dropshipper_info:
+                          type: object
+                          description: ""
+                          additionalProperties: true
+                        voucher_info:
+                          type: object
+                          properties:
+                            voucher_code:
+                              type: string
+                              description: Voucher Code
+                            voucher_type:
+                              type: integer
+                              format: int64
+                              description: Voucher Type
+                        order_status:
+                          type: integer
+                          format: int64
+                          description: Order Status Code
+                        warehouse_id:
+                          type: integer
+                          format: int64
+                          description: Warehouse Unique Identifier
+                        fulfill_by:
+                          type: integer
+                          format: int64
+                          description: Order Fulfilled by Tokocabang (1), Order Fulfilled by Shop (0)
+                        create_time:
+                          type: integer
+                          format: int64
+                          description: Order Created Time
+                        custom_fields:
+                          type: object
+                          properties:
+                            awb:
+                              type: string
+                              description: AWB Number
+                        promo_order_detail:
+                          type: object
+                          properties:
+                            order_id:
+                              type: integer
+                              format: int64
+                              description: Order Unique Identifier
+                            total_cashback:
+                              type: integer
+                              format: int64
+                              description: Total Cashback Amount
+                            total_discount:
+                              type: integer
+                              format: int64
+                              description: Total Discount Amount
+                            total_discount_product:
+                              type: integer
+                              format: int64
+                              description: Total Product Discount Amount
+                            total_discount_shipping:
+                              type: integer
+                              format: int64
+                              description: Total Shipping Discount Amount
+                            total_discount_details:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  amount:
+                                    type: integer
+                                    format: int64
+                                    description: Discount Amount
+                                  Type:
+                                    type: string
+                                    description: Discount Type
+                            summary_promo:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  Name:
+                                    type: string
+                                    description: Promo Name
+                                  is_coupon:
+                                    type: boolean
+                                    description: Promo Name
+                                  show_cashback_amount:
+                                    type: boolean
+                                    description: Show cashback amount?
+                                  show_discount_amount:
+                                    type: boolean
+                                    description: Show discount amount?
+                                  cashback_amount:
+                                    type: integer
+                                    format: int64
+                                    description: Cashback Amount
+                                  cashback_points:
+                                    type: integer
+                                    format: int64
+                                    description: Cashback Point
+                                  Type:
+                                    type: string
+                                    description: Promo Type
+                                  discount_amount:
+                                    type: integer
+                                    format: int64
+                                    description: Discount Amount
+                                  discount_details:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        amount:
+                                          type: integer
+                                          format: int64
+                                          description: Discount Amount
+                                        Type:
+                                          type: string
+                                          description: Discount Type
+                                        # WARN: tidak ada di dokumentasi
+                                        budget_details:
+                                          type: array
+                                          items:
+                                            type: object
+                                            properties:
+                                              budget_type:
+                                                type: integer
+                                                format: int64
+                                                description: ""
+                                              benefit_amount:
+                                                type: integer
+                                                format: int64
+                                                description: ""
+                                              actual_benefit_amount:
+                                                type: integer
+                                                format: int64
+                                                description: ""
+                                  invoice_desc:
+                                    type: string
+                                    description: Discount Invoice Description
+                        # WARN: tidak ada di dokumentasi
+                        encryption:
+                          type: object
+                          properties:
+                            secret:
+                              type: string
+                              description: ""
+                            content:
+                              type: string
+                              description: ""
+                        # WARN: tidak ada di dokumentasi
+                        addon_info:
+                          type: object
+                          additionalProperties: true
+                        # WARN: tidak ada di dokumentasi
+                        shipment_fulfillment:
+                          type: object
+                          properties:
+                            accept_deadline:
+                              type: string
+                              description: >-
+                                format: 2022-08-12T22:43:39Z
+                            confirm_shipping_deadline:
+                              type: string
+                              description: >-
+                                format: 2022-08-15T22:43:39Z
+                        is_plus:
+                          type: boolean
+                          description: Plus Order Flag
+                        # WARN: tidak ada di contoh
+                        pof_info:
+                          type: object
+                          properties:
+                            order_id:
+                              type: integer
+                              format: int64
+                              description: Order Unique Identifier
+                            pof_status:
+                              type: integer
+                              format: int64
+                              description: Partial Order Fulfillment Status Code
+                            # WARN: di dokumentasi ditulis float
+                            shipping_price:
+                              type: integer
+                              format: int64
+                              description: Shipping Price
+                            # WARN: di dokumentasi ditulis float
+                            insurance_price:
+                              type: integer
+                              format: int64
+                              description: Insurance Price
+                            create_time:
+                              type: string
+                              description: >-
+                                POF Request Create Timestamp (format: 2017-07-20T17:50:58.061156Z)
+                            create_by:
+                              type: integer
+                              format: int64
+                              description: POF Request Create By
+                            create_by_type:
+                              type: integer
+                              format: int64
+                              description: POF Request Create By Type
+                            update_time:
+                              type: string
+                              description: >-
+                                POF Request Update Timestamp (format: 2017-07-20T17:50:58.061156Z)
+                            # WARN: di dokumentasi ditulis create
+                            update_by:
+                              type: integer
+                              format: int64
+                              description: POF Request Update By
+                            # WARN: di dokumentasi ditulis create
+                            update_by_type:
+                              type: integer
+                              format: int64
+                              description: POF Request Update By Type
 
 security:
   - bearer: []

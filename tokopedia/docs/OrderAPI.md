@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AcceptOrder**](OrderAPI.md#AcceptOrder) | **Post** /v1/order/{order_id}/fs/{fs_id}/ack | 
 [**ConfirmShipping**](OrderAPI.md#ConfirmShipping) | **Post** /v1/order/{order_id}/fs/{fs_id}/status | 
+[**GetAllOrders**](OrderAPI.md#GetAllOrders) | **Get** /v2/order/list | 
 [**GetOrderCobCod**](OrderAPI.md#GetOrderCobCod) | **Get** /v1/fs/{fs_id}/fulfillment_order | 
 [**GetOrderWebhook**](OrderAPI.md#GetOrderWebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
 [**GetResolutionTicket**](OrderAPI.md#GetResolutionTicket) | **Get** /resolution/v1/fs/{fs_id}/ticket | 
@@ -162,6 +163,86 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAllOrders
+
+> GetAllOrders200Response GetAllOrders(ctx).FsId(fsId).FromDate(fromDate).ToDate(toDate).Page(page).PerPage(perPage).ShopId(shopId).WarehouseId(warehouseId).Status(status).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    fromDate := int64(789) // int64 | UNIX timestamp of date (hour, min, sec) from which the order details are requested
+    toDate := int64(789) // int64 | UNIX timestamp of date (hour, min, sec) to which the order details are requested
+    page := int64(789) // int64 | Determine which page the order list should start. The minimal value is 1 (default to 1)
+    perPage := int64(789) // int64 | Determine how many orders will be shown per page
+    shopId := int64(789) // int64 | Limit the order shown to the given shop_id. Please use either shop_id or warehouse_id (optional)
+    warehouseId := int64(789) // int64 | Limit the order shown to the given warehouse_id. Please use either shop_id or warehouse_id (optional)
+    status := int64(789) // int64 | Limit the order shown to the given status. Check Order Status Code on Notes for more details. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.OrderAPI.GetAllOrders(context.Background()).FsId(fsId).FromDate(fromDate).ToDate(toDate).Page(page).PerPage(perPage).ShopId(shopId).WarehouseId(warehouseId).Status(status).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrderAPI.GetAllOrders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetAllOrders`: GetAllOrders200Response
+    fmt.Fprintf(os.Stdout, "Response from `OrderAPI.GetAllOrders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAllOrdersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fsId** | **int64** | Fulfillment service unique identifier | 
+ **fromDate** | **int64** | UNIX timestamp of date (hour, min, sec) from which the order details are requested | 
+ **toDate** | **int64** | UNIX timestamp of date (hour, min, sec) to which the order details are requested | 
+ **page** | **int64** | Determine which page the order list should start. The minimal value is 1 | [default to 1]
+ **perPage** | **int64** | Determine how many orders will be shown per page | 
+ **shopId** | **int64** | Limit the order shown to the given shop_id. Please use either shop_id or warehouse_id | 
+ **warehouseId** | **int64** | Limit the order shown to the given warehouse_id. Please use either shop_id or warehouse_id | 
+ **status** | **int64** | Limit the order shown to the given status. Check Order Status Code on Notes for more details. | 
+
+### Return type
+
+[**GetAllOrders200Response**](GetAllOrders200Response.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

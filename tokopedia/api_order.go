@@ -64,6 +64,24 @@ type OrderAPI interface {
 	ConfirmShippingExecuteWithRetry(r OrderAPIConfirmShippingRequest, maxRetry, maxDelayMs int) (*UpdateShopStatusDefaultResponseData, *http.Response, error)
 
 	/*
+	GetAllOrders Method for GetAllOrders
+
+	This endpoint retrieves all orders for your shop between given timestamps. This endpoint retrieves all orders for your shop between given timestamps and the orders that already hit Payment Verified (220) Status
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return OrderAPIGetAllOrdersRequest
+	*/
+	GetAllOrders(ctx context.Context) OrderAPIGetAllOrdersRequest
+
+	// GetAllOrdersExecute executes the request
+	//  @return GetAllOrders200Response
+	GetAllOrdersExecute(r OrderAPIGetAllOrdersRequest) (*GetAllOrders200Response, *http.Response, error)
+
+	// GetAllOrdersExecuteWithRetry executes the request with retry
+	//  @return GetAllOrders200Response
+	GetAllOrdersExecuteWithRetry(r OrderAPIGetAllOrdersRequest, maxRetry, maxDelayMs int) (*GetAllOrders200Response, *http.Response, error)
+
+	/*
 	GetOrderCobCod Method for GetOrderCobCod
 
 	Courier Online Booking (COB) and Call On Delivery (COD) endpoint is used to get order data related to shipping process, especially when using Booking Code and/or Payment Amount COD. The booking code will appear when the order status reached 400. This endpoint can use to get order by order ID, get orders by Shop ID, or get orders by warehouse ID.
@@ -656,6 +674,320 @@ func (a *OrderAPIService) ConfirmShippingExecuteWithRetry(r OrderAPIConfirmShipp
 	}
 	// body params
 	localVarPostBody = r.confirmShippingRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPIWithRetry(req, maxRetry, maxDelayMs)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type OrderAPIGetAllOrdersRequest struct {
+	ctx context.Context
+	ApiService OrderAPI
+	fsId *int64
+	fromDate *int64
+	toDate *int64
+	page *int64
+	perPage *int64
+	shopId *int64
+	warehouseId *int64
+	status *int64
+}
+
+// Fulfillment service unique identifier
+func (r OrderAPIGetAllOrdersRequest) FsId(fsId int64) OrderAPIGetAllOrdersRequest {
+	r.fsId = &fsId
+	return r
+}
+
+// UNIX timestamp of date (hour, min, sec) from which the order details are requested
+func (r OrderAPIGetAllOrdersRequest) FromDate(fromDate int64) OrderAPIGetAllOrdersRequest {
+	r.fromDate = &fromDate
+	return r
+}
+
+// UNIX timestamp of date (hour, min, sec) to which the order details are requested
+func (r OrderAPIGetAllOrdersRequest) ToDate(toDate int64) OrderAPIGetAllOrdersRequest {
+	r.toDate = &toDate
+	return r
+}
+
+// Determine which page the order list should start. The minimal value is 1
+func (r OrderAPIGetAllOrdersRequest) Page(page int64) OrderAPIGetAllOrdersRequest {
+	r.page = &page
+	return r
+}
+
+// Determine how many orders will be shown per page
+func (r OrderAPIGetAllOrdersRequest) PerPage(perPage int64) OrderAPIGetAllOrdersRequest {
+	r.perPage = &perPage
+	return r
+}
+
+// Limit the order shown to the given shop_id. Please use either shop_id or warehouse_id
+func (r OrderAPIGetAllOrdersRequest) ShopId(shopId int64) OrderAPIGetAllOrdersRequest {
+	r.shopId = &shopId
+	return r
+}
+
+// Limit the order shown to the given warehouse_id. Please use either shop_id or warehouse_id
+func (r OrderAPIGetAllOrdersRequest) WarehouseId(warehouseId int64) OrderAPIGetAllOrdersRequest {
+	r.warehouseId = &warehouseId
+	return r
+}
+
+// Limit the order shown to the given status. Check Order Status Code on Notes for more details.
+func (r OrderAPIGetAllOrdersRequest) Status(status int64) OrderAPIGetAllOrdersRequest {
+	r.status = &status
+	return r
+}
+
+func (r OrderAPIGetAllOrdersRequest) Execute() (*GetAllOrders200Response, *http.Response, error) {
+	return r.ApiService.GetAllOrdersExecute(r)
+}
+
+func (r OrderAPIGetAllOrdersRequest) ExecuteWithRetry(maxRetry, maxDelayMs int) (*GetAllOrders200Response, *http.Response, error) {
+	return r.ApiService.GetAllOrdersExecuteWithRetry(r, maxRetry, maxDelayMs)
+}
+
+/*
+GetAllOrders Method for GetAllOrders
+
+This endpoint retrieves all orders for your shop between given timestamps. This endpoint retrieves all orders for your shop between given timestamps and the orders that already hit Payment Verified (220) Status
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return OrderAPIGetAllOrdersRequest
+*/
+func (a *OrderAPIService) GetAllOrders(ctx context.Context) OrderAPIGetAllOrdersRequest {
+	return OrderAPIGetAllOrdersRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return GetAllOrders200Response
+func (a *OrderAPIService) GetAllOrdersExecute(r OrderAPIGetAllOrdersRequest) (*GetAllOrders200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAllOrders200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetAllOrders")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/order/list"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.fsId == nil {
+		return localVarReturnValue, nil, reportError("fsId is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
+	}
+	if r.page == nil {
+		return localVarReturnValue, nil, reportError("page is required and must be specified")
+	}
+	if *r.page < 1 {
+		return localVarReturnValue, nil, reportError("page must be greater than 1")
+	}
+	if r.perPage == nil {
+		return localVarReturnValue, nil, reportError("perPage is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "fs_id", r.fsId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from_date", r.fromDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to_date", r.toDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	if r.shopId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+			var v BaseErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ExecuteWithRetry executes the request with retry
+//  @return GetAllOrders200Response
+func (a *OrderAPIService) GetAllOrdersExecuteWithRetry(r OrderAPIGetAllOrdersRequest, maxRetry, maxDelayMs int) (*GetAllOrders200Response, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetAllOrders200Response
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderAPIService.GetAllOrders")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/order/list"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.fsId == nil {
+		return localVarReturnValue, nil, reportError("fsId is required and must be specified")
+	}
+	if r.fromDate == nil {
+		return localVarReturnValue, nil, reportError("fromDate is required and must be specified")
+	}
+	if r.toDate == nil {
+		return localVarReturnValue, nil, reportError("toDate is required and must be specified")
+	}
+	if r.page == nil {
+		return localVarReturnValue, nil, reportError("page is required and must be specified")
+	}
+	if *r.page < 1 {
+		return localVarReturnValue, nil, reportError("page must be greater than 1")
+	}
+	if r.perPage == nil {
+		return localVarReturnValue, nil, reportError("perPage is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "fs_id", r.fsId, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "from_date", r.fromDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "to_date", r.toDate, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "")
+	parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "")
+	if r.shopId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "shop_id", r.shopId, "")
+	}
+	if r.warehouseId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "")
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

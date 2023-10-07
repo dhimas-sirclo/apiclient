@@ -4745,6 +4745,172 @@ paths:
               style: simple
       tags:
       - Order
+  /v2/order/list:
+    get:
+      description: This endpoint retrieves all orders for your shop between given
+        timestamps. This endpoint retrieves all orders for your shop between given
+        timestamps and the orders that already hit Payment Verified (220) Status
+      operationId: getAllOrders
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: true
+        in: query
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: "UNIX timestamp of date (hour, min, sec) from which the order\
+          \ details are requested"
+        explode: true
+        in: query
+        name: from_date
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: "UNIX timestamp of date (hour, min, sec) to which the order details\
+          \ are requested"
+        explode: true
+        in: query
+        name: to_date
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Determine which page the order list should start. The minimal
+          value is 1
+        explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          default: 1
+          format: int64
+          minimum: 1
+          type: integer
+        style: form
+      - description: Determine how many orders will be shown per page
+        explode: true
+        in: query
+        name: per_page
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Limit the order shown to the given shop_id. Please use either
+          shop_id or warehouse_id
+        explode: true
+        in: query
+        name: shop_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Limit the order shown to the given warehouse_id. Please use either
+          shop_id or warehouse_id
+        explode: true
+        in: query
+        name: warehouse_id
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      - description: Limit the order shown to the given status. Check Order Status
+          Code on Notes for more details.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          format: int64
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAllOrders_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Order
 components:
   parameters:
     fs_id:
@@ -13842,6 +14008,2316 @@ components:
           $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/getSingleOrder_200_response_data'
+      type: object
+    getAllOrders_200_response_data_inner_products_inner:
+      example:
+        is_wholesale: true
+        quantity: 1
+        notes: notes
+        total_price: 7
+        price: 2
+        weight: 5.962133916683182
+        currency: currency
+        id: 6
+        sku: sku
+        total_weight: 5.637376656633329
+        Name: Name
+      properties:
+        id:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        Name:
+          description: Product Name
+          type: string
+        quantity:
+          description: Product Order Quantity
+          format: int64
+          type: integer
+        notes:
+          description: Product Order Notes
+          type: string
+        weight:
+          description: Product Weight
+          format: double
+          type: number
+        total_weight:
+          description: Product Order Total Weight
+          format: double
+          type: number
+        price:
+          description: Product Price
+          format: int64
+          type: integer
+        total_price:
+          description: Product Order Total Price
+          format: int64
+          type: integer
+        currency:
+          description: Product Price Currency
+          type: string
+        sku:
+          description: Product SKU
+          type: string
+        is_wholesale:
+          description: Is product wholesale?
+          type: boolean
+      type: object
+    getAllOrders_200_response_data_inner_products_fulfilled_inner:
+      example:
+        product_id: 9
+        quantity_reject: 2
+        quantity_deliver: 3
+      properties:
+        product_id:
+          description: Fulfilled Product Unique Identifier
+          format: int64
+          type: integer
+        quantity_deliver:
+          description: Fulfilled Product Delivered Quantity
+          format: int64
+          type: integer
+        quantity_reject:
+          description: Fulfilled Product Reject Quantiy
+          format: int64
+          type: integer
+      type: object
+    getAllOrders_200_response_data_inner_bundle_detail_bundle_inner_order_detail_inner:
+      example:
+        prod_pic: prod_pic
+        notes: notes
+        product_weight: 5.025004791520295
+        product_price: 4
+        total_weight: 9.965781217890562
+        oms_detail_data: oms_detail_data
+        product_desc: product_desc
+        order_dtl_id: 1
+        currency_rate: 1
+        product_id: 7
+        child_cat_id: 9
+        sku: sku
+        campaign_id: 5
+        subtotal_price: 9
+        thumbnail: thumbnail
+        quantity: 1
+        is_slash_price: true
+        finsurance: 6
+        product_name: product_name
+        bundle_variant_id: bundle_variant_id
+        condition: 6
+        returnable: 8
+        insurance_price: 3
+        normal_price: 6
+        bundle_id: 6
+        min_order: 2
+        order_id: 6
+        currency_id: 6
+        must_insurance: 6
+      properties:
+        order_dtl_id:
+          description: Bundle Order Detail Unique Identifier
+          format: int64
+          type: integer
+        order_id:
+          description: Bundle Order Unique Identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        product_name:
+          description: Product Name
+          type: string
+        product_desc:
+          description: Product Descirption
+          type: string
+        quantity:
+          description: Product Order Quantity
+          format: int64
+          type: integer
+        product_price:
+          description: Product Price
+          format: int64
+          type: integer
+        product_weight:
+          description: Product Weight
+          format: double
+          type: number
+        total_weight:
+          description: Product Order Total Weight
+          format: double
+          type: number
+        subtotal_price:
+          description: Product Order Total Price
+          format: int64
+          type: integer
+        notes:
+          description: Product Order Notes
+          type: string
+        finsurance:
+          description: ""
+          format: int64
+          type: integer
+        returnable:
+          description: Is returnable?
+          format: int64
+          type: integer
+        child_cat_id:
+          description: Category Unique Identifier
+          format: int64
+          type: integer
+        currency_id:
+          description: Currency Unique Identifier
+          format: int64
+          type: integer
+        insurance_price:
+          description: Product Insurance Price
+          format: int64
+          type: integer
+        normal_price:
+          description: Product Normal Price
+          format: int64
+          type: integer
+        currency_rate:
+          description: ""
+          format: int64
+          type: integer
+        prod_pic:
+          description: ""
+          type: string
+        min_order:
+          description: Minimum Product Order
+          format: int64
+          type: integer
+        must_insurance:
+          description: Is product must include insurance?
+          format: int64
+          type: integer
+        condition:
+          description: "Product Condition, 1 = New, 2 = Used"
+          format: int64
+          type: integer
+        campaign_id:
+          description: Product Campaign Unique Identifier
+          format: int64
+          type: integer
+        sku:
+          description: Product SKU
+          type: string
+        is_slash_price:
+          description: Is product has slash price?
+          type: boolean
+        oms_detail_data:
+          description: ""
+          type: string
+        thumbnail:
+          description: Product Thumbnail URL
+          type: string
+        bundle_id:
+          description: Bundle Unique Identifier
+          format: int64
+          type: integer
+        bundle_variant_id:
+          description: Bundle Variant Unique Identifier
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_bundle_detail_bundle_inner:
+      example:
+        bundle_subtotal_price: 1
+        bundle_id: 4
+        bundle_quantity: 1
+        bundle_name: bundle_name
+        order_detail:
+        - prod_pic: prod_pic
+          notes: notes
+          product_weight: 5.025004791520295
+          product_price: 4
+          total_weight: 9.965781217890562
+          oms_detail_data: oms_detail_data
+          product_desc: product_desc
+          order_dtl_id: 1
+          currency_rate: 1
+          product_id: 7
+          child_cat_id: 9
+          sku: sku
+          campaign_id: 5
+          subtotal_price: 9
+          thumbnail: thumbnail
+          quantity: 1
+          is_slash_price: true
+          finsurance: 6
+          product_name: product_name
+          bundle_variant_id: bundle_variant_id
+          condition: 6
+          returnable: 8
+          insurance_price: 3
+          normal_price: 6
+          bundle_id: 6
+          min_order: 2
+          order_id: 6
+          currency_id: 6
+          must_insurance: 6
+        - prod_pic: prod_pic
+          notes: notes
+          product_weight: 5.025004791520295
+          product_price: 4
+          total_weight: 9.965781217890562
+          oms_detail_data: oms_detail_data
+          product_desc: product_desc
+          order_dtl_id: 1
+          currency_rate: 1
+          product_id: 7
+          child_cat_id: 9
+          sku: sku
+          campaign_id: 5
+          subtotal_price: 9
+          thumbnail: thumbnail
+          quantity: 1
+          is_slash_price: true
+          finsurance: 6
+          product_name: product_name
+          bundle_variant_id: bundle_variant_id
+          condition: 6
+          returnable: 8
+          insurance_price: 3
+          normal_price: 6
+          bundle_id: 6
+          min_order: 2
+          order_id: 6
+          currency_id: 6
+          must_insurance: 6
+        bundle_price: 7
+        bundle_variant_id: bundle_variant_id
+      properties:
+        bundle_id:
+          description: Bundle Unique Identifier
+          format: int64
+          type: integer
+        bundle_variant_id:
+          description: Bundle Variant Unique Identifier
+          type: string
+        bundle_name:
+          description: Bundle Name
+          type: string
+        bundle_price:
+          description: Bundle Variant Unique Identifier
+          format: int64
+          type: integer
+        bundle_quantity:
+          description: Bundle Order Quantity
+          format: int64
+          type: integer
+        bundle_subtotal_price:
+          description: Bundle Order Total Price
+          format: int64
+          type: integer
+        order_detail:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_bundle_detail_bundle_inner_order_detail_inner'
+          type: array
+      type: object
+    getAllOrders_200_response_data_inner_bundle_detail_non_bundle_inner:
+      example:
+        prod_pic: prod_pic
+        notes: notes
+        product_weight: 6.519180951018382
+        product_price: 7
+        total_weight: 0.10263654006109402
+        oms_detail_data: oms_detail_data
+        product_desc: product_desc
+        order_dtl_id: 3
+        currency_rate: 3
+        product_id: 7
+        child_cat_id: 3
+        sku: sku
+        campaign_id: 4
+        subtotal_price: 4
+        thumbnail: thumbnail
+        quantity: 0
+        is_slash_price: true
+        finsurance: 8
+        product_name: product_name
+        condition: 6
+        returnable: 7
+        insurance_price: 7
+        normal_price: 5
+        min_order: 4
+        order_id: 3
+        currency_id: 3
+        must_insurance: 0
+      properties:
+        order_dtl_id:
+          description: Bundle Order Detail Unique Identifier
+          format: int64
+          type: integer
+        order_id:
+          description: Bundle Order Unique Identifier
+          format: int64
+          type: integer
+        product_id:
+          description: Product Unique Identifier
+          format: int64
+          type: integer
+        product_name:
+          description: Product Name
+          type: string
+        product_desc:
+          description: Product Descirption
+          type: string
+        quantity:
+          description: Product Order Quantity
+          format: int64
+          type: integer
+        product_price:
+          description: Product Price
+          format: int64
+          type: integer
+        product_weight:
+          description: Product Weight
+          format: double
+          type: number
+        total_weight:
+          description: Product Order Total Weight
+          format: double
+          type: number
+        subtotal_price:
+          description: Product Order Total Price
+          format: int64
+          type: integer
+        notes:
+          description: Product Order Notes
+          type: string
+        finsurance:
+          description: ""
+          format: int64
+          type: integer
+        returnable:
+          description: Is returnable?
+          format: int64
+          type: integer
+        child_cat_id:
+          description: Category Unique Identifier
+          format: int64
+          type: integer
+        currency_id:
+          description: Currency Unique Identifier
+          format: int64
+          type: integer
+        insurance_price:
+          description: Product Insurance Price
+          format: int64
+          type: integer
+        normal_price:
+          description: Product Normal Price
+          format: int64
+          type: integer
+        currency_rate:
+          description: ""
+          format: int64
+          type: integer
+        prod_pic:
+          description: ""
+          type: string
+        min_order:
+          description: Minimum Product Order
+          format: int64
+          type: integer
+        must_insurance:
+          description: Is product must include insurance?
+          format: int64
+          type: integer
+        condition:
+          description: "Product Condition, 1 = New, 2 = Used"
+          format: int64
+          type: integer
+        campaign_id:
+          description: Product Campaign Unique Identifier
+          format: int64
+          type: integer
+        sku:
+          description: Product SKU
+          type: string
+        is_slash_price:
+          description: Is product has slash price?
+          type: boolean
+        oms_detail_data:
+          description: ""
+          type: string
+        thumbnail:
+          description: Product Thumbnail URL
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_bundle_detail:
+      example:
+        total_product: 1
+        bundle:
+        - bundle_subtotal_price: 1
+          bundle_id: 4
+          bundle_quantity: 1
+          bundle_name: bundle_name
+          order_detail:
+          - prod_pic: prod_pic
+            notes: notes
+            product_weight: 5.025004791520295
+            product_price: 4
+            total_weight: 9.965781217890562
+            oms_detail_data: oms_detail_data
+            product_desc: product_desc
+            order_dtl_id: 1
+            currency_rate: 1
+            product_id: 7
+            child_cat_id: 9
+            sku: sku
+            campaign_id: 5
+            subtotal_price: 9
+            thumbnail: thumbnail
+            quantity: 1
+            is_slash_price: true
+            finsurance: 6
+            product_name: product_name
+            bundle_variant_id: bundle_variant_id
+            condition: 6
+            returnable: 8
+            insurance_price: 3
+            normal_price: 6
+            bundle_id: 6
+            min_order: 2
+            order_id: 6
+            currency_id: 6
+            must_insurance: 6
+          - prod_pic: prod_pic
+            notes: notes
+            product_weight: 5.025004791520295
+            product_price: 4
+            total_weight: 9.965781217890562
+            oms_detail_data: oms_detail_data
+            product_desc: product_desc
+            order_dtl_id: 1
+            currency_rate: 1
+            product_id: 7
+            child_cat_id: 9
+            sku: sku
+            campaign_id: 5
+            subtotal_price: 9
+            thumbnail: thumbnail
+            quantity: 1
+            is_slash_price: true
+            finsurance: 6
+            product_name: product_name
+            bundle_variant_id: bundle_variant_id
+            condition: 6
+            returnable: 8
+            insurance_price: 3
+            normal_price: 6
+            bundle_id: 6
+            min_order: 2
+            order_id: 6
+            currency_id: 6
+            must_insurance: 6
+          bundle_price: 7
+          bundle_variant_id: bundle_variant_id
+        - bundle_subtotal_price: 1
+          bundle_id: 4
+          bundle_quantity: 1
+          bundle_name: bundle_name
+          order_detail:
+          - prod_pic: prod_pic
+            notes: notes
+            product_weight: 5.025004791520295
+            product_price: 4
+            total_weight: 9.965781217890562
+            oms_detail_data: oms_detail_data
+            product_desc: product_desc
+            order_dtl_id: 1
+            currency_rate: 1
+            product_id: 7
+            child_cat_id: 9
+            sku: sku
+            campaign_id: 5
+            subtotal_price: 9
+            thumbnail: thumbnail
+            quantity: 1
+            is_slash_price: true
+            finsurance: 6
+            product_name: product_name
+            bundle_variant_id: bundle_variant_id
+            condition: 6
+            returnable: 8
+            insurance_price: 3
+            normal_price: 6
+            bundle_id: 6
+            min_order: 2
+            order_id: 6
+            currency_id: 6
+            must_insurance: 6
+          - prod_pic: prod_pic
+            notes: notes
+            product_weight: 5.025004791520295
+            product_price: 4
+            total_weight: 9.965781217890562
+            oms_detail_data: oms_detail_data
+            product_desc: product_desc
+            order_dtl_id: 1
+            currency_rate: 1
+            product_id: 7
+            child_cat_id: 9
+            sku: sku
+            campaign_id: 5
+            subtotal_price: 9
+            thumbnail: thumbnail
+            quantity: 1
+            is_slash_price: true
+            finsurance: 6
+            product_name: product_name
+            bundle_variant_id: bundle_variant_id
+            condition: 6
+            returnable: 8
+            insurance_price: 3
+            normal_price: 6
+            bundle_id: 6
+            min_order: 2
+            order_id: 6
+            currency_id: 6
+            must_insurance: 6
+          bundle_price: 7
+          bundle_variant_id: bundle_variant_id
+        non_bundle:
+        - prod_pic: prod_pic
+          notes: notes
+          product_weight: 6.519180951018382
+          product_price: 7
+          total_weight: 0.10263654006109402
+          oms_detail_data: oms_detail_data
+          product_desc: product_desc
+          order_dtl_id: 3
+          currency_rate: 3
+          product_id: 7
+          child_cat_id: 3
+          sku: sku
+          campaign_id: 4
+          subtotal_price: 4
+          thumbnail: thumbnail
+          quantity: 0
+          is_slash_price: true
+          finsurance: 8
+          product_name: product_name
+          condition: 6
+          returnable: 7
+          insurance_price: 7
+          normal_price: 5
+          min_order: 4
+          order_id: 3
+          currency_id: 3
+          must_insurance: 0
+        - prod_pic: prod_pic
+          notes: notes
+          product_weight: 6.519180951018382
+          product_price: 7
+          total_weight: 0.10263654006109402
+          oms_detail_data: oms_detail_data
+          product_desc: product_desc
+          order_dtl_id: 3
+          currency_rate: 3
+          product_id: 7
+          child_cat_id: 3
+          sku: sku
+          campaign_id: 4
+          subtotal_price: 4
+          thumbnail: thumbnail
+          quantity: 0
+          is_slash_price: true
+          finsurance: 8
+          product_name: product_name
+          condition: 6
+          returnable: 7
+          insurance_price: 7
+          normal_price: 5
+          min_order: 4
+          order_id: 3
+          currency_id: 3
+          must_insurance: 0
+      properties:
+        bundle:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_bundle_detail_bundle_inner'
+          type: array
+        non_bundle:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_bundle_detail_non_bundle_inner'
+          type: array
+        total_product:
+          description: Total Bundle Product
+          format: int64
+          type: integer
+      type: object
+    getAllOrders_200_response_data_inner_buyer:
+      example:
+        phone: phone
+        id: 4
+        email: email
+        Name: Name
+      properties:
+        id:
+          description: Buyer User Unique Identifier
+          format: int64
+          type: integer
+        Name:
+          description: Buyer Name
+          type: string
+        phone:
+          description: Buyer Phone Number (Masked)
+          type: string
+        email:
+          description: Buyer Email
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_recipient_address:
+      example:
+        address_full: address_full
+        geo: geo
+        country: country
+        province: province
+        city: city
+        province_id: 0
+        district: district
+        district_id: 0
+        postal_code: postal_code
+        city_id: 9
+      properties:
+        address_full:
+          description: Full Address
+          type: string
+        district:
+          description: Disctric Name
+          type: string
+        city:
+          description: City Name
+          type: string
+        province:
+          description: Province Name
+          type: string
+        country:
+          description: Country Name
+          type: string
+        postal_code:
+          description: Postal Code
+          type: string
+        district_id:
+          description: Distric Unique Identifier
+          format: int64
+          type: integer
+        city_id:
+          description: City Unique Identifier
+          format: int64
+          type: integer
+        province_id:
+          description: Province Unique Identifier
+          format: int64
+          type: integer
+        geo:
+          description: Geolocation Coordinate
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_recipient:
+      example:
+        address:
+          address_full: address_full
+          geo: geo
+          country: country
+          province: province
+          city: city
+          province_id: 0
+          district: district
+          district_id: 0
+          postal_code: postal_code
+          city_id: 9
+        phone: phone
+        Name: Name
+      properties:
+        Name:
+          description: Recipient Name
+          type: string
+        phone:
+          description: Recipient Phone Number
+          type: string
+        address:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_recipient_address'
+      type: object
+    getAllOrders_200_response_data_inner_logistics:
+      example:
+        shipping_id: 7
+        geo: geo
+        service_type: service_type
+        province_id: 6
+        shipping_agency: shipping_agency
+        district_id: 5
+        city_id: 4
+      properties:
+        shipping_id:
+          description: Shipping Unique Identifier
+          format: int64
+          type: integer
+        district_id:
+          description: Distric Unique Identifier
+          format: int64
+          type: integer
+        city_id:
+          description: City Unique Identifier
+          format: int64
+          type: integer
+        province_id:
+          description: Province Unique Identifier
+          format: int64
+          type: integer
+        geo:
+          description: Geolocation
+          type: string
+        shipping_agency:
+          description: Shipping Agency Name
+          type: string
+        service_type:
+          description: Shipping Service Type
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_amt:
+      example:
+        toppoints_amount: 1
+        insurance_cost: 3
+        shipping_cost: 4
+        ttl_product_price: 8
+        ttl_amount: 0
+        voucher_amount: 2
+      properties:
+        ttl_product_price:
+          description: Total Product Price
+          format: int64
+          type: integer
+        shipping_cost:
+          description: Shipping Cost
+          format: int64
+          type: integer
+        insurance_cost:
+          description: Insurance Cost
+          format: int64
+          type: integer
+        ttl_amount:
+          description: Total Amount
+          format: int64
+          type: integer
+        voucher_amount:
+          description: Voucher Amount
+          format: int64
+          type: integer
+        toppoints_amount:
+          description: Toppoints Amount
+          format: int64
+          type: integer
+      type: object
+    getAllOrders_200_response_data_inner_voucher_info:
+      example:
+        voucher_type: 8
+        voucher_code: voucher_code
+      properties:
+        voucher_code:
+          description: Voucher Code
+          type: string
+        voucher_type:
+          description: Voucher Type
+          format: int64
+          type: integer
+      type: object
+    getAllOrders_200_response_data_inner_custom_fields:
+      example:
+        awb: awb
+      properties:
+        awb:
+          description: AWB Number
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_promo_order_detail_total_discount_details_inner:
+      example:
+        amount: 5
+        Type: Type
+      properties:
+        amount:
+          description: Discount Amount
+          format: int64
+          type: integer
+        Type:
+          description: Discount Type
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_promo_order_detail_summary_promo_inner_discount_details_inner_budget_details_inner:
+      example:
+        budget_type: 3
+        benefit_amount: 9
+        actual_benefit_amount: 5
+      properties:
+        budget_type:
+          description: ""
+          format: int64
+          type: integer
+        benefit_amount:
+          description: ""
+          format: int64
+          type: integer
+        actual_benefit_amount:
+          description: ""
+          format: int64
+          type: integer
+      type: object
+    getAllOrders_200_response_data_inner_promo_order_detail_summary_promo_inner_discount_details_inner:
+      example:
+        amount: 3
+        Type: Type
+        budget_details:
+        - budget_type: 3
+          benefit_amount: 9
+          actual_benefit_amount: 5
+        - budget_type: 3
+          benefit_amount: 9
+          actual_benefit_amount: 5
+      properties:
+        amount:
+          description: Discount Amount
+          format: int64
+          type: integer
+        Type:
+          description: Discount Type
+          type: string
+        budget_details:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_promo_order_detail_summary_promo_inner_discount_details_inner_budget_details_inner'
+          type: array
+      type: object
+    getAllOrders_200_response_data_inner_promo_order_detail_summary_promo_inner:
+      example:
+        is_coupon: true
+        show_discount_amount: true
+        Type: Type
+        cashback_points: 8
+        cashback_amount: 5
+        show_cashback_amount: true
+        discount_amount: 7
+        discount_details:
+        - amount: 3
+          Type: Type
+          budget_details:
+          - budget_type: 3
+            benefit_amount: 9
+            actual_benefit_amount: 5
+          - budget_type: 3
+            benefit_amount: 9
+            actual_benefit_amount: 5
+        - amount: 3
+          Type: Type
+          budget_details:
+          - budget_type: 3
+            benefit_amount: 9
+            actual_benefit_amount: 5
+          - budget_type: 3
+            benefit_amount: 9
+            actual_benefit_amount: 5
+        invoice_desc: invoice_desc
+        Name: Name
+      properties:
+        Name:
+          description: Promo Name
+          type: string
+        is_coupon:
+          description: Promo Name
+          type: boolean
+        show_cashback_amount:
+          description: Show cashback amount?
+          type: boolean
+        show_discount_amount:
+          description: Show discount amount?
+          type: boolean
+        cashback_amount:
+          description: Cashback Amount
+          format: int64
+          type: integer
+        cashback_points:
+          description: Cashback Point
+          format: int64
+          type: integer
+        Type:
+          description: Promo Type
+          type: string
+        discount_amount:
+          description: Discount Amount
+          format: int64
+          type: integer
+        discount_details:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_promo_order_detail_summary_promo_inner_discount_details_inner'
+          type: array
+        invoice_desc:
+          description: Discount Invoice Description
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_promo_order_detail:
+      example:
+        total_discount: 9
+        summary_promo:
+        - is_coupon: true
+          show_discount_amount: true
+          Type: Type
+          cashback_points: 8
+          cashback_amount: 5
+          show_cashback_amount: true
+          discount_amount: 7
+          discount_details:
+          - amount: 3
+            Type: Type
+            budget_details:
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+          - amount: 3
+            Type: Type
+            budget_details:
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+          invoice_desc: invoice_desc
+          Name: Name
+        - is_coupon: true
+          show_discount_amount: true
+          Type: Type
+          cashback_points: 8
+          cashback_amount: 5
+          show_cashback_amount: true
+          discount_amount: 7
+          discount_details:
+          - amount: 3
+            Type: Type
+            budget_details:
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+          - amount: 3
+            Type: Type
+            budget_details:
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+            - budget_type: 3
+              benefit_amount: 9
+              actual_benefit_amount: 5
+          invoice_desc: invoice_desc
+          Name: Name
+        total_cashback: 3
+        total_discount_product: 8
+        total_discount_shipping: 0
+        order_id: 1
+        total_discount_details:
+        - amount: 5
+          Type: Type
+        - amount: 5
+          Type: Type
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        total_cashback:
+          description: Total Cashback Amount
+          format: int64
+          type: integer
+        total_discount:
+          description: Total Discount Amount
+          format: int64
+          type: integer
+        total_discount_product:
+          description: Total Product Discount Amount
+          format: int64
+          type: integer
+        total_discount_shipping:
+          description: Total Shipping Discount Amount
+          format: int64
+          type: integer
+        total_discount_details:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_promo_order_detail_total_discount_details_inner'
+          type: array
+        summary_promo:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_promo_order_detail_summary_promo_inner'
+          type: array
+      type: object
+    getAllOrders_200_response_data_inner_encryption:
+      example:
+        secret: secret
+        content: content
+      properties:
+        secret:
+          description: ""
+          type: string
+        content:
+          description: ""
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_shipment_fulfillment:
+      example:
+        accept_deadline: accept_deadline
+        confirm_shipping_deadline: confirm_shipping_deadline
+      properties:
+        accept_deadline:
+          description: "format: 2022-08-12T22:43:39Z"
+          type: string
+        confirm_shipping_deadline:
+          description: "format: 2022-08-15T22:43:39Z"
+          type: string
+      type: object
+    getAllOrders_200_response_data_inner_pof_info:
+      example:
+        create_by: 3
+        shipping_price: 3
+        update_time: update_time
+        insurance_price: 2
+        create_time: create_time
+        pof_status: 0
+        update_by: 4
+        order_id: 7
+        update_by_type: 0
+        create_by_type: 8
+      properties:
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        pof_status:
+          description: Partial Order Fulfillment Status Code
+          format: int64
+          type: integer
+        shipping_price:
+          description: Shipping Price
+          format: int64
+          type: integer
+        insurance_price:
+          description: Insurance Price
+          format: int64
+          type: integer
+        create_time:
+          description: "POF Request Create Timestamp (format: 2017-07-20T17:50:58.061156Z)"
+          type: string
+        create_by:
+          description: POF Request Create By
+          format: int64
+          type: integer
+        create_by_type:
+          description: POF Request Create By Type
+          format: int64
+          type: integer
+        update_time:
+          description: "POF Request Update Timestamp (format: 2017-07-20T17:50:58.061156Z)"
+          type: string
+        update_by:
+          description: POF Request Update By
+          format: int64
+          type: integer
+        update_by_type:
+          description: POF Request Update By Type
+          format: int64
+          type: integer
+      type: object
+    getAllOrders_200_response_data_inner:
+      example:
+        shipment_fulfillment:
+          accept_deadline: accept_deadline
+          confirm_shipping_deadline: confirm_shipping_deadline
+        voucher_info:
+          voucher_type: 8
+          voucher_code: voucher_code
+        logistics:
+          shipping_id: 7
+          geo: geo
+          service_type: service_type
+          province_id: 6
+          shipping_agency: shipping_agency
+          district_id: 5
+          city_id: 4
+        amt:
+          toppoints_amount: 1
+          insurance_cost: 3
+          shipping_cost: 4
+          ttl_product_price: 8
+          ttl_amount: 0
+          voucher_amount: 2
+        promo_order_detail:
+          total_discount: 9
+          summary_promo:
+          - is_coupon: true
+            show_discount_amount: true
+            Type: Type
+            cashback_points: 8
+            cashback_amount: 5
+            show_cashback_amount: true
+            discount_amount: 7
+            discount_details:
+            - amount: 3
+              Type: Type
+              budget_details:
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+            - amount: 3
+              Type: Type
+              budget_details:
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+            invoice_desc: invoice_desc
+            Name: Name
+          - is_coupon: true
+            show_discount_amount: true
+            Type: Type
+            cashback_points: 8
+            cashback_amount: 5
+            show_cashback_amount: true
+            discount_amount: 7
+            discount_details:
+            - amount: 3
+              Type: Type
+              budget_details:
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+            - amount: 3
+              Type: Type
+              budget_details:
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+              - budget_type: 3
+                benefit_amount: 9
+                actual_benefit_amount: 5
+            invoice_desc: invoice_desc
+            Name: Name
+          total_cashback: 3
+          total_discount_product: 8
+          total_discount_shipping: 0
+          order_id: 1
+          total_discount_details:
+          - amount: 5
+            Type: Type
+          - amount: 5
+            Type: Type
+        device_type: device_type
+        products_fulfilled:
+        - product_id: 9
+          quantity_reject: 2
+          quantity_deliver: 3
+        - product_id: 9
+          quantity_reject: 2
+          quantity_deliver: 3
+        products:
+        - is_wholesale: true
+          quantity: 1
+          notes: notes
+          total_price: 7
+          price: 2
+          weight: 5.962133916683182
+          currency: currency
+          id: 6
+          sku: sku
+          total_weight: 5.637376656633329
+          Name: Name
+        - is_wholesale: true
+          quantity: 1
+          notes: notes
+          total_price: 7
+          price: 2
+          weight: 5.962133916683182
+          currency: currency
+          id: 6
+          sku: sku
+          total_weight: 5.637376656633329
+          Name: Name
+        order_status: 6
+        encryption:
+          secret: secret
+          content: content
+        is_plus: true
+        payment_id: 9
+        accept_partial: true
+        is_cod_mitra: true
+        fs_id: fs_id
+        fulfill_by: 8
+        create_time: 9
+        custom_fields:
+          awb: awb
+        have_product_bundle: true
+        invoice_ref_num: invoice_ref_num
+        buyer:
+          phone: phone
+          id: 4
+          email: email
+          Name: Name
+        shop_id: 7
+        bundle_detail:
+          total_product: 1
+          bundle:
+          - bundle_subtotal_price: 1
+            bundle_id: 4
+            bundle_quantity: 1
+            bundle_name: bundle_name
+            order_detail:
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 5.025004791520295
+              product_price: 4
+              total_weight: 9.965781217890562
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 1
+              currency_rate: 1
+              product_id: 7
+              child_cat_id: 9
+              sku: sku
+              campaign_id: 5
+              subtotal_price: 9
+              thumbnail: thumbnail
+              quantity: 1
+              is_slash_price: true
+              finsurance: 6
+              product_name: product_name
+              bundle_variant_id: bundle_variant_id
+              condition: 6
+              returnable: 8
+              insurance_price: 3
+              normal_price: 6
+              bundle_id: 6
+              min_order: 2
+              order_id: 6
+              currency_id: 6
+              must_insurance: 6
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 5.025004791520295
+              product_price: 4
+              total_weight: 9.965781217890562
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 1
+              currency_rate: 1
+              product_id: 7
+              child_cat_id: 9
+              sku: sku
+              campaign_id: 5
+              subtotal_price: 9
+              thumbnail: thumbnail
+              quantity: 1
+              is_slash_price: true
+              finsurance: 6
+              product_name: product_name
+              bundle_variant_id: bundle_variant_id
+              condition: 6
+              returnable: 8
+              insurance_price: 3
+              normal_price: 6
+              bundle_id: 6
+              min_order: 2
+              order_id: 6
+              currency_id: 6
+              must_insurance: 6
+            bundle_price: 7
+            bundle_variant_id: bundle_variant_id
+          - bundle_subtotal_price: 1
+            bundle_id: 4
+            bundle_quantity: 1
+            bundle_name: bundle_name
+            order_detail:
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 5.025004791520295
+              product_price: 4
+              total_weight: 9.965781217890562
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 1
+              currency_rate: 1
+              product_id: 7
+              child_cat_id: 9
+              sku: sku
+              campaign_id: 5
+              subtotal_price: 9
+              thumbnail: thumbnail
+              quantity: 1
+              is_slash_price: true
+              finsurance: 6
+              product_name: product_name
+              bundle_variant_id: bundle_variant_id
+              condition: 6
+              returnable: 8
+              insurance_price: 3
+              normal_price: 6
+              bundle_id: 6
+              min_order: 2
+              order_id: 6
+              currency_id: 6
+              must_insurance: 6
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 5.025004791520295
+              product_price: 4
+              total_weight: 9.965781217890562
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 1
+              currency_rate: 1
+              product_id: 7
+              child_cat_id: 9
+              sku: sku
+              campaign_id: 5
+              subtotal_price: 9
+              thumbnail: thumbnail
+              quantity: 1
+              is_slash_price: true
+              finsurance: 6
+              product_name: product_name
+              bundle_variant_id: bundle_variant_id
+              condition: 6
+              returnable: 8
+              insurance_price: 3
+              normal_price: 6
+              bundle_id: 6
+              min_order: 2
+              order_id: 6
+              currency_id: 6
+              must_insurance: 6
+            bundle_price: 7
+            bundle_variant_id: bundle_variant_id
+          non_bundle:
+          - prod_pic: prod_pic
+            notes: notes
+            product_weight: 6.519180951018382
+            product_price: 7
+            total_weight: 0.10263654006109402
+            oms_detail_data: oms_detail_data
+            product_desc: product_desc
+            order_dtl_id: 3
+            currency_rate: 3
+            product_id: 7
+            child_cat_id: 3
+            sku: sku
+            campaign_id: 4
+            subtotal_price: 4
+            thumbnail: thumbnail
+            quantity: 0
+            is_slash_price: true
+            finsurance: 8
+            product_name: product_name
+            condition: 6
+            returnable: 7
+            insurance_price: 7
+            normal_price: 5
+            min_order: 4
+            order_id: 3
+            currency_id: 3
+            must_insurance: 0
+          - prod_pic: prod_pic
+            notes: notes
+            product_weight: 6.519180951018382
+            product_price: 7
+            total_weight: 0.10263654006109402
+            oms_detail_data: oms_detail_data
+            product_desc: product_desc
+            order_dtl_id: 3
+            currency_rate: 3
+            product_id: 7
+            child_cat_id: 3
+            sku: sku
+            campaign_id: 4
+            subtotal_price: 4
+            thumbnail: thumbnail
+            quantity: 0
+            is_slash_price: true
+            finsurance: 8
+            product_name: product_name
+            condition: 6
+            returnable: 7
+            insurance_price: 7
+            normal_price: 5
+            min_order: 4
+            order_id: 3
+            currency_id: 3
+            must_insurance: 0
+        addon_info:
+          key: ""
+        pof_info:
+          create_by: 3
+          shipping_price: 3
+          update_time: update_time
+          insurance_price: 2
+          create_time: create_time
+          pof_status: 0
+          update_by: 4
+          order_id: 7
+          update_by_type: 0
+          create_by_type: 8
+        recipient:
+          address:
+            address_full: address_full
+            geo: geo
+            country: country
+            province: province
+            city: city
+            province_id: 0
+            district: district
+            district_id: 0
+            postal_code: postal_code
+            city_id: 9
+          phone: phone
+          Name: Name
+        dropshipper_info:
+          key: ""
+        order_id: 0
+        warehouse_id: 4
+      properties:
+        fs_id:
+          description: Fullfilment Service Unique Identifier
+          type: string
+        order_id:
+          description: Order Unique Identifier
+          format: int64
+          type: integer
+        is_cod_mitra:
+          description: Is COD mitra?
+          type: boolean
+        accept_partial:
+          description: Is accept partial?
+          type: boolean
+        invoice_ref_num:
+          description: Invoice Number
+          type: string
+        have_product_bundle:
+          description: Have product bundle?
+          type: boolean
+        products:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_products_inner'
+          type: array
+        products_fulfilled:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner_products_fulfilled_inner'
+          type: array
+        bundle_detail:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_bundle_detail'
+        device_type:
+          description: Device Type
+          type: string
+        buyer:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_buyer'
+        shop_id:
+          description: Shop Unique Identifier
+          format: int64
+          type: integer
+        payment_id:
+          description: Payment Unique Identifier
+          format: int64
+          type: integer
+        recipient:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_recipient'
+        logistics:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_logistics'
+        amt:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_amt'
+        dropshipper_info:
+          additionalProperties: true
+          description: ""
+          type: object
+        voucher_info:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_voucher_info'
+        order_status:
+          description: Order Status Code
+          format: int64
+          type: integer
+        warehouse_id:
+          description: Warehouse Unique Identifier
+          format: int64
+          type: integer
+        fulfill_by:
+          description: "Order Fulfilled by Tokocabang (1), Order Fulfilled by Shop\
+            \ (0)"
+          format: int64
+          type: integer
+        create_time:
+          description: Order Created Time
+          format: int64
+          type: integer
+        custom_fields:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_custom_fields'
+        promo_order_detail:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_promo_order_detail'
+        encryption:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_encryption'
+        addon_info:
+          additionalProperties: true
+          type: object
+        shipment_fulfillment:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_shipment_fulfillment'
+        is_plus:
+          description: Plus Order Flag
+          type: boolean
+        pof_info:
+          $ref: '#/components/schemas/getAllOrders_200_response_data_inner_pof_info'
+      type: object
+    getAllOrders_200_response:
+      example:
+        data:
+        - shipment_fulfillment:
+            accept_deadline: accept_deadline
+            confirm_shipping_deadline: confirm_shipping_deadline
+          voucher_info:
+            voucher_type: 8
+            voucher_code: voucher_code
+          logistics:
+            shipping_id: 7
+            geo: geo
+            service_type: service_type
+            province_id: 6
+            shipping_agency: shipping_agency
+            district_id: 5
+            city_id: 4
+          amt:
+            toppoints_amount: 1
+            insurance_cost: 3
+            shipping_cost: 4
+            ttl_product_price: 8
+            ttl_amount: 0
+            voucher_amount: 2
+          promo_order_detail:
+            total_discount: 9
+            summary_promo:
+            - is_coupon: true
+              show_discount_amount: true
+              Type: Type
+              cashback_points: 8
+              cashback_amount: 5
+              show_cashback_amount: true
+              discount_amount: 7
+              discount_details:
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              invoice_desc: invoice_desc
+              Name: Name
+            - is_coupon: true
+              show_discount_amount: true
+              Type: Type
+              cashback_points: 8
+              cashback_amount: 5
+              show_cashback_amount: true
+              discount_amount: 7
+              discount_details:
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              invoice_desc: invoice_desc
+              Name: Name
+            total_cashback: 3
+            total_discount_product: 8
+            total_discount_shipping: 0
+            order_id: 1
+            total_discount_details:
+            - amount: 5
+              Type: Type
+            - amount: 5
+              Type: Type
+          device_type: device_type
+          products_fulfilled:
+          - product_id: 9
+            quantity_reject: 2
+            quantity_deliver: 3
+          - product_id: 9
+            quantity_reject: 2
+            quantity_deliver: 3
+          products:
+          - is_wholesale: true
+            quantity: 1
+            notes: notes
+            total_price: 7
+            price: 2
+            weight: 5.962133916683182
+            currency: currency
+            id: 6
+            sku: sku
+            total_weight: 5.637376656633329
+            Name: Name
+          - is_wholesale: true
+            quantity: 1
+            notes: notes
+            total_price: 7
+            price: 2
+            weight: 5.962133916683182
+            currency: currency
+            id: 6
+            sku: sku
+            total_weight: 5.637376656633329
+            Name: Name
+          order_status: 6
+          encryption:
+            secret: secret
+            content: content
+          is_plus: true
+          payment_id: 9
+          accept_partial: true
+          is_cod_mitra: true
+          fs_id: fs_id
+          fulfill_by: 8
+          create_time: 9
+          custom_fields:
+            awb: awb
+          have_product_bundle: true
+          invoice_ref_num: invoice_ref_num
+          buyer:
+            phone: phone
+            id: 4
+            email: email
+            Name: Name
+          shop_id: 7
+          bundle_detail:
+            total_product: 1
+            bundle:
+            - bundle_subtotal_price: 1
+              bundle_id: 4
+              bundle_quantity: 1
+              bundle_name: bundle_name
+              order_detail:
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              bundle_price: 7
+              bundle_variant_id: bundle_variant_id
+            - bundle_subtotal_price: 1
+              bundle_id: 4
+              bundle_quantity: 1
+              bundle_name: bundle_name
+              order_detail:
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              bundle_price: 7
+              bundle_variant_id: bundle_variant_id
+            non_bundle:
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 6.519180951018382
+              product_price: 7
+              total_weight: 0.10263654006109402
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 3
+              currency_rate: 3
+              product_id: 7
+              child_cat_id: 3
+              sku: sku
+              campaign_id: 4
+              subtotal_price: 4
+              thumbnail: thumbnail
+              quantity: 0
+              is_slash_price: true
+              finsurance: 8
+              product_name: product_name
+              condition: 6
+              returnable: 7
+              insurance_price: 7
+              normal_price: 5
+              min_order: 4
+              order_id: 3
+              currency_id: 3
+              must_insurance: 0
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 6.519180951018382
+              product_price: 7
+              total_weight: 0.10263654006109402
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 3
+              currency_rate: 3
+              product_id: 7
+              child_cat_id: 3
+              sku: sku
+              campaign_id: 4
+              subtotal_price: 4
+              thumbnail: thumbnail
+              quantity: 0
+              is_slash_price: true
+              finsurance: 8
+              product_name: product_name
+              condition: 6
+              returnable: 7
+              insurance_price: 7
+              normal_price: 5
+              min_order: 4
+              order_id: 3
+              currency_id: 3
+              must_insurance: 0
+          addon_info:
+            key: ""
+          pof_info:
+            create_by: 3
+            shipping_price: 3
+            update_time: update_time
+            insurance_price: 2
+            create_time: create_time
+            pof_status: 0
+            update_by: 4
+            order_id: 7
+            update_by_type: 0
+            create_by_type: 8
+          recipient:
+            address:
+              address_full: address_full
+              geo: geo
+              country: country
+              province: province
+              city: city
+              province_id: 0
+              district: district
+              district_id: 0
+              postal_code: postal_code
+              city_id: 9
+            phone: phone
+            Name: Name
+          dropshipper_info:
+            key: ""
+          order_id: 0
+          warehouse_id: 4
+        - shipment_fulfillment:
+            accept_deadline: accept_deadline
+            confirm_shipping_deadline: confirm_shipping_deadline
+          voucher_info:
+            voucher_type: 8
+            voucher_code: voucher_code
+          logistics:
+            shipping_id: 7
+            geo: geo
+            service_type: service_type
+            province_id: 6
+            shipping_agency: shipping_agency
+            district_id: 5
+            city_id: 4
+          amt:
+            toppoints_amount: 1
+            insurance_cost: 3
+            shipping_cost: 4
+            ttl_product_price: 8
+            ttl_amount: 0
+            voucher_amount: 2
+          promo_order_detail:
+            total_discount: 9
+            summary_promo:
+            - is_coupon: true
+              show_discount_amount: true
+              Type: Type
+              cashback_points: 8
+              cashback_amount: 5
+              show_cashback_amount: true
+              discount_amount: 7
+              discount_details:
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              invoice_desc: invoice_desc
+              Name: Name
+            - is_coupon: true
+              show_discount_amount: true
+              Type: Type
+              cashback_points: 8
+              cashback_amount: 5
+              show_cashback_amount: true
+              discount_amount: 7
+              discount_details:
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              - amount: 3
+                Type: Type
+                budget_details:
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+                - budget_type: 3
+                  benefit_amount: 9
+                  actual_benefit_amount: 5
+              invoice_desc: invoice_desc
+              Name: Name
+            total_cashback: 3
+            total_discount_product: 8
+            total_discount_shipping: 0
+            order_id: 1
+            total_discount_details:
+            - amount: 5
+              Type: Type
+            - amount: 5
+              Type: Type
+          device_type: device_type
+          products_fulfilled:
+          - product_id: 9
+            quantity_reject: 2
+            quantity_deliver: 3
+          - product_id: 9
+            quantity_reject: 2
+            quantity_deliver: 3
+          products:
+          - is_wholesale: true
+            quantity: 1
+            notes: notes
+            total_price: 7
+            price: 2
+            weight: 5.962133916683182
+            currency: currency
+            id: 6
+            sku: sku
+            total_weight: 5.637376656633329
+            Name: Name
+          - is_wholesale: true
+            quantity: 1
+            notes: notes
+            total_price: 7
+            price: 2
+            weight: 5.962133916683182
+            currency: currency
+            id: 6
+            sku: sku
+            total_weight: 5.637376656633329
+            Name: Name
+          order_status: 6
+          encryption:
+            secret: secret
+            content: content
+          is_plus: true
+          payment_id: 9
+          accept_partial: true
+          is_cod_mitra: true
+          fs_id: fs_id
+          fulfill_by: 8
+          create_time: 9
+          custom_fields:
+            awb: awb
+          have_product_bundle: true
+          invoice_ref_num: invoice_ref_num
+          buyer:
+            phone: phone
+            id: 4
+            email: email
+            Name: Name
+          shop_id: 7
+          bundle_detail:
+            total_product: 1
+            bundle:
+            - bundle_subtotal_price: 1
+              bundle_id: 4
+              bundle_quantity: 1
+              bundle_name: bundle_name
+              order_detail:
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              bundle_price: 7
+              bundle_variant_id: bundle_variant_id
+            - bundle_subtotal_price: 1
+              bundle_id: 4
+              bundle_quantity: 1
+              bundle_name: bundle_name
+              order_detail:
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              - prod_pic: prod_pic
+                notes: notes
+                product_weight: 5.025004791520295
+                product_price: 4
+                total_weight: 9.965781217890562
+                oms_detail_data: oms_detail_data
+                product_desc: product_desc
+                order_dtl_id: 1
+                currency_rate: 1
+                product_id: 7
+                child_cat_id: 9
+                sku: sku
+                campaign_id: 5
+                subtotal_price: 9
+                thumbnail: thumbnail
+                quantity: 1
+                is_slash_price: true
+                finsurance: 6
+                product_name: product_name
+                bundle_variant_id: bundle_variant_id
+                condition: 6
+                returnable: 8
+                insurance_price: 3
+                normal_price: 6
+                bundle_id: 6
+                min_order: 2
+                order_id: 6
+                currency_id: 6
+                must_insurance: 6
+              bundle_price: 7
+              bundle_variant_id: bundle_variant_id
+            non_bundle:
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 6.519180951018382
+              product_price: 7
+              total_weight: 0.10263654006109402
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 3
+              currency_rate: 3
+              product_id: 7
+              child_cat_id: 3
+              sku: sku
+              campaign_id: 4
+              subtotal_price: 4
+              thumbnail: thumbnail
+              quantity: 0
+              is_slash_price: true
+              finsurance: 8
+              product_name: product_name
+              condition: 6
+              returnable: 7
+              insurance_price: 7
+              normal_price: 5
+              min_order: 4
+              order_id: 3
+              currency_id: 3
+              must_insurance: 0
+            - prod_pic: prod_pic
+              notes: notes
+              product_weight: 6.519180951018382
+              product_price: 7
+              total_weight: 0.10263654006109402
+              oms_detail_data: oms_detail_data
+              product_desc: product_desc
+              order_dtl_id: 3
+              currency_rate: 3
+              product_id: 7
+              child_cat_id: 3
+              sku: sku
+              campaign_id: 4
+              subtotal_price: 4
+              thumbnail: thumbnail
+              quantity: 0
+              is_slash_price: true
+              finsurance: 8
+              product_name: product_name
+              condition: 6
+              returnable: 7
+              insurance_price: 7
+              normal_price: 5
+              min_order: 4
+              order_id: 3
+              currency_id: 3
+              must_insurance: 0
+          addon_info:
+            key: ""
+          pof_info:
+            create_by: 3
+            shipping_price: 3
+            update_time: update_time
+            insurance_price: 2
+            create_time: create_time
+            pof_status: 0
+            update_by: 4
+            order_id: 7
+            update_by_type: 0
+            create_by_type: 8
+          recipient:
+            address:
+              address_full: address_full
+              geo: geo
+              country: country
+              province: province
+              city: city
+              province_id: 0
+              district: district
+              district_id: 0
+              postal_code: postal_code
+              city_id: 9
+            phone: phone
+            Name: Name
+          dropshipper_info:
+            key: ""
+          order_id: 0
+          warehouse_id: 4
+        header:
+          reason: reason
+          messages: messages
+          error_code: error_code
+          process_time: 0.8008281904610115
+      properties:
+        header:
+          $ref: '#/components/schemas/ResponseHeader'
+        data:
+          items:
+            $ref: '#/components/schemas/getAllOrders_200_response_data_inner'
+          type: array
       type: object
     WebhookOrderNotification_products_inner:
       properties:

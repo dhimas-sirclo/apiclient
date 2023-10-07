@@ -102,6 +102,7 @@ Class | Method | HTTP request | Description
 *LogisticAPI* | [**UpdateShipmentInfo**](docs/LogisticAPI.md#updateshipmentinfo) | **Post** /v2/logistic/fs/{fs_id}/update | 
 *OrderAPI* | [**AcceptOrder**](docs/OrderAPI.md#acceptorder) | **Post** /v1/order/{order_id}/fs/{fs_id}/ack | 
 *OrderAPI* | [**ConfirmShipping**](docs/OrderAPI.md#confirmshipping) | **Post** /v1/order/{order_id}/fs/{fs_id}/status | 
+*OrderAPI* | [**GetAllOrders**](docs/OrderAPI.md#getallorders) | **Get** /v2/order/list | 
 *OrderAPI* | [**GetOrderCobCod**](docs/OrderAPI.md#getordercobcod) | **Get** /v1/fs/{fs_id}/fulfillment_order | 
 *OrderAPI* | [**GetOrderWebhook**](docs/OrderAPI.md#getorderwebhook) | **Get** /v1/order/{order_id}/fs/{fs_id}/webhook | 
 *OrderAPI* | [**GetResolutionTicket**](docs/OrderAPI.md#getresolutionticket) | **Get** /resolution/v1/fs/{fs_id}/ticket | 
@@ -164,6 +165,29 @@ Class | Method | HTTP request | Description
  - [GetActiveCourier200ResponseDataShopsInner](docs/GetActiveCourier200ResponseDataShopsInner.md)
  - [GetActiveCourier200ResponseDataShopsInnerShipmentInfosInner](docs/GetActiveCourier200ResponseDataShopsInnerShipmentInfosInner.md)
  - [GetActiveCourier200ResponseDataShopsInnerShipmentInfosInnerShipmentPackagesInner](docs/GetActiveCourier200ResponseDataShopsInnerShipmentInfosInnerShipmentPackagesInner.md)
+ - [GetAllOrders200Response](docs/GetAllOrders200Response.md)
+ - [GetAllOrders200ResponseDataInner](docs/GetAllOrders200ResponseDataInner.md)
+ - [GetAllOrders200ResponseDataInnerAmt](docs/GetAllOrders200ResponseDataInnerAmt.md)
+ - [GetAllOrders200ResponseDataInnerBundleDetail](docs/GetAllOrders200ResponseDataInnerBundleDetail.md)
+ - [GetAllOrders200ResponseDataInnerBundleDetailBundleInner](docs/GetAllOrders200ResponseDataInnerBundleDetailBundleInner.md)
+ - [GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner](docs/GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner.md)
+ - [GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner](docs/GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner.md)
+ - [GetAllOrders200ResponseDataInnerBuyer](docs/GetAllOrders200ResponseDataInnerBuyer.md)
+ - [GetAllOrders200ResponseDataInnerCustomFields](docs/GetAllOrders200ResponseDataInnerCustomFields.md)
+ - [GetAllOrders200ResponseDataInnerEncryption](docs/GetAllOrders200ResponseDataInnerEncryption.md)
+ - [GetAllOrders200ResponseDataInnerLogistics](docs/GetAllOrders200ResponseDataInnerLogistics.md)
+ - [GetAllOrders200ResponseDataInnerPofInfo](docs/GetAllOrders200ResponseDataInnerPofInfo.md)
+ - [GetAllOrders200ResponseDataInnerProductsFulfilledInner](docs/GetAllOrders200ResponseDataInnerProductsFulfilledInner.md)
+ - [GetAllOrders200ResponseDataInnerProductsInner](docs/GetAllOrders200ResponseDataInnerProductsInner.md)
+ - [GetAllOrders200ResponseDataInnerPromoOrderDetail](docs/GetAllOrders200ResponseDataInnerPromoOrderDetail.md)
+ - [GetAllOrders200ResponseDataInnerPromoOrderDetailSummaryPromoInner](docs/GetAllOrders200ResponseDataInnerPromoOrderDetailSummaryPromoInner.md)
+ - [GetAllOrders200ResponseDataInnerPromoOrderDetailSummaryPromoInnerDiscountDetailsInner](docs/GetAllOrders200ResponseDataInnerPromoOrderDetailSummaryPromoInnerDiscountDetailsInner.md)
+ - [GetAllOrders200ResponseDataInnerPromoOrderDetailSummaryPromoInnerDiscountDetailsInnerBudgetDetailsInner](docs/GetAllOrders200ResponseDataInnerPromoOrderDetailSummaryPromoInnerDiscountDetailsInnerBudgetDetailsInner.md)
+ - [GetAllOrders200ResponseDataInnerPromoOrderDetailTotalDiscountDetailsInner](docs/GetAllOrders200ResponseDataInnerPromoOrderDetailTotalDiscountDetailsInner.md)
+ - [GetAllOrders200ResponseDataInnerRecipient](docs/GetAllOrders200ResponseDataInnerRecipient.md)
+ - [GetAllOrders200ResponseDataInnerRecipientAddress](docs/GetAllOrders200ResponseDataInnerRecipientAddress.md)
+ - [GetAllOrders200ResponseDataInnerShipmentFulfillment](docs/GetAllOrders200ResponseDataInnerShipmentFulfillment.md)
+ - [GetAllOrders200ResponseDataInnerVoucherInfo](docs/GetAllOrders200ResponseDataInnerVoucherInfo.md)
  - [GetBundleInfo200Response](docs/GetBundleInfo200Response.md)
  - [GetBundleInfo200ResponseData](docs/GetBundleInfo200ResponseData.md)
  - [GetBundleInfo200ResponseDataBundleInfoInner](docs/GetBundleInfo200ResponseDataBundleInfoInner.md)
