@@ -115,6 +115,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**CheckUploadStatus**](docs/ProductAPI.md#checkuploadstatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
 *ProductAPI* | [**DeleteProduct**](docs/ProductAPI.md#deleteproduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
+*ProductAPI* | [**EditProductV2**](docs/ProductAPI.md#editproductv2) | **Patch** /v2/products/fs/{fs_id}/edit | 
 *ProductAPI* | [**EditProductV3**](docs/ProductAPI.md#editproductv3) | **Patch** /v3/products/fs/{fs_id}/edit | 
 *ProductAPI* | [**GetAllCategories**](docs/ProductAPI.md#getallcategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 *ProductAPI* | [**GetProductAnnotationByCategoryId**](docs/ProductAPI.md#getproductannotationbycategoryid) | **Get** /v1/fs/{fs_id}/product/annotation | 
@@ -178,6 +179,20 @@ Class | Method | HTTP request | Description
  - [DeleteShowcase200Response](docs/DeleteShowcase200Response.md)
  - [DeleteShowcase200ResponseData](docs/DeleteShowcase200ResponseData.md)
  - [DeleteShowcaseRequest](docs/DeleteShowcaseRequest.md)
+ - [EditProductV2200Response](docs/EditProductV2200Response.md)
+ - [EditProductV2200ResponseData](docs/EditProductV2200ResponseData.md)
+ - [EditProductV2Request](docs/EditProductV2Request.md)
+ - [EditProductV2RequestProductsInner](docs/EditProductV2RequestProductsInner.md)
+ - [EditProductV2RequestProductsInnerEtalase](docs/EditProductV2RequestProductsInnerEtalase.md)
+ - [EditProductV2RequestProductsInnerPicturesInner](docs/EditProductV2RequestProductsInnerPicturesInner.md)
+ - [EditProductV2RequestProductsInnerPreorder](docs/EditProductV2RequestProductsInnerPreorder.md)
+ - [EditProductV2RequestProductsInnerVariant](docs/EditProductV2RequestProductsInnerVariant.md)
+ - [EditProductV2RequestProductsInnerVariantProductsInner](docs/EditProductV2RequestProductsInnerVariantProductsInner.md)
+ - [EditProductV2RequestProductsInnerVariantProductsInnerPicturesInner](docs/EditProductV2RequestProductsInnerVariantProductsInnerPicturesInner.md)
+ - [EditProductV2RequestProductsInnerVariantSelectionInner](docs/EditProductV2RequestProductsInnerVariantSelectionInner.md)
+ - [EditProductV2RequestProductsInnerVariantSelectionInnerOptionsInner](docs/EditProductV2RequestProductsInnerVariantSelectionInnerOptionsInner.md)
+ - [EditProductV2RequestProductsInnerVideosInner](docs/EditProductV2RequestProductsInnerVideosInner.md)
+ - [EditProductV2RequestProductsInnerWholesaleInner](docs/EditProductV2RequestProductsInnerWholesaleInner.md)
  - [EditProductV3200Response](docs/EditProductV3200Response.md)
  - [EditProductV3200ResponseData](docs/EditProductV3200ResponseData.md)
  - [EditProductV3200ResponseDataSuccessRowsDataInner](docs/EditProductV3200ResponseDataSuccessRowsDataInner.md)

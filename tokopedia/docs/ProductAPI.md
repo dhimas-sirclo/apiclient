@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CheckUploadStatus**](ProductAPI.md#CheckUploadStatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
 [**DeleteProduct**](ProductAPI.md#DeleteProduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
+[**EditProductV2**](ProductAPI.md#EditProductV2) | **Patch** /v2/products/fs/{fs_id}/edit | 
 [**EditProductV3**](ProductAPI.md#EditProductV3) | **Patch** /v3/products/fs/{fs_id}/edit | 
 [**GetAllCategories**](ProductAPI.md#GetAllCategories) | **Get** /inventory/v1/fs/{fs_id}/product/category | 
 [**GetProductAnnotationByCategoryId**](ProductAPI.md#GetProductAnnotationByCategoryId) | **Get** /v1/fs/{fs_id}/product/annotation | 
@@ -156,6 +157,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeleteProductDefaultResponse**](DeleteProductDefaultResponse.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EditProductV2
+
+> EditProductV2200Response EditProductV2(ctx, fsId).ShopId(shopId).EditProductV2Request(editProductV2Request).Execute()
+
+
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/dhimas-sirclo/apiclient/tokopedia"
+)
+
+func main() {
+    fsId := int64(789) // int64 | Fulfillment service unique identifier
+    shopId := int64(789) // int64 | Shop unique identifier
+    editProductV2Request := *openapiclient.NewEditProductV2Request([]openapiclient.EditProductV2RequestProductsInner{*openapiclient.NewEditProductV2RequestProductsInner()}) // EditProductV2Request | 
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.ProductAPI.EditProductV2(context.Background(), fsId).ShopId(shopId).EditProductV2Request(editProductV2Request).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ProductAPI.EditProductV2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EditProductV2`: EditProductV2200Response
+    fmt.Fprintf(os.Stdout, "Response from `ProductAPI.EditProductV2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**fsId** | **int64** | Fulfillment service unique identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEditProductV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **shopId** | **int64** | Shop unique identifier | 
+ **editProductV2Request** | [**EditProductV2Request**](EditProductV2Request.md) |  | 
+
+### Return type
+
+[**EditProductV2200Response**](EditProductV2200Response.md)
 
 ### Authorization
 
