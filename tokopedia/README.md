@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**CheckUploadStatus**](docs/ProductAPI.md#checkuploadstatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
+*ProductAPI* | [**CreateProductV3**](docs/ProductAPI.md#createproductv3) | **Post** /v3/products/fs/{fs_id}/create | 
 *ProductAPI* | [**DeleteProduct**](docs/ProductAPI.md#deleteproduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
 *ProductAPI* | [**EditProductV2**](docs/ProductAPI.md#editproductv2) | **Patch** /v2/products/fs/{fs_id}/edit | 
 *ProductAPI* | [**EditProductV3**](docs/ProductAPI.md#editproductv3) | **Patch** /v3/products/fs/{fs_id}/edit | 
@@ -169,6 +170,19 @@ Class | Method | HTTP request | Description
  - [CreateBundleRequestBundle](docs/CreateBundleRequestBundle.md)
  - [CreateBundleRequestBundleBundleItemsInner](docs/CreateBundleRequestBundleBundleItemsInner.md)
  - [CreateBundleRequestBundleBundleItemsInnerChildren](docs/CreateBundleRequestBundleBundleItemsInnerChildren.md)
+ - [CreateProductV3200Response](docs/CreateProductV3200Response.md)
+ - [CreateProductV3200ResponseData](docs/CreateProductV3200ResponseData.md)
+ - [CreateProductV3200ResponseDataSuccessRowDataInner](docs/CreateProductV3200ResponseDataSuccessRowDataInner.md)
+ - [CreateProductV3DefaultResponse](docs/CreateProductV3DefaultResponse.md)
+ - [CreateProductV3DefaultResponseData](docs/CreateProductV3DefaultResponseData.md)
+ - [CreateProductV3DefaultResponseDataFailedRowsDataInner](docs/CreateProductV3DefaultResponseDataFailedRowsDataInner.md)
+ - [CreateProductV3RequestInner](docs/CreateProductV3RequestInner.md)
+ - [CreateProductV3RequestInnerDimension](docs/CreateProductV3RequestInnerDimension.md)
+ - [CreateProductV3RequestInnerPreorder](docs/CreateProductV3RequestInnerPreorder.md)
+ - [CreateProductV3RequestInnerVariant](docs/CreateProductV3RequestInnerVariant.md)
+ - [CreateProductV3RequestInnerVariantProductsInner](docs/CreateProductV3RequestInnerVariantProductsInner.md)
+ - [CreateProductV3RequestInnerVideosInner](docs/CreateProductV3RequestInnerVideosInner.md)
+ - [CreateProductV3RequestInnerWholesaleInner](docs/CreateProductV3RequestInnerWholesaleInner.md)
  - [CreateShowcase200Response](docs/CreateShowcase200Response.md)
  - [CreateShowcase200ResponseData](docs/CreateShowcase200ResponseData.md)
  - [CreateShowcaseRequest](docs/CreateShowcaseRequest.md)
