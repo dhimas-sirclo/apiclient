@@ -11400,6 +11400,25 @@ paths:
       responses:
         default:
           description: Error
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
@@ -11437,6 +11456,25 @@ paths:
                                 type: string
         "200":
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              schema:
+                type: string
+              description: Current rate limit applied to the relevant endpoint
+            X-Ratelimit-Remaining:
+              schema:
+                type: integer
+              description: Remaining rate limit for the relevant endpoint that user can use to access our endpoint before get http status code 429
+            X-Ratelimit-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain 1 request to access our endpoint without get http status code 429. If user still have remaining rate limit, this value will always show -0.000000. Time format are in seconds
+            X-Ratelimit-Full-Reset-After:
+              schema:
+                type: number
+                format: double
+              description: Time remaining to regain full request to access our endpoint without get http status code 429. Time format are in seconds
           content:
             application/json:
               schema:
