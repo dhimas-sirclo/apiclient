@@ -114,6 +114,7 @@ Class | Method | HTTP request | Description
 *OrderAPI* | [**RequestPickup**](docs/OrderAPI.md#requestpickup) | **Post** /inventory/v1/fs/{fs_id}/pick-up | 
 *OrderAPI* | [**TriggerWebhook**](docs/OrderAPI.md#triggerwebhook) | **Post** /v1/fs/{fs_id}/trigger | 
 *ProductAPI* | [**CheckUploadStatus**](docs/ProductAPI.md#checkuploadstatus) | **Get** /v2/products/fs/{fs_id}/status/{upload_id} | 
+*ProductAPI* | [**CreateProductV2**](docs/ProductAPI.md#createproductv2) | **Post** /v2/products/fs/{fs_id}/create | 
 *ProductAPI* | [**CreateProductV3**](docs/ProductAPI.md#createproductv3) | **Post** /v3/products/fs/{fs_id}/create | 
 *ProductAPI* | [**DeleteProduct**](docs/ProductAPI.md#deleteproduct) | **Delete** /v3/products/fs/{fs_id}/delete | 
 *ProductAPI* | [**EditProductV2**](docs/ProductAPI.md#editproductv2) | **Patch** /v2/products/fs/{fs_id}/edit | 
@@ -170,6 +171,13 @@ Class | Method | HTTP request | Description
  - [CreateBundleRequestBundle](docs/CreateBundleRequestBundle.md)
  - [CreateBundleRequestBundleBundleItemsInner](docs/CreateBundleRequestBundleBundleItemsInner.md)
  - [CreateBundleRequestBundleBundleItemsInnerChildren](docs/CreateBundleRequestBundleBundleItemsInnerChildren.md)
+ - [CreateProductV2Request](docs/CreateProductV2Request.md)
+ - [CreateProductV2RequestProductsInner](docs/CreateProductV2RequestProductsInner.md)
+ - [CreateProductV2RequestProductsInnerEtalase](docs/CreateProductV2RequestProductsInnerEtalase.md)
+ - [CreateProductV2RequestProductsInnerPreorder](docs/CreateProductV2RequestProductsInnerPreorder.md)
+ - [CreateProductV2RequestProductsInnerVariantInner](docs/CreateProductV2RequestProductsInnerVariantInner.md)
+ - [CreateProductV2RequestProductsInnerVariantInnerProductsInner](docs/CreateProductV2RequestProductsInnerVariantInnerProductsInner.md)
+ - [CreateProductV2RequestProductsInnerVideosInner](docs/CreateProductV2RequestProductsInnerVideosInner.md)
  - [CreateProductV3200Response](docs/CreateProductV3200Response.md)
  - [CreateProductV3200ResponseData](docs/CreateProductV3200ResponseData.md)
  - [CreateProductV3200ResponseDataSuccessRowDataInner](docs/CreateProductV3200ResponseDataSuccessRowDataInner.md)

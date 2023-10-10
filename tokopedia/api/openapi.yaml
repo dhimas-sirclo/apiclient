@@ -6333,12 +6333,185 @@ paths:
               schema:
                 $ref: '#/components/schemas/createProductV3_default_response'
           description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
         "200":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/createProductV3_200_response'
           description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+      tags:
+      - Product
+  /v2/products/fs/{fs_id}/create:
+    post:
+      description: Endpoint used for bulk creating new products with maximum of 25
+        items.
+      operationId: createProductV2
+      parameters:
+      - description: Fulfillment service unique identifier
+        explode: false
+        in: path
+        name: fs_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      - description: Shop unique identifier
+        explode: true
+        in: query
+        name: shop_id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createProductV2_request'
+        required: true
+      responses:
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseErrorResponse'
+          description: Error
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/editProductV2_200_response'
+          description: OK
+          headers:
+            X-Ratelimit-Limit:
+              description: Current rate limit applied to the relevant endpoint
+              explode: false
+              schema:
+                type: string
+              style: simple
+            X-Ratelimit-Remaining:
+              description: Remaining rate limit for the relevant endpoint that user
+                can use to access our endpoint before get http status code 429
+              explode: false
+              schema:
+                type: integer
+              style: simple
+            X-Ratelimit-Reset-After:
+              description: "Time remaining to regain 1 request to access our endpoint\
+                \ without get http status code 429. If user still have remaining rate\
+                \ limit, this value will always show -0.000000. Time format are in\
+                \ seconds"
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
+            X-Ratelimit-Full-Reset-After:
+              description: Time remaining to regain full request to access our endpoint
+                without get http status code 429. Time format are in seconds
+              explode: false
+              schema:
+                format: double
+                type: number
+              style: simple
       tags:
       - Product
 components:
@@ -19736,6 +19909,246 @@ components:
           $ref: '#/components/schemas/ResponseHeader'
         data:
           $ref: '#/components/schemas/createProductV3_200_response_data'
+      type: object
+    createProductV2_request_products_inner_etalase:
+      description: "Etalase or Showcase of the product. The object contains id and\
+        \ name. To get available showcase, please check Get Showcase. Required field\
+        \ to input just id with etalase_id responses from Get Showcase"
+      properties:
+        id:
+          format: int64
+          type: integer
+      required:
+      - id
+      type: object
+    createProductV2_request_products_inner_preorder:
+      description: "Preorder information. The object keys includes: is_active, duration,\
+        \ and time_unit"
+      properties:
+        is_active:
+          type: boolean
+        duration:
+          format: int64
+          type: integer
+        time_unit:
+          default: DAY
+          enum:
+          - DAY
+          type: string
+      required:
+      - duration
+      - is_active
+      - time_unit
+      type: object
+    createProductV2_request_products_inner_videos_inner:
+      properties:
+        source:
+          default: youtube
+          enum:
+          - youtube
+          type: string
+        url:
+          type: string
+      type: object
+    createProductV2_request_products_inner_variant_inner_products_inner:
+      properties:
+        is_primary:
+          type: boolean
+        status:
+          default: LIMITED
+          enum:
+          - LIMITED
+          - UNLIMITED
+          - EMPTY
+          type: string
+        price:
+          format: double
+          type: number
+        stock:
+          format: int64
+          type: integer
+        sku:
+          maximum: 50
+          type: string
+        combination:
+          items:
+            format: int64
+            type: integer
+          type: array
+        pictures:
+          items:
+            $ref: '#/components/schemas/editProductV2_request_products_inner_variant_products_inner_pictures_inner'
+          type: array
+      required:
+      - combination
+      - is_primary
+      - pictures
+      - price
+      - sku
+      - status
+      - stock
+      type: object
+    createProductV2_request_products_inner_variant_inner:
+      properties:
+        products:
+          items:
+            $ref: '#/components/schemas/createProductV2_request_products_inner_variant_inner_products_inner'
+          type: array
+        selection:
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_variant_selection_inner'
+          type: array
+        sizecharts:
+          items:
+            $ref: '#/components/schemas/editProductV2_request_products_inner_variant_products_inner_pictures_inner'
+          type: array
+      required:
+      - products
+      - selection
+      - sizecharts
+      type: object
+    createProductV2_request_products_inner:
+      properties:
+        Name:
+          description: Name of the product with length less than or equals 70 characters
+          maximum: 70
+          type: string
+        condition:
+          default: NEW
+          description: The condition of the product with the following available values
+            NEW and USED
+          enum:
+          - NEW
+          - USED
+          type: string
+        Description:
+          description: Description of the product. Maximum characters allowed is 2000
+          maximum: 2000
+          type: string
+        sku:
+          description: The stock keeping unit for the product. Maximum characters
+            allowed is 50
+          maximum: 50
+          type: string
+        price:
+          description: "The possible value between 100 to 100.000.000. If the product\
+            \ variant is added, the price parameter is automatically set to the lowest\
+            \ price among the variant products."
+          format: double
+          maximum: 100000000
+          minimum: 100
+          type: number
+        status:
+          default: LIMITED
+          description: "Status for the product with the following available values\
+            \ UNLIMITED, LIMITED, and EMPTY."
+          enum:
+          - LIMITED
+          - UNLIMITED
+          - EMPTY
+          type: string
+        stock:
+          description: "The stock of the product. 0 indicates always available. Other\
+            \ than that, the possible values are from 1 to 1000. Stock should be 1\
+            \ if want to add variant product"
+          format: int64
+          maximum: 1000
+          type: integer
+        min_order:
+          description: Minimum order required to purchase the product. Can only be
+            a positive integer
+          format: int64
+          minimum: 1
+          type: integer
+        category_id:
+          description: "Unique identifier for the product’s category. To get available\
+            \ categories, please check Get All Categories. Please input the deepest\
+            \ category child ID"
+          format: int64
+          type: integer
+        price_currency:
+          default: IDR
+          description: Currency code for stated price (IDR or USD)
+          enum:
+          - IDR
+          - USD
+          type: string
+        weight:
+          description: Weight of the product
+          format: double
+          type: number
+        weight_unit:
+          default: GR
+          description: The unit of the weight with the following available value GR
+            (gram)
+          enum:
+          - GR
+          type: string
+        is_free_return:
+          description: Determine if the product can be returned (true) by buyers or
+            not (false)
+          type: boolean
+        is_must_insurance:
+          description: Determine if the product must be insured (true) or not (false)
+          type: boolean
+        etalase:
+          $ref: '#/components/schemas/createProductV2_request_products_inner_etalase'
+        pictures:
+          description: "Images information of the product. The object keys includes:\
+            \ file_path"
+          items:
+            $ref: '#/components/schemas/editProductV3_request_products_inner_pictures_inner'
+          required:
+          - file_path
+          type: array
+        wholesale:
+          description: "Wholesale price and quantity of the product. The object keys\
+            \ includes: min_qty and price"
+          items:
+            $ref: '#/components/schemas/createProductV3_request_inner_wholesale_inner'
+          required:
+          - min_qty
+          - price
+          type: array
+        preorder:
+          $ref: '#/components/schemas/createProductV2_request_products_inner_preorder'
+        videos:
+          description: "Video link of the product. The object keys includes: url and\
+            \ source. url should only contain the YouTube video id e.g. dQw4w9WgXcQ.\
+            \ Where the type should be youtube"
+          items:
+            $ref: '#/components/schemas/createProductV2_request_products_inner_videos_inner'
+          required:
+          - source
+          - url
+          type: array
+        variant:
+          description: "Variant of the product. The object keys includes: variant\
+            \ and product_variant"
+          items:
+            $ref: '#/components/schemas/createProductV2_request_products_inner_variant_inner'
+          type: array
+      required:
+      - Name
+      - category_id
+      - condition
+      - etalase
+      - is_must_insurance
+      - min_order
+      - pictures
+      - price
+      - price_currency
+      - status
+      - weight
+      - weight_unit
+      type: object
+    createProductV2_request:
+      properties:
+        products:
+          description: Product object array
+          items:
+            $ref: '#/components/schemas/createProductV2_request_products_inner'
+          type: array
       type: object
     WebhookOrderNotification_products_inner:
       properties:
