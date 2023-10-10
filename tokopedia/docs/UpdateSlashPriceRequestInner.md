@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProductId** | **int64** | Product unique identifier | 
-**DiscountedPrice** | Pointer to **int64** | Price that will be set into slash price campaign (please use either discounted_price or discount_percentage) | [optional] 
+**DiscountedPrice** | Pointer to **float64** | Price that will be set into slash price campaign (please use either discounted_price or discount_percentage) | [optional] 
 **DiscountPercentage** | Pointer to **int64** | Total discount percentage that will be set into slash price campaign (please use either discounted_price or discount_percentage) | [optional] 
 **StartTimeUnix** | **int64** | Start time campaign in UNIX format(use GMT +7) | 
 **EndTimeUnix** | **int64** | End time campaign in UNIX format (use GMT +7) | 
@@ -55,20 +55,20 @@ SetProductId sets ProductId field to given value.
 
 ### GetDiscountedPrice
 
-`func (o *UpdateSlashPriceRequestInner) GetDiscountedPrice() int64`
+`func (o *UpdateSlashPriceRequestInner) GetDiscountedPrice() float64`
 
 GetDiscountedPrice returns the DiscountedPrice field if non-nil, zero value otherwise.
 
 ### GetDiscountedPriceOk
 
-`func (o *UpdateSlashPriceRequestInner) GetDiscountedPriceOk() (*int64, bool)`
+`func (o *UpdateSlashPriceRequestInner) GetDiscountedPriceOk() (*float64, bool)`
 
 GetDiscountedPriceOk returns a tuple with the DiscountedPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountedPrice
 
-`func (o *UpdateSlashPriceRequestInner) SetDiscountedPrice(v int64)`
+`func (o *UpdateSlashPriceRequestInner) SetDiscountedPrice(v float64)`
 
 SetDiscountedPrice sets DiscountedPrice field to given value.
 

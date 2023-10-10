@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **IsMustInsurance** | Pointer to **bool** | Determine if the product must be insured (true) or not (false) | [optional] 
 **Etalase** | Pointer to [**EditProductV2RequestProductsInnerEtalase**](EditProductV2RequestProductsInnerEtalase.md) |  | [optional] 
 **Pictures** | Pointer to [**[]EditProductV3RequestProductsInnerPicturesInner**](EditProductV3RequestProductsInnerPicturesInner.md) | Images information of the product. The object keys includes: file_path | [optional] 
-**Wholesale** | Pointer to [**[]CreateProductV3RequestInnerWholesaleInner**](CreateProductV3RequestInnerWholesaleInner.md) | Wholesale price and quantity of the product. The object keys includes: min_qty and price | [optional] 
+**Wholesale** | Pointer to [**[]EditProductV3RequestProductsInnerWholesaleInner**](EditProductV3RequestProductsInnerWholesaleInner.md) | Wholesale price and quantity of the product. The object keys includes: min_qty and price | [optional] 
 **Preorder** | Pointer to [**CreateProductV3RequestInnerPreorder**](CreateProductV3RequestInnerPreorder.md) |  | [optional] 
 **Videos** | Pointer to [**[]CreateProductV3RequestInnerVideosInner**](CreateProductV3RequestInnerVideosInner.md) | Video link of the product. The object keys includes: url and source. url should only contain the YouTube video id e.g. dQw4w9WgXcQ. Where the type type should be youtube | [optional] 
 **Variant** | Pointer to [**CreateProductV3RequestInnerVariant**](CreateProductV3RequestInnerVariant.md) |  | [optional] 
@@ -524,20 +524,20 @@ HasPictures returns a boolean if a field has been set.
 
 ### GetWholesale
 
-`func (o *CreateProductV3RequestInner) GetWholesale() []CreateProductV3RequestInnerWholesaleInner`
+`func (o *CreateProductV3RequestInner) GetWholesale() []EditProductV3RequestProductsInnerWholesaleInner`
 
 GetWholesale returns the Wholesale field if non-nil, zero value otherwise.
 
 ### GetWholesaleOk
 
-`func (o *CreateProductV3RequestInner) GetWholesaleOk() (*[]CreateProductV3RequestInnerWholesaleInner, bool)`
+`func (o *CreateProductV3RequestInner) GetWholesaleOk() (*[]EditProductV3RequestProductsInnerWholesaleInner, bool)`
 
 GetWholesaleOk returns a tuple with the Wholesale field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWholesale
 
-`func (o *CreateProductV3RequestInner) SetWholesale(v []CreateProductV3RequestInnerWholesaleInner)`
+`func (o *CreateProductV3RequestInner) SetWholesale(v []EditProductV3RequestProductsInnerWholesaleInner)`
 
 SetWholesale sets Wholesale field to given value.
 

@@ -28,8 +28,8 @@ type GetOrderCobCod200ResponseDataOrderDataInnerOrder struct {
 	OrderStatus *int64 `json:"order_status,omitempty"`
 	InvoiceNumber *string `json:"invoice_number,omitempty"`
 	InvoicePdfLink *string `json:"invoice_pdf_link,omitempty"`
-	OpenAmt *int64 `json:"open_amt,omitempty"`
-	PaymentAmtCod *int64 `json:"payment_amt_cod,omitempty"`
+	OpenAmt *float64 `json:"open_amt,omitempty"`
+	PaymentAmtCod *float64 `json:"payment_amt_cod,omitempty"`
 }
 
 // NewGetOrderCobCod200ResponseDataOrderDataInnerOrder instantiates a new GetOrderCobCod200ResponseDataOrderDataInnerOrder object
@@ -274,9 +274,9 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetInvoicePdfLink(v s
 }
 
 // GetOpenAmt returns the OpenAmt field value if set, zero value otherwise.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmt() int64 {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmt() float64 {
 	if o == nil || IsNil(o.OpenAmt) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.OpenAmt
@@ -284,7 +284,7 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmt() int64 {
 
 // GetOpenAmtOk returns a tuple with the OpenAmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmtOk() (*int64, bool) {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmtOk() (*float64, bool) {
 	if o == nil || IsNil(o.OpenAmt) {
 		return nil, false
 	}
@@ -300,15 +300,15 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) HasOpenAmt() bool {
 	return false
 }
 
-// SetOpenAmt gets a reference to the given int64 and assigns it to the OpenAmt field.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetOpenAmt(v int64) {
+// SetOpenAmt gets a reference to the given float64 and assigns it to the OpenAmt field.
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetOpenAmt(v float64) {
 	o.OpenAmt = &v
 }
 
 // GetPaymentAmtCod returns the PaymentAmtCod field value if set, zero value otherwise.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCod() int64 {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCod() float64 {
 	if o == nil || IsNil(o.PaymentAmtCod) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.PaymentAmtCod
@@ -316,7 +316,7 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCod() in
 
 // GetPaymentAmtCodOk returns a tuple with the PaymentAmtCod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCodOk() (*int64, bool) {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCodOk() (*float64, bool) {
 	if o == nil || IsNil(o.PaymentAmtCod) {
 		return nil, false
 	}
@@ -332,8 +332,8 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) HasPaymentAmtCod() bo
 	return false
 }
 
-// SetPaymentAmtCod gets a reference to the given int64 and assigns it to the PaymentAmtCod field.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetPaymentAmtCod(v int64) {
+// SetPaymentAmtCod gets a reference to the given float64 and assigns it to the PaymentAmtCod field.
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetPaymentAmtCod(v float64) {
 	o.PaymentAmtCod = &v
 }
 

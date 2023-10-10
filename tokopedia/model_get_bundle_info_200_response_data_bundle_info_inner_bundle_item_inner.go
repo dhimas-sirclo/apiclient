@@ -26,8 +26,8 @@ type GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner struct {
 	Status *int64 `json:"status,omitempty"`
 	Selection []GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInner `json:"selection,omitempty"`
 	Child []GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerChildInner `json:"child,omitempty"`
-	BundlePrice *int64 `json:"bundle_price,omitempty"`
-	OriginalPrice *int64 `json:"original_price,omitempty"`
+	BundlePrice *float64 `json:"bundle_price,omitempty"`
+	OriginalPrice *float64 `json:"original_price,omitempty"`
 	Stock *int64 `json:"stock,omitempty"`
 	MinOrder *int64 `json:"min_order,omitempty"`
 	ProductStatus *string `json:"product_status,omitempty"`
@@ -243,9 +243,9 @@ func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetChild(v 
 }
 
 // GetBundlePrice returns the BundlePrice field value if set, zero value otherwise.
-func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePrice() int64 {
+func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePrice() float64 {
 	if o == nil || IsNil(o.BundlePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.BundlePrice
@@ -253,7 +253,7 @@ func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePr
 
 // GetBundlePriceOk returns a tuple with the BundlePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePriceOk() (*int64, bool) {
+func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.BundlePrice) {
 		return nil, false
 	}
@@ -269,15 +269,15 @@ func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) HasBundlePr
 	return false
 }
 
-// SetBundlePrice gets a reference to the given int64 and assigns it to the BundlePrice field.
-func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetBundlePrice(v int64) {
+// SetBundlePrice gets a reference to the given float64 and assigns it to the BundlePrice field.
+func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetBundlePrice(v float64) {
 	o.BundlePrice = &v
 }
 
 // GetOriginalPrice returns the OriginalPrice field value if set, zero value otherwise.
-func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPrice() int64 {
+func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPrice() float64 {
 	if o == nil || IsNil(o.OriginalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.OriginalPrice
@@ -285,7 +285,7 @@ func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginal
 
 // GetOriginalPriceOk returns a tuple with the OriginalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPriceOk() (*int64, bool) {
+func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.OriginalPrice) {
 		return nil, false
 	}
@@ -301,8 +301,8 @@ func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) HasOriginal
 	return false
 }
 
-// SetOriginalPrice gets a reference to the given int64 and assigns it to the OriginalPrice field.
-func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetOriginalPrice(v int64) {
+// SetOriginalPrice gets a reference to the given float64 and assigns it to the OriginalPrice field.
+func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetOriginalPrice(v float64) {
 	o.OriginalPrice = &v
 }
 

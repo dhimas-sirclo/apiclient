@@ -29,9 +29,9 @@ type WebhookInactiveFlashSaleNotification struct {
 	// Shop unique identifier
 	ShopId *int64 `json:"shop_id,omitempty"`
 	// Normal Price
-	OriginalPrice *int64 `json:"original_price,omitempty"`
+	OriginalPrice *float64 `json:"original_price,omitempty"`
 	// New Price When Slash Price Already Started
-	DiscountedPrice *int64 `json:"discounted_price,omitempty"`
+	DiscountedPrice *float64 `json:"discounted_price,omitempty"`
 	// Discount Percentage
 	DiscountPercentage *int64 `json:"discount_percentage,omitempty"`
 	// Flash Sale Start Time
@@ -190,9 +190,9 @@ func (o *WebhookInactiveFlashSaleNotification) SetShopId(v int64) {
 }
 
 // GetOriginalPrice returns the OriginalPrice field value if set, zero value otherwise.
-func (o *WebhookInactiveFlashSaleNotification) GetOriginalPrice() int64 {
+func (o *WebhookInactiveFlashSaleNotification) GetOriginalPrice() float64 {
 	if o == nil || IsNil(o.OriginalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.OriginalPrice
@@ -200,7 +200,7 @@ func (o *WebhookInactiveFlashSaleNotification) GetOriginalPrice() int64 {
 
 // GetOriginalPriceOk returns a tuple with the OriginalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookInactiveFlashSaleNotification) GetOriginalPriceOk() (*int64, bool) {
+func (o *WebhookInactiveFlashSaleNotification) GetOriginalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.OriginalPrice) {
 		return nil, false
 	}
@@ -216,15 +216,15 @@ func (o *WebhookInactiveFlashSaleNotification) HasOriginalPrice() bool {
 	return false
 }
 
-// SetOriginalPrice gets a reference to the given int64 and assigns it to the OriginalPrice field.
-func (o *WebhookInactiveFlashSaleNotification) SetOriginalPrice(v int64) {
+// SetOriginalPrice gets a reference to the given float64 and assigns it to the OriginalPrice field.
+func (o *WebhookInactiveFlashSaleNotification) SetOriginalPrice(v float64) {
 	o.OriginalPrice = &v
 }
 
 // GetDiscountedPrice returns the DiscountedPrice field value if set, zero value otherwise.
-func (o *WebhookInactiveFlashSaleNotification) GetDiscountedPrice() int64 {
+func (o *WebhookInactiveFlashSaleNotification) GetDiscountedPrice() float64 {
 	if o == nil || IsNil(o.DiscountedPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.DiscountedPrice
@@ -232,7 +232,7 @@ func (o *WebhookInactiveFlashSaleNotification) GetDiscountedPrice() int64 {
 
 // GetDiscountedPriceOk returns a tuple with the DiscountedPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookInactiveFlashSaleNotification) GetDiscountedPriceOk() (*int64, bool) {
+func (o *WebhookInactiveFlashSaleNotification) GetDiscountedPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.DiscountedPrice) {
 		return nil, false
 	}
@@ -248,8 +248,8 @@ func (o *WebhookInactiveFlashSaleNotification) HasDiscountedPrice() bool {
 	return false
 }
 
-// SetDiscountedPrice gets a reference to the given int64 and assigns it to the DiscountedPrice field.
-func (o *WebhookInactiveFlashSaleNotification) SetDiscountedPrice(v int64) {
+// SetDiscountedPrice gets a reference to the given float64 and assigns it to the DiscountedPrice field.
+func (o *WebhookInactiveFlashSaleNotification) SetDiscountedPrice(v float64) {
 	o.DiscountedPrice = &v
 }
 

@@ -33,9 +33,9 @@ type GetAllOrders200ResponseDataInnerProductsInner struct {
 	// Product Order Total Weight
 	TotalWeight *float64 `json:"total_weight,omitempty"`
 	// Product Price
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 	// Product Order Total Price
-	TotalPrice *int64 `json:"total_price,omitempty"`
+	TotalPrice *float64 `json:"total_price,omitempty"`
 	// Product Price Currency
 	Currency *string `json:"currency,omitempty"`
 	// Product SKU
@@ -254,9 +254,9 @@ func (o *GetAllOrders200ResponseDataInnerProductsInner) SetTotalWeight(v float64
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -264,7 +264,7 @@ func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -280,15 +280,15 @@ func (o *GetAllOrders200ResponseDataInnerProductsInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *GetAllOrders200ResponseDataInnerProductsInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *GetAllOrders200ResponseDataInnerProductsInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
 // GetTotalPrice returns the TotalPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPrice() float64 {
 	if o == nil || IsNil(o.TotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TotalPrice
@@ -296,7 +296,7 @@ func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPrice() int64 {
 
 // GetTotalPriceOk returns a tuple with the TotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.TotalPrice) {
 		return nil, false
 	}
@@ -312,8 +312,8 @@ func (o *GetAllOrders200ResponseDataInnerProductsInner) HasTotalPrice() bool {
 	return false
 }
 
-// SetTotalPrice gets a reference to the given int64 and assigns it to the TotalPrice field.
-func (o *GetAllOrders200ResponseDataInnerProductsInner) SetTotalPrice(v int64) {
+// SetTotalPrice gets a reference to the given float64 and assigns it to the TotalPrice field.
+func (o *GetAllOrders200ResponseDataInnerProductsInner) SetTotalPrice(v float64) {
 	o.TotalPrice = &v
 }
 

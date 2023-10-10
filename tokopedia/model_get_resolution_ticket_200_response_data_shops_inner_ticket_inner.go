@@ -33,8 +33,8 @@ type GetResolutionTicket200ResponseDataShopsInnerTicketInner struct {
 	Solution *string `json:"solution,omitempty"`
 	ComplaintProduct []GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner `json:"complaint_product,omitempty"`
 	Fault *string `json:"fault,omitempty"`
-	ShippingAmt *int64 `json:"shipping_amt,omitempty"`
-	TotalIssuedFunds *int64 `json:"total_issued_funds,omitempty"`
+	ShippingAmt *float64 `json:"shipping_amt,omitempty"`
+	TotalIssuedFunds *float64 `json:"total_issued_funds,omitempty"`
 }
 
 // NewGetResolutionTicket200ResponseDataShopsInnerTicketInner instantiates a new GetResolutionTicket200ResponseDataShopsInnerTicketInner object
@@ -375,9 +375,9 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetFault(v str
 }
 
 // GetShippingAmt returns the ShippingAmt field value if set, zero value otherwise.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmt() int64 {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmt() float64 {
 	if o == nil || IsNil(o.ShippingAmt) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingAmt
@@ -385,7 +385,7 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmt
 
 // GetShippingAmtOk returns a tuple with the ShippingAmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmtOk() (*int64, bool) {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmtOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingAmt) {
 		return nil, false
 	}
@@ -401,15 +401,15 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) HasShippingAmt
 	return false
 }
 
-// SetShippingAmt gets a reference to the given int64 and assigns it to the ShippingAmt field.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetShippingAmt(v int64) {
+// SetShippingAmt gets a reference to the given float64 and assigns it to the ShippingAmt field.
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetShippingAmt(v float64) {
 	o.ShippingAmt = &v
 }
 
 // GetTotalIssuedFunds returns the TotalIssuedFunds field value if set, zero value otherwise.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFunds() int64 {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFunds() float64 {
 	if o == nil || IsNil(o.TotalIssuedFunds) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TotalIssuedFunds
@@ -417,7 +417,7 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssued
 
 // GetTotalIssuedFundsOk returns a tuple with the TotalIssuedFunds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFundsOk() (*int64, bool) {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFundsOk() (*float64, bool) {
 	if o == nil || IsNil(o.TotalIssuedFunds) {
 		return nil, false
 	}
@@ -433,8 +433,8 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) HasTotalIssued
 	return false
 }
 
-// SetTotalIssuedFunds gets a reference to the given int64 and assigns it to the TotalIssuedFunds field.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetTotalIssuedFunds(v int64) {
+// SetTotalIssuedFunds gets a reference to the given float64 and assigns it to the TotalIssuedFunds field.
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetTotalIssuedFunds(v float64) {
 	o.TotalIssuedFunds = &v
 }
 

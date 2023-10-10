@@ -33,13 +33,13 @@ type GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner str
 	// Product Order Quantity
 	Quantity *int64 `json:"quantity,omitempty"`
 	// Product Price
-	ProductPrice *int64 `json:"product_price,omitempty"`
+	ProductPrice *float64 `json:"product_price,omitempty"`
 	// Product Weight
 	ProductWeight *float64 `json:"product_weight,omitempty"`
 	// Product Order Total Weight
 	TotalWeight *float64 `json:"total_weight,omitempty"`
 	// Product Order Total Price
-	SubtotalPrice *int64 `json:"subtotal_price,omitempty"`
+	SubtotalPrice *float64 `json:"subtotal_price,omitempty"`
 	// Product Order Notes
 	Notes *string `json:"notes,omitempty"`
 	// 
@@ -51,11 +51,11 @@ type GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner str
 	// Currency Unique Identifier
 	CurrencyId *int64 `json:"currency_id,omitempty"`
 	// Product Insurance Price
-	InsurancePrice *int64 `json:"insurance_price,omitempty"`
+	InsurancePrice *float64 `json:"insurance_price,omitempty"`
 	// Product Normal Price
-	NormalPrice *int64 `json:"normal_price,omitempty"`
+	NormalPrice *float64 `json:"normal_price,omitempty"`
 	// 
-	CurrencyRate *int64 `json:"currency_rate,omitempty"`
+	CurrencyRate *float64 `json:"currency_rate,omitempty"`
 	// 
 	ProdPic *string `json:"prod_pic,omitempty"`
 	// Minimum Product Order
@@ -290,9 +290,9 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 }
 
 // GetProductPrice returns the ProductPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetProductPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetProductPrice() float64 {
 	if o == nil || IsNil(o.ProductPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ProductPrice
@@ -300,7 +300,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 
 // GetProductPriceOk returns a tuple with the ProductPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetProductPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetProductPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ProductPrice) {
 		return nil, false
 	}
@@ -316,8 +316,8 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 	return false
 }
 
-// SetProductPrice gets a reference to the given int64 and assigns it to the ProductPrice field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetProductPrice(v int64) {
+// SetProductPrice gets a reference to the given float64 and assigns it to the ProductPrice field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetProductPrice(v float64) {
 	o.ProductPrice = &v
 }
 
@@ -386,9 +386,9 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 }
 
 // GetSubtotalPrice returns the SubtotalPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetSubtotalPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetSubtotalPrice() float64 {
 	if o == nil || IsNil(o.SubtotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SubtotalPrice
@@ -396,7 +396,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 
 // GetSubtotalPriceOk returns a tuple with the SubtotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetSubtotalPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetSubtotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.SubtotalPrice) {
 		return nil, false
 	}
@@ -412,8 +412,8 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 	return false
 }
 
-// SetSubtotalPrice gets a reference to the given int64 and assigns it to the SubtotalPrice field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetSubtotalPrice(v int64) {
+// SetSubtotalPrice gets a reference to the given float64 and assigns it to the SubtotalPrice field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetSubtotalPrice(v float64) {
 	o.SubtotalPrice = &v
 }
 
@@ -578,9 +578,9 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 }
 
 // GetInsurancePrice returns the InsurancePrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetInsurancePrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetInsurancePrice() float64 {
 	if o == nil || IsNil(o.InsurancePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsurancePrice
@@ -588,7 +588,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 
 // GetInsurancePriceOk returns a tuple with the InsurancePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetInsurancePriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetInsurancePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsurancePrice) {
 		return nil, false
 	}
@@ -604,15 +604,15 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 	return false
 }
 
-// SetInsurancePrice gets a reference to the given int64 and assigns it to the InsurancePrice field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetInsurancePrice(v int64) {
+// SetInsurancePrice gets a reference to the given float64 and assigns it to the InsurancePrice field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetInsurancePrice(v float64) {
 	o.InsurancePrice = &v
 }
 
 // GetNormalPrice returns the NormalPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetNormalPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetNormalPrice() float64 {
 	if o == nil || IsNil(o.NormalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.NormalPrice
@@ -620,7 +620,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 
 // GetNormalPriceOk returns a tuple with the NormalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetNormalPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetNormalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.NormalPrice) {
 		return nil, false
 	}
@@ -636,15 +636,15 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 	return false
 }
 
-// SetNormalPrice gets a reference to the given int64 and assigns it to the NormalPrice field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetNormalPrice(v int64) {
+// SetNormalPrice gets a reference to the given float64 and assigns it to the NormalPrice field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetNormalPrice(v float64) {
 	o.NormalPrice = &v
 }
 
 // GetCurrencyRate returns the CurrencyRate field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetCurrencyRate() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetCurrencyRate() float64 {
 	if o == nil || IsNil(o.CurrencyRate) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.CurrencyRate
@@ -652,7 +652,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 
 // GetCurrencyRateOk returns a tuple with the CurrencyRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetCurrencyRateOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) GetCurrencyRateOk() (*float64, bool) {
 	if o == nil || IsNil(o.CurrencyRate) {
 		return nil, false
 	}
@@ -668,8 +668,8 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner
 	return false
 }
 
-// SetCurrencyRate gets a reference to the given int64 and assigns it to the CurrencyRate field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetCurrencyRate(v int64) {
+// SetCurrencyRate gets a reference to the given float64 and assigns it to the CurrencyRate field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner) SetCurrencyRate(v float64) {
 	o.CurrencyRate = &v
 }
 

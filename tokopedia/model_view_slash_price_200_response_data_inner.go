@@ -34,7 +34,7 @@ type ViewSlashPrice200ResponseDataInner struct {
 	// Product SKU
 	Sku *string `json:"sku,omitempty"`
 	// Product Discounted Price
-	DiscountedPrice *int64 `json:"discounted_price,omitempty"`
+	DiscountedPrice *float64 `json:"discounted_price,omitempty"`
 	// Product Discounted Percentage
 	DiscountedPercentage *int64 `json:"discounted_percentage,omitempty"`
 	// Product Maximum Order
@@ -290,9 +290,9 @@ func (o *ViewSlashPrice200ResponseDataInner) SetSku(v string) {
 }
 
 // GetDiscountedPrice returns the DiscountedPrice field value if set, zero value otherwise.
-func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPrice() int64 {
+func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPrice() float64 {
 	if o == nil || IsNil(o.DiscountedPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.DiscountedPrice
@@ -300,7 +300,7 @@ func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPrice() int64 {
 
 // GetDiscountedPriceOk returns a tuple with the DiscountedPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPriceOk() (*int64, bool) {
+func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.DiscountedPrice) {
 		return nil, false
 	}
@@ -316,8 +316,8 @@ func (o *ViewSlashPrice200ResponseDataInner) HasDiscountedPrice() bool {
 	return false
 }
 
-// SetDiscountedPrice gets a reference to the given int64 and assigns it to the DiscountedPrice field.
-func (o *ViewSlashPrice200ResponseDataInner) SetDiscountedPrice(v int64) {
+// SetDiscountedPrice gets a reference to the given float64 and assigns it to the DiscountedPrice field.
+func (o *ViewSlashPrice200ResponseDataInner) SetDiscountedPrice(v float64) {
 	o.DiscountedPrice = &v
 }
 

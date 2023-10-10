@@ -23,7 +23,7 @@ type VariantChildren struct {
 	Name *string `json:"name,omitempty"`
 	Url *string `json:"url,omitempty"`
 	ProductId *int64 `json:"product_id,omitempty"`
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 	PriceFmt *string `json:"price_fmt,omitempty"`
 	Stock *int64 `json:"stock,omitempty"`
 	MainStock *int64 `json:"main_stock,omitempty"`
@@ -155,9 +155,9 @@ func (o *VariantChildren) SetProductId(v int64) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *VariantChildren) GetPrice() int64 {
+func (o *VariantChildren) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -165,7 +165,7 @@ func (o *VariantChildren) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VariantChildren) GetPriceOk() (*int64, bool) {
+func (o *VariantChildren) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -181,8 +181,8 @@ func (o *VariantChildren) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *VariantChildren) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *VariantChildren) SetPrice(v float64) {
 	o.Price = &v
 }
 

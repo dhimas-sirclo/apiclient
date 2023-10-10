@@ -15,12 +15,12 @@ Name | Type | Description | Notes
 **InvoiceNumber** | Pointer to **string** | Invoice Number | [optional] 
 **InvoicePdf** | Pointer to **string** | Invoice PDF Filename | [optional] 
 **InvoiceUrl** | Pointer to **string** | Invoice URL | [optional] 
-**OpenAmt** | Pointer to **int64** | Total Price Amount | [optional] 
-**LpAmt** | Pointer to **int64** |  | [optional] 
-**CashbackAmt** | Pointer to **int64** | Cashback Amount | [optional] 
+**OpenAmt** | Pointer to **float64** | Total Price Amount | [optional] 
+**LpAmt** | Pointer to **float64** |  | [optional] 
+**CashbackAmt** | Pointer to **float64** | Cashback Amount | [optional] 
 **Info** | Pointer to **string** | Info | [optional] 
 **Comment** | Pointer to **string** | Order Comment | [optional] 
-**ItemPrice** | Pointer to **int64** | Item Price | [optional] 
+**ItemPrice** | Pointer to **float64** | Item Price | [optional] 
 **BuyerInfo** | Pointer to [**GetSingleOrder200ResponseDataBuyerInfo**](GetSingleOrder200ResponseDataBuyerInfo.md) |  | [optional] 
 **ShopInfo** | Pointer to [**GetSingleOrder200ResponseDataShopInfo**](GetSingleOrder200ResponseDataShopInfo.md) |  | [optional] 
 **ShipmentFulfillment** | Pointer to [**GetSingleOrder200ResponseDataShipmentFulfillment**](GetSingleOrder200ResponseDataShipmentFulfillment.md) |  | [optional] 
@@ -339,20 +339,20 @@ HasInvoiceUrl returns a boolean if a field has been set.
 
 ### GetOpenAmt
 
-`func (o *GetSingleOrder200ResponseData) GetOpenAmt() int64`
+`func (o *GetSingleOrder200ResponseData) GetOpenAmt() float64`
 
 GetOpenAmt returns the OpenAmt field if non-nil, zero value otherwise.
 
 ### GetOpenAmtOk
 
-`func (o *GetSingleOrder200ResponseData) GetOpenAmtOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseData) GetOpenAmtOk() (*float64, bool)`
 
 GetOpenAmtOk returns a tuple with the OpenAmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOpenAmt
 
-`func (o *GetSingleOrder200ResponseData) SetOpenAmt(v int64)`
+`func (o *GetSingleOrder200ResponseData) SetOpenAmt(v float64)`
 
 SetOpenAmt sets OpenAmt field to given value.
 
@@ -364,20 +364,20 @@ HasOpenAmt returns a boolean if a field has been set.
 
 ### GetLpAmt
 
-`func (o *GetSingleOrder200ResponseData) GetLpAmt() int64`
+`func (o *GetSingleOrder200ResponseData) GetLpAmt() float64`
 
 GetLpAmt returns the LpAmt field if non-nil, zero value otherwise.
 
 ### GetLpAmtOk
 
-`func (o *GetSingleOrder200ResponseData) GetLpAmtOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseData) GetLpAmtOk() (*float64, bool)`
 
 GetLpAmtOk returns a tuple with the LpAmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLpAmt
 
-`func (o *GetSingleOrder200ResponseData) SetLpAmt(v int64)`
+`func (o *GetSingleOrder200ResponseData) SetLpAmt(v float64)`
 
 SetLpAmt sets LpAmt field to given value.
 
@@ -389,20 +389,20 @@ HasLpAmt returns a boolean if a field has been set.
 
 ### GetCashbackAmt
 
-`func (o *GetSingleOrder200ResponseData) GetCashbackAmt() int64`
+`func (o *GetSingleOrder200ResponseData) GetCashbackAmt() float64`
 
 GetCashbackAmt returns the CashbackAmt field if non-nil, zero value otherwise.
 
 ### GetCashbackAmtOk
 
-`func (o *GetSingleOrder200ResponseData) GetCashbackAmtOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseData) GetCashbackAmtOk() (*float64, bool)`
 
 GetCashbackAmtOk returns a tuple with the CashbackAmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCashbackAmt
 
-`func (o *GetSingleOrder200ResponseData) SetCashbackAmt(v int64)`
+`func (o *GetSingleOrder200ResponseData) SetCashbackAmt(v float64)`
 
 SetCashbackAmt sets CashbackAmt field to given value.
 
@@ -464,20 +464,20 @@ HasComment returns a boolean if a field has been set.
 
 ### GetItemPrice
 
-`func (o *GetSingleOrder200ResponseData) GetItemPrice() int64`
+`func (o *GetSingleOrder200ResponseData) GetItemPrice() float64`
 
 GetItemPrice returns the ItemPrice field if non-nil, zero value otherwise.
 
 ### GetItemPriceOk
 
-`func (o *GetSingleOrder200ResponseData) GetItemPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseData) GetItemPriceOk() (*float64, bool)`
 
 GetItemPriceOk returns a tuple with the ItemPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetItemPrice
 
-`func (o *GetSingleOrder200ResponseData) SetItemPrice(v int64)`
+`func (o *GetSingleOrder200ResponseData) SetItemPrice(v float64)`
 
 SetItemPrice sets ItemPrice field to given value.
 

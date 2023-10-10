@@ -23,7 +23,7 @@ type UpdateSlashPriceRequestInner struct {
 	// Product unique identifier
 	ProductId int64 `json:"product_id"`
 	// Price that will be set into slash price campaign (please use either discounted_price or discount_percentage)
-	DiscountedPrice *int64 `json:"discounted_price,omitempty"`
+	DiscountedPrice *float64 `json:"discounted_price,omitempty"`
 	// Total discount percentage that will be set into slash price campaign (please use either discounted_price or discount_percentage)
 	DiscountPercentage *int64 `json:"discount_percentage,omitempty"`
 	// Start time campaign in UNIX format(use GMT +7)
@@ -85,9 +85,9 @@ func (o *UpdateSlashPriceRequestInner) SetProductId(v int64) {
 }
 
 // GetDiscountedPrice returns the DiscountedPrice field value if set, zero value otherwise.
-func (o *UpdateSlashPriceRequestInner) GetDiscountedPrice() int64 {
+func (o *UpdateSlashPriceRequestInner) GetDiscountedPrice() float64 {
 	if o == nil || IsNil(o.DiscountedPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.DiscountedPrice
@@ -95,7 +95,7 @@ func (o *UpdateSlashPriceRequestInner) GetDiscountedPrice() int64 {
 
 // GetDiscountedPriceOk returns a tuple with the DiscountedPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateSlashPriceRequestInner) GetDiscountedPriceOk() (*int64, bool) {
+func (o *UpdateSlashPriceRequestInner) GetDiscountedPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.DiscountedPrice) {
 		return nil, false
 	}
@@ -111,8 +111,8 @@ func (o *UpdateSlashPriceRequestInner) HasDiscountedPrice() bool {
 	return false
 }
 
-// SetDiscountedPrice gets a reference to the given int64 and assigns it to the DiscountedPrice field.
-func (o *UpdateSlashPriceRequestInner) SetDiscountedPrice(v int64) {
+// SetDiscountedPrice gets a reference to the given float64 and assigns it to the DiscountedPrice field.
+func (o *UpdateSlashPriceRequestInner) SetDiscountedPrice(v float64) {
 	o.DiscountedPrice = &v
 }
 

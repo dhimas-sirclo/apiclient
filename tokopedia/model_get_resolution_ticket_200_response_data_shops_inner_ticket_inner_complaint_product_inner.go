@@ -23,8 +23,8 @@ type GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInne
 	Id *int64 `json:"id,omitempty"`
 	Name *string `json:"Name,omitempty"`
 	Qty *int64 `json:"qty,omitempty"`
-	Price *int64 `json:"price,omitempty"`
-	FinalPrice *int64 `json:"final_price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
+	FinalPrice *float64 `json:"final_price,omitempty"`
 	Image *string `json:"image,omitempty"`
 }
 
@@ -142,9 +142,9 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProduct
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPrice() int64 {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -152,7 +152,7 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProduct
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPriceOk() (*int64, bool) {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -168,15 +168,15 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProduct
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
 // GetFinalPrice returns the FinalPrice field value if set, zero value otherwise.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPrice() int64 {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPrice() float64 {
 	if o == nil || IsNil(o.FinalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.FinalPrice
@@ -184,7 +184,7 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProduct
 
 // GetFinalPriceOk returns a tuple with the FinalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPriceOk() (*int64, bool) {
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.FinalPrice) {
 		return nil, false
 	}
@@ -200,8 +200,8 @@ func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProduct
 	return false
 }
 
-// SetFinalPrice gets a reference to the given int64 and assigns it to the FinalPrice field.
-func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetFinalPrice(v int64) {
+// SetFinalPrice gets a reference to the given float64 and assigns it to the FinalPrice field.
+func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetFinalPrice(v float64) {
 	o.FinalPrice = &v
 }
 

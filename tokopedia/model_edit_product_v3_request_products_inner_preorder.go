@@ -31,6 +31,8 @@ type EditProductV3RequestProductsInnerPreorder struct {
 // will change when the set of required properties is changed
 func NewEditProductV3RequestProductsInnerPreorder() *EditProductV3RequestProductsInnerPreorder {
 	this := EditProductV3RequestProductsInnerPreorder{}
+	var timeUnit string = "DAY"
+	this.TimeUnit = &timeUnit
 	return &this
 }
 
@@ -39,6 +41,8 @@ func NewEditProductV3RequestProductsInnerPreorder() *EditProductV3RequestProduct
 // but it doesn't guarantee that properties required by API are set
 func NewEditProductV3RequestProductsInnerPreorderWithDefaults() *EditProductV3RequestProductsInnerPreorder {
 	this := EditProductV3RequestProductsInnerPreorder{}
+	var timeUnit string = "DAY"
+	this.TimeUnit = &timeUnit
 	return &this
 }
 

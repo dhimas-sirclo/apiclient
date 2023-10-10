@@ -31,7 +31,7 @@ type EditProductV3RequestProductsInner struct {
 	// The stock keeping unit for the product. Maximum characters allowed is 50
 	Sku *string `json:"sku,omitempty"`
 	// The possible value between 100 to 100.000.000. If the product variant is added, the price parameter is automatically set to the lowest price among the variant products
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 	// Status for the product with the following available values UNLIMITED, LIMITED, and EMPTY
 	Status string `json:"status"`
 	// The stock of the product. 0 indicates always available. Other than that, the possible values are from 1 to 1000. Stock should be 1 if want to add variant product
@@ -244,9 +244,9 @@ func (o *EditProductV3RequestProductsInner) SetSku(v string) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *EditProductV3RequestProductsInner) GetPrice() int64 {
+func (o *EditProductV3RequestProductsInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -254,7 +254,7 @@ func (o *EditProductV3RequestProductsInner) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EditProductV3RequestProductsInner) GetPriceOk() (*int64, bool) {
+func (o *EditProductV3RequestProductsInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -270,8 +270,8 @@ func (o *EditProductV3RequestProductsInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *EditProductV3RequestProductsInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *EditProductV3RequestProductsInner) SetPrice(v float64) {
 	o.Price = &v
 }
 

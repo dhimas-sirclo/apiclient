@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sku** | Pointer to **string** | SKU of products that will be updated. Maximum characters allowed is 50 | [optional] 
 **ProductId** | Pointer to **int64** | Product ID to update | [optional] 
-**NewPrice** | Pointer to **int64** | New price to be set | [optional] 
+**NewPrice** | Pointer to **float64** | New price to be set | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasProductId returns a boolean if a field has been set.
 
 ### GetNewPrice
 
-`func (o *UpdatePriceRequestInner) GetNewPrice() int64`
+`func (o *UpdatePriceRequestInner) GetNewPrice() float64`
 
 GetNewPrice returns the NewPrice field if non-nil, zero value otherwise.
 
 ### GetNewPriceOk
 
-`func (o *UpdatePriceRequestInner) GetNewPriceOk() (*int64, bool)`
+`func (o *UpdatePriceRequestInner) GetNewPriceOk() (*float64, bool)`
 
 GetNewPriceOk returns a tuple with the NewPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewPrice
 
-`func (o *UpdatePriceRequestInner) SetNewPrice(v int64)`
+`func (o *UpdatePriceRequestInner) SetNewPrice(v float64)`
 
 SetNewPrice sets NewPrice field to given value.
 

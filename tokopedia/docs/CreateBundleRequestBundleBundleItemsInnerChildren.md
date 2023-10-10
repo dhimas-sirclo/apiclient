@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **VariantId** | **int64** |  | 
-**VariantPrice** | **int64** |  | 
+**VariantPrice** | **float64** |  | 
 
 ## Methods
 
 ### NewCreateBundleRequestBundleBundleItemsInnerChildren
 
-`func NewCreateBundleRequestBundleBundleItemsInnerChildren(variantId int64, variantPrice int64, ) *CreateBundleRequestBundleBundleItemsInnerChildren`
+`func NewCreateBundleRequestBundleBundleItemsInnerChildren(variantId int64, variantPrice float64, ) *CreateBundleRequestBundleBundleItemsInnerChildren`
 
 NewCreateBundleRequestBundleBundleItemsInnerChildren instantiates a new CreateBundleRequestBundleBundleItemsInnerChildren object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetVariantId sets VariantId field to given value.
 
 ### GetVariantPrice
 
-`func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPrice() int64`
+`func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPrice() float64`
 
 GetVariantPrice returns the VariantPrice field if non-nil, zero value otherwise.
 
 ### GetVariantPriceOk
 
-`func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPriceOk() (*int64, bool)`
+`func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPriceOk() (*float64, bool)`
 
 GetVariantPriceOk returns a tuple with the VariantPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetVariantPrice
 
-`func (o *CreateBundleRequestBundleBundleItemsInnerChildren) SetVariantPrice(v int64)`
+`func (o *CreateBundleRequestBundleBundleItemsInnerChildren) SetVariantPrice(v float64)`
 
 SetVariantPrice sets VariantPrice field to given value.
 

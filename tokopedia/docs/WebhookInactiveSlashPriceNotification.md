@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **FsId** | Pointer to **int64** | Fulfillment service unique identifier | [optional] 
 **ProductId** | Pointer to **int64** | Product unique identifier | [optional] 
 **ShopId** | Pointer to **int64** | Shop unique identifier | [optional] 
-**OriginalPrice** | Pointer to **int64** | Normal Price | [optional] 
-**DiscountedPrice** | Pointer to **int64** | New Price When Slash Price Already Started | [optional] 
+**OriginalPrice** | Pointer to **float64** | Normal Price | [optional] 
+**DiscountedPrice** | Pointer to **float64** | New Price When Slash Price Already Started | [optional] 
 **DiscountPercentage** | Pointer to **int64** | Discount Percentage | [optional] 
 **StartDate** | Pointer to **string** | Slash Price Start Time | [optional] 
 **EndDate** | Pointer to **string** | Slash Price End Time | [optional] 
@@ -135,20 +135,20 @@ HasShopId returns a boolean if a field has been set.
 
 ### GetOriginalPrice
 
-`func (o *WebhookInactiveSlashPriceNotification) GetOriginalPrice() int64`
+`func (o *WebhookInactiveSlashPriceNotification) GetOriginalPrice() float64`
 
 GetOriginalPrice returns the OriginalPrice field if non-nil, zero value otherwise.
 
 ### GetOriginalPriceOk
 
-`func (o *WebhookInactiveSlashPriceNotification) GetOriginalPriceOk() (*int64, bool)`
+`func (o *WebhookInactiveSlashPriceNotification) GetOriginalPriceOk() (*float64, bool)`
 
 GetOriginalPriceOk returns a tuple with the OriginalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOriginalPrice
 
-`func (o *WebhookInactiveSlashPriceNotification) SetOriginalPrice(v int64)`
+`func (o *WebhookInactiveSlashPriceNotification) SetOriginalPrice(v float64)`
 
 SetOriginalPrice sets OriginalPrice field to given value.
 
@@ -160,20 +160,20 @@ HasOriginalPrice returns a boolean if a field has been set.
 
 ### GetDiscountedPrice
 
-`func (o *WebhookInactiveSlashPriceNotification) GetDiscountedPrice() int64`
+`func (o *WebhookInactiveSlashPriceNotification) GetDiscountedPrice() float64`
 
 GetDiscountedPrice returns the DiscountedPrice field if non-nil, zero value otherwise.
 
 ### GetDiscountedPriceOk
 
-`func (o *WebhookInactiveSlashPriceNotification) GetDiscountedPriceOk() (*int64, bool)`
+`func (o *WebhookInactiveSlashPriceNotification) GetDiscountedPriceOk() (*float64, bool)`
 
 GetDiscountedPriceOk returns a tuple with the DiscountedPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountedPrice
 
-`func (o *WebhookInactiveSlashPriceNotification) SetDiscountedPrice(v int64)`
+`func (o *WebhookInactiveSlashPriceNotification) SetDiscountedPrice(v float64)`
 
 SetDiscountedPrice sets DiscountedPrice field to given value.
 

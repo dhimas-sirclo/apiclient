@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **WarehouseID** | Pointer to **int64** |  | [optional] 
 **ShopID** | Pointer to **int64** |  | [optional] 
 **Stock** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasStock returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPrice() int64`
+`func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPriceOk() (*int64, bool)`
+`func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *IncreaseStockResponseDataSucceedRowsDataInner) SetPrice(v int64)`
+`func (o *IncreaseStockResponseDataSucceedRowsDataInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **Solution** | Pointer to **string** |  | [optional] 
 **ComplaintProduct** | Pointer to [**[]GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner**](GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner.md) |  | [optional] 
 **Fault** | Pointer to **string** |  | [optional] 
-**ShippingAmt** | Pointer to **int64** |  | [optional] 
-**TotalIssuedFunds** | Pointer to **int64** |  | [optional] 
+**ShippingAmt** | Pointer to **float64** |  | [optional] 
+**TotalIssuedFunds** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -288,20 +288,20 @@ HasFault returns a boolean if a field has been set.
 
 ### GetShippingAmt
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmt() int64`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmt() float64`
 
 GetShippingAmt returns the ShippingAmt field if non-nil, zero value otherwise.
 
 ### GetShippingAmtOk
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmtOk() (*int64, bool)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetShippingAmtOk() (*float64, bool)`
 
 GetShippingAmtOk returns a tuple with the ShippingAmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingAmt
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetShippingAmt(v int64)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetShippingAmt(v float64)`
 
 SetShippingAmt sets ShippingAmt field to given value.
 
@@ -313,20 +313,20 @@ HasShippingAmt returns a boolean if a field has been set.
 
 ### GetTotalIssuedFunds
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFunds() int64`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFunds() float64`
 
 GetTotalIssuedFunds returns the TotalIssuedFunds field if non-nil, zero value otherwise.
 
 ### GetTotalIssuedFundsOk
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFundsOk() (*int64, bool)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) GetTotalIssuedFundsOk() (*float64, bool)`
 
 GetTotalIssuedFundsOk returns a tuple with the TotalIssuedFunds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalIssuedFunds
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetTotalIssuedFunds(v int64)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInner) SetTotalIssuedFunds(v float64)`
 
 SetTotalIssuedFunds sets TotalIssuedFunds field to given value.
 

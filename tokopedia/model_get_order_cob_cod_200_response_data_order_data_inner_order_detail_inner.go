@@ -24,8 +24,8 @@ type GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner struct {
 	ProductId *int64 `json:"product_id,omitempty"`
 	ProductName *string `json:"product_name,omitempty"`
 	Quantity *int64 `json:"quantity,omitempty"`
-	ProductPrice *int64 `json:"product_price,omitempty"`
-	InsurancePrice *int64 `json:"insurance_price,omitempty"`
+	ProductPrice *float64 `json:"product_price,omitempty"`
+	InsurancePrice *float64 `json:"insurance_price,omitempty"`
 }
 
 // NewGetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner instantiates a new GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner object
@@ -174,9 +174,9 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetQuantit
 }
 
 // GetProductPrice returns the ProductPrice field value if set, zero value otherwise.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPrice() int64 {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPrice() float64 {
 	if o == nil || IsNil(o.ProductPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ProductPrice
@@ -184,7 +184,7 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProduct
 
 // GetProductPriceOk returns a tuple with the ProductPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPriceOk() (*int64, bool) {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ProductPrice) {
 		return nil, false
 	}
@@ -200,15 +200,15 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) HasProduct
 	return false
 }
 
-// SetProductPrice gets a reference to the given int64 and assigns it to the ProductPrice field.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetProductPrice(v int64) {
+// SetProductPrice gets a reference to the given float64 and assigns it to the ProductPrice field.
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetProductPrice(v float64) {
 	o.ProductPrice = &v
 }
 
 // GetInsurancePrice returns the InsurancePrice field value if set, zero value otherwise.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePrice() int64 {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePrice() float64 {
 	if o == nil || IsNil(o.InsurancePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsurancePrice
@@ -216,7 +216,7 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsuran
 
 // GetInsurancePriceOk returns a tuple with the InsurancePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePriceOk() (*int64, bool) {
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsurancePrice) {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) HasInsuran
 	return false
 }
 
-// SetInsurancePrice gets a reference to the given int64 and assigns it to the InsurancePrice field.
-func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetInsurancePrice(v int64) {
+// SetInsurancePrice gets a reference to the given float64 and assigns it to the InsurancePrice field.
+func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetInsurancePrice(v float64) {
 	o.InsurancePrice = &v
 }
 

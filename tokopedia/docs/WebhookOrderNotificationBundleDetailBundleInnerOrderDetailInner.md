@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **Weight** | Pointer to **float64** |  | [optional] 
 **TotalWeight** | Pointer to **float64** |  | [optional] 
-**SubtotalPrice** | Pointer to **int64** |  | [optional] 
+**SubtotalPrice** | Pointer to **float64** |  | [optional] 
 **Notes** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
@@ -113,20 +113,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPrice() int64`
+`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPriceOk() (*int64, bool)`
+`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetPrice(v int64)`
+`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 
@@ -188,20 +188,20 @@ HasTotalWeight returns a boolean if a field has been set.
 
 ### GetSubtotalPrice
 
-`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPrice() int64`
+`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPrice() float64`
 
 GetSubtotalPrice returns the SubtotalPrice field if non-nil, zero value otherwise.
 
 ### GetSubtotalPriceOk
 
-`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPriceOk() (*int64, bool)`
+`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPriceOk() (*float64, bool)`
 
 GetSubtotalPriceOk returns a tuple with the SubtotalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtotalPrice
 
-`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetSubtotalPrice(v int64)`
+`func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetSubtotalPrice(v float64)`
 
 SetSubtotalPrice sets SubtotalPrice field to given value.
 

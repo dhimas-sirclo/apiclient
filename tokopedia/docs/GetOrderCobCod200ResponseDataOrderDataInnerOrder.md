@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **OrderStatus** | Pointer to **int64** | Order status code: * 0 - Seller cancel order. * 3 - Order Reject Due Empty Stock. * 5 - Order Canceled by Fraud * 6 - Order Rejected (Auto Cancel Out of Stock) * 10 - Order rejected by seller. * 15 - Instant Cancel by Buyer. * 100 - Order Created. * 103 - Wait for payment confirmation from third party. * 220 - Payment verified, order ready to process. * 221 - Waiting for partner approval. * 400 - Seller accept order. * 450 - Waiting for pickup. * 500 - Order shipment. * 501 - Status changed to waiting resi have no input. * 520 - Invalid shipment reference number (AWB). * 530 - Requested by user to correct invalid entry of shipment reference number. * 540 - Delivered to Pickup Point. * 550 - Return to Seller. * 600 - Order delivered. * 601 - Buyer open a case to finish an order. * 690 - Fraud Review * 700 - Order finished.  | [optional] 
 **InvoiceNumber** | Pointer to **string** |  | [optional] 
 **InvoicePdfLink** | Pointer to **string** |  | [optional] 
-**OpenAmt** | Pointer to **int64** |  | [optional] 
-**PaymentAmtCod** | Pointer to **int64** |  | [optional] 
+**OpenAmt** | Pointer to **float64** |  | [optional] 
+**PaymentAmtCod** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -210,20 +210,20 @@ HasInvoicePdfLink returns a boolean if a field has been set.
 
 ### GetOpenAmt
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmt() int64`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmt() float64`
 
 GetOpenAmt returns the OpenAmt field if non-nil, zero value otherwise.
 
 ### GetOpenAmtOk
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmtOk() (*int64, bool)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetOpenAmtOk() (*float64, bool)`
 
 GetOpenAmtOk returns a tuple with the OpenAmt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOpenAmt
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetOpenAmt(v int64)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetOpenAmt(v float64)`
 
 SetOpenAmt sets OpenAmt field to given value.
 
@@ -235,20 +235,20 @@ HasOpenAmt returns a boolean if a field has been set.
 
 ### GetPaymentAmtCod
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCod() int64`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCod() float64`
 
 GetPaymentAmtCod returns the PaymentAmtCod field if non-nil, zero value otherwise.
 
 ### GetPaymentAmtCodOk
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCodOk() (*int64, bool)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) GetPaymentAmtCodOk() (*float64, bool)`
 
 GetPaymentAmtCodOk returns a tuple with the PaymentAmtCod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPaymentAmtCod
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetPaymentAmtCod(v int64)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrder) SetPaymentAmtCod(v float64)`
 
 SetPaymentAmtCod sets PaymentAmtCod field to given value.
 

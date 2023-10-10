@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Stock** | Pointer to **int64** | Product Stock | [optional] 
 **Url** | Pointer to **string** | Product URL | [optional] 
 **Sku** | Pointer to **string** | Product SKU | [optional] 
-**DiscountedPrice** | Pointer to **int64** | Product Discounted Price | [optional] 
+**DiscountedPrice** | Pointer to **float64** | Product Discounted Price | [optional] 
 **DiscountedPercentage** | Pointer to **int64** | Product Discounted Percentage | [optional] 
 **MaxOrder** | Pointer to **int64** | Product Maximum Order | [optional] 
 **StartDate** | Pointer to **string** | Slash Price Start Date Timestamp (format: 2021-09-27T13:25:00+07:00)  | [optional] 
@@ -215,20 +215,20 @@ HasSku returns a boolean if a field has been set.
 
 ### GetDiscountedPrice
 
-`func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPrice() int64`
+`func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPrice() float64`
 
 GetDiscountedPrice returns the DiscountedPrice field if non-nil, zero value otherwise.
 
 ### GetDiscountedPriceOk
 
-`func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPriceOk() (*int64, bool)`
+`func (o *ViewSlashPrice200ResponseDataInner) GetDiscountedPriceOk() (*float64, bool)`
 
 GetDiscountedPriceOk returns a tuple with the DiscountedPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountedPrice
 
-`func (o *ViewSlashPrice200ResponseDataInner) SetDiscountedPrice(v int64)`
+`func (o *ViewSlashPrice200ResponseDataInner) SetDiscountedPrice(v float64)`
 
 SetDiscountedPrice sets DiscountedPrice field to given value.
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Condition** | Pointer to **string** | The condition of the product with the following available values NEW and USED | [optional] 
 **Description** | Pointer to **string** | Description of the product. Maximum characters allowed is 2000 | [optional] 
 **Sku** | Pointer to **string** | The stock keeping unit for the product. Maximum characters allowed is 50 | [optional] 
-**Price** | Pointer to **int64** | The possible value between 100 to 100.000.000. If the product variant is added, the price parameter is automatically set to the lowest price among the variant products | [optional] 
+**Price** | Pointer to **float64** | The possible value between 100 to 100.000.000. If the product variant is added, the price parameter is automatically set to the lowest price among the variant products | [optional] 
 **Status** | **string** | Status for the product with the following available values UNLIMITED, LIMITED, and EMPTY | 
 **Stock** | Pointer to **int64** | The stock of the product. 0 indicates always available. Other than that, the possible values are from 1 to 1000. Stock should be 1 if want to add variant product | [optional] 
 **MinOrder** | Pointer to **int64** | Minimum order required to purchase the product. Can only be a positive integer | [optional] 
@@ -171,20 +171,20 @@ HasSku returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *EditProductV3RequestProductsInner) GetPrice() int64`
+`func (o *EditProductV3RequestProductsInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *EditProductV3RequestProductsInner) GetPriceOk() (*int64, bool)`
+`func (o *EditProductV3RequestProductsInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *EditProductV3RequestProductsInner) SetPrice(v int64)`
+`func (o *EditProductV3RequestProductsInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

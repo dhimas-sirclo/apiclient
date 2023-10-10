@@ -9,18 +9,18 @@ Name | Type | Description | Notes
 **ProductName** | Pointer to **string** | Product Name | [optional] 
 **ProductDescPdp** | Pointer to **string** | Product Description PDP | [optional] 
 **ProductDescAtc** | Pointer to **string** | Product Description ATC | [optional] 
-**ProductPrice** | Pointer to **int64** | Product Price | [optional] 
-**SubtotalPrice** | Pointer to **int64** | Product Order Total Price | [optional] 
+**ProductPrice** | Pointer to **float64** | Product Price | [optional] 
+**SubtotalPrice** | Pointer to **float64** | Product Order Total Price | [optional] 
 **Weight** | Pointer to **float64** | Product Weight | [optional] 
 **TotalWeight** | Pointer to **float64** | Product Order Total Weight | [optional] 
 **Quantity** | Pointer to **int64** | Product Order Quantity | [optional] 
 **QuantityDeliver** | Pointer to **int64** | Product Order Quantity Deliver Count | [optional] 
 **QuantityReject** | Pointer to **int64** | Product Order Quantity Reject Count | [optional] 
 **IsFreeReturns** | Pointer to **bool** | Is free returns? | [optional] 
-**InsurancePrice** | Pointer to **int64** | Product Order Insurance Price | [optional] 
-**NormalPrice** | Pointer to **int64** | Product Order Normal Price | [optional] 
+**InsurancePrice** | Pointer to **float64** | Product Order Insurance Price | [optional] 
+**NormalPrice** | Pointer to **float64** | Product Order Normal Price | [optional] 
 **CurrencyId** | Pointer to **int64** | Currency Unique Identifier | [optional] 
-**CurrencyRate** | Pointer to **int64** | Currency Rate | [optional] 
+**CurrencyRate** | Pointer to **float64** | Currency Rate | [optional] 
 **MinOrder** | Pointer to **int64** | Product Minimum Order | [optional] 
 **ChildCatId** | Pointer to **int64** | Product Child Category Unique Identifier | [optional] 
 **CampaignId** | Pointer to **string** | Campaign Unique Identifier | [optional] 
@@ -174,20 +174,20 @@ HasProductDescAtc returns a boolean if a field has been set.
 
 ### GetProductPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPrice() float64`
 
 GetProductPrice returns the ProductPrice field if non-nil, zero value otherwise.
 
 ### GetProductPriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPriceOk() (*float64, bool)`
 
 GetProductPriceOk returns a tuple with the ProductPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetProductPrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetProductPrice(v float64)`
 
 SetProductPrice sets ProductPrice field to given value.
 
@@ -199,20 +199,20 @@ HasProductPrice returns a boolean if a field has been set.
 
 ### GetSubtotalPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPrice() float64`
 
 GetSubtotalPrice returns the SubtotalPrice field if non-nil, zero value otherwise.
 
 ### GetSubtotalPriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPriceOk() (*float64, bool)`
 
 GetSubtotalPriceOk returns a tuple with the SubtotalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtotalPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetSubtotalPrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetSubtotalPrice(v float64)`
 
 SetSubtotalPrice sets SubtotalPrice field to given value.
 
@@ -374,20 +374,20 @@ HasIsFreeReturns returns a boolean if a field has been set.
 
 ### GetInsurancePrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePrice() float64`
 
 GetInsurancePrice returns the InsurancePrice field if non-nil, zero value otherwise.
 
 ### GetInsurancePriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePriceOk() (*float64, bool)`
 
 GetInsurancePriceOk returns a tuple with the InsurancePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInsurancePrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetInsurancePrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetInsurancePrice(v float64)`
 
 SetInsurancePrice sets InsurancePrice field to given value.
 
@@ -399,20 +399,20 @@ HasInsurancePrice returns a boolean if a field has been set.
 
 ### GetNormalPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPrice() float64`
 
 GetNormalPrice returns the NormalPrice field if non-nil, zero value otherwise.
 
 ### GetNormalPriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPriceOk() (*float64, bool)`
 
 GetNormalPriceOk returns a tuple with the NormalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNormalPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetNormalPrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetNormalPrice(v float64)`
 
 SetNormalPrice sets NormalPrice field to given value.
 
@@ -449,20 +449,20 @@ HasCurrencyId returns a boolean if a field has been set.
 
 ### GetCurrencyRate
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRate() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRate() float64`
 
 GetCurrencyRate returns the CurrencyRate field if non-nil, zero value otherwise.
 
 ### GetCurrencyRateOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRateOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRateOk() (*float64, bool)`
 
 GetCurrencyRateOk returns a tuple with the CurrencyRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrencyRate
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetCurrencyRate(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetCurrencyRate(v float64)`
 
 SetCurrencyRate sets CurrencyRate field to given value.
 

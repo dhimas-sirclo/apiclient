@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **OrderId** | Pointer to **int64** | Order Unique Identifier | [optional] 
 **PofStatus** | Pointer to **int64** | Partial Order Fulfillment Status Code | [optional] 
-**ShippingPrice** | Pointer to **int64** | Shipping Price | [optional] 
-**InsurancePrice** | Pointer to **int64** | Insurance Price | [optional] 
+**ShippingPrice** | Pointer to **float64** | Shipping Price | [optional] 
+**InsurancePrice** | Pointer to **float64** | Insurance Price | [optional] 
 **CreateTime** | Pointer to **string** | POF Request Create Timestamp (format: 2023-04-03T08:36:29.331837Z)  | [optional] 
 **CreateBy** | Pointer to **int64** | POF Request Create By | [optional] 
 **CreateByType** | Pointer to **int64** | POF Request Create By Type | [optional] 
@@ -87,20 +87,20 @@ HasPofStatus returns a boolean if a field has been set.
 
 ### GetShippingPrice
 
-`func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPrice() int64`
+`func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPrice() float64`
 
 GetShippingPrice returns the ShippingPrice field if non-nil, zero value otherwise.
 
 ### GetShippingPriceOk
 
-`func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPriceOk() (*float64, bool)`
 
 GetShippingPriceOk returns a tuple with the ShippingPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingPrice
 
-`func (o *GetSingleOrder200ResponseDataPofInfo) SetShippingPrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataPofInfo) SetShippingPrice(v float64)`
 
 SetShippingPrice sets ShippingPrice field to given value.
 
@@ -112,20 +112,20 @@ HasShippingPrice returns a boolean if a field has been set.
 
 ### GetInsurancePrice
 
-`func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePrice() int64`
+`func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePrice() float64`
 
 GetInsurancePrice returns the InsurancePrice field if non-nil, zero value otherwise.
 
 ### GetInsurancePriceOk
 
-`func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePriceOk() (*float64, bool)`
 
 GetInsurancePriceOk returns a tuple with the InsurancePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInsurancePrice
 
-`func (o *GetSingleOrder200ResponseDataPofInfo) SetInsurancePrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataPofInfo) SetInsurancePrice(v float64)`
 
 SetInsurancePrice sets InsurancePrice field to given value.
 

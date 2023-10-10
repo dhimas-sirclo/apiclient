@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **ProductId** | Pointer to **int64** |  | [optional] 
 **ProductName** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **int64** |  | [optional] 
-**ProductPrice** | Pointer to **int64** |  | [optional] 
-**InsurancePrice** | Pointer to **int64** |  | [optional] 
+**ProductPrice** | Pointer to **float64** |  | [optional] 
+**InsurancePrice** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -132,20 +132,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetProductPrice
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPrice() int64`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPrice() float64`
 
 GetProductPrice returns the ProductPrice field if non-nil, zero value otherwise.
 
 ### GetProductPriceOk
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPriceOk() (*int64, bool)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetProductPriceOk() (*float64, bool)`
 
 GetProductPriceOk returns a tuple with the ProductPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductPrice
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetProductPrice(v int64)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetProductPrice(v float64)`
 
 SetProductPrice sets ProductPrice field to given value.
 
@@ -157,20 +157,20 @@ HasProductPrice returns a boolean if a field has been set.
 
 ### GetInsurancePrice
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePrice() int64`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePrice() float64`
 
 GetInsurancePrice returns the InsurancePrice field if non-nil, zero value otherwise.
 
 ### GetInsurancePriceOk
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePriceOk() (*int64, bool)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) GetInsurancePriceOk() (*float64, bool)`
 
 GetInsurancePriceOk returns a tuple with the InsurancePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInsurancePrice
 
-`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetInsurancePrice(v int64)`
+`func (o *GetOrderCobCod200ResponseDataOrderDataInnerOrderDetailInner) SetInsurancePrice(v float64)`
 
 SetInsurancePrice sets InsurancePrice field to given value.
 

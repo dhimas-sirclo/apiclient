@@ -25,7 +25,7 @@ type UpdatePriceRequestInner struct {
 	// Product ID to update
 	ProductId *int64 `json:"product_id,omitempty"`
 	// New price to be set
-	NewPrice *int64 `json:"new_price,omitempty"`
+	NewPrice *float64 `json:"new_price,omitempty"`
 }
 
 // NewUpdatePriceRequestInner instantiates a new UpdatePriceRequestInner object
@@ -110,9 +110,9 @@ func (o *UpdatePriceRequestInner) SetProductId(v int64) {
 }
 
 // GetNewPrice returns the NewPrice field value if set, zero value otherwise.
-func (o *UpdatePriceRequestInner) GetNewPrice() int64 {
+func (o *UpdatePriceRequestInner) GetNewPrice() float64 {
 	if o == nil || IsNil(o.NewPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.NewPrice
@@ -120,7 +120,7 @@ func (o *UpdatePriceRequestInner) GetNewPrice() int64 {
 
 // GetNewPriceOk returns a tuple with the NewPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdatePriceRequestInner) GetNewPriceOk() (*int64, bool) {
+func (o *UpdatePriceRequestInner) GetNewPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.NewPrice) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *UpdatePriceRequestInner) HasNewPrice() bool {
 	return false
 }
 
-// SetNewPrice gets a reference to the given int64 and assigns it to the NewPrice field.
-func (o *UpdatePriceRequestInner) SetNewPrice(v int64) {
+// SetNewPrice gets a reference to the given float64 and assigns it to the NewPrice field.
+func (o *UpdatePriceRequestInner) SetNewPrice(v float64) {
 	o.NewPrice = &v
 }
 

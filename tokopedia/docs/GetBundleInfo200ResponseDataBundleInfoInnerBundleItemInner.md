@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Status** | Pointer to **int64** |  | [optional] 
 **Selection** | Pointer to [**[]GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInner**](GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerSelectionInner.md) |  | [optional] 
 **Child** | Pointer to [**[]GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerChildInner**](GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInnerChildInner.md) |  | [optional] 
-**BundlePrice** | Pointer to **int64** |  | [optional] 
-**OriginalPrice** | Pointer to **int64** |  | [optional] 
+**BundlePrice** | Pointer to **float64** |  | [optional] 
+**OriginalPrice** | Pointer to **float64** |  | [optional] 
 **Stock** | Pointer to **int64** |  | [optional] 
 **MinOrder** | Pointer to **int64** |  | [optional] 
 **ProductStatus** | Pointer to **string** |  | [optional] 
@@ -187,20 +187,20 @@ HasChild returns a boolean if a field has been set.
 
 ### GetBundlePrice
 
-`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePrice() int64`
+`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePrice() float64`
 
 GetBundlePrice returns the BundlePrice field if non-nil, zero value otherwise.
 
 ### GetBundlePriceOk
 
-`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePriceOk() (*int64, bool)`
+`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetBundlePriceOk() (*float64, bool)`
 
 GetBundlePriceOk returns a tuple with the BundlePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBundlePrice
 
-`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetBundlePrice(v int64)`
+`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetBundlePrice(v float64)`
 
 SetBundlePrice sets BundlePrice field to given value.
 
@@ -212,20 +212,20 @@ HasBundlePrice returns a boolean if a field has been set.
 
 ### GetOriginalPrice
 
-`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPrice() int64`
+`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPrice() float64`
 
 GetOriginalPrice returns the OriginalPrice field if non-nil, zero value otherwise.
 
 ### GetOriginalPriceOk
 
-`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPriceOk() (*int64, bool)`
+`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) GetOriginalPriceOk() (*float64, bool)`
 
 GetOriginalPriceOk returns a tuple with the OriginalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOriginalPrice
 
-`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetOriginalPrice(v int64)`
+`func (o *GetBundleInfo200ResponseDataBundleInfoInnerBundleItemInner) SetOriginalPrice(v float64)`
 
 SetOriginalPrice sets OriginalPrice field to given value.
 

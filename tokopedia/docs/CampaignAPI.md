@@ -261,7 +261,7 @@ import (
 func main() {
     fsId := int64(789) // int64 | Fulfillment service unique identifier
     shopId := int64(789) // int64 | Shop unique identifier
-    createBundleRequest := *openapiclient.NewCreateBundleRequest(*openapiclient.NewCreateBundleRequestBundle("BundleName_example", int64(123), int64(123), int64(123), []int64{int64(123)}, []openapiclient.CreateBundleRequestBundleBundleItemsInner{*openapiclient.NewCreateBundleRequestBundleBundleItemsInner(int64(123), int64(123), int64(123))})) // CreateBundleRequest | 
+    createBundleRequest := *openapiclient.NewCreateBundleRequest(*openapiclient.NewCreateBundleRequestBundle("BundleName_example", int64(123), int64(123), int64(123), []int64{int64(123)}, []openapiclient.CreateBundleRequestBundleBundleItemsInner{*openapiclient.NewCreateBundleRequestBundleBundleItemsInner(int64(123), int64(123), float64(123))})) // CreateBundleRequest | 
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)

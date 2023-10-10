@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MinQty** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasMinQty returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPrice() int64`
+`func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPriceOk() (*int64, bool)`
+`func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *EditProductV3RequestProductsInnerWholesaleInner) SetPrice(v int64)`
+`func (o *EditProductV3RequestProductsInnerWholesaleInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

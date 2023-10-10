@@ -296,12 +296,12 @@ components:
                 format: double
               price:
                 description: Product price
-                type: integer
-                format: int64
+                type: number
+                format: double
               total_price:
                 description: Total price
-                type: integer
-                format: int64
+                type: number
+                format: double
               currency:
                 description: Currency code
                 type: string
@@ -433,28 +433,28 @@ components:
           properties:
             ttl_product_price:
               description: Total product price
-              type: integer
-              format: int64
+              type: number
+              format: double
             shipping_cost:
               description: Shipping rate
-              type: integer
-              format: int64
+              type: number
+              format: double
             insurance_cost:
               description: Insurance price
-              type: integer
-              format: int64
+              type: number
+              format: double
             ttl_amount:
               description: Total amount
-              type: integer
-              format: int64
+              type: number
+              format: double
             voucher_amount:
               description: Voucher amount
-              type: integer
-              format: int64
+              type: number
+              format: double
             toppoints_amount:
               description: Toppoints amount
-              type: integer
-              format: int64
+              type: number
+              format: double
         # WARN: dropshipper_info di dokumentasi ditulis array, tapi di contoh berupa object
         dropshipper_info:
           description: Dropshipper information
@@ -525,14 +525,14 @@ components:
                   bundle_name:
                     type: string
                   bundle_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                   bundle_quantity:
                     type: integer
                     format: int64
                   bundle_subtotal_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                   order_detail:
                     type: array
                     items:
@@ -548,8 +548,8 @@ components:
                           type: integer
                           format: int64
                         price:
-                          type: integer
-                          format: int64
+                          type: number
+                          format: double
                         weight:
                           type: number
                           format: double
@@ -557,8 +557,8 @@ components:
                           type: number
                           format: double
                         subtotal_price:
-                          type: integer
-                          format: int64
+                          type: number
+                          format: double
                         notes:
                           type: string
                         Currency:
@@ -595,11 +595,11 @@ components:
                     type: number
                     format: double
                   price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                   total_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                   currency:
                     type: string
                   sku:
@@ -647,11 +647,11 @@ components:
                 type: number
                 format: double
               price:
-                type: integer
-                format: int64
+                type: number
+                format: double
               total_price:
-                type: integer
-                format: int64
+                type: number
+                format: double
               quantity:
                 type: integer
                 format: int64
@@ -1045,8 +1045,8 @@ components:
                   product_name:
                     type: string
                   product_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                   sku:
                     type: string
                   error:
@@ -1082,8 +1082,8 @@ components:
           format: int64
         discounted_price:
           description: New Price When Slash Price Already Started
-          type: integer
-          format: int64
+          type: number
+          format: double
         discount_percentage:
           description: Discount Percentage
           type: integer
@@ -1116,12 +1116,12 @@ components:
           format: int64
         original_price:
           description: Normal Price
-          type: integer
-          format: int64
+          type: number
+          format: double
         discounted_price:
           description: New Price When Slash Price Already Started
-          type: integer
-          format: int64
+          type: number
+          format: double
         discount_percentage:
           description: Discount Percentage
           type: integer
@@ -1154,12 +1154,12 @@ components:
           format: int64
         original_price:
           description: Normal Price
-          type: integer
-          format: int64
+          type: number
+          format: double
         discounted_price:
           description: New Price When Slash Price Already Started
-          type: integer
-          format: int64
+          type: number
+          format: double
         discount_percentage:
           description: Discount Percentage
           type: integer
@@ -1192,12 +1192,12 @@ components:
           format: int64
         original_price:
           description: Normal Price
-          type: integer
-          format: int64
+          type: number
+          format: double
         discounted_price:
           description: New Price When Slash Price Already Started
-          type: integer
-          format: int64
+          type: number
+          format: double
         discount_percentage:
           description: Discount Percentage
           type: integer
@@ -1872,8 +1872,8 @@ components:
           type: integer
           format: int64
         discounted_price:
-          type: integer
-          format: int64
+          type: number
+          format: double
         discounted_price_fmt:
           type: string
         campaign_type:
@@ -1896,8 +1896,8 @@ components:
           type: integer
           format: int64
         price:
-          type: integer
-          format: int64
+          type: number
+          format: double
         price_fmt:
           type: string
         stock:
@@ -2053,8 +2053,8 @@ components:
                     type: integer
                     format: int64
                   price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
     DecreaseStockResponse:
       type: object
       properties:
@@ -2100,8 +2100,8 @@ components:
                     type: integer
                     format: int64
                   price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
   parameters:
     fs_id:
       name: fs_id
@@ -3017,11 +3017,11 @@ paths:
                                   type: number
                                   format: double
                                 price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                 total_price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                 quantity:
                                   type: integer
                                   format: int64
@@ -3059,11 +3059,11 @@ paths:
                                   type: number
                                   format: double
                                 price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                 total_price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                 quantity:
                                   type: integer
                                   format: int64
@@ -3152,23 +3152,23 @@ paths:
                             type: object
                             properties:
                               ttl_product_price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                               shipping_cost:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                               insurance_cost:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                               ttl_amount:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                               voucher_amount:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                               toppoints_amount:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                           dropshipper_info:
                             type: object
                             properties:
@@ -4234,11 +4234,11 @@ paths:
                                           type: integer
                                           format: int64
                                         bundle_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                         original_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                         stock:
                                           type: integer
                                           format: int64
@@ -4250,11 +4250,11 @@ paths:
                                         is_buyable:
                                           type: boolean
                                   bundle_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                   original_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                   stock:
                                     type: integer
                                     format: int64
@@ -4490,8 +4490,8 @@ paths:
                             format: int64
                             description: Status of the product where 1 is SHOWN and 2 is UNSHOWN
                           bundle_price:
-                            type: integer
-                            format: int64
+                            type: number
+                            format: double
                             description: The product’s price in this bundle
                           min_order:
                             type: integer
@@ -4508,8 +4508,8 @@ paths:
                                 type: integer
                                 format: int64
                               variant_price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
       responses:
         default:
           description: Error
@@ -4741,8 +4741,8 @@ paths:
                     format: int64
                     description: Product unique identifier
                   discounted_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                     description: Price that will be set into slash price campaign (please use either discounted_price or discount_percentage)
                   discount_percentage:
                     type: integer
@@ -4914,8 +4914,8 @@ paths:
                     format: int64
                     description: Product unique identifier
                   discounted_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                     description: Price that will be set into slash price campaign (please use either discounted_price or discount_percentage)
                   discount_percentage:
                     type: integer
@@ -5363,14 +5363,14 @@ paths:
                           type: object
                           properties:
                             min:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                             min_formated:
                               type: string
                               description: Formated
                             max:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                             max_formated:
                               type: string
                               description: Formated
@@ -5385,8 +5385,8 @@ paths:
                           type: string
                           description: Product SKU
                         discounted_price:
-                          type: integer
-                          format: int64
+                          type: number
+                          format: double
                           description: Product Discounted Price
                         discounted_percentage:
                           type: integer
@@ -6937,21 +6937,21 @@ paths:
                                           type: integer
                                           format: int64
                                         price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                         final_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                         image:
                                           type: string
                                   fault:
                                     type: string
                                   shipping_amt:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                   total_issued_funds:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
   /v1/fs/{fs_id}/fulfillment_order:
     parameters:
       - $ref: "#/components/parameters/fs_id"
@@ -7088,11 +7088,11 @@ paths:
                                 invoice_pdf_link:
                                   type: string
                                 open_amt:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                 payment_amt_cod:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                             order_history:
                               type: array
                               items:
@@ -7126,11 +7126,11 @@ paths:
                                     type: integer
                                     format: int64
                                   product_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                   insurance_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                             drop_shipper:
                               type: object
                               properties:
@@ -7829,15 +7829,15 @@ paths:
                         type: string
                         description: Invoice URL
                       open_amt:
-                        type: integer
-                        format: int64
+                        type: number
+                        format: double
                         description: Total Price Amount
                       lp_amt:
-                        type: integer
-                        format: int64
+                        type: number
+                        format: double
                       cashback_amt:
-                        type: integer
-                        format: int64
+                        type: number
+                        format: double
                         description: Cashback Amount
                       info:
                         type: string
@@ -7846,8 +7846,8 @@ paths:
                         type: string
                         description: Order Comment
                       item_price:
-                        type: integer
-                        format: int64
+                        type: number
+                        format: double
                         description: Item Price
                       buyer_info:
                         type: object
@@ -7994,12 +7994,12 @@ paths:
                                   type: string
                                   description: Product Description ATC
                                 product_price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                   description: Product Price
                                 subtotal_price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                   description: Product Order Total Price
                                 weight:
                                   type: number
@@ -8025,20 +8025,20 @@ paths:
                                   type: boolean
                                   description: Is free returns?
                                 insurance_price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                   description: Product Order Insurance Price
                                 normal_price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                   description: Product Order Normal Price
                                 currency_id:
                                   type: integer
                                   format: int64
                                   description: Currency Unique Identifier
                                 currency_rate:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                   description: Currency Rate
                                 min_order:
                                   type: integer
@@ -8122,24 +8122,24 @@ paths:
                                 type: string
                                 description: Logistic Service Name
                               shipping_price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Shipping Price
                               shipping_price_rate:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Shipping Price Rate
                               shipping_fee:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Shipping Fee
                               insurance_price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Insurance Price
                               fee:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Fee
                               is_change_courier:
                                 type: boolean
@@ -8159,16 +8159,16 @@ paths:
                                 type: string
                                 description: Second Logistic Service Name
                               second_agency_fee:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Second Agency Fee
                               second_insurance:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Second Insurance
                               second_rate:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Second Shipping Price Rate
                               awb:
                                 type: string
@@ -8181,8 +8181,8 @@ paths:
                                 type: string
                                 description: Airway Bill (Auto Resi)
                               autoresi_shipping_price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: AWB Shipping Price
                               count_awb:
                                 type: integer
@@ -8554,15 +8554,13 @@ paths:
                             type: integer
                             format: int64
                             description: Partial Order Fulfillment Status Code
-                          # WARN: di dokumentasi float
                           shipping_price:
-                            type: integer
-                            format: int64
+                            type: number
+                            format: double
                             description: Shipping Price
-                          # WARN: di dokumentasi float
                           insurance_price:
-                            type: integer
-                            format: int64
+                            type: number
+                            format: double
                             description: Insurance Price
                           create_time:
                             type: string
@@ -8612,8 +8610,8 @@ paths:
                                   format: int64
                                   description: Requested Product Quantity
                                 total_price_request:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                   description: Requested Total Price
   /v2/order/list:
     get:
@@ -8786,12 +8784,12 @@ paths:
                                 format: double
                                 description: Product Order Total Weight
                               price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Product Price
                               total_price:
-                                type: integer
-                                format: int64
+                                type: number
+                                format: double
                                 description: Product Order Total Price
                               currency:
                                 type: string
@@ -8839,16 +8837,16 @@ paths:
                                     description: Bundle Name
                                   # WARN: wrong description
                                   bundle_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: Bundle Variant Unique Identifier
                                   bundle_quantity:
                                     type: integer
                                     format: int64
                                     description: Bundle Order Quantity
                                   bundle_subtotal_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: Bundle Order Total Price
                                   order_detail:
                                     type: array
@@ -8878,8 +8876,8 @@ paths:
                                           format: int64
                                           description: Product Order Quantity
                                         product_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                           description: Product Price
                                         product_weight:
                                           type: number
@@ -8890,8 +8888,8 @@ paths:
                                           format: double
                                           description: Product Order Total Weight
                                         subtotal_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                           description: Product Order Total Price
                                         notes:
                                           type: string
@@ -8913,16 +8911,16 @@ paths:
                                           format: int64
                                           description: Currency Unique Identifier
                                         insurance_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                           description: Product Insurance Price
                                         normal_price:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                           description: Product Normal Price
                                         currency_rate:
-                                          type: integer
-                                          format: int64
+                                          type: number
+                                          format: double
                                           description: ""
                                         prod_pic:
                                           type: string
@@ -8990,8 +8988,8 @@ paths:
                                     format: int64
                                     description: Product Order Quantity
                                   product_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: Product Price
                                   product_weight:
                                     type: number
@@ -9002,8 +9000,8 @@ paths:
                                     format: double
                                     description: Product Order Total Weight
                                   subtotal_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: Product Order Total Price
                                   notes:
                                     type: string
@@ -9025,16 +9023,16 @@ paths:
                                     format: int64
                                     description: Currency Unique Identifier
                                   insurance_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: Product Insurance Price
                                   normal_price:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: Product Normal Price
                                   currency_rate:
-                                    type: integer
-                                    format: int64
+                                    type: number
+                                    format: double
                                     description: ""
                                   prod_pic:
                                     type: string
@@ -9176,28 +9174,28 @@ paths:
                           type: object
                           properties:
                             ttl_product_price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Total Product Price
                             shipping_cost:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Shipping Cost
                             insurance_cost:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Insurance Cost
                             ttl_amount:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Total Amount
                             voucher_amount:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Voucher Amount
                             toppoints_amount:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Toppoints Amount
                         dropshipper_info:
                           type: object
@@ -9376,15 +9374,13 @@ paths:
                               type: integer
                               format: int64
                               description: Partial Order Fulfillment Status Code
-                            # WARN: di dokumentasi ditulis float
                             shipping_price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Shipping Price
-                            # WARN: di dokumentasi ditulis float
                             insurance_price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                               description: Insurance Price
                             create_time:
                               type: string
@@ -9985,8 +9981,8 @@ paths:
                     format: int64
                     description: Product ID to update
                   new_price:
-                    type: integer
-                    format: int64
+                    type: number
+                    format: double
                     description: New price to be set
       responses:
         default:
@@ -10039,8 +10035,8 @@ paths:
                             product_url:
                               type: string
                             new_price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                             message:
                               type: string
         "200":
@@ -10093,8 +10089,8 @@ paths:
                             product_url:
                               type: string
                             new_price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                             message:
                               type: string
   /v1/products/fs/{fs_id}/inactive:
@@ -10505,8 +10501,8 @@ paths:
                         description: The stock keeping unit for the product. Maximum characters allowed is 50
                         maximum: 50
                       price:
-                        type: integer
-                        format: int64
+                        type: number
+                        format: double
                         description: The possible value between 100 to 100.000.000. If the product variant is added, the price parameter is automatically set to the lowest price among the variant products
                         minimum: 100
                         maximum: 100000000
@@ -10599,8 +10595,8 @@ paths:
                               type: integer
                               format: int64
                             price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                       # WARN: tidak ada di contoh
                       preorder:
                         type: object
@@ -10614,6 +10610,9 @@ paths:
                             format: int64
                           time_unit:
                             type: string
+                            enum:
+                              - DAY
+                            default: DAY
                       # WARN: tidak ada di contoh
                       videos:
                         type: array
@@ -10651,8 +10650,8 @@ paths:
                                 status:
                                   type: string
                                 price:
-                                  type: integer
-                                  format: int64
+                                  type: number
+                                  format: double
                                 stock:
                                   type: integer
                                   format: int64
@@ -10752,8 +10751,8 @@ paths:
                             product_name:
                               type: string
                             product_price:
-                              type: integer
-                              format: int64
+                              type: number
+                              format: double
                             sku:
                               type: string
                             error:

@@ -21,7 +21,7 @@ var _ MappedNullable = &EditProductV3RequestProductsInnerWholesaleInner{}
 // EditProductV3RequestProductsInnerWholesaleInner struct for EditProductV3RequestProductsInnerWholesaleInner
 type EditProductV3RequestProductsInnerWholesaleInner struct {
 	MinQty *int64 `json:"min_qty,omitempty"`
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 }
 
 // NewEditProductV3RequestProductsInnerWholesaleInner instantiates a new EditProductV3RequestProductsInnerWholesaleInner object
@@ -74,9 +74,9 @@ func (o *EditProductV3RequestProductsInnerWholesaleInner) SetMinQty(v int64) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPrice() int64 {
+func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -84,7 +84,7 @@ func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPriceOk() (*int64, bool) {
+func (o *EditProductV3RequestProductsInnerWholesaleInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *EditProductV3RequestProductsInnerWholesaleInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *EditProductV3RequestProductsInnerWholesaleInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *EditProductV3RequestProductsInnerWholesaleInner) SetPrice(v float64) {
 	o.Price = &v
 }
 

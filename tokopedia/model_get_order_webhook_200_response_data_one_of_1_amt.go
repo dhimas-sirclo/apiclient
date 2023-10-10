@@ -20,12 +20,12 @@ var _ MappedNullable = &GetOrderWebhook200ResponseDataOneOf1Amt{}
 
 // GetOrderWebhook200ResponseDataOneOf1Amt struct for GetOrderWebhook200ResponseDataOneOf1Amt
 type GetOrderWebhook200ResponseDataOneOf1Amt struct {
-	TtlProductPrice *int64 `json:"ttl_product_price,omitempty"`
-	ShippingCost *int64 `json:"shipping_cost,omitempty"`
-	InsuranceCost *int64 `json:"insurance_cost,omitempty"`
-	TtlAmount *int64 `json:"ttl_amount,omitempty"`
-	VoucherAmount *int64 `json:"voucher_amount,omitempty"`
-	ToppointsAmount *int64 `json:"toppoints_amount,omitempty"`
+	TtlProductPrice *float64 `json:"ttl_product_price,omitempty"`
+	ShippingCost *float64 `json:"shipping_cost,omitempty"`
+	InsuranceCost *float64 `json:"insurance_cost,omitempty"`
+	TtlAmount *float64 `json:"ttl_amount,omitempty"`
+	VoucherAmount *float64 `json:"voucher_amount,omitempty"`
+	ToppointsAmount *float64 `json:"toppoints_amount,omitempty"`
 }
 
 // NewGetOrderWebhook200ResponseDataOneOf1Amt instantiates a new GetOrderWebhook200ResponseDataOneOf1Amt object
@@ -46,9 +46,9 @@ func NewGetOrderWebhook200ResponseDataOneOf1AmtWithDefaults() *GetOrderWebhook20
 }
 
 // GetTtlProductPrice returns the TtlProductPrice field value if set, zero value otherwise.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlProductPrice() int64 {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlProductPrice() float64 {
 	if o == nil || IsNil(o.TtlProductPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TtlProductPrice
@@ -56,7 +56,7 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlProductPrice() int64 {
 
 // GetTtlProductPriceOk returns a tuple with the TtlProductPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlProductPriceOk() (*int64, bool) {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlProductPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.TtlProductPrice) {
 		return nil, false
 	}
@@ -72,15 +72,15 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) HasTtlProductPrice() bool {
 	return false
 }
 
-// SetTtlProductPrice gets a reference to the given int64 and assigns it to the TtlProductPrice field.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetTtlProductPrice(v int64) {
+// SetTtlProductPrice gets a reference to the given float64 and assigns it to the TtlProductPrice field.
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetTtlProductPrice(v float64) {
 	o.TtlProductPrice = &v
 }
 
 // GetShippingCost returns the ShippingCost field value if set, zero value otherwise.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetShippingCost() int64 {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetShippingCost() float64 {
 	if o == nil || IsNil(o.ShippingCost) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingCost
@@ -88,7 +88,7 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetShippingCost() int64 {
 
 // GetShippingCostOk returns a tuple with the ShippingCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetShippingCostOk() (*int64, bool) {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetShippingCostOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingCost) {
 		return nil, false
 	}
@@ -104,15 +104,15 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) HasShippingCost() bool {
 	return false
 }
 
-// SetShippingCost gets a reference to the given int64 and assigns it to the ShippingCost field.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetShippingCost(v int64) {
+// SetShippingCost gets a reference to the given float64 and assigns it to the ShippingCost field.
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetShippingCost(v float64) {
 	o.ShippingCost = &v
 }
 
 // GetInsuranceCost returns the InsuranceCost field value if set, zero value otherwise.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetInsuranceCost() int64 {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetInsuranceCost() float64 {
 	if o == nil || IsNil(o.InsuranceCost) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsuranceCost
@@ -120,7 +120,7 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetInsuranceCost() int64 {
 
 // GetInsuranceCostOk returns a tuple with the InsuranceCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetInsuranceCostOk() (*int64, bool) {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetInsuranceCostOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsuranceCost) {
 		return nil, false
 	}
@@ -136,15 +136,15 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) HasInsuranceCost() bool {
 	return false
 }
 
-// SetInsuranceCost gets a reference to the given int64 and assigns it to the InsuranceCost field.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetInsuranceCost(v int64) {
+// SetInsuranceCost gets a reference to the given float64 and assigns it to the InsuranceCost field.
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetInsuranceCost(v float64) {
 	o.InsuranceCost = &v
 }
 
 // GetTtlAmount returns the TtlAmount field value if set, zero value otherwise.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlAmount() int64 {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlAmount() float64 {
 	if o == nil || IsNil(o.TtlAmount) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TtlAmount
@@ -152,7 +152,7 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlAmount() int64 {
 
 // GetTtlAmountOk returns a tuple with the TtlAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlAmountOk() (*int64, bool) {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetTtlAmountOk() (*float64, bool) {
 	if o == nil || IsNil(o.TtlAmount) {
 		return nil, false
 	}
@@ -168,15 +168,15 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) HasTtlAmount() bool {
 	return false
 }
 
-// SetTtlAmount gets a reference to the given int64 and assigns it to the TtlAmount field.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetTtlAmount(v int64) {
+// SetTtlAmount gets a reference to the given float64 and assigns it to the TtlAmount field.
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetTtlAmount(v float64) {
 	o.TtlAmount = &v
 }
 
 // GetVoucherAmount returns the VoucherAmount field value if set, zero value otherwise.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetVoucherAmount() int64 {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetVoucherAmount() float64 {
 	if o == nil || IsNil(o.VoucherAmount) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.VoucherAmount
@@ -184,7 +184,7 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetVoucherAmount() int64 {
 
 // GetVoucherAmountOk returns a tuple with the VoucherAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetVoucherAmountOk() (*int64, bool) {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetVoucherAmountOk() (*float64, bool) {
 	if o == nil || IsNil(o.VoucherAmount) {
 		return nil, false
 	}
@@ -200,15 +200,15 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) HasVoucherAmount() bool {
 	return false
 }
 
-// SetVoucherAmount gets a reference to the given int64 and assigns it to the VoucherAmount field.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetVoucherAmount(v int64) {
+// SetVoucherAmount gets a reference to the given float64 and assigns it to the VoucherAmount field.
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetVoucherAmount(v float64) {
 	o.VoucherAmount = &v
 }
 
 // GetToppointsAmount returns the ToppointsAmount field value if set, zero value otherwise.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetToppointsAmount() int64 {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetToppointsAmount() float64 {
 	if o == nil || IsNil(o.ToppointsAmount) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ToppointsAmount
@@ -216,7 +216,7 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetToppointsAmount() int64 {
 
 // GetToppointsAmountOk returns a tuple with the ToppointsAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetToppointsAmountOk() (*int64, bool) {
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) GetToppointsAmountOk() (*float64, bool) {
 	if o == nil || IsNil(o.ToppointsAmount) {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *GetOrderWebhook200ResponseDataOneOf1Amt) HasToppointsAmount() bool {
 	return false
 }
 
-// SetToppointsAmount gets a reference to the given int64 and assigns it to the ToppointsAmount field.
-func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetToppointsAmount(v int64) {
+// SetToppointsAmount gets a reference to the given float64 and assigns it to the ToppointsAmount field.
+func (o *GetOrderWebhook200ResponseDataOneOf1Amt) SetToppointsAmount(v float64) {
 	o.ToppointsAmount = &v
 }
 

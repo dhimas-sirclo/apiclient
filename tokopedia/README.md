@@ -190,7 +190,6 @@ Class | Method | HTTP request | Description
  - [CreateProductV3RequestInnerVariant](docs/CreateProductV3RequestInnerVariant.md)
  - [CreateProductV3RequestInnerVariantProductsInner](docs/CreateProductV3RequestInnerVariantProductsInner.md)
  - [CreateProductV3RequestInnerVideosInner](docs/CreateProductV3RequestInnerVideosInner.md)
- - [CreateProductV3RequestInnerWholesaleInner](docs/CreateProductV3RequestInnerWholesaleInner.md)
  - [CreateShowcase200Response](docs/CreateShowcase200Response.md)
  - [CreateShowcase200ResponseData](docs/CreateShowcase200ResponseData.md)
  - [CreateShowcaseRequest](docs/CreateShowcaseRequest.md)

@@ -25,7 +25,7 @@ type CreateBundleRequestBundleBundleItemsInner struct {
 	// Status of the product where 1 is SHOWN and 2 is UNSHOWN
 	Status int64 `json:"status"`
 	// The product’s price in this bundle
-	BundlePrice int64 `json:"bundle_price"`
+	BundlePrice float64 `json:"bundle_price"`
 	// Minimum order for this product. Used for PAKET DISKON type bundle.
 	MinOrder *int64 `json:"min_order,omitempty"`
 	Children *CreateBundleRequestBundleBundleItemsInnerChildren `json:"children,omitempty"`
@@ -35,7 +35,7 @@ type CreateBundleRequestBundleBundleItemsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBundleRequestBundleBundleItemsInner(productId int64, status int64, bundlePrice int64) *CreateBundleRequestBundleBundleItemsInner {
+func NewCreateBundleRequestBundleBundleItemsInner(productId int64, status int64, bundlePrice float64) *CreateBundleRequestBundleBundleItemsInner {
 	this := CreateBundleRequestBundleBundleItemsInner{}
 	this.ProductId = productId
 	this.Status = status
@@ -100,9 +100,9 @@ func (o *CreateBundleRequestBundleBundleItemsInner) SetStatus(v int64) {
 }
 
 // GetBundlePrice returns the BundlePrice field value
-func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePrice() int64 {
+func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePrice() float64 {
 	if o == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 
@@ -111,7 +111,7 @@ func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePrice() int64 {
 
 // GetBundlePriceOk returns a tuple with the BundlePrice field value
 // and a boolean to check if the value has been set.
-func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePriceOk() (*int64, bool) {
+func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePriceOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -119,7 +119,7 @@ func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePriceOk() (*int64, 
 }
 
 // SetBundlePrice sets field value
-func (o *CreateBundleRequestBundleBundleItemsInner) SetBundlePrice(v int64) {
+func (o *CreateBundleRequestBundleBundleItemsInner) SetBundlePrice(v float64) {
 	o.BundlePrice = v
 }
 

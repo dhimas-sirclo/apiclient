@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsActive** | Pointer to **bool** |  | [optional] 
 **Duration** | Pointer to **int64** |  | [optional] 
-**TimeUnit** | Pointer to **string** |  | [optional] 
+**TimeUnit** | Pointer to **string** |  | [optional] [default to "DAY"]
 
 ## Methods
 

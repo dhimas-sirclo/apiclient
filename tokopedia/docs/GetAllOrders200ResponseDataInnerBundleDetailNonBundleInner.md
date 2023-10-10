@@ -10,18 +10,18 @@ Name | Type | Description | Notes
 **ProductName** | Pointer to **string** | Product Name | [optional] 
 **ProductDesc** | Pointer to **string** | Product Descirption | [optional] 
 **Quantity** | Pointer to **int64** | Product Order Quantity | [optional] 
-**ProductPrice** | Pointer to **int64** | Product Price | [optional] 
+**ProductPrice** | Pointer to **float64** | Product Price | [optional] 
 **ProductWeight** | Pointer to **float64** | Product Weight | [optional] 
 **TotalWeight** | Pointer to **float64** | Product Order Total Weight | [optional] 
-**SubtotalPrice** | Pointer to **int64** | Product Order Total Price | [optional] 
+**SubtotalPrice** | Pointer to **float64** | Product Order Total Price | [optional] 
 **Notes** | Pointer to **string** | Product Order Notes | [optional] 
 **Finsurance** | Pointer to **int64** |  | [optional] 
 **Returnable** | Pointer to **int64** | Is returnable? | [optional] 
 **ChildCatId** | Pointer to **int64** | Category Unique Identifier | [optional] 
 **CurrencyId** | Pointer to **int64** | Currency Unique Identifier | [optional] 
-**InsurancePrice** | Pointer to **int64** | Product Insurance Price | [optional] 
-**NormalPrice** | Pointer to **int64** | Product Normal Price | [optional] 
-**CurrencyRate** | Pointer to **int64** |  | [optional] 
+**InsurancePrice** | Pointer to **float64** | Product Insurance Price | [optional] 
+**NormalPrice** | Pointer to **float64** | Product Normal Price | [optional] 
+**CurrencyRate** | Pointer to **float64** |  | [optional] 
 **ProdPic** | Pointer to **string** |  | [optional] 
 **MinOrder** | Pointer to **int64** | Minimum Product Order | [optional] 
 **MustInsurance** | Pointer to **int64** | Is product must include insurance? | [optional] 
@@ -203,20 +203,20 @@ HasQuantity returns a boolean if a field has been set.
 
 ### GetProductPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetProductPrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetProductPrice() float64`
 
 GetProductPrice returns the ProductPrice field if non-nil, zero value otherwise.
 
 ### GetProductPriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetProductPriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetProductPriceOk() (*float64, bool)`
 
 GetProductPriceOk returns a tuple with the ProductPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetProductPrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetProductPrice(v float64)`
 
 SetProductPrice sets ProductPrice field to given value.
 
@@ -278,20 +278,20 @@ HasTotalWeight returns a boolean if a field has been set.
 
 ### GetSubtotalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetSubtotalPrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetSubtotalPrice() float64`
 
 GetSubtotalPrice returns the SubtotalPrice field if non-nil, zero value otherwise.
 
 ### GetSubtotalPriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetSubtotalPriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetSubtotalPriceOk() (*float64, bool)`
 
 GetSubtotalPriceOk returns a tuple with the SubtotalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtotalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetSubtotalPrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetSubtotalPrice(v float64)`
 
 SetSubtotalPrice sets SubtotalPrice field to given value.
 
@@ -428,20 +428,20 @@ HasCurrencyId returns a boolean if a field has been set.
 
 ### GetInsurancePrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetInsurancePrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetInsurancePrice() float64`
 
 GetInsurancePrice returns the InsurancePrice field if non-nil, zero value otherwise.
 
 ### GetInsurancePriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetInsurancePriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetInsurancePriceOk() (*float64, bool)`
 
 GetInsurancePriceOk returns a tuple with the InsurancePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInsurancePrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetInsurancePrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetInsurancePrice(v float64)`
 
 SetInsurancePrice sets InsurancePrice field to given value.
 
@@ -453,20 +453,20 @@ HasInsurancePrice returns a boolean if a field has been set.
 
 ### GetNormalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetNormalPrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetNormalPrice() float64`
 
 GetNormalPrice returns the NormalPrice field if non-nil, zero value otherwise.
 
 ### GetNormalPriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetNormalPriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetNormalPriceOk() (*float64, bool)`
 
 GetNormalPriceOk returns a tuple with the NormalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNormalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetNormalPrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetNormalPrice(v float64)`
 
 SetNormalPrice sets NormalPrice field to given value.
 
@@ -478,20 +478,20 @@ HasNormalPrice returns a boolean if a field has been set.
 
 ### GetCurrencyRate
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetCurrencyRate() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetCurrencyRate() float64`
 
 GetCurrencyRate returns the CurrencyRate field if non-nil, zero value otherwise.
 
 ### GetCurrencyRateOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetCurrencyRateOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) GetCurrencyRateOk() (*float64, bool)`
 
 GetCurrencyRateOk returns a tuple with the CurrencyRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrencyRate
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetCurrencyRate(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailNonBundleInner) SetCurrencyRate(v float64)`
 
 SetCurrencyRate sets CurrencyRate field to given value.
 

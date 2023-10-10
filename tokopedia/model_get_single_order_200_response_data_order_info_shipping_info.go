@@ -29,15 +29,15 @@ type GetSingleOrder200ResponseDataOrderInfoShippingInfo struct {
 	// Logistic Service Name
 	LogisticService *string `json:"logistic_service,omitempty"`
 	// Shipping Price
-	ShippingPrice *int64 `json:"shipping_price,omitempty"`
+	ShippingPrice *float64 `json:"shipping_price,omitempty"`
 	// Shipping Price Rate
-	ShippingPriceRate *int64 `json:"shipping_price_rate,omitempty"`
+	ShippingPriceRate *float64 `json:"shipping_price_rate,omitempty"`
 	// Shipping Fee
-	ShippingFee *int64 `json:"shipping_fee,omitempty"`
+	ShippingFee *float64 `json:"shipping_fee,omitempty"`
 	// Insurance Price
-	InsurancePrice *int64 `json:"insurance_price,omitempty"`
+	InsurancePrice *float64 `json:"insurance_price,omitempty"`
 	// Fee
-	Fee *int64 `json:"fee,omitempty"`
+	Fee *float64 `json:"fee,omitempty"`
 	// Is change courirer?
 	IsChangeCourier *bool `json:"is_change_courier,omitempty"`
 	// Second Shipper Unique Identifier
@@ -49,11 +49,11 @@ type GetSingleOrder200ResponseDataOrderInfoShippingInfo struct {
 	// Second Logistic Service Name
 	SecondLogisticService *string `json:"second_logistic_service,omitempty"`
 	// Second Agency Fee
-	SecondAgencyFee *int64 `json:"second_agency_fee,omitempty"`
+	SecondAgencyFee *float64 `json:"second_agency_fee,omitempty"`
 	// Second Insurance
-	SecondInsurance *int64 `json:"second_insurance,omitempty"`
+	SecondInsurance *float64 `json:"second_insurance,omitempty"`
 	// Second Shipping Price Rate
-	SecondRate *int64 `json:"second_rate,omitempty"`
+	SecondRate *float64 `json:"second_rate,omitempty"`
 	// Airway Bill (Resi)
 	Awb *string `json:"awb,omitempty"`
 	// Autoresi Cashless Status
@@ -61,7 +61,7 @@ type GetSingleOrder200ResponseDataOrderInfoShippingInfo struct {
 	// Airway Bill (Auto Resi)
 	AutoresiAwb *string `json:"autoresi_awb,omitempty"`
 	// AWB Shipping Price
-	AutoresiShippingPrice *int64 `json:"autoresi_shipping_price,omitempty"`
+	AutoresiShippingPrice *float64 `json:"autoresi_shipping_price,omitempty"`
 	// AWB Count
 	CountAwb *int64 `json:"count_awb,omitempty"`
 	// Is cashless?
@@ -217,9 +217,9 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetLogisticService(
 }
 
 // GetShippingPrice returns the ShippingPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPrice() float64 {
 	if o == nil || IsNil(o.ShippingPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingPrice
@@ -227,7 +227,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPrice() 
 
 // GetShippingPriceOk returns a tuple with the ShippingPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingPrice) {
 		return nil, false
 	}
@@ -243,15 +243,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasShippingPrice() 
 	return false
 }
 
-// SetShippingPrice gets a reference to the given int64 and assigns it to the ShippingPrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPrice(v int64) {
+// SetShippingPrice gets a reference to the given float64 and assigns it to the ShippingPrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPrice(v float64) {
 	o.ShippingPrice = &v
 }
 
 // GetShippingPriceRate returns the ShippingPriceRate field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRate() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRate() float64 {
 	if o == nil || IsNil(o.ShippingPriceRate) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingPriceRate
@@ -259,7 +259,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRat
 
 // GetShippingPriceRateOk returns a tuple with the ShippingPriceRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRateOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRateOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingPriceRate) {
 		return nil, false
 	}
@@ -275,15 +275,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasShippingPriceRat
 	return false
 }
 
-// SetShippingPriceRate gets a reference to the given int64 and assigns it to the ShippingPriceRate field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPriceRate(v int64) {
+// SetShippingPriceRate gets a reference to the given float64 and assigns it to the ShippingPriceRate field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPriceRate(v float64) {
 	o.ShippingPriceRate = &v
 }
 
 // GetShippingFee returns the ShippingFee field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFee() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFee() float64 {
 	if o == nil || IsNil(o.ShippingFee) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingFee
@@ -291,7 +291,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFee() in
 
 // GetShippingFeeOk returns a tuple with the ShippingFee field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFeeOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFeeOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingFee) {
 		return nil, false
 	}
@@ -307,15 +307,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasShippingFee() bo
 	return false
 }
 
-// SetShippingFee gets a reference to the given int64 and assigns it to the ShippingFee field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingFee(v int64) {
+// SetShippingFee gets a reference to the given float64 and assigns it to the ShippingFee field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingFee(v float64) {
 	o.ShippingFee = &v
 }
 
 // GetInsurancePrice returns the InsurancePrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePrice() float64 {
 	if o == nil || IsNil(o.InsurancePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsurancePrice
@@ -323,7 +323,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePrice()
 
 // GetInsurancePriceOk returns a tuple with the InsurancePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsurancePrice) {
 		return nil, false
 	}
@@ -339,15 +339,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasInsurancePrice()
 	return false
 }
 
-// SetInsurancePrice gets a reference to the given int64 and assigns it to the InsurancePrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetInsurancePrice(v int64) {
+// SetInsurancePrice gets a reference to the given float64 and assigns it to the InsurancePrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetInsurancePrice(v float64) {
 	o.InsurancePrice = &v
 }
 
 // GetFee returns the Fee field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFee() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFee() float64 {
 	if o == nil || IsNil(o.Fee) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Fee
@@ -355,7 +355,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFee() int64 {
 
 // GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFeeOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFeeOk() (*float64, bool) {
 	if o == nil || IsNil(o.Fee) {
 		return nil, false
 	}
@@ -371,8 +371,8 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasFee() bool {
 	return false
 }
 
-// SetFee gets a reference to the given int64 and assigns it to the Fee field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetFee(v int64) {
+// SetFee gets a reference to the given float64 and assigns it to the Fee field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetFee(v float64) {
 	o.Fee = &v
 }
 
@@ -537,9 +537,9 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondLogisticSe
 }
 
 // GetSecondAgencyFee returns the SecondAgencyFee field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFee() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFee() float64 {
 	if o == nil || IsNil(o.SecondAgencyFee) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SecondAgencyFee
@@ -547,7 +547,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFee(
 
 // GetSecondAgencyFeeOk returns a tuple with the SecondAgencyFee field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFeeOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFeeOk() (*float64, bool) {
 	if o == nil || IsNil(o.SecondAgencyFee) {
 		return nil, false
 	}
@@ -563,15 +563,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasSecondAgencyFee(
 	return false
 }
 
-// SetSecondAgencyFee gets a reference to the given int64 and assigns it to the SecondAgencyFee field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondAgencyFee(v int64) {
+// SetSecondAgencyFee gets a reference to the given float64 and assigns it to the SecondAgencyFee field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondAgencyFee(v float64) {
 	o.SecondAgencyFee = &v
 }
 
 // GetSecondInsurance returns the SecondInsurance field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsurance() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsurance() float64 {
 	if o == nil || IsNil(o.SecondInsurance) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SecondInsurance
@@ -579,7 +579,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsurance(
 
 // GetSecondInsuranceOk returns a tuple with the SecondInsurance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsuranceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsuranceOk() (*float64, bool) {
 	if o == nil || IsNil(o.SecondInsurance) {
 		return nil, false
 	}
@@ -595,15 +595,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasSecondInsurance(
 	return false
 }
 
-// SetSecondInsurance gets a reference to the given int64 and assigns it to the SecondInsurance field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondInsurance(v int64) {
+// SetSecondInsurance gets a reference to the given float64 and assigns it to the SecondInsurance field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondInsurance(v float64) {
 	o.SecondInsurance = &v
 }
 
 // GetSecondRate returns the SecondRate field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRate() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRate() float64 {
 	if o == nil || IsNil(o.SecondRate) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SecondRate
@@ -611,7 +611,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRate() int
 
 // GetSecondRateOk returns a tuple with the SecondRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRateOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRateOk() (*float64, bool) {
 	if o == nil || IsNil(o.SecondRate) {
 		return nil, false
 	}
@@ -627,8 +627,8 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasSecondRate() boo
 	return false
 }
 
-// SetSecondRate gets a reference to the given int64 and assigns it to the SecondRate field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondRate(v int64) {
+// SetSecondRate gets a reference to the given float64 and assigns it to the SecondRate field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondRate(v float64) {
 	o.SecondRate = &v
 }
 
@@ -729,9 +729,9 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetAutoresiAwb(v st
 }
 
 // GetAutoresiShippingPrice returns the AutoresiShippingPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPrice() float64 {
 	if o == nil || IsNil(o.AutoresiShippingPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.AutoresiShippingPrice
@@ -739,7 +739,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShipping
 
 // GetAutoresiShippingPriceOk returns a tuple with the AutoresiShippingPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.AutoresiShippingPrice) {
 		return nil, false
 	}
@@ -755,8 +755,8 @@ func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) HasAutoresiShipping
 	return false
 }
 
-// SetAutoresiShippingPrice gets a reference to the given int64 and assigns it to the AutoresiShippingPrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetAutoresiShippingPrice(v int64) {
+// SetAutoresiShippingPrice gets a reference to the given float64 and assigns it to the AutoresiShippingPrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetAutoresiShippingPrice(v float64) {
 	o.AutoresiShippingPrice = &v
 }
 

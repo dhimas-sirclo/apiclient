@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ProductId** | Pointer to **int64** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
 **ProductUrl** | Pointer to **string** |  | [optional] 
-**NewPrice** | Pointer to **int64** |  | [optional] 
+**NewPrice** | Pointer to **float64** |  | [optional] 
 **Message** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -106,20 +106,20 @@ HasProductUrl returns a boolean if a field has been set.
 
 ### GetNewPrice
 
-`func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPrice() int64`
+`func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPrice() float64`
 
 GetNewPrice returns the NewPrice field if non-nil, zero value otherwise.
 
 ### GetNewPriceOk
 
-`func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPriceOk() (*int64, bool)`
+`func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPriceOk() (*float64, bool)`
 
 GetNewPriceOk returns a tuple with the NewPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNewPrice
 
-`func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) SetNewPrice(v int64)`
+`func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) SetNewPrice(v float64)`
 
 SetNewPrice sets NewPrice field to given value.
 

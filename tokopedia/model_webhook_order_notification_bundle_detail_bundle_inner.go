@@ -23,9 +23,9 @@ type WebhookOrderNotificationBundleDetailBundleInner struct {
 	BundleId *int64 `json:"bundle_id,omitempty"`
 	BundleVariantId *string `json:"bundle_variant_id,omitempty"`
 	BundleName *string `json:"bundle_name,omitempty"`
-	BundlePrice *int64 `json:"bundle_price,omitempty"`
+	BundlePrice *float64 `json:"bundle_price,omitempty"`
 	BundleQuantity *int64 `json:"bundle_quantity,omitempty"`
-	BundleSubtotalPrice *int64 `json:"bundle_subtotal_price,omitempty"`
+	BundleSubtotalPrice *float64 `json:"bundle_subtotal_price,omitempty"`
 	OrderDetail []WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner `json:"order_detail,omitempty"`
 }
 
@@ -143,9 +143,9 @@ func (o *WebhookOrderNotificationBundleDetailBundleInner) SetBundleName(v string
 }
 
 // GetBundlePrice returns the BundlePrice field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundlePrice() int64 {
+func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundlePrice() float64 {
 	if o == nil || IsNil(o.BundlePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.BundlePrice
@@ -153,7 +153,7 @@ func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundlePrice() int64
 
 // GetBundlePriceOk returns a tuple with the BundlePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundlePriceOk() (*int64, bool) {
+func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundlePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.BundlePrice) {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *WebhookOrderNotificationBundleDetailBundleInner) HasBundlePrice() bool 
 	return false
 }
 
-// SetBundlePrice gets a reference to the given int64 and assigns it to the BundlePrice field.
-func (o *WebhookOrderNotificationBundleDetailBundleInner) SetBundlePrice(v int64) {
+// SetBundlePrice gets a reference to the given float64 and assigns it to the BundlePrice field.
+func (o *WebhookOrderNotificationBundleDetailBundleInner) SetBundlePrice(v float64) {
 	o.BundlePrice = &v
 }
 
@@ -207,9 +207,9 @@ func (o *WebhookOrderNotificationBundleDetailBundleInner) SetBundleQuantity(v in
 }
 
 // GetBundleSubtotalPrice returns the BundleSubtotalPrice field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundleSubtotalPrice() int64 {
+func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundleSubtotalPrice() float64 {
 	if o == nil || IsNil(o.BundleSubtotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.BundleSubtotalPrice
@@ -217,7 +217,7 @@ func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundleSubtotalPrice
 
 // GetBundleSubtotalPriceOk returns a tuple with the BundleSubtotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundleSubtotalPriceOk() (*int64, bool) {
+func (o *WebhookOrderNotificationBundleDetailBundleInner) GetBundleSubtotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.BundleSubtotalPrice) {
 		return nil, false
 	}
@@ -233,8 +233,8 @@ func (o *WebhookOrderNotificationBundleDetailBundleInner) HasBundleSubtotalPrice
 	return false
 }
 
-// SetBundleSubtotalPrice gets a reference to the given int64 and assigns it to the BundleSubtotalPrice field.
-func (o *WebhookOrderNotificationBundleDetailBundleInner) SetBundleSubtotalPrice(v int64) {
+// SetBundleSubtotalPrice gets a reference to the given float64 and assigns it to the BundleSubtotalPrice field.
+func (o *WebhookOrderNotificationBundleDetailBundleInner) SetBundleSubtotalPrice(v float64) {
 	o.BundleSubtotalPrice = &v
 }
 

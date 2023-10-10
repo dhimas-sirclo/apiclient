@@ -24,7 +24,7 @@ type IncreaseStockResponseDataSucceedRowsDataInner struct {
 	WarehouseID *int64 `json:"warehouseID,omitempty"`
 	ShopID *int64 `json:"shopID,omitempty"`
 	Stock *int64 `json:"stock,omitempty"`
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 }
 
 // NewIncreaseStockResponseDataSucceedRowsDataInner instantiates a new IncreaseStockResponseDataSucceedRowsDataInner object
@@ -173,9 +173,9 @@ func (o *IncreaseStockResponseDataSucceedRowsDataInner) SetStock(v int64) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPrice() int64 {
+func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -183,7 +183,7 @@ func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPriceOk() (*int64, bool) {
+func (o *IncreaseStockResponseDataSucceedRowsDataInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -199,8 +199,8 @@ func (o *IncreaseStockResponseDataSucceedRowsDataInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *IncreaseStockResponseDataSucceedRowsDataInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *IncreaseStockResponseDataSucceedRowsDataInner) SetPrice(v float64) {
 	o.Price = &v
 }
 

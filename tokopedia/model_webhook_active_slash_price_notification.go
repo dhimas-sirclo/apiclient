@@ -31,7 +31,7 @@ type WebhookActiveSlashPriceNotification struct {
 	// Normal Price
 	OriginalPrice *int64 `json:"original_price,omitempty"`
 	// New Price When Slash Price Already Started
-	DiscountedPrice *int64 `json:"discounted_price,omitempty"`
+	DiscountedPrice *float64 `json:"discounted_price,omitempty"`
 	// Discount Percentage
 	DiscountPercentage *int64 `json:"discount_percentage,omitempty"`
 	// Slash Price Start Time
@@ -222,9 +222,9 @@ func (o *WebhookActiveSlashPriceNotification) SetOriginalPrice(v int64) {
 }
 
 // GetDiscountedPrice returns the DiscountedPrice field value if set, zero value otherwise.
-func (o *WebhookActiveSlashPriceNotification) GetDiscountedPrice() int64 {
+func (o *WebhookActiveSlashPriceNotification) GetDiscountedPrice() float64 {
 	if o == nil || IsNil(o.DiscountedPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.DiscountedPrice
@@ -232,7 +232,7 @@ func (o *WebhookActiveSlashPriceNotification) GetDiscountedPrice() int64 {
 
 // GetDiscountedPriceOk returns a tuple with the DiscountedPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookActiveSlashPriceNotification) GetDiscountedPriceOk() (*int64, bool) {
+func (o *WebhookActiveSlashPriceNotification) GetDiscountedPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.DiscountedPrice) {
 		return nil, false
 	}
@@ -248,8 +248,8 @@ func (o *WebhookActiveSlashPriceNotification) HasDiscountedPrice() bool {
 	return false
 }
 
-// SetDiscountedPrice gets a reference to the given int64 and assigns it to the DiscountedPrice field.
-func (o *WebhookActiveSlashPriceNotification) SetDiscountedPrice(v int64) {
+// SetDiscountedPrice gets a reference to the given float64 and assigns it to the DiscountedPrice field.
+func (o *WebhookActiveSlashPriceNotification) SetDiscountedPrice(v float64) {
 	o.DiscountedPrice = &v
 }
 

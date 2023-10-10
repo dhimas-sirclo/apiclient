@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Url** | Pointer to **string** |  | [optional] 
 **ProductId** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **PriceFmt** | Pointer to **string** |  | [optional] 
 **Stock** | Pointer to **int64** |  | [optional] 
 **MainStock** | Pointer to **int64** |  | [optional] 
@@ -120,20 +120,20 @@ HasProductId returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *VariantChildren) GetPrice() int64`
+`func (o *VariantChildren) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *VariantChildren) GetPriceOk() (*int64, bool)`
+`func (o *VariantChildren) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *VariantChildren) SetPrice(v int64)`
+`func (o *VariantChildren) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

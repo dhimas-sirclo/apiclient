@@ -42,16 +42,16 @@ type GetSingleOrder200ResponseData struct {
 	// Invoice URL
 	InvoiceUrl *string `json:"invoice_url,omitempty"`
 	// Total Price Amount
-	OpenAmt *int64 `json:"open_amt,omitempty"`
-	LpAmt *int64 `json:"lp_amt,omitempty"`
+	OpenAmt *float64 `json:"open_amt,omitempty"`
+	LpAmt *float64 `json:"lp_amt,omitempty"`
 	// Cashback Amount
-	CashbackAmt *int64 `json:"cashback_amt,omitempty"`
+	CashbackAmt *float64 `json:"cashback_amt,omitempty"`
 	// Info
 	Info *string `json:"info,omitempty"`
 	// Order Comment
 	Comment *string `json:"comment,omitempty"`
 	// Item Price
-	ItemPrice *int64 `json:"item_price,omitempty"`
+	ItemPrice *float64 `json:"item_price,omitempty"`
 	BuyerInfo *GetSingleOrder200ResponseDataBuyerInfo `json:"buyer_info,omitempty"`
 	ShopInfo *GetSingleOrder200ResponseDataShopInfo `json:"shop_info,omitempty"`
 	ShipmentFulfillment *GetSingleOrder200ResponseDataShipmentFulfillment `json:"shipment_fulfillment,omitempty"`
@@ -454,9 +454,9 @@ func (o *GetSingleOrder200ResponseData) SetInvoiceUrl(v string) {
 }
 
 // GetOpenAmt returns the OpenAmt field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseData) GetOpenAmt() int64 {
+func (o *GetSingleOrder200ResponseData) GetOpenAmt() float64 {
 	if o == nil || IsNil(o.OpenAmt) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.OpenAmt
@@ -464,7 +464,7 @@ func (o *GetSingleOrder200ResponseData) GetOpenAmt() int64 {
 
 // GetOpenAmtOk returns a tuple with the OpenAmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseData) GetOpenAmtOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseData) GetOpenAmtOk() (*float64, bool) {
 	if o == nil || IsNil(o.OpenAmt) {
 		return nil, false
 	}
@@ -480,15 +480,15 @@ func (o *GetSingleOrder200ResponseData) HasOpenAmt() bool {
 	return false
 }
 
-// SetOpenAmt gets a reference to the given int64 and assigns it to the OpenAmt field.
-func (o *GetSingleOrder200ResponseData) SetOpenAmt(v int64) {
+// SetOpenAmt gets a reference to the given float64 and assigns it to the OpenAmt field.
+func (o *GetSingleOrder200ResponseData) SetOpenAmt(v float64) {
 	o.OpenAmt = &v
 }
 
 // GetLpAmt returns the LpAmt field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseData) GetLpAmt() int64 {
+func (o *GetSingleOrder200ResponseData) GetLpAmt() float64 {
 	if o == nil || IsNil(o.LpAmt) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.LpAmt
@@ -496,7 +496,7 @@ func (o *GetSingleOrder200ResponseData) GetLpAmt() int64 {
 
 // GetLpAmtOk returns a tuple with the LpAmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseData) GetLpAmtOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseData) GetLpAmtOk() (*float64, bool) {
 	if o == nil || IsNil(o.LpAmt) {
 		return nil, false
 	}
@@ -512,15 +512,15 @@ func (o *GetSingleOrder200ResponseData) HasLpAmt() bool {
 	return false
 }
 
-// SetLpAmt gets a reference to the given int64 and assigns it to the LpAmt field.
-func (o *GetSingleOrder200ResponseData) SetLpAmt(v int64) {
+// SetLpAmt gets a reference to the given float64 and assigns it to the LpAmt field.
+func (o *GetSingleOrder200ResponseData) SetLpAmt(v float64) {
 	o.LpAmt = &v
 }
 
 // GetCashbackAmt returns the CashbackAmt field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseData) GetCashbackAmt() int64 {
+func (o *GetSingleOrder200ResponseData) GetCashbackAmt() float64 {
 	if o == nil || IsNil(o.CashbackAmt) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.CashbackAmt
@@ -528,7 +528,7 @@ func (o *GetSingleOrder200ResponseData) GetCashbackAmt() int64 {
 
 // GetCashbackAmtOk returns a tuple with the CashbackAmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseData) GetCashbackAmtOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseData) GetCashbackAmtOk() (*float64, bool) {
 	if o == nil || IsNil(o.CashbackAmt) {
 		return nil, false
 	}
@@ -544,8 +544,8 @@ func (o *GetSingleOrder200ResponseData) HasCashbackAmt() bool {
 	return false
 }
 
-// SetCashbackAmt gets a reference to the given int64 and assigns it to the CashbackAmt field.
-func (o *GetSingleOrder200ResponseData) SetCashbackAmt(v int64) {
+// SetCashbackAmt gets a reference to the given float64 and assigns it to the CashbackAmt field.
+func (o *GetSingleOrder200ResponseData) SetCashbackAmt(v float64) {
 	o.CashbackAmt = &v
 }
 
@@ -614,9 +614,9 @@ func (o *GetSingleOrder200ResponseData) SetComment(v string) {
 }
 
 // GetItemPrice returns the ItemPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseData) GetItemPrice() int64 {
+func (o *GetSingleOrder200ResponseData) GetItemPrice() float64 {
 	if o == nil || IsNil(o.ItemPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ItemPrice
@@ -624,7 +624,7 @@ func (o *GetSingleOrder200ResponseData) GetItemPrice() int64 {
 
 // GetItemPriceOk returns a tuple with the ItemPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseData) GetItemPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseData) GetItemPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ItemPrice) {
 		return nil, false
 	}
@@ -640,8 +640,8 @@ func (o *GetSingleOrder200ResponseData) HasItemPrice() bool {
 	return false
 }
 
-// SetItemPrice gets a reference to the given int64 and assigns it to the ItemPrice field.
-func (o *GetSingleOrder200ResponseData) SetItemPrice(v int64) {
+// SetItemPrice gets a reference to the given float64 and assigns it to the ItemPrice field.
+func (o *GetSingleOrder200ResponseData) SetItemPrice(v float64) {
 	o.ItemPrice = &v
 }
 

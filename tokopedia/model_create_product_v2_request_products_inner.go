@@ -52,7 +52,7 @@ type CreateProductV2RequestProductsInner struct {
 	// Images information of the product. The object keys includes: file_path
 	Pictures []EditProductV3RequestProductsInnerPicturesInner `json:"pictures"`
 	// Wholesale price and quantity of the product. The object keys includes: min_qty and price
-	Wholesale []CreateProductV3RequestInnerWholesaleInner `json:"wholesale,omitempty"`
+	Wholesale []EditProductV3RequestProductsInnerWholesaleInner `json:"wholesale,omitempty"`
 	Preorder *CreateProductV2RequestProductsInnerPreorder `json:"preorder,omitempty"`
 	// Video link of the product. The object keys includes: url and source. url should only contain the YouTube video id e.g. dQw4w9WgXcQ. Where the type should be youtube
 	Videos []CreateProductV2RequestProductsInnerVideosInner `json:"videos,omitempty"`
@@ -514,9 +514,9 @@ func (o *CreateProductV2RequestProductsInner) SetPictures(v []EditProductV3Reque
 }
 
 // GetWholesale returns the Wholesale field value if set, zero value otherwise.
-func (o *CreateProductV2RequestProductsInner) GetWholesale() []CreateProductV3RequestInnerWholesaleInner {
+func (o *CreateProductV2RequestProductsInner) GetWholesale() []EditProductV3RequestProductsInnerWholesaleInner {
 	if o == nil || IsNil(o.Wholesale) {
-		var ret []CreateProductV3RequestInnerWholesaleInner
+		var ret []EditProductV3RequestProductsInnerWholesaleInner
 		return ret
 	}
 	return o.Wholesale
@@ -524,7 +524,7 @@ func (o *CreateProductV2RequestProductsInner) GetWholesale() []CreateProductV3Re
 
 // GetWholesaleOk returns a tuple with the Wholesale field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateProductV2RequestProductsInner) GetWholesaleOk() ([]CreateProductV3RequestInnerWholesaleInner, bool) {
+func (o *CreateProductV2RequestProductsInner) GetWholesaleOk() ([]EditProductV3RequestProductsInnerWholesaleInner, bool) {
 	if o == nil || IsNil(o.Wholesale) {
 		return nil, false
 	}
@@ -540,8 +540,8 @@ func (o *CreateProductV2RequestProductsInner) HasWholesale() bool {
 	return false
 }
 
-// SetWholesale gets a reference to the given []CreateProductV3RequestInnerWholesaleInner and assigns it to the Wholesale field.
-func (o *CreateProductV2RequestProductsInner) SetWholesale(v []CreateProductV3RequestInnerWholesaleInner) {
+// SetWholesale gets a reference to the given []EditProductV3RequestProductsInnerWholesaleInner and assigns it to the Wholesale field.
+func (o *CreateProductV2RequestProductsInner) SetWholesale(v []EditProductV3RequestProductsInnerWholesaleInner) {
 	o.Wholesale = v
 }
 

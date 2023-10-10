@@ -22,7 +22,7 @@ var _ MappedNullable = &VariantCampaign{}
 type VariantCampaign struct {
 	IsActive *bool `json:"is_active,omitempty"`
 	DiscountedPercentage *int64 `json:"discounted_percentage,omitempty"`
-	DiscountedPrice *int64 `json:"discounted_price,omitempty"`
+	DiscountedPrice *float64 `json:"discounted_price,omitempty"`
 	DiscountedPriceFmt *string `json:"discounted_price_fmt,omitempty"`
 	CampaignType *int64 `json:"campaign_type,omitempty"`
 	CampaignTypeName *string `json:"campaign_type_name,omitempty"`
@@ -112,9 +112,9 @@ func (o *VariantCampaign) SetDiscountedPercentage(v int64) {
 }
 
 // GetDiscountedPrice returns the DiscountedPrice field value if set, zero value otherwise.
-func (o *VariantCampaign) GetDiscountedPrice() int64 {
+func (o *VariantCampaign) GetDiscountedPrice() float64 {
 	if o == nil || IsNil(o.DiscountedPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.DiscountedPrice
@@ -122,7 +122,7 @@ func (o *VariantCampaign) GetDiscountedPrice() int64 {
 
 // GetDiscountedPriceOk returns a tuple with the DiscountedPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *VariantCampaign) GetDiscountedPriceOk() (*int64, bool) {
+func (o *VariantCampaign) GetDiscountedPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.DiscountedPrice) {
 		return nil, false
 	}
@@ -138,8 +138,8 @@ func (o *VariantCampaign) HasDiscountedPrice() bool {
 	return false
 }
 
-// SetDiscountedPrice gets a reference to the given int64 and assigns it to the DiscountedPrice field.
-func (o *VariantCampaign) SetDiscountedPrice(v int64) {
+// SetDiscountedPrice gets a reference to the given float64 and assigns it to the DiscountedPrice field.
+func (o *VariantCampaign) SetDiscountedPrice(v float64) {
 	o.DiscountedPrice = &v
 }
 

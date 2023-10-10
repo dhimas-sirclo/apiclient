@@ -20,10 +20,10 @@ var _ MappedNullable = &ViewSlashPrice200ResponseDataInnerPrice{}
 
 // ViewSlashPrice200ResponseDataInnerPrice struct for ViewSlashPrice200ResponseDataInnerPrice
 type ViewSlashPrice200ResponseDataInnerPrice struct {
-	Min *int64 `json:"min,omitempty"`
+	Min *float64 `json:"min,omitempty"`
 	// Formated
 	MinFormated *string `json:"min_formated,omitempty"`
-	Max *int64 `json:"max,omitempty"`
+	Max *float64 `json:"max,omitempty"`
 	// Formated
 	MaxFormated *string `json:"max_formated,omitempty"`
 }
@@ -46,9 +46,9 @@ func NewViewSlashPrice200ResponseDataInnerPriceWithDefaults() *ViewSlashPrice200
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
-func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMin() int64 {
+func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMin() float64 {
 	if o == nil || IsNil(o.Min) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Min
@@ -56,7 +56,7 @@ func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMin() int64 {
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMinOk() (*int64, bool) {
+func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMinOk() (*float64, bool) {
 	if o == nil || IsNil(o.Min) {
 		return nil, false
 	}
@@ -72,8 +72,8 @@ func (o *ViewSlashPrice200ResponseDataInnerPrice) HasMin() bool {
 	return false
 }
 
-// SetMin gets a reference to the given int64 and assigns it to the Min field.
-func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMin(v int64) {
+// SetMin gets a reference to the given float64 and assigns it to the Min field.
+func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMin(v float64) {
 	o.Min = &v
 }
 
@@ -110,9 +110,9 @@ func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMinFormated(v string) {
 }
 
 // GetMax returns the Max field value if set, zero value otherwise.
-func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMax() int64 {
+func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMax() float64 {
 	if o == nil || IsNil(o.Max) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Max
@@ -120,7 +120,7 @@ func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMax() int64 {
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMaxOk() (*int64, bool) {
+func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMaxOk() (*float64, bool) {
 	if o == nil || IsNil(o.Max) {
 		return nil, false
 	}
@@ -136,8 +136,8 @@ func (o *ViewSlashPrice200ResponseDataInnerPrice) HasMax() bool {
 	return false
 }
 
-// SetMax gets a reference to the given int64 and assigns it to the Max field.
-func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMax(v int64) {
+// SetMax gets a reference to the given float64 and assigns it to the Max field.
+func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMax(v float64) {
 	o.Max = &v
 }
 

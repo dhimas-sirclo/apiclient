@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **IsPrimary** | Pointer to **bool** |  | [optional] 
 **Status** | Pointer to **string** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
 **Stock** | Pointer to **int64** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
 **Combination** | Pointer to **[]int64** |  | [optional] 
@@ -83,20 +83,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *EditProductV3RequestProductsInnerVariantProductsInner) GetPrice() int64`
+`func (o *EditProductV3RequestProductsInnerVariantProductsInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *EditProductV3RequestProductsInnerVariantProductsInner) GetPriceOk() (*int64, bool)`
+`func (o *EditProductV3RequestProductsInnerVariantProductsInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *EditProductV3RequestProductsInnerVariantProductsInner) SetPrice(v int64)`
+`func (o *EditProductV3RequestProductsInnerVariantProductsInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 

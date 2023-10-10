@@ -22,7 +22,7 @@ var _ MappedNullable = &EditProductV3DefaultResponseDataFailedRowsDataInner{}
 type EditProductV3DefaultResponseDataFailedRowsDataInner struct {
 	ProductId *int64 `json:"product_id,omitempty"`
 	ProductName *string `json:"product_name,omitempty"`
-	ProductPrice *int64 `json:"product_price,omitempty"`
+	ProductPrice *float64 `json:"product_price,omitempty"`
 	Sku *string `json:"sku,omitempty"`
 	Error []string `json:"error,omitempty"`
 }
@@ -109,9 +109,9 @@ func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) SetProductName(v s
 }
 
 // GetProductPrice returns the ProductPrice field value if set, zero value otherwise.
-func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPrice() int64 {
+func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPrice() float64 {
 	if o == nil || IsNil(o.ProductPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ProductPrice
@@ -119,7 +119,7 @@ func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPrice() 
 
 // GetProductPriceOk returns a tuple with the ProductPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPriceOk() (*int64, bool) {
+func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ProductPrice) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) HasProductPrice() 
 	return false
 }
 
-// SetProductPrice gets a reference to the given int64 and assigns it to the ProductPrice field.
-func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) SetProductPrice(v int64) {
+// SetProductPrice gets a reference to the given float64 and assigns it to the ProductPrice field.
+func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) SetProductPrice(v float64) {
 	o.ProductPrice = &v
 }
 

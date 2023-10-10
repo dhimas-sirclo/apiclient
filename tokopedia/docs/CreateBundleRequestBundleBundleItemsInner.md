@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProductId** | **int64** | Product unique identifier to include in the bundle | 
 **Status** | **int64** | Status of the product where 1 is SHOWN and 2 is UNSHOWN | 
-**BundlePrice** | **int64** | The product’s price in this bundle | 
+**BundlePrice** | **float64** | The product’s price in this bundle | 
 **MinOrder** | Pointer to **int64** | Minimum order for this product. Used for PAKET DISKON type bundle. | [optional] 
 **Children** | Pointer to [**CreateBundleRequestBundleBundleItemsInnerChildren**](CreateBundleRequestBundleBundleItemsInnerChildren.md) |  | [optional] 
 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewCreateBundleRequestBundleBundleItemsInner
 
-`func NewCreateBundleRequestBundleBundleItemsInner(productId int64, status int64, bundlePrice int64, ) *CreateBundleRequestBundleBundleItemsInner`
+`func NewCreateBundleRequestBundleBundleItemsInner(productId int64, status int64, bundlePrice float64, ) *CreateBundleRequestBundleBundleItemsInner`
 
 NewCreateBundleRequestBundleBundleItemsInner instantiates a new CreateBundleRequestBundleBundleItemsInner object
 This constructor will assign default values to properties that have it defined,
@@ -71,20 +71,20 @@ SetStatus sets Status field to given value.
 
 ### GetBundlePrice
 
-`func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePrice() int64`
+`func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePrice() float64`
 
 GetBundlePrice returns the BundlePrice field if non-nil, zero value otherwise.
 
 ### GetBundlePriceOk
 
-`func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePriceOk() (*int64, bool)`
+`func (o *CreateBundleRequestBundleBundleItemsInner) GetBundlePriceOk() (*float64, bool)`
 
 GetBundlePriceOk returns a tuple with the BundlePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBundlePrice
 
-`func (o *CreateBundleRequestBundleBundleItemsInner) SetBundlePrice(v int64)`
+`func (o *CreateBundleRequestBundleBundleItemsInner) SetBundlePrice(v float64)`
 
 SetBundlePrice sets BundlePrice field to given value.
 

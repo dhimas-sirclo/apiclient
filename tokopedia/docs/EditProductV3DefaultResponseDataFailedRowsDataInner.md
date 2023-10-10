@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProductId** | Pointer to **int64** |  | [optional] 
 **ProductName** | Pointer to **string** |  | [optional] 
-**ProductPrice** | Pointer to **int64** |  | [optional] 
+**ProductPrice** | Pointer to **float64** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
 **Error** | Pointer to **[]string** |  | [optional] 
 
@@ -81,20 +81,20 @@ HasProductName returns a boolean if a field has been set.
 
 ### GetProductPrice
 
-`func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPrice() int64`
+`func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPrice() float64`
 
 GetProductPrice returns the ProductPrice field if non-nil, zero value otherwise.
 
 ### GetProductPriceOk
 
-`func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPriceOk() (*int64, bool)`
+`func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) GetProductPriceOk() (*float64, bool)`
 
 GetProductPriceOk returns a tuple with the ProductPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetProductPrice
 
-`func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) SetProductPrice(v int64)`
+`func (o *EditProductV3DefaultResponseDataFailedRowsDataInner) SetProductPrice(v float64)`
 
 SetProductPrice sets ProductPrice field to given value.
 

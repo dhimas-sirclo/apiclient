@@ -25,9 +25,9 @@ type GetSingleOrder200ResponseDataPofInfo struct {
 	// Partial Order Fulfillment Status Code
 	PofStatus *int64 `json:"pof_status,omitempty"`
 	// Shipping Price
-	ShippingPrice *int64 `json:"shipping_price,omitempty"`
+	ShippingPrice *float64 `json:"shipping_price,omitempty"`
 	// Insurance Price
-	InsurancePrice *int64 `json:"insurance_price,omitempty"`
+	InsurancePrice *float64 `json:"insurance_price,omitempty"`
 	// POF Request Create Timestamp (format: 2023-04-03T08:36:29.331837Z) 
 	CreateTime *string `json:"create_time,omitempty"`
 	// POF Request Create By
@@ -125,9 +125,9 @@ func (o *GetSingleOrder200ResponseDataPofInfo) SetPofStatus(v int64) {
 }
 
 // GetShippingPrice returns the ShippingPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPrice() int64 {
+func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPrice() float64 {
 	if o == nil || IsNil(o.ShippingPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingPrice
@@ -135,7 +135,7 @@ func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPrice() int64 {
 
 // GetShippingPriceOk returns a tuple with the ShippingPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataPofInfo) GetShippingPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingPrice) {
 		return nil, false
 	}
@@ -151,15 +151,15 @@ func (o *GetSingleOrder200ResponseDataPofInfo) HasShippingPrice() bool {
 	return false
 }
 
-// SetShippingPrice gets a reference to the given int64 and assigns it to the ShippingPrice field.
-func (o *GetSingleOrder200ResponseDataPofInfo) SetShippingPrice(v int64) {
+// SetShippingPrice gets a reference to the given float64 and assigns it to the ShippingPrice field.
+func (o *GetSingleOrder200ResponseDataPofInfo) SetShippingPrice(v float64) {
 	o.ShippingPrice = &v
 }
 
 // GetInsurancePrice returns the InsurancePrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePrice() int64 {
+func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePrice() float64 {
 	if o == nil || IsNil(o.InsurancePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsurancePrice
@@ -167,7 +167,7 @@ func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePrice() int64 {
 
 // GetInsurancePriceOk returns a tuple with the InsurancePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataPofInfo) GetInsurancePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsurancePrice) {
 		return nil, false
 	}
@@ -183,8 +183,8 @@ func (o *GetSingleOrder200ResponseDataPofInfo) HasInsurancePrice() bool {
 	return false
 }
 
-// SetInsurancePrice gets a reference to the given int64 and assigns it to the InsurancePrice field.
-func (o *GetSingleOrder200ResponseDataPofInfo) SetInsurancePrice(v int64) {
+// SetInsurancePrice gets a reference to the given float64 and assigns it to the InsurancePrice field.
+func (o *GetSingleOrder200ResponseDataPofInfo) SetInsurancePrice(v float64) {
 	o.InsurancePrice = &v
 }
 

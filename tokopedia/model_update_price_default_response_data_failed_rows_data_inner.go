@@ -23,7 +23,7 @@ type UpdatePriceDefaultResponseDataFailedRowsDataInner struct {
 	ProductId *int64 `json:"product_id,omitempty"`
 	Sku *string `json:"sku,omitempty"`
 	ProductUrl *string `json:"product_url,omitempty"`
-	NewPrice *int64 `json:"new_price,omitempty"`
+	NewPrice *float64 `json:"new_price,omitempty"`
 	Message *string `json:"message,omitempty"`
 }
 
@@ -141,9 +141,9 @@ func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) SetProductUrl(v stri
 }
 
 // GetNewPrice returns the NewPrice field value if set, zero value otherwise.
-func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPrice() int64 {
+func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPrice() float64 {
 	if o == nil || IsNil(o.NewPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.NewPrice
@@ -151,7 +151,7 @@ func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPrice() int64 
 
 // GetNewPriceOk returns a tuple with the NewPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPriceOk() (*int64, bool) {
+func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) GetNewPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.NewPrice) {
 		return nil, false
 	}
@@ -167,8 +167,8 @@ func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) HasNewPrice() bool {
 	return false
 }
 
-// SetNewPrice gets a reference to the given int64 and assigns it to the NewPrice field.
-func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) SetNewPrice(v int64) {
+// SetNewPrice gets a reference to the given float64 and assigns it to the NewPrice field.
+func (o *UpdatePriceDefaultResponseDataFailedRowsDataInner) SetNewPrice(v float64) {
 	o.NewPrice = &v
 }
 

@@ -27,11 +27,11 @@ type GetAllOrders200ResponseDataInnerBundleDetailBundleInner struct {
 	// Bundle Name
 	BundleName *string `json:"bundle_name,omitempty"`
 	// Bundle Variant Unique Identifier
-	BundlePrice *int64 `json:"bundle_price,omitempty"`
+	BundlePrice *float64 `json:"bundle_price,omitempty"`
 	// Bundle Order Quantity
 	BundleQuantity *int64 `json:"bundle_quantity,omitempty"`
 	// Bundle Order Total Price
-	BundleSubtotalPrice *int64 `json:"bundle_subtotal_price,omitempty"`
+	BundleSubtotalPrice *float64 `json:"bundle_subtotal_price,omitempty"`
 	OrderDetail []GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner `json:"order_detail,omitempty"`
 }
 
@@ -149,9 +149,9 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundleName(
 }
 
 // GetBundlePrice returns the BundlePrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePrice() float64 {
 	if o == nil || IsNil(o.BundlePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.BundlePrice
@@ -159,7 +159,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePrice
 
 // GetBundlePriceOk returns a tuple with the BundlePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.BundlePrice) {
 		return nil, false
 	}
@@ -175,8 +175,8 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) HasBundlePrice
 	return false
 }
 
-// SetBundlePrice gets a reference to the given int64 and assigns it to the BundlePrice field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundlePrice(v int64) {
+// SetBundlePrice gets a reference to the given float64 and assigns it to the BundlePrice field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundlePrice(v float64) {
 	o.BundlePrice = &v
 }
 
@@ -213,9 +213,9 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundleQuant
 }
 
 // GetBundleSubtotalPrice returns the BundleSubtotalPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPrice() float64 {
 	if o == nil || IsNil(o.BundleSubtotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.BundleSubtotalPrice
@@ -223,7 +223,7 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubto
 
 // GetBundleSubtotalPriceOk returns a tuple with the BundleSubtotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.BundleSubtotalPrice) {
 		return nil, false
 	}
@@ -239,8 +239,8 @@ func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) HasBundleSubto
 	return false
 }
 
-// SetBundleSubtotalPrice gets a reference to the given int64 and assigns it to the BundleSubtotalPrice field.
-func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundleSubtotalPrice(v int64) {
+// SetBundleSubtotalPrice gets a reference to the given float64 and assigns it to the BundleSubtotalPrice field.
+func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundleSubtotalPrice(v float64) {
 	o.BundleSubtotalPrice = &v
 }
 

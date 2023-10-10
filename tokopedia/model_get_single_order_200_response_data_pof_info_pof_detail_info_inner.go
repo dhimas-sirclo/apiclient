@@ -29,7 +29,7 @@ type GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner struct {
 	// Requested Product Quantity
 	QuantityRequest *int64 `json:"quantity_request,omitempty"`
 	// Requested Total Price
-	TotalPriceRequest *int64 `json:"total_price_request,omitempty"`
+	TotalPriceRequest *float64 `json:"total_price_request,omitempty"`
 }
 
 // NewGetSingleOrder200ResponseDataPofInfoPofDetailInfoInner instantiates a new GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner object
@@ -178,9 +178,9 @@ func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) SetQuantityRequ
 }
 
 // GetTotalPriceRequest returns the TotalPriceRequest field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequest() int64 {
+func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequest() float64 {
 	if o == nil || IsNil(o.TotalPriceRequest) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TotalPriceRequest
@@ -188,7 +188,7 @@ func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRe
 
 // GetTotalPriceRequestOk returns a tuple with the TotalPriceRequest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequestOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequestOk() (*float64, bool) {
 	if o == nil || IsNil(o.TotalPriceRequest) {
 		return nil, false
 	}
@@ -204,8 +204,8 @@ func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) HasTotalPriceRe
 	return false
 }
 
-// SetTotalPriceRequest gets a reference to the given int64 and assigns it to the TotalPriceRequest field.
-func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) SetTotalPriceRequest(v int64) {
+// SetTotalPriceRequest gets a reference to the given float64 and assigns it to the TotalPriceRequest field.
+func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) SetTotalPriceRequest(v float64) {
 	o.TotalPriceRequest = &v
 }
 

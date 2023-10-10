@@ -21,14 +21,14 @@ var _ MappedNullable = &CreateBundleRequestBundleBundleItemsInnerChildren{}
 // CreateBundleRequestBundleBundleItemsInnerChildren The variant of the product. It has product_id and bundle_price
 type CreateBundleRequestBundleBundleItemsInnerChildren struct {
 	VariantId int64 `json:"variant_id"`
-	VariantPrice int64 `json:"variant_price"`
+	VariantPrice float64 `json:"variant_price"`
 }
 
 // NewCreateBundleRequestBundleBundleItemsInnerChildren instantiates a new CreateBundleRequestBundleBundleItemsInnerChildren object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateBundleRequestBundleBundleItemsInnerChildren(variantId int64, variantPrice int64) *CreateBundleRequestBundleBundleItemsInnerChildren {
+func NewCreateBundleRequestBundleBundleItemsInnerChildren(variantId int64, variantPrice float64) *CreateBundleRequestBundleBundleItemsInnerChildren {
 	this := CreateBundleRequestBundleBundleItemsInnerChildren{}
 	this.VariantId = variantId
 	this.VariantPrice = variantPrice
@@ -68,9 +68,9 @@ func (o *CreateBundleRequestBundleBundleItemsInnerChildren) SetVariantId(v int64
 }
 
 // GetVariantPrice returns the VariantPrice field value
-func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPrice() int64 {
+func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPrice() float64 {
 	if o == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 
@@ -79,7 +79,7 @@ func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPrice() in
 
 // GetVariantPriceOk returns a tuple with the VariantPrice field value
 // and a boolean to check if the value has been set.
-func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPriceOk() (*int64, bool) {
+func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPriceOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,7 +87,7 @@ func (o *CreateBundleRequestBundleBundleItemsInnerChildren) GetVariantPriceOk() 
 }
 
 // SetVariantPrice sets field value
-func (o *CreateBundleRequestBundleBundleItemsInnerChildren) SetVariantPrice(v int64) {
+func (o *CreateBundleRequestBundleBundleItemsInnerChildren) SetVariantPrice(v float64) {
 	o.VariantPrice = v
 }
 

@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **Qty** | Pointer to **int64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
-**FinalPrice** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
+**FinalPrice** | Pointer to **float64** |  | [optional] 
 **Image** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -107,20 +107,20 @@ HasQty returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPrice() int64`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPriceOk() (*int64, bool)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetPrice(v int64)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 
@@ -132,20 +132,20 @@ HasPrice returns a boolean if a field has been set.
 
 ### GetFinalPrice
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPrice() int64`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPrice() float64`
 
 GetFinalPrice returns the FinalPrice field if non-nil, zero value otherwise.
 
 ### GetFinalPriceOk
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPriceOk() (*int64, bool)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) GetFinalPriceOk() (*float64, bool)`
 
 GetFinalPriceOk returns a tuple with the FinalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFinalPrice
 
-`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetFinalPrice(v int64)`
+`func (o *GetResolutionTicket200ResponseDataShopsInnerTicketInnerComplaintProductInner) SetFinalPrice(v float64)`
 
 SetFinalPrice sets FinalPrice field to given value.
 

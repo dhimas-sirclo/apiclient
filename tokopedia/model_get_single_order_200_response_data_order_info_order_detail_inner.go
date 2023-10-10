@@ -31,9 +31,9 @@ type GetSingleOrder200ResponseDataOrderInfoOrderDetailInner struct {
 	// Product Description ATC
 	ProductDescAtc *string `json:"product_desc_atc,omitempty"`
 	// Product Price
-	ProductPrice *int64 `json:"product_price,omitempty"`
+	ProductPrice *float64 `json:"product_price,omitempty"`
 	// Product Order Total Price
-	SubtotalPrice *int64 `json:"subtotal_price,omitempty"`
+	SubtotalPrice *float64 `json:"subtotal_price,omitempty"`
 	// Product Weight
 	Weight *float64 `json:"weight,omitempty"`
 	// Product Order Total Weight
@@ -47,13 +47,13 @@ type GetSingleOrder200ResponseDataOrderInfoOrderDetailInner struct {
 	// Is free returns?
 	IsFreeReturns *bool `json:"is_free_returns,omitempty"`
 	// Product Order Insurance Price
-	InsurancePrice *int64 `json:"insurance_price,omitempty"`
+	InsurancePrice *float64 `json:"insurance_price,omitempty"`
 	// Product Order Normal Price
-	NormalPrice *int64 `json:"normal_price,omitempty"`
+	NormalPrice *float64 `json:"normal_price,omitempty"`
 	// Currency Unique Identifier
 	CurrencyId *int64 `json:"currency_id,omitempty"`
 	// Currency Rate
-	CurrencyRate *int64 `json:"currency_rate,omitempty"`
+	CurrencyRate *float64 `json:"currency_rate,omitempty"`
 	// Product Minimum Order
 	MinOrder *int64 `json:"min_order,omitempty"`
 	// Product Child Category Unique Identifier
@@ -246,9 +246,9 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetProductDescA
 }
 
 // GetProductPrice returns the ProductPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPrice() float64 {
 	if o == nil || IsNil(o.ProductPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ProductPrice
@@ -256,7 +256,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPrice
 
 // GetProductPriceOk returns a tuple with the ProductPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetProductPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ProductPrice) {
 		return nil, false
 	}
@@ -272,15 +272,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) HasProductPrice
 	return false
 }
 
-// SetProductPrice gets a reference to the given int64 and assigns it to the ProductPrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetProductPrice(v int64) {
+// SetProductPrice gets a reference to the given float64 and assigns it to the ProductPrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetProductPrice(v float64) {
 	o.ProductPrice = &v
 }
 
 // GetSubtotalPrice returns the SubtotalPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPrice() float64 {
 	if o == nil || IsNil(o.SubtotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SubtotalPrice
@@ -288,7 +288,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPric
 
 // GetSubtotalPriceOk returns a tuple with the SubtotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetSubtotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.SubtotalPrice) {
 		return nil, false
 	}
@@ -304,8 +304,8 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) HasSubtotalPric
 	return false
 }
 
-// SetSubtotalPrice gets a reference to the given int64 and assigns it to the SubtotalPrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetSubtotalPrice(v int64) {
+// SetSubtotalPrice gets a reference to the given float64 and assigns it to the SubtotalPrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetSubtotalPrice(v float64) {
 	o.SubtotalPrice = &v
 }
 
@@ -502,9 +502,9 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetIsFreeReturn
 }
 
 // GetInsurancePrice returns the InsurancePrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePrice() float64 {
 	if o == nil || IsNil(o.InsurancePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsurancePrice
@@ -512,7 +512,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePri
 
 // GetInsurancePriceOk returns a tuple with the InsurancePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetInsurancePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsurancePrice) {
 		return nil, false
 	}
@@ -528,15 +528,15 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) HasInsurancePri
 	return false
 }
 
-// SetInsurancePrice gets a reference to the given int64 and assigns it to the InsurancePrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetInsurancePrice(v int64) {
+// SetInsurancePrice gets a reference to the given float64 and assigns it to the InsurancePrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetInsurancePrice(v float64) {
 	o.InsurancePrice = &v
 }
 
 // GetNormalPrice returns the NormalPrice field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPrice() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPrice() float64 {
 	if o == nil || IsNil(o.NormalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.NormalPrice
@@ -544,7 +544,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPrice(
 
 // GetNormalPriceOk returns a tuple with the NormalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPriceOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetNormalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.NormalPrice) {
 		return nil, false
 	}
@@ -560,8 +560,8 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) HasNormalPrice(
 	return false
 }
 
-// SetNormalPrice gets a reference to the given int64 and assigns it to the NormalPrice field.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetNormalPrice(v int64) {
+// SetNormalPrice gets a reference to the given float64 and assigns it to the NormalPrice field.
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetNormalPrice(v float64) {
 	o.NormalPrice = &v
 }
 
@@ -598,9 +598,9 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetCurrencyId(v
 }
 
 // GetCurrencyRate returns the CurrencyRate field value if set, zero value otherwise.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRate() int64 {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRate() float64 {
 	if o == nil || IsNil(o.CurrencyRate) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.CurrencyRate
@@ -608,7 +608,7 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRate
 
 // GetCurrencyRateOk returns a tuple with the CurrencyRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRateOk() (*int64, bool) {
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) GetCurrencyRateOk() (*float64, bool) {
 	if o == nil || IsNil(o.CurrencyRate) {
 		return nil, false
 	}
@@ -624,8 +624,8 @@ func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) HasCurrencyRate
 	return false
 }
 
-// SetCurrencyRate gets a reference to the given int64 and assigns it to the CurrencyRate field.
-func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetCurrencyRate(v int64) {
+// SetCurrencyRate gets a reference to the given float64 and assigns it to the CurrencyRate field.
+func (o *GetSingleOrder200ResponseDataOrderInfoOrderDetailInner) SetCurrencyRate(v float64) {
 	o.CurrencyRate = &v
 }
 

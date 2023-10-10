@@ -7,9 +7,9 @@ Name | Type | Description | Notes
 **BundleId** | Pointer to **int64** | Bundle Unique Identifier | [optional] 
 **BundleVariantId** | Pointer to **string** | Bundle Variant Unique Identifier | [optional] 
 **BundleName** | Pointer to **string** | Bundle Name | [optional] 
-**BundlePrice** | Pointer to **int64** | Bundle Variant Unique Identifier | [optional] 
+**BundlePrice** | Pointer to **float64** | Bundle Variant Unique Identifier | [optional] 
 **BundleQuantity** | Pointer to **int64** | Bundle Order Quantity | [optional] 
-**BundleSubtotalPrice** | Pointer to **int64** | Bundle Order Total Price | [optional] 
+**BundleSubtotalPrice** | Pointer to **float64** | Bundle Order Total Price | [optional] 
 **OrderDetail** | Pointer to [**[]GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner**](GetAllOrders200ResponseDataInnerBundleDetailBundleInnerOrderDetailInner.md) |  | [optional] 
 
 ## Methods
@@ -108,20 +108,20 @@ HasBundleName returns a boolean if a field has been set.
 
 ### GetBundlePrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePrice() float64`
 
 GetBundlePrice returns the BundlePrice field if non-nil, zero value otherwise.
 
 ### GetBundlePriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundlePriceOk() (*float64, bool)`
 
 GetBundlePriceOk returns a tuple with the BundlePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBundlePrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundlePrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundlePrice(v float64)`
 
 SetBundlePrice sets BundlePrice field to given value.
 
@@ -158,20 +158,20 @@ HasBundleQuantity returns a boolean if a field has been set.
 
 ### GetBundleSubtotalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPrice() float64`
 
 GetBundleSubtotalPrice returns the BundleSubtotalPrice field if non-nil, zero value otherwise.
 
 ### GetBundleSubtotalPriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) GetBundleSubtotalPriceOk() (*float64, bool)`
 
 GetBundleSubtotalPriceOk returns a tuple with the BundleSubtotalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBundleSubtotalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundleSubtotalPrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerBundleDetailBundleInner) SetBundleSubtotalPrice(v float64)`
 
 SetBundleSubtotalPrice sets BundleSubtotalPrice field to given value.
 

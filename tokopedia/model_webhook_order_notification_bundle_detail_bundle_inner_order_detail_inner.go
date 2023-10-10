@@ -23,10 +23,10 @@ type WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner struct {
 	Id *int64 `json:"id,omitempty"`
 	Name *string `json:"Name,omitempty"`
 	Quantity *int64 `json:"quantity,omitempty"`
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 	Weight *float64 `json:"weight,omitempty"`
 	TotalWeight *float64 `json:"total_weight,omitempty"`
-	SubtotalPrice *int64 `json:"subtotal_price,omitempty"`
+	SubtotalPrice *float64 `json:"subtotal_price,omitempty"`
 	Notes *string `json:"notes,omitempty"`
 	Currency *string `json:"Currency,omitempty"`
 	Sku *string `json:"sku,omitempty"`
@@ -148,9 +148,9 @@ func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetQua
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPrice() int64 {
+func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -158,7 +158,7 @@ func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPri
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPriceOk() (*int64, bool) {
+func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -174,8 +174,8 @@ func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) HasPri
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
@@ -244,9 +244,9 @@ func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetTot
 }
 
 // GetSubtotalPrice returns the SubtotalPrice field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPrice() int64 {
+func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPrice() float64 {
 	if o == nil || IsNil(o.SubtotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SubtotalPrice
@@ -254,7 +254,7 @@ func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSub
 
 // GetSubtotalPriceOk returns a tuple with the SubtotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPriceOk() (*int64, bool) {
+func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) GetSubtotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.SubtotalPrice) {
 		return nil, false
 	}
@@ -270,8 +270,8 @@ func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) HasSub
 	return false
 }
 
-// SetSubtotalPrice gets a reference to the given int64 and assigns it to the SubtotalPrice field.
-func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetSubtotalPrice(v int64) {
+// SetSubtotalPrice gets a reference to the given float64 and assigns it to the SubtotalPrice field.
+func (o *WebhookOrderNotificationBundleDetailBundleInnerOrderDetailInner) SetSubtotalPrice(v float64) {
 	o.SubtotalPrice = &v
 }
 

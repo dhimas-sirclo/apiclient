@@ -31,9 +31,9 @@ type WebhookOrderNotificationProductsInner struct {
 	Weight *float64 `json:"weight,omitempty"`
 	TotalWeight *float64 `json:"total_weight,omitempty"`
 	// Product price
-	Price *int64 `json:"price,omitempty"`
+	Price *float64 `json:"price,omitempty"`
 	// Total price
-	TotalPrice *int64 `json:"total_price,omitempty"`
+	TotalPrice *float64 `json:"total_price,omitempty"`
 	// Currency code
 	Currency *string `json:"currency,omitempty"`
 	// SKU code
@@ -252,9 +252,9 @@ func (o *WebhookOrderNotificationProductsInner) SetTotalWeight(v float64) {
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationProductsInner) GetPrice() int64 {
+func (o *WebhookOrderNotificationProductsInner) GetPrice() float64 {
 	if o == nil || IsNil(o.Price) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Price
@@ -262,7 +262,7 @@ func (o *WebhookOrderNotificationProductsInner) GetPrice() int64 {
 
 // GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationProductsInner) GetPriceOk() (*int64, bool) {
+func (o *WebhookOrderNotificationProductsInner) GetPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
@@ -278,15 +278,15 @@ func (o *WebhookOrderNotificationProductsInner) HasPrice() bool {
 	return false
 }
 
-// SetPrice gets a reference to the given int64 and assigns it to the Price field.
-func (o *WebhookOrderNotificationProductsInner) SetPrice(v int64) {
+// SetPrice gets a reference to the given float64 and assigns it to the Price field.
+func (o *WebhookOrderNotificationProductsInner) SetPrice(v float64) {
 	o.Price = &v
 }
 
 // GetTotalPrice returns the TotalPrice field value if set, zero value otherwise.
-func (o *WebhookOrderNotificationProductsInner) GetTotalPrice() int64 {
+func (o *WebhookOrderNotificationProductsInner) GetTotalPrice() float64 {
 	if o == nil || IsNil(o.TotalPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TotalPrice
@@ -294,7 +294,7 @@ func (o *WebhookOrderNotificationProductsInner) GetTotalPrice() int64 {
 
 // GetTotalPriceOk returns a tuple with the TotalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookOrderNotificationProductsInner) GetTotalPriceOk() (*int64, bool) {
+func (o *WebhookOrderNotificationProductsInner) GetTotalPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.TotalPrice) {
 		return nil, false
 	}
@@ -310,8 +310,8 @@ func (o *WebhookOrderNotificationProductsInner) HasTotalPrice() bool {
 	return false
 }
 
-// SetTotalPrice gets a reference to the given int64 and assigns it to the TotalPrice field.
-func (o *WebhookOrderNotificationProductsInner) SetTotalPrice(v int64) {
+// SetTotalPrice gets a reference to the given float64 and assigns it to the TotalPrice field.
+func (o *WebhookOrderNotificationProductsInner) SetTotalPrice(v float64) {
 	o.TotalPrice = &v
 }
 

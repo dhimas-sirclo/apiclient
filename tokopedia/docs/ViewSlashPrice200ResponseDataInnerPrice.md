@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Min** | Pointer to **int64** |  | [optional] 
+**Min** | Pointer to **float64** |  | [optional] 
 **MinFormated** | Pointer to **string** | Formated | [optional] 
-**Max** | Pointer to **int64** |  | [optional] 
+**Max** | Pointer to **float64** |  | [optional] 
 **MaxFormated** | Pointer to **string** | Formated | [optional] 
 
 ## Methods
@@ -30,20 +30,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMin
 
-`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMin() int64`
+`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMin() float64`
 
 GetMin returns the Min field if non-nil, zero value otherwise.
 
 ### GetMinOk
 
-`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMinOk() (*int64, bool)`
+`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMinOk() (*float64, bool)`
 
 GetMinOk returns a tuple with the Min field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMin
 
-`func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMin(v int64)`
+`func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMin(v float64)`
 
 SetMin sets Min field to given value.
 
@@ -80,20 +80,20 @@ HasMinFormated returns a boolean if a field has been set.
 
 ### GetMax
 
-`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMax() int64`
+`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMax() float64`
 
 GetMax returns the Max field if non-nil, zero value otherwise.
 
 ### GetMaxOk
 
-`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMaxOk() (*int64, bool)`
+`func (o *ViewSlashPrice200ResponseDataInnerPrice) GetMaxOk() (*float64, bool)`
 
 GetMaxOk returns a tuple with the Max field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMax
 
-`func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMax(v int64)`
+`func (o *ViewSlashPrice200ResponseDataInnerPrice) SetMax(v float64)`
 
 SetMax sets Max field to given value.
 

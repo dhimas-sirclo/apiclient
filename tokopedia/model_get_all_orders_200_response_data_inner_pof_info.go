@@ -25,9 +25,9 @@ type GetAllOrders200ResponseDataInnerPofInfo struct {
 	// Partial Order Fulfillment Status Code
 	PofStatus *int64 `json:"pof_status,omitempty"`
 	// Shipping Price
-	ShippingPrice *int64 `json:"shipping_price,omitempty"`
+	ShippingPrice *float64 `json:"shipping_price,omitempty"`
 	// Insurance Price
-	InsurancePrice *int64 `json:"insurance_price,omitempty"`
+	InsurancePrice *float64 `json:"insurance_price,omitempty"`
 	// POF Request Create Timestamp (format: 2017-07-20T17:50:58.061156Z)
 	CreateTime *string `json:"create_time,omitempty"`
 	// POF Request Create By
@@ -124,9 +124,9 @@ func (o *GetAllOrders200ResponseDataInnerPofInfo) SetPofStatus(v int64) {
 }
 
 // GetShippingPrice returns the ShippingPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerPofInfo) GetShippingPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerPofInfo) GetShippingPrice() float64 {
 	if o == nil || IsNil(o.ShippingPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingPrice
@@ -134,7 +134,7 @@ func (o *GetAllOrders200ResponseDataInnerPofInfo) GetShippingPrice() int64 {
 
 // GetShippingPriceOk returns a tuple with the ShippingPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerPofInfo) GetShippingPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerPofInfo) GetShippingPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingPrice) {
 		return nil, false
 	}
@@ -150,15 +150,15 @@ func (o *GetAllOrders200ResponseDataInnerPofInfo) HasShippingPrice() bool {
 	return false
 }
 
-// SetShippingPrice gets a reference to the given int64 and assigns it to the ShippingPrice field.
-func (o *GetAllOrders200ResponseDataInnerPofInfo) SetShippingPrice(v int64) {
+// SetShippingPrice gets a reference to the given float64 and assigns it to the ShippingPrice field.
+func (o *GetAllOrders200ResponseDataInnerPofInfo) SetShippingPrice(v float64) {
 	o.ShippingPrice = &v
 }
 
 // GetInsurancePrice returns the InsurancePrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerPofInfo) GetInsurancePrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerPofInfo) GetInsurancePrice() float64 {
 	if o == nil || IsNil(o.InsurancePrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsurancePrice
@@ -166,7 +166,7 @@ func (o *GetAllOrders200ResponseDataInnerPofInfo) GetInsurancePrice() int64 {
 
 // GetInsurancePriceOk returns a tuple with the InsurancePrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerPofInfo) GetInsurancePriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerPofInfo) GetInsurancePriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsurancePrice) {
 		return nil, false
 	}
@@ -182,8 +182,8 @@ func (o *GetAllOrders200ResponseDataInnerPofInfo) HasInsurancePrice() bool {
 	return false
 }
 
-// SetInsurancePrice gets a reference to the given int64 and assigns it to the InsurancePrice field.
-func (o *GetAllOrders200ResponseDataInnerPofInfo) SetInsurancePrice(v int64) {
+// SetInsurancePrice gets a reference to the given float64 and assigns it to the InsurancePrice field.
+func (o *GetAllOrders200ResponseDataInnerPofInfo) SetInsurancePrice(v float64) {
 	o.InsurancePrice = &v
 }
 

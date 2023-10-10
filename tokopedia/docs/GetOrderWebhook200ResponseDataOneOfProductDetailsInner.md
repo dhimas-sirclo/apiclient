@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** |  | [optional] 
 **Weight** | Pointer to **float64** |  | [optional] 
 **TotalWeight** | Pointer to **float64** |  | [optional] 
-**Price** | Pointer to **int64** |  | [optional] 
-**TotalPrice** | Pointer to **int64** |  | [optional] 
+**Price** | Pointer to **float64** |  | [optional] 
+**TotalPrice** | Pointer to **float64** |  | [optional] 
 **Quantity** | Pointer to **int64** |  | [optional] 
 **Sku** | Pointer to **string** |  | [optional] 
 
@@ -186,20 +186,20 @@ HasTotalWeight returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetPrice() int64`
+`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetPriceOk() (*int64, bool)`
+`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) SetPrice(v int64)`
+`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 
@@ -211,20 +211,20 @@ HasPrice returns a boolean if a field has been set.
 
 ### GetTotalPrice
 
-`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetTotalPrice() int64`
+`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetTotalPrice() float64`
 
 GetTotalPrice returns the TotalPrice field if non-nil, zero value otherwise.
 
 ### GetTotalPriceOk
 
-`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetTotalPriceOk() (*int64, bool)`
+`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) GetTotalPriceOk() (*float64, bool)`
 
 GetTotalPriceOk returns a tuple with the TotalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalPrice
 
-`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) SetTotalPrice(v int64)`
+`func (o *GetOrderWebhook200ResponseDataOneOfProductDetailsInner) SetTotalPrice(v float64)`
 
 SetTotalPrice sets TotalPrice field to given value.
 

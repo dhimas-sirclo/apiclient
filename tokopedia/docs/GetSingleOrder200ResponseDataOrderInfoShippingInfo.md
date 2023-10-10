@@ -8,23 +8,23 @@ Name | Type | Description | Notes
 **ShippingId** | Pointer to **int64** | Shipping Unique Identifier | [optional] 
 **LogisticName** | Pointer to **string** | Logistic Name | [optional] 
 **LogisticService** | Pointer to **string** | Logistic Service Name | [optional] 
-**ShippingPrice** | Pointer to **int64** | Shipping Price | [optional] 
-**ShippingPriceRate** | Pointer to **int64** | Shipping Price Rate | [optional] 
-**ShippingFee** | Pointer to **int64** | Shipping Fee | [optional] 
-**InsurancePrice** | Pointer to **int64** | Insurance Price | [optional] 
-**Fee** | Pointer to **int64** | Fee | [optional] 
+**ShippingPrice** | Pointer to **float64** | Shipping Price | [optional] 
+**ShippingPriceRate** | Pointer to **float64** | Shipping Price Rate | [optional] 
+**ShippingFee** | Pointer to **float64** | Shipping Fee | [optional] 
+**InsurancePrice** | Pointer to **float64** | Insurance Price | [optional] 
+**Fee** | Pointer to **float64** | Fee | [optional] 
 **IsChangeCourier** | Pointer to **bool** | Is change courirer? | [optional] 
 **SecondSpId** | Pointer to **int64** | Second Shipper Unique Identifier | [optional] 
 **SecondShippingId** | Pointer to **int64** | Second Shipping Unique Identifier | [optional] 
 **SecondLogisticName** | Pointer to **string** | Second Logistic Name | [optional] 
 **SecondLogisticService** | Pointer to **string** | Second Logistic Service Name | [optional] 
-**SecondAgencyFee** | Pointer to **int64** | Second Agency Fee | [optional] 
-**SecondInsurance** | Pointer to **int64** | Second Insurance | [optional] 
-**SecondRate** | Pointer to **int64** | Second Shipping Price Rate | [optional] 
+**SecondAgencyFee** | Pointer to **float64** | Second Agency Fee | [optional] 
+**SecondInsurance** | Pointer to **float64** | Second Insurance | [optional] 
+**SecondRate** | Pointer to **float64** | Second Shipping Price Rate | [optional] 
 **Awb** | Pointer to **string** | Airway Bill (Resi) | [optional] 
 **AutoresiCashlessStatus** | Pointer to **int64** | Autoresi Cashless Status | [optional] 
 **AutoresiAwb** | Pointer to **string** | Airway Bill (Auto Resi) | [optional] 
-**AutoresiShippingPrice** | Pointer to **int64** | AWB Shipping Price | [optional] 
+**AutoresiShippingPrice** | Pointer to **float64** | AWB Shipping Price | [optional] 
 **CountAwb** | Pointer to **int64** | AWB Count | [optional] 
 **IsCashless** | Pointer to **bool** | Is cashless? | [optional] 
 **IsFakeDelivery** | Pointer to **bool** | Is fake delivery? | [optional] 
@@ -151,20 +151,20 @@ HasLogisticService returns a boolean if a field has been set.
 
 ### GetShippingPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPrice() float64`
 
 GetShippingPrice returns the ShippingPrice field if non-nil, zero value otherwise.
 
 ### GetShippingPriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceOk() (*float64, bool)`
 
 GetShippingPriceOk returns a tuple with the ShippingPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPrice(v float64)`
 
 SetShippingPrice sets ShippingPrice field to given value.
 
@@ -176,20 +176,20 @@ HasShippingPrice returns a boolean if a field has been set.
 
 ### GetShippingPriceRate
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRate() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRate() float64`
 
 GetShippingPriceRate returns the ShippingPriceRate field if non-nil, zero value otherwise.
 
 ### GetShippingPriceRateOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRateOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingPriceRateOk() (*float64, bool)`
 
 GetShippingPriceRateOk returns a tuple with the ShippingPriceRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingPriceRate
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPriceRate(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingPriceRate(v float64)`
 
 SetShippingPriceRate sets ShippingPriceRate field to given value.
 
@@ -201,20 +201,20 @@ HasShippingPriceRate returns a boolean if a field has been set.
 
 ### GetShippingFee
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFee() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFee() float64`
 
 GetShippingFee returns the ShippingFee field if non-nil, zero value otherwise.
 
 ### GetShippingFeeOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFeeOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetShippingFeeOk() (*float64, bool)`
 
 GetShippingFeeOk returns a tuple with the ShippingFee field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetShippingFee
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingFee(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetShippingFee(v float64)`
 
 SetShippingFee sets ShippingFee field to given value.
 
@@ -226,20 +226,20 @@ HasShippingFee returns a boolean if a field has been set.
 
 ### GetInsurancePrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePrice() float64`
 
 GetInsurancePrice returns the InsurancePrice field if non-nil, zero value otherwise.
 
 ### GetInsurancePriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetInsurancePriceOk() (*float64, bool)`
 
 GetInsurancePriceOk returns a tuple with the InsurancePrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInsurancePrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetInsurancePrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetInsurancePrice(v float64)`
 
 SetInsurancePrice sets InsurancePrice field to given value.
 
@@ -251,20 +251,20 @@ HasInsurancePrice returns a boolean if a field has been set.
 
 ### GetFee
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFee() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFee() float64`
 
 GetFee returns the Fee field if non-nil, zero value otherwise.
 
 ### GetFeeOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFeeOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetFeeOk() (*float64, bool)`
 
 GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFee
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetFee(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetFee(v float64)`
 
 SetFee sets Fee field to given value.
 
@@ -401,20 +401,20 @@ HasSecondLogisticService returns a boolean if a field has been set.
 
 ### GetSecondAgencyFee
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFee() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFee() float64`
 
 GetSecondAgencyFee returns the SecondAgencyFee field if non-nil, zero value otherwise.
 
 ### GetSecondAgencyFeeOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFeeOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondAgencyFeeOk() (*float64, bool)`
 
 GetSecondAgencyFeeOk returns a tuple with the SecondAgencyFee field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSecondAgencyFee
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondAgencyFee(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondAgencyFee(v float64)`
 
 SetSecondAgencyFee sets SecondAgencyFee field to given value.
 
@@ -426,20 +426,20 @@ HasSecondAgencyFee returns a boolean if a field has been set.
 
 ### GetSecondInsurance
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsurance() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsurance() float64`
 
 GetSecondInsurance returns the SecondInsurance field if non-nil, zero value otherwise.
 
 ### GetSecondInsuranceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsuranceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondInsuranceOk() (*float64, bool)`
 
 GetSecondInsuranceOk returns a tuple with the SecondInsurance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSecondInsurance
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondInsurance(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondInsurance(v float64)`
 
 SetSecondInsurance sets SecondInsurance field to given value.
 
@@ -451,20 +451,20 @@ HasSecondInsurance returns a boolean if a field has been set.
 
 ### GetSecondRate
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRate() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRate() float64`
 
 GetSecondRate returns the SecondRate field if non-nil, zero value otherwise.
 
 ### GetSecondRateOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRateOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetSecondRateOk() (*float64, bool)`
 
 GetSecondRateOk returns a tuple with the SecondRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSecondRate
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondRate(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetSecondRate(v float64)`
 
 SetSecondRate sets SecondRate field to given value.
 
@@ -551,20 +551,20 @@ HasAutoresiAwb returns a boolean if a field has been set.
 
 ### GetAutoresiShippingPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPrice() int64`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPrice() float64`
 
 GetAutoresiShippingPrice returns the AutoresiShippingPrice field if non-nil, zero value otherwise.
 
 ### GetAutoresiShippingPriceOk
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPriceOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) GetAutoresiShippingPriceOk() (*float64, bool)`
 
 GetAutoresiShippingPriceOk returns a tuple with the AutoresiShippingPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutoresiShippingPrice
 
-`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetAutoresiShippingPrice(v int64)`
+`func (o *GetSingleOrder200ResponseDataOrderInfoShippingInfo) SetAutoresiShippingPrice(v float64)`
 
 SetAutoresiShippingPrice sets AutoresiShippingPrice field to given value.
 

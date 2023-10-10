@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **OrderDtlId** | Pointer to **int64** | Order Detail Unique Identifier | [optional] 
 **ProductId** | Pointer to **int64** | Product Unique Identifier | [optional] 
 **QuantityRequest** | Pointer to **int64** | Requested Product Quantity | [optional] 
-**TotalPriceRequest** | Pointer to **int64** | Requested Total Price | [optional] 
+**TotalPriceRequest** | Pointer to **float64** | Requested Total Price | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasQuantityRequest returns a boolean if a field has been set.
 
 ### GetTotalPriceRequest
 
-`func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequest() int64`
+`func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequest() float64`
 
 GetTotalPriceRequest returns the TotalPriceRequest field if non-nil, zero value otherwise.
 
 ### GetTotalPriceRequestOk
 
-`func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequestOk() (*int64, bool)`
+`func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) GetTotalPriceRequestOk() (*float64, bool)`
 
 GetTotalPriceRequestOk returns a tuple with the TotalPriceRequest field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalPriceRequest
 
-`func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) SetTotalPriceRequest(v int64)`
+`func (o *GetSingleOrder200ResponseDataPofInfoPofDetailInfoInner) SetTotalPriceRequest(v float64)`
 
 SetTotalPriceRequest sets TotalPriceRequest field to given value.
 

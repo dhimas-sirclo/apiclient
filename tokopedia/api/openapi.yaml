@@ -6918,8 +6918,8 @@ components:
           type: integer
         discounted_price:
           description: New Price When Slash Price Already Started
-          format: int64
-          type: integer
+          format: double
+          type: number
         discount_percentage:
           description: Discount Percentage
           format: int64
@@ -6954,12 +6954,12 @@ components:
           type: integer
         original_price:
           description: Normal Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         discounted_price:
           description: New Price When Slash Price Already Started
-          format: int64
-          type: integer
+          format: double
+          type: number
         discount_percentage:
           description: Discount Percentage
           format: int64
@@ -6994,12 +6994,12 @@ components:
           type: integer
         original_price:
           description: Normal Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         discounted_price:
           description: New Price When Slash Price Already Started
-          format: int64
-          type: integer
+          format: double
+          type: number
         discount_percentage:
           description: Discount Percentage
           format: int64
@@ -7034,12 +7034,12 @@ components:
           type: integer
         original_price:
           description: Normal Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         discounted_price:
           description: New Price When Slash Price Already Started
-          format: int64
-          type: integer
+          format: double
+          type: number
         discount_percentage:
           description: Discount Percentage
           format: int64
@@ -7675,8 +7675,8 @@ components:
           format: int64
           type: integer
         discounted_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         discounted_price_fmt:
           type: string
         campaign_type:
@@ -7699,8 +7699,8 @@ components:
           format: int64
           type: integer
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         price_fmt:
           type: string
         stock:
@@ -7827,12 +7827,12 @@ components:
           succeed_rows_data:
           - productID: 5
             warehouseID: 2
-            price: 3
+            price: 3.616076749251911
             shopID: 7
             stock: 9
           - productID: 5
             warehouseID: 2
-            price: 3
+            price: 3.616076749251911
             shopID: 7
             stock: 9
         header:
@@ -7861,12 +7861,12 @@ components:
           succeed_rows_data:
           - productID: 5
             warehouseID: 2
-            price: 3
+            price: 3.616076749251911
             shopID: 7
             stock: 9
           - productID: 5
             warehouseID: 2
-            price: 3
+            price: 3.616076749251911
             shopID: 7
             stock: 9
         header:
@@ -8029,11 +8029,11 @@ components:
           format: double
           type: number
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         total_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         quantity:
           format: int64
           type: integer
@@ -8136,23 +8136,23 @@ components:
     getOrderWebhook_200_response_data_oneOf_1_amt:
       properties:
         ttl_product_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         shipping_cost:
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_cost:
-          format: int64
-          type: integer
+          format: double
+          type: number
         ttl_amount:
-          format: int64
-          type: integer
+          format: double
+          type: number
         voucher_amount:
-          format: int64
-          type: integer
+          format: double
+          type: number
         toppoints_amount:
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     getOrderWebhook_200_response_data_oneOf_1_dropshipper_info:
       properties:
@@ -9299,7 +9299,7 @@ components:
       type: object
     getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_child_inner:
       example:
-        original_price: 4
+        original_price: 4.965218492984954
         is_buyable: true
         product_id: 6
         option_id:
@@ -9308,7 +9308,7 @@ components:
         min_order: 7
         pic_url: pic_url
         stock: 5
-        bundle_price: 1
+        bundle_price: 1.1730742509559433
         Name: Name
       properties:
         product_id:
@@ -9322,11 +9322,11 @@ components:
           format: int64
           type: integer
         bundle_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         original_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         stock:
           format: int64
           type: integer
@@ -9340,7 +9340,7 @@ components:
       type: object
     getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner:
       example:
-        original_price: 6
+        original_price: 6.683562403749608
         selection:
         - identifier: identifier
           variant_id: 4
@@ -9401,11 +9401,11 @@ components:
         min_order: 9
         pic_url: pic_url
         stock: 8
-        bundle_price: 9
+        bundle_price: 9.369310271410669
         Name: Name
         status: 3
         child:
-        - original_price: 4
+        - original_price: 4.965218492984954
           is_buyable: true
           product_id: 6
           option_id:
@@ -9414,9 +9414,9 @@ components:
           min_order: 7
           pic_url: pic_url
           stock: 5
-          bundle_price: 1
+          bundle_price: 1.1730742509559433
           Name: Name
-        - original_price: 4
+        - original_price: 4.965218492984954
           is_buyable: true
           product_id: 6
           option_id:
@@ -9425,7 +9425,7 @@ components:
           min_order: 7
           pic_url: pic_url
           stock: 5
-          bundle_price: 1
+          bundle_price: 1.1730742509559433
           Name: Name
       properties:
         product_id:
@@ -9447,11 +9447,11 @@ components:
             $ref: '#/components/schemas/getBundleInfo_200_response_data_bundle_info_inner_bundle_item_inner_child_inner'
           type: array
         bundle_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         original_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         stock:
           format: int64
           type: integer
@@ -9507,7 +9507,7 @@ components:
         Name: Name
         shop_id: 5
         bundle_item:
-        - original_price: 6
+        - original_price: 6.683562403749608
           selection:
           - identifier: identifier
             variant_id: 4
@@ -9568,11 +9568,11 @@ components:
           min_order: 9
           pic_url: pic_url
           stock: 8
-          bundle_price: 9
+          bundle_price: 9.369310271410669
           Name: Name
           status: 3
           child:
-          - original_price: 4
+          - original_price: 4.965218492984954
             is_buyable: true
             product_id: 6
             option_id:
@@ -9581,9 +9581,9 @@ components:
             min_order: 7
             pic_url: pic_url
             stock: 5
-            bundle_price: 1
+            bundle_price: 1.1730742509559433
             Name: Name
-          - original_price: 4
+          - original_price: 4.965218492984954
             is_buyable: true
             product_id: 6
             option_id:
@@ -9592,9 +9592,9 @@ components:
             min_order: 7
             pic_url: pic_url
             stock: 5
-            bundle_price: 1
+            bundle_price: 1.1730742509559433
             Name: Name
-        - original_price: 6
+        - original_price: 6.683562403749608
           selection:
           - identifier: identifier
             variant_id: 4
@@ -9655,11 +9655,11 @@ components:
           min_order: 9
           pic_url: pic_url
           stock: 8
-          bundle_price: 9
+          bundle_price: 9.369310271410669
           Name: Name
           status: 3
           child:
-          - original_price: 4
+          - original_price: 4.965218492984954
             is_buyable: true
             product_id: 6
             option_id:
@@ -9668,9 +9668,9 @@ components:
             min_order: 7
             pic_url: pic_url
             stock: 5
-            bundle_price: 1
+            bundle_price: 1.1730742509559433
             Name: Name
-          - original_price: 4
+          - original_price: 4.965218492984954
             is_buyable: true
             product_id: 6
             option_id:
@@ -9679,7 +9679,7 @@ components:
             min_order: 7
             pic_url: pic_url
             stock: 5
-            bundle_price: 1
+            bundle_price: 1.1730742509559433
             Name: Name
         Type: 1
         group_id: 6
@@ -9751,7 +9751,7 @@ components:
           Name: Name
           shop_id: 5
           bundle_item:
-          - original_price: 6
+          - original_price: 6.683562403749608
             selection:
             - identifier: identifier
               variant_id: 4
@@ -9812,11 +9812,11 @@ components:
             min_order: 9
             pic_url: pic_url
             stock: 8
-            bundle_price: 9
+            bundle_price: 9.369310271410669
             Name: Name
             status: 3
             child:
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -9825,9 +9825,9 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -9836,9 +9836,9 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
-          - original_price: 6
+          - original_price: 6.683562403749608
             selection:
             - identifier: identifier
               variant_id: 4
@@ -9899,11 +9899,11 @@ components:
             min_order: 9
             pic_url: pic_url
             stock: 8
-            bundle_price: 9
+            bundle_price: 9.369310271410669
             Name: Name
             status: 3
             child:
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -9912,9 +9912,9 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -9923,7 +9923,7 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
           Type: 1
           group_id: 6
@@ -9949,7 +9949,7 @@ components:
           Name: Name
           shop_id: 5
           bundle_item:
-          - original_price: 6
+          - original_price: 6.683562403749608
             selection:
             - identifier: identifier
               variant_id: 4
@@ -10010,11 +10010,11 @@ components:
             min_order: 9
             pic_url: pic_url
             stock: 8
-            bundle_price: 9
+            bundle_price: 9.369310271410669
             Name: Name
             status: 3
             child:
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -10023,9 +10023,9 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -10034,9 +10034,9 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
-          - original_price: 6
+          - original_price: 6.683562403749608
             selection:
             - identifier: identifier
               variant_id: 4
@@ -10097,11 +10097,11 @@ components:
             min_order: 9
             pic_url: pic_url
             stock: 8
-            bundle_price: 9
+            bundle_price: 9.369310271410669
             Name: Name
             status: 3
             child:
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -10110,9 +10110,9 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
-            - original_price: 4
+            - original_price: 4.965218492984954
               is_buyable: true
               product_id: 6
               option_id:
@@ -10121,7 +10121,7 @@ components:
               min_order: 7
               pic_url: pic_url
               stock: 5
-              bundle_price: 1
+              bundle_price: 1.1730742509559433
               Name: Name
           Type: 1
           group_id: 6
@@ -10163,7 +10163,7 @@ components:
             Name: Name
             shop_id: 5
             bundle_item:
-            - original_price: 6
+            - original_price: 6.683562403749608
               selection:
               - identifier: identifier
                 variant_id: 4
@@ -10224,11 +10224,11 @@ components:
               min_order: 9
               pic_url: pic_url
               stock: 8
-              bundle_price: 9
+              bundle_price: 9.369310271410669
               Name: Name
               status: 3
               child:
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10237,9 +10237,9 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10248,9 +10248,9 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
-            - original_price: 6
+            - original_price: 6.683562403749608
               selection:
               - identifier: identifier
                 variant_id: 4
@@ -10311,11 +10311,11 @@ components:
               min_order: 9
               pic_url: pic_url
               stock: 8
-              bundle_price: 9
+              bundle_price: 9.369310271410669
               Name: Name
               status: 3
               child:
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10324,9 +10324,9 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10335,7 +10335,7 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
             Type: 1
             group_id: 6
@@ -10361,7 +10361,7 @@ components:
             Name: Name
             shop_id: 5
             bundle_item:
-            - original_price: 6
+            - original_price: 6.683562403749608
               selection:
               - identifier: identifier
                 variant_id: 4
@@ -10422,11 +10422,11 @@ components:
               min_order: 9
               pic_url: pic_url
               stock: 8
-              bundle_price: 9
+              bundle_price: 9.369310271410669
               Name: Name
               status: 3
               child:
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10435,9 +10435,9 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10446,9 +10446,9 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
-            - original_price: 6
+            - original_price: 6.683562403749608
               selection:
               - identifier: identifier
                 variant_id: 4
@@ -10509,11 +10509,11 @@ components:
               min_order: 9
               pic_url: pic_url
               stock: 8
-              bundle_price: 9
+              bundle_price: 9.369310271410669
               Name: Name
               status: 3
               child:
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10522,9 +10522,9 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
-              - original_price: 4
+              - original_price: 4.965218492984954
                 is_buyable: true
                 product_id: 6
                 option_id:
@@ -10533,7 +10533,7 @@ components:
                 min_order: 7
                 pic_url: pic_url
                 stock: 5
-                bundle_price: 1
+                bundle_price: 1.1730742509559433
                 Name: Name
             Type: 1
             group_id: 6
@@ -10608,8 +10608,8 @@ components:
           format: int64
           type: integer
         variant_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
       required:
       - variant_id
       - variant_price
@@ -10626,8 +10626,8 @@ components:
           type: integer
         bundle_price:
           description: The product’s price in this bundle
-          format: int64
-          type: integer
+          format: double
+          type: number
         min_order:
           description: Minimum order for this product. Used for PAKET DISKON type
             bundle.
@@ -10840,8 +10840,8 @@ components:
         discounted_price:
           description: Price that will be set into slash price campaign (please use
             either discounted_price or discount_percentage)
-          format: int64
-          type: integer
+          format: double
+          type: number
         discount_percentage:
           description: Total discount percentage that will be set into slash price
             campaign (please use either discounted_price or discount_percentage)
@@ -11155,20 +11155,20 @@ components:
       type: object
     viewSlashPrice_200_response_data_inner_price:
       example:
-        min: 1
+        min: 1.4658129805029452
         min_formated: min_formated
-        max: 5
+        max: 5.962133916683182
         max_formated: max_formated
       properties:
         min:
-          format: int64
-          type: integer
+          format: double
+          type: number
         min_formated:
           description: Formated
           type: string
         max:
-          format: int64
-          type: integer
+          format: double
+          type: number
         max_formated:
           description: Formated
           type: string
@@ -11229,12 +11229,12 @@ components:
         discounted_percentage: 7
         url: url
         Name: Name
-        discounted_price: 2
+        discounted_price: 2.3021358869347655
         slash_price_status_id: 1
         price:
-          min: 1
+          min: 1.4658129805029452
           min_formated: min_formated
-          max: 5
+          max: 5.962133916683182
           max_formated: max_formated
         product_id: 6
         stock: 5
@@ -11268,8 +11268,8 @@ components:
           type: string
         discounted_price:
           description: Product Discounted Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         discounted_percentage:
           description: Product Discounted Percentage
           format: int64
@@ -11317,12 +11317,12 @@ components:
           discounted_percentage: 7
           url: url
           Name: Name
-          discounted_price: 2
+          discounted_price: 2.3021358869347655
           slash_price_status_id: 1
           price:
-            min: 1
+            min: 1.4658129805029452
             min_formated: min_formated
-            max: 5
+            max: 5.962133916683182
             max_formated: max_formated
           product_id: 6
           stock: 5
@@ -11349,12 +11349,12 @@ components:
           discounted_percentage: 7
           url: url
           Name: Name
-          discounted_price: 2
+          discounted_price: 2.3021358869347655
           slash_price_status_id: 1
           price:
-            min: 1
+            min: 1.4658129805029452
             min_formated: min_formated
-            max: 5
+            max: 5.962133916683182
             max_formated: max_formated
           product_id: 6
           stock: 5
@@ -12540,8 +12540,8 @@ components:
     getResolutionTicket_200_response_data_shops_inner_ticket_inner_complaint_product_inner:
       example:
         image: image
-        final_price: 2
-        price: 5
+        final_price: 2.3021358869347655
+        price: 5.637376656633329
         qty: 5
         id: 1
         Name: Name
@@ -12555,11 +12555,11 @@ components:
           format: int64
           type: integer
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         final_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         image:
           type: string
       type: object
@@ -12568,23 +12568,23 @@ components:
         open_date: open_date
         sla_date: sla_date
         close_date: close_date
-        shipping_amt: 7
+        shipping_amt: 7.061401241503109
         solution: solution
-        total_issued_funds: 9
+        total_issued_funds: 9.301444243932576
         fault: fault
         problem_type: problem_type
         id: 6
         invoice_number: invoice_number
         complaint_product:
         - image: image
-          final_price: 2
-          price: 5
+          final_price: 2.3021358869347655
+          price: 5.637376656633329
           qty: 5
           id: 1
           Name: Name
         - image: image
-          final_price: 2
-          price: 5
+          final_price: 2.3021358869347655
+          price: 5.637376656633329
           qty: 5
           id: 1
           Name: Name
@@ -12620,11 +12620,11 @@ components:
         fault:
           type: string
         shipping_amt:
-          format: int64
-          type: integer
+          format: double
+          type: number
         total_issued_funds:
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     getResolutionTicket_200_response_data_shops_inner:
       example:
@@ -12633,23 +12633,23 @@ components:
         - open_date: open_date
           sla_date: sla_date
           close_date: close_date
-          shipping_amt: 7
+          shipping_amt: 7.061401241503109
           solution: solution
-          total_issued_funds: 9
+          total_issued_funds: 9.301444243932576
           fault: fault
           problem_type: problem_type
           id: 6
           invoice_number: invoice_number
           complaint_product:
           - image: image
-            final_price: 2
-            price: 5
+            final_price: 2.3021358869347655
+            price: 5.637376656633329
             qty: 5
             id: 1
             Name: Name
           - image: image
-            final_price: 2
-            price: 5
+            final_price: 2.3021358869347655
+            price: 5.637376656633329
             qty: 5
             id: 1
             Name: Name
@@ -12657,23 +12657,23 @@ components:
         - open_date: open_date
           sla_date: sla_date
           close_date: close_date
-          shipping_amt: 7
+          shipping_amt: 7.061401241503109
           solution: solution
-          total_issued_funds: 9
+          total_issued_funds: 9.301444243932576
           fault: fault
           problem_type: problem_type
           id: 6
           invoice_number: invoice_number
           complaint_product:
           - image: image
-            final_price: 2
-            price: 5
+            final_price: 2.3021358869347655
+            price: 5.637376656633329
             qty: 5
             id: 1
             Name: Name
           - image: image
-            final_price: 2
-            price: 5
+            final_price: 2.3021358869347655
+            price: 5.637376656633329
             qty: 5
             id: 1
             Name: Name
@@ -12699,23 +12699,23 @@ components:
           - open_date: open_date
             sla_date: sla_date
             close_date: close_date
-            shipping_amt: 7
+            shipping_amt: 7.061401241503109
             solution: solution
-            total_issued_funds: 9
+            total_issued_funds: 9.301444243932576
             fault: fault
             problem_type: problem_type
             id: 6
             invoice_number: invoice_number
             complaint_product:
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
@@ -12723,23 +12723,23 @@ components:
           - open_date: open_date
             sla_date: sla_date
             close_date: close_date
-            shipping_amt: 7
+            shipping_amt: 7.061401241503109
             solution: solution
-            total_issued_funds: 9
+            total_issued_funds: 9.301444243932576
             fault: fault
             problem_type: problem_type
             id: 6
             invoice_number: invoice_number
             complaint_product:
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
@@ -12750,23 +12750,23 @@ components:
           - open_date: open_date
             sla_date: sla_date
             close_date: close_date
-            shipping_amt: 7
+            shipping_amt: 7.061401241503109
             solution: solution
-            total_issued_funds: 9
+            total_issued_funds: 9.301444243932576
             fault: fault
             problem_type: problem_type
             id: 6
             invoice_number: invoice_number
             complaint_product:
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
@@ -12774,23 +12774,23 @@ components:
           - open_date: open_date
             sla_date: sla_date
             close_date: close_date
-            shipping_amt: 7
+            shipping_amt: 7.061401241503109
             solution: solution
-            total_issued_funds: 9
+            total_issued_funds: 9.301444243932576
             fault: fault
             problem_type: problem_type
             id: 6
             invoice_number: invoice_number
             complaint_product:
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
             - image: image
-              final_price: 2
-              price: 5
+              final_price: 2.3021358869347655
+              price: 5.637376656633329
               qty: 5
               id: 1
               Name: Name
@@ -12824,23 +12824,23 @@ components:
             - open_date: open_date
               sla_date: sla_date
               close_date: close_date
-              shipping_amt: 7
+              shipping_amt: 7.061401241503109
               solution: solution
-              total_issued_funds: 9
+              total_issued_funds: 9.301444243932576
               fault: fault
               problem_type: problem_type
               id: 6
               invoice_number: invoice_number
               complaint_product:
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
@@ -12848,23 +12848,23 @@ components:
             - open_date: open_date
               sla_date: sla_date
               close_date: close_date
-              shipping_amt: 7
+              shipping_amt: 7.061401241503109
               solution: solution
-              total_issued_funds: 9
+              total_issued_funds: 9.301444243932576
               fault: fault
               problem_type: problem_type
               id: 6
               invoice_number: invoice_number
               complaint_product:
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
@@ -12875,23 +12875,23 @@ components:
             - open_date: open_date
               sla_date: sla_date
               close_date: close_date
-              shipping_amt: 7
+              shipping_amt: 7.061401241503109
               solution: solution
-              total_issued_funds: 9
+              total_issued_funds: 9.301444243932576
               fault: fault
               problem_type: problem_type
               id: 6
               invoice_number: invoice_number
               complaint_product:
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
@@ -12899,23 +12899,23 @@ components:
             - open_date: open_date
               sla_date: sla_date
               close_date: close_date
-              shipping_amt: 7
+              shipping_amt: 7.061401241503109
               solution: solution
-              total_issued_funds: 9
+              total_issued_funds: 9.301444243932576
               fault: fault
               problem_type: problem_type
               id: 6
               invoice_number: invoice_number
               complaint_product:
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
               - image: image
-                final_price: 2
-                price: 5
+                final_price: 2.3021358869347655
+                price: 5.637376656633329
                 qty: 5
                 id: 1
                 Name: Name
@@ -12937,10 +12937,10 @@ components:
     getOrderCobCod_200_response_data_order_data_inner_order:
       example:
         order_status: 5
-        open_amt: 2
+        open_amt: 2.3021358869347655
         payment_id: 5
         invoice_pdf_link: invoice_pdf_link
-        payment_amt_cod: 7
+        payment_amt_cod: 7.061401241503109
         buyer_id: 6
         order_id: 0
         invoice_number: invoice_number
@@ -12968,11 +12968,11 @@ components:
         invoice_pdf_link:
           type: string
         open_amt:
-          format: int64
-          type: integer
+          format: double
+          type: number
         payment_amt_cod:
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     getOrderCobCod_200_response_data_order_data_inner_order_history_inner:
       example:
@@ -13000,9 +13000,9 @@ components:
       example:
         order_detail_id: 7
         quantity: 1
-        insurance_price: 6
+        insurance_price: 6.84685269835264
         product_id: 1
-        product_price: 1
+        product_price: 1.4894159098541704
         product_name: product_name
       properties:
         order_detail_id:
@@ -13017,11 +13017,11 @@ components:
           format: int64
           type: integer
         product_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     getOrderCobCod_200_response_data_order_data_inner_drop_shipper:
       example:
@@ -13188,15 +13188,15 @@ components:
         order_detail:
         - order_detail_id: 7
           quantity: 1
-          insurance_price: 6
+          insurance_price: 6.84685269835264
           product_id: 1
-          product_price: 1
+          product_price: 1.4894159098541704
           product_name: product_name
         - order_detail_id: 7
           quantity: 1
-          insurance_price: 6
+          insurance_price: 6.84685269835264
           product_id: 1
-          product_price: 1
+          product_price: 1.4894159098541704
           product_name: product_name
         order_shipment_fulfillment:
           is_accepted: true
@@ -13214,10 +13214,10 @@ components:
             Time: Time
         order:
           order_status: 5
-          open_amt: 2
+          open_amt: 2.3021358869347655
           payment_id: 5
           invoice_pdf_link: invoice_pdf_link
-          payment_amt_cod: 7
+          payment_amt_cod: 7.061401241503109
           buyer_id: 6
           order_id: 0
           invoice_number: invoice_number
@@ -13280,15 +13280,15 @@ components:
           order_detail:
           - order_detail_id: 7
             quantity: 1
-            insurance_price: 6
+            insurance_price: 6.84685269835264
             product_id: 1
-            product_price: 1
+            product_price: 1.4894159098541704
             product_name: product_name
           - order_detail_id: 7
             quantity: 1
-            insurance_price: 6
+            insurance_price: 6.84685269835264
             product_id: 1
-            product_price: 1
+            product_price: 1.4894159098541704
             product_name: product_name
           order_shipment_fulfillment:
             is_accepted: true
@@ -13306,10 +13306,10 @@ components:
               Time: Time
           order:
             order_status: 5
-            open_amt: 2
+            open_amt: 2.3021358869347655
             payment_id: 5
             invoice_pdf_link: invoice_pdf_link
-            payment_amt_cod: 7
+            payment_amt_cod: 7.061401241503109
             buyer_id: 6
             order_id: 0
             invoice_number: invoice_number
@@ -13349,15 +13349,15 @@ components:
           order_detail:
           - order_detail_id: 7
             quantity: 1
-            insurance_price: 6
+            insurance_price: 6.84685269835264
             product_id: 1
-            product_price: 1
+            product_price: 1.4894159098541704
             product_name: product_name
           - order_detail_id: 7
             quantity: 1
-            insurance_price: 6
+            insurance_price: 6.84685269835264
             product_id: 1
-            product_price: 1
+            product_price: 1.4894159098541704
             product_name: product_name
           order_shipment_fulfillment:
             is_accepted: true
@@ -13375,10 +13375,10 @@ components:
               Time: Time
           order:
             order_status: 5
-            open_amt: 2
+            open_amt: 2.3021358869347655
             payment_id: 5
             invoice_pdf_link: invoice_pdf_link
-            payment_amt_cod: 7
+            payment_amt_cod: 7.061401241503109
             buyer_id: 6
             order_id: 0
             invoice_number: invoice_number
@@ -13438,15 +13438,15 @@ components:
             order_detail:
             - order_detail_id: 7
               quantity: 1
-              insurance_price: 6
+              insurance_price: 6.84685269835264
               product_id: 1
-              product_price: 1
+              product_price: 1.4894159098541704
               product_name: product_name
             - order_detail_id: 7
               quantity: 1
-              insurance_price: 6
+              insurance_price: 6.84685269835264
               product_id: 1
-              product_price: 1
+              product_price: 1.4894159098541704
               product_name: product_name
             order_shipment_fulfillment:
               is_accepted: true
@@ -13464,10 +13464,10 @@ components:
                 Time: Time
             order:
               order_status: 5
-              open_amt: 2
+              open_amt: 2.3021358869347655
               payment_id: 5
               invoice_pdf_link: invoice_pdf_link
-              payment_amt_cod: 7
+              payment_amt_cod: 7.061401241503109
               buyer_id: 6
               order_id: 0
               invoice_number: invoice_number
@@ -13507,15 +13507,15 @@ components:
             order_detail:
             - order_detail_id: 7
               quantity: 1
-              insurance_price: 6
+              insurance_price: 6.84685269835264
               product_id: 1
-              product_price: 1
+              product_price: 1.4894159098541704
               product_name: product_name
             - order_detail_id: 7
               quantity: 1
-              insurance_price: 6
+              insurance_price: 6.84685269835264
               product_id: 1
-              product_price: 1
+              product_price: 1.4894159098541704
               product_name: product_name
             order_shipment_fulfillment:
               is_accepted: true
@@ -13533,10 +13533,10 @@ components:
                 Time: Time
             order:
               order_status: 5
-              open_amt: 2
+              open_amt: 2.3021358869347655
               payment_id: 5
               invoice_pdf_link: invoice_pdf_link
-              payment_amt_cod: 7
+              payment_amt_cod: 7.061401241503109
               buyer_id: 6
               order_id: 0
               invoice_number: invoice_number
@@ -13936,22 +13936,22 @@ components:
       type: object
     getSingleOrder_200_response_data_order_info_order_detail_inner:
       example:
-        subtotal_price: 6
+        subtotal_price: 6.704019297950036
         quantity: 7
         is_free_returns: true
         product_desc_atc: product_desc_atc
         quantity_reject: 7
         weight: 3.353193347011243
         product_desc_pdp: product_desc_pdp
-        product_price: 5
+        product_price: 5.944895607614016
         product_picture: product_picture
         snapshot_url: snapshot_url
         product_name: product_name
         total_weight: 3.0937452626664474
         order_detail_id: 6
-        currency_rate: 8
-        insurance_price: 6
-        normal_price: 0
+        currency_rate: 8.969578798196912
+        insurance_price: 6.519180951018382
+        normal_price: 0.10263654006109402
         product_id: 6
         quantity_deliver: 0
         min_order: 7
@@ -13979,12 +13979,12 @@ components:
           type: string
         product_price:
           description: Product Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         subtotal_price:
           description: Product Order Total Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         weight:
           description: Product Weight
           format: double
@@ -14010,20 +14010,20 @@ components:
           type: boolean
         insurance_price:
           description: Product Order Insurance Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         normal_price:
           description: Product Order Normal Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         currency_id:
           description: Currency Unique Identifier
           format: int64
           type: integer
         currency_rate:
           description: Currency Rate
-          format: int64
-          type: integer
+          format: double
+          type: number
         min_order:
           description: Product Minimum Order
           format: int64
@@ -14105,28 +14105,28 @@ components:
           milestone: milestone
           name: name
         second_sp_id: 0
-        fee: 9
+        fee: 9.132027271330688
         is_fake_delivery: true
         logistic_name: logistic_name
         second_shipping_id: 9
         second_logistic_name: second_logistic_name
         second_logistic_service: second_logistic_service
-        second_rate: 5
-        shipping_price: 4
-        second_agency_fee: 0
-        autoresi_shipping_price: 6
+        second_rate: 5.507386964179881
+        shipping_price: 4.258773108174356
+        second_agency_fee: 0.5199002018724985
+        autoresi_shipping_price: 6.073898085781152
         isCashless: true
         logistic_service: logistic_service
-        shipping_price_rate: 1
+        shipping_price_rate: 1.041444916118296
         count_awb: 8
         awb: awb
-        shipping_fee: 4
+        shipping_fee: 4.678947989005849
         autoresi_awb: autoresi_awb
         autoresi_cashless_status: 4
-        insurance_price: 7
+        insurance_price: 7.260521264802104
         sp_id: 0
         is_change_courier: true
-        second_insurance: 7
+        second_insurance: 7.933506881737151
       properties:
         sp_id:
           description: Shipper Unique Identifier
@@ -14144,24 +14144,24 @@ components:
           type: string
         shipping_price:
           description: Shipping Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         shipping_price_rate:
           description: Shipping Price Rate
-          format: int64
-          type: integer
+          format: double
+          type: number
         shipping_fee:
           description: Shipping Fee
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_price:
           description: Insurance Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         fee:
           description: Fee
-          format: int64
-          type: integer
+          format: double
+          type: number
         is_change_courier:
           description: Is change courirer?
           type: boolean
@@ -14181,16 +14181,16 @@ components:
           type: string
         second_agency_fee:
           description: Second Agency Fee
-          format: int64
-          type: integer
+          format: double
+          type: number
         second_insurance:
           description: Second Insurance
-          format: int64
-          type: integer
+          format: double
+          type: number
         second_rate:
           description: Second Shipping Price Rate
-          format: int64
-          type: integer
+          format: double
+          type: number
         awb:
           description: Airway Bill (Resi)
           type: string
@@ -14203,8 +14203,8 @@ components:
           type: string
         autoresi_shipping_price:
           description: AWB Shipping Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         count_awb:
           description: AWB Count
           format: int64
@@ -14299,28 +14299,28 @@ components:
             milestone: milestone
             name: name
           second_sp_id: 0
-          fee: 9
+          fee: 9.132027271330688
           is_fake_delivery: true
           logistic_name: logistic_name
           second_shipping_id: 9
           second_logistic_name: second_logistic_name
           second_logistic_service: second_logistic_service
-          second_rate: 5
-          shipping_price: 4
-          second_agency_fee: 0
-          autoresi_shipping_price: 6
+          second_rate: 5.507386964179881
+          shipping_price: 4.258773108174356
+          second_agency_fee: 0.5199002018724985
+          autoresi_shipping_price: 6.073898085781152
           isCashless: true
           logistic_service: logistic_service
-          shipping_price_rate: 1
+          shipping_price_rate: 1.041444916118296
           count_awb: 8
           awb: awb
-          shipping_fee: 4
+          shipping_fee: 4.678947989005849
           autoresi_awb: autoresi_awb
           autoresi_cashless_status: 4
-          insurance_price: 7
+          insurance_price: 7.260521264802104
           sp_id: 0
           is_change_courier: true
-          second_insurance: 7
+          second_insurance: 7.933506881737151
         is_replacement: true
         delivered_age_day: 4
         order_age_day: 5
@@ -14340,22 +14340,22 @@ components:
           city_id: 2
         replacement_multiplier: 8
         order_detail:
-        - subtotal_price: 6
+        - subtotal_price: 6.704019297950036
           quantity: 7
           is_free_returns: true
           product_desc_atc: product_desc_atc
           quantity_reject: 7
           weight: 3.353193347011243
           product_desc_pdp: product_desc_pdp
-          product_price: 5
+          product_price: 5.944895607614016
           product_picture: product_picture
           snapshot_url: snapshot_url
           product_name: product_name
           total_weight: 3.0937452626664474
           order_detail_id: 6
-          currency_rate: 8
-          insurance_price: 6
-          normal_price: 0
+          currency_rate: 8.969578798196912
+          insurance_price: 6.519180951018382
+          normal_price: 0.10263654006109402
           product_id: 6
           quantity_deliver: 0
           min_order: 7
@@ -14363,22 +14363,22 @@ components:
           sku: sku
           currency_id: 4
           campaign_id: campaign_id
-        - subtotal_price: 6
+        - subtotal_price: 6.704019297950036
           quantity: 7
           is_free_returns: true
           product_desc_atc: product_desc_atc
           quantity_reject: 7
           weight: 3.353193347011243
           product_desc_pdp: product_desc_pdp
-          product_price: 5
+          product_price: 5.944895607614016
           product_picture: product_picture
           snapshot_url: snapshot_url
           product_name: product_name
           total_weight: 3.0937452626664474
           order_detail_id: 6
-          currency_rate: 8
-          insurance_price: 6
-          normal_price: 0
+          currency_rate: 8.969578798196912
+          insurance_price: 6.519180951018382
+          normal_price: 0.10263654006109402
           product_id: 6
           quantity_deliver: 0
           min_order: 7
@@ -14820,7 +14820,7 @@ components:
         quantity_request: 5
         order_dtl_id: 1
         product_id: 3
-        total_price_request: 1
+        total_price_request: 1.5970080735609526
         order_id: 1
       properties:
         order_id:
@@ -14841,26 +14841,26 @@ components:
           type: integer
         total_price_request:
           description: Requested Total Price
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     getSingleOrder_200_response_data_pof_info:
       example:
         create_by: 6
-        shipping_price: 0
+        shipping_price: 0.58919091925136
         update_time: update_time
-        insurance_price: 2
+        insurance_price: 2.535258963197524
         create_time: create_time
         pof_detail_info:
         - quantity_request: 5
           order_dtl_id: 1
           product_id: 3
-          total_price_request: 1
+          total_price_request: 1.5970080735609526
           order_id: 1
         - quantity_request: 5
           order_dtl_id: 1
           product_id: 3
-          total_price_request: 1
+          total_price_request: 1.5970080735609526
           order_id: 1
         pof_status: 9
         update_by: 6
@@ -14878,12 +14878,12 @@ components:
           type: integer
         shipping_price:
           description: Shipping Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_price:
           description: Insurance Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         create_time:
           description: |
             POF Request Create Timestamp (format: 2023-04-03T08:36:29.331837Z)
@@ -15058,9 +15058,9 @@ components:
             status: 1
             longitude: longitude
           warehouse_id: 5
-        open_amt: 6
+        open_amt: 6.84685269835264
         create_time: create_time
-        item_price: 4
+        item_price: 4.965218492984954
         buyer_info:
           buyer_fullname: buyer_fullname
           buyer_email: buyer_email
@@ -15068,7 +15068,7 @@ components:
           buyer_id: 5
         custom_fields: "{}"
         is_fulfillment: true
-        lp_amt: 7
+        lp_amt: 7.457744773683766
         order_info:
           order_history:
           - create_by: 7
@@ -15095,28 +15095,28 @@ components:
               milestone: milestone
               name: name
             second_sp_id: 0
-            fee: 9
+            fee: 9.132027271330688
             is_fake_delivery: true
             logistic_name: logistic_name
             second_shipping_id: 9
             second_logistic_name: second_logistic_name
             second_logistic_service: second_logistic_service
-            second_rate: 5
-            shipping_price: 4
-            second_agency_fee: 0
-            autoresi_shipping_price: 6
+            second_rate: 5.507386964179881
+            shipping_price: 4.258773108174356
+            second_agency_fee: 0.5199002018724985
+            autoresi_shipping_price: 6.073898085781152
             isCashless: true
             logistic_service: logistic_service
-            shipping_price_rate: 1
+            shipping_price_rate: 1.041444916118296
             count_awb: 8
             awb: awb
-            shipping_fee: 4
+            shipping_fee: 4.678947989005849
             autoresi_awb: autoresi_awb
             autoresi_cashless_status: 4
-            insurance_price: 7
+            insurance_price: 7.260521264802104
             sp_id: 0
             is_change_courier: true
-            second_insurance: 7
+            second_insurance: 7.933506881737151
           is_replacement: true
           delivered_age_day: 4
           order_age_day: 5
@@ -15136,22 +15136,22 @@ components:
             city_id: 2
           replacement_multiplier: 8
           order_detail:
-          - subtotal_price: 6
+          - subtotal_price: 6.704019297950036
             quantity: 7
             is_free_returns: true
             product_desc_atc: product_desc_atc
             quantity_reject: 7
             weight: 3.353193347011243
             product_desc_pdp: product_desc_pdp
-            product_price: 5
+            product_price: 5.944895607614016
             product_picture: product_picture
             snapshot_url: snapshot_url
             product_name: product_name
             total_weight: 3.0937452626664474
             order_detail_id: 6
-            currency_rate: 8
-            insurance_price: 6
-            normal_price: 0
+            currency_rate: 8.969578798196912
+            insurance_price: 6.519180951018382
+            normal_price: 0.10263654006109402
             product_id: 6
             quantity_deliver: 0
             min_order: 7
@@ -15159,22 +15159,22 @@ components:
             sku: sku
             currency_id: 4
             campaign_id: campaign_id
-          - subtotal_price: 6
+          - subtotal_price: 6.704019297950036
             quantity: 7
             is_free_returns: true
             product_desc_atc: product_desc_atc
             quantity_reject: 7
             weight: 3.353193347011243
             product_desc_pdp: product_desc_pdp
-            product_price: 5
+            product_price: 5.944895607614016
             product_picture: product_picture
             snapshot_url: snapshot_url
             product_name: product_name
             total_weight: 3.0937452626664474
             order_detail_id: 6
-            currency_rate: 8
-            insurance_price: 6
-            normal_price: 0
+            currency_rate: 8.969578798196912
+            insurance_price: 6.519180951018382
+            normal_price: 0.10263654006109402
             product_id: 6
             quantity_deliver: 0
             min_order: 7
@@ -15205,23 +15205,23 @@ components:
             lat: 9.183123594773994
           origin_district: 8
         is_affiliate: true
-        cashback_amt: 1
+        cashback_amt: 1.1730742509559433
         pof_info:
           create_by: 6
-          shipping_price: 0
+          shipping_price: 0.58919091925136
           update_time: update_time
-          insurance_price: 2
+          insurance_price: 2.535258963197524
           create_time: create_time
           pof_detail_info:
           - quantity_request: 5
             order_dtl_id: 1
             product_id: 3
-            total_price_request: 1
+            total_price_request: 1.5970080735609526
             order_id: 1
           - quantity_request: 5
             order_dtl_id: 1
             product_id: 3
-            total_price_request: 1
+            total_price_request: 1.5970080735609526
             order_id: 1
           pof_status: 9
           update_by: 6
@@ -15284,15 +15284,15 @@ components:
           type: string
         open_amt:
           description: Total Price Amount
-          format: int64
-          type: integer
+          format: double
+          type: number
         lp_amt:
-          format: int64
-          type: integer
+          format: double
+          type: number
         cashback_amt:
           description: Cashback Amount
-          format: int64
-          type: integer
+          format: double
+          type: number
         info:
           description: Info
           type: string
@@ -15301,8 +15301,8 @@ components:
           type: string
         item_price:
           description: Item Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         buyer_info:
           $ref: '#/components/schemas/getSingleOrder_200_response_data_buyer_info'
         shop_info:
@@ -15512,9 +15512,9 @@ components:
               status: 1
               longitude: longitude
             warehouse_id: 5
-          open_amt: 6
+          open_amt: 6.84685269835264
           create_time: create_time
-          item_price: 4
+          item_price: 4.965218492984954
           buyer_info:
             buyer_fullname: buyer_fullname
             buyer_email: buyer_email
@@ -15522,7 +15522,7 @@ components:
             buyer_id: 5
           custom_fields: "{}"
           is_fulfillment: true
-          lp_amt: 7
+          lp_amt: 7.457744773683766
           order_info:
             order_history:
             - create_by: 7
@@ -15549,28 +15549,28 @@ components:
                 milestone: milestone
                 name: name
               second_sp_id: 0
-              fee: 9
+              fee: 9.132027271330688
               is_fake_delivery: true
               logistic_name: logistic_name
               second_shipping_id: 9
               second_logistic_name: second_logistic_name
               second_logistic_service: second_logistic_service
-              second_rate: 5
-              shipping_price: 4
-              second_agency_fee: 0
-              autoresi_shipping_price: 6
+              second_rate: 5.507386964179881
+              shipping_price: 4.258773108174356
+              second_agency_fee: 0.5199002018724985
+              autoresi_shipping_price: 6.073898085781152
               isCashless: true
               logistic_service: logistic_service
-              shipping_price_rate: 1
+              shipping_price_rate: 1.041444916118296
               count_awb: 8
               awb: awb
-              shipping_fee: 4
+              shipping_fee: 4.678947989005849
               autoresi_awb: autoresi_awb
               autoresi_cashless_status: 4
-              insurance_price: 7
+              insurance_price: 7.260521264802104
               sp_id: 0
               is_change_courier: true
-              second_insurance: 7
+              second_insurance: 7.933506881737151
             is_replacement: true
             delivered_age_day: 4
             order_age_day: 5
@@ -15590,22 +15590,22 @@ components:
               city_id: 2
             replacement_multiplier: 8
             order_detail:
-            - subtotal_price: 6
+            - subtotal_price: 6.704019297950036
               quantity: 7
               is_free_returns: true
               product_desc_atc: product_desc_atc
               quantity_reject: 7
               weight: 3.353193347011243
               product_desc_pdp: product_desc_pdp
-              product_price: 5
+              product_price: 5.944895607614016
               product_picture: product_picture
               snapshot_url: snapshot_url
               product_name: product_name
               total_weight: 3.0937452626664474
               order_detail_id: 6
-              currency_rate: 8
-              insurance_price: 6
-              normal_price: 0
+              currency_rate: 8.969578798196912
+              insurance_price: 6.519180951018382
+              normal_price: 0.10263654006109402
               product_id: 6
               quantity_deliver: 0
               min_order: 7
@@ -15613,22 +15613,22 @@ components:
               sku: sku
               currency_id: 4
               campaign_id: campaign_id
-            - subtotal_price: 6
+            - subtotal_price: 6.704019297950036
               quantity: 7
               is_free_returns: true
               product_desc_atc: product_desc_atc
               quantity_reject: 7
               weight: 3.353193347011243
               product_desc_pdp: product_desc_pdp
-              product_price: 5
+              product_price: 5.944895607614016
               product_picture: product_picture
               snapshot_url: snapshot_url
               product_name: product_name
               total_weight: 3.0937452626664474
               order_detail_id: 6
-              currency_rate: 8
-              insurance_price: 6
-              normal_price: 0
+              currency_rate: 8.969578798196912
+              insurance_price: 6.519180951018382
+              normal_price: 0.10263654006109402
               product_id: 6
               quantity_deliver: 0
               min_order: 7
@@ -15659,23 +15659,23 @@ components:
               lat: 9.183123594773994
             origin_district: 8
           is_affiliate: true
-          cashback_amt: 1
+          cashback_amt: 1.1730742509559433
           pof_info:
             create_by: 6
-            shipping_price: 0
+            shipping_price: 0.58919091925136
             update_time: update_time
-            insurance_price: 2
+            insurance_price: 2.535258963197524
             create_time: create_time
             pof_detail_info:
             - quantity_request: 5
               order_dtl_id: 1
               product_id: 3
-              total_price_request: 1
+              total_price_request: 1.5970080735609526
               order_id: 1
             - quantity_request: 5
               order_dtl_id: 1
               product_id: 3
-              total_price_request: 1
+              total_price_request: 1.5970080735609526
               order_id: 1
             pof_status: 9
             update_by: 6
@@ -15712,8 +15712,8 @@ components:
         is_wholesale: true
         quantity: 1
         notes: notes
-        total_price: 7
-        price: 2
+        total_price: 7.061401241503109
+        price: 2.3021358869347655
         weight: 5.962133916683182
         currency: currency
         id: 6
@@ -15745,12 +15745,12 @@ components:
           type: number
         price:
           description: Product Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         total_price:
           description: Product Order Total Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         currency:
           description: Product Price Currency
           type: string
@@ -15785,17 +15785,17 @@ components:
         prod_pic: prod_pic
         notes: notes
         product_weight: 5.025004791520295
-        product_price: 4
+        product_price: 4.965218492984954
         total_weight: 9.965781217890562
         oms_detail_data: oms_detail_data
         product_desc: product_desc
         order_dtl_id: 1
-        currency_rate: 1
+        currency_rate: 1.284659006116532
         product_id: 7
         child_cat_id: 9
         sku: sku
         campaign_id: 5
-        subtotal_price: 9
+        subtotal_price: 9.369310271410669
         thumbnail: thumbnail
         quantity: 1
         is_slash_price: true
@@ -15804,8 +15804,8 @@ components:
         bundle_variant_id: bundle_variant_id
         condition: 6
         returnable: 8
-        insurance_price: 3
-        normal_price: 6
+        insurance_price: 3.5571952270680973
+        normal_price: 6.965117697638846
         bundle_id: 6
         min_order: 2
         order_id: 6
@@ -15836,8 +15836,8 @@ components:
           type: integer
         product_price:
           description: Product Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         product_weight:
           description: Product Weight
           format: double
@@ -15848,8 +15848,8 @@ components:
           type: number
         subtotal_price:
           description: Product Order Total Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         notes:
           description: Product Order Notes
           type: string
@@ -15871,16 +15871,16 @@ components:
           type: integer
         insurance_price:
           description: Product Insurance Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         normal_price:
           description: Product Normal Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         currency_rate:
           description: ""
-          format: int64
-          type: integer
+          format: double
+          type: number
         prod_pic:
           description: ""
           type: string
@@ -15922,7 +15922,7 @@ components:
       type: object
     getAllOrders_200_response_data_inner_bundle_detail_bundle_inner:
       example:
-        bundle_subtotal_price: 1
+        bundle_subtotal_price: 1.0246457001441578
         bundle_id: 4
         bundle_quantity: 1
         bundle_name: bundle_name
@@ -15930,17 +15930,17 @@ components:
         - prod_pic: prod_pic
           notes: notes
           product_weight: 5.025004791520295
-          product_price: 4
+          product_price: 4.965218492984954
           total_weight: 9.965781217890562
           oms_detail_data: oms_detail_data
           product_desc: product_desc
           order_dtl_id: 1
-          currency_rate: 1
+          currency_rate: 1.284659006116532
           product_id: 7
           child_cat_id: 9
           sku: sku
           campaign_id: 5
-          subtotal_price: 9
+          subtotal_price: 9.369310271410669
           thumbnail: thumbnail
           quantity: 1
           is_slash_price: true
@@ -15949,8 +15949,8 @@ components:
           bundle_variant_id: bundle_variant_id
           condition: 6
           returnable: 8
-          insurance_price: 3
-          normal_price: 6
+          insurance_price: 3.5571952270680973
+          normal_price: 6.965117697638846
           bundle_id: 6
           min_order: 2
           order_id: 6
@@ -15959,17 +15959,17 @@ components:
         - prod_pic: prod_pic
           notes: notes
           product_weight: 5.025004791520295
-          product_price: 4
+          product_price: 4.965218492984954
           total_weight: 9.965781217890562
           oms_detail_data: oms_detail_data
           product_desc: product_desc
           order_dtl_id: 1
-          currency_rate: 1
+          currency_rate: 1.284659006116532
           product_id: 7
           child_cat_id: 9
           sku: sku
           campaign_id: 5
-          subtotal_price: 9
+          subtotal_price: 9.369310271410669
           thumbnail: thumbnail
           quantity: 1
           is_slash_price: true
@@ -15978,14 +15978,14 @@ components:
           bundle_variant_id: bundle_variant_id
           condition: 6
           returnable: 8
-          insurance_price: 3
-          normal_price: 6
+          insurance_price: 3.5571952270680973
+          normal_price: 6.965117697638846
           bundle_id: 6
           min_order: 2
           order_id: 6
           currency_id: 6
           must_insurance: 6
-        bundle_price: 7
+        bundle_price: 7.386281948385884
         bundle_variant_id: bundle_variant_id
       properties:
         bundle_id:
@@ -16000,16 +16000,16 @@ components:
           type: string
         bundle_price:
           description: Bundle Variant Unique Identifier
-          format: int64
-          type: integer
+          format: double
+          type: number
         bundle_quantity:
           description: Bundle Order Quantity
           format: int64
           type: integer
         bundle_subtotal_price:
           description: Bundle Order Total Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         order_detail:
           items:
             $ref: '#/components/schemas/getAllOrders_200_response_data_inner_bundle_detail_bundle_inner_order_detail_inner'
@@ -16020,17 +16020,17 @@ components:
         prod_pic: prod_pic
         notes: notes
         product_weight: 6.519180951018382
-        product_price: 7
+        product_price: 7.058770351582356
         total_weight: 0.10263654006109402
         oms_detail_data: oms_detail_data
         product_desc: product_desc
         order_dtl_id: 3
-        currency_rate: 3
+        currency_rate: 3.2588565619047607
         product_id: 7
         child_cat_id: 3
         sku: sku
         campaign_id: 4
-        subtotal_price: 4
+        subtotal_price: 4.652396432933246
         thumbnail: thumbnail
         quantity: 0
         is_slash_price: true
@@ -16038,8 +16038,8 @@ components:
         product_name: product_name
         condition: 6
         returnable: 7
-        insurance_price: 7
-        normal_price: 5
+        insurance_price: 7.04836565559697
+        normal_price: 5.533258397034986
         min_order: 4
         order_id: 3
         currency_id: 3
@@ -16069,8 +16069,8 @@ components:
           type: integer
         product_price:
           description: Product Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         product_weight:
           description: Product Weight
           format: double
@@ -16081,8 +16081,8 @@ components:
           type: number
         subtotal_price:
           description: Product Order Total Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         notes:
           description: Product Order Notes
           type: string
@@ -16104,16 +16104,16 @@ components:
           type: integer
         insurance_price:
           description: Product Insurance Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         normal_price:
           description: Product Normal Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         currency_rate:
           description: ""
-          format: int64
-          type: integer
+          format: double
+          type: number
         prod_pic:
           description: ""
           type: string
@@ -16150,7 +16150,7 @@ components:
       example:
         total_product: 1
         bundle:
-        - bundle_subtotal_price: 1
+        - bundle_subtotal_price: 1.0246457001441578
           bundle_id: 4
           bundle_quantity: 1
           bundle_name: bundle_name
@@ -16158,17 +16158,17 @@ components:
           - prod_pic: prod_pic
             notes: notes
             product_weight: 5.025004791520295
-            product_price: 4
+            product_price: 4.965218492984954
             total_weight: 9.965781217890562
             oms_detail_data: oms_detail_data
             product_desc: product_desc
             order_dtl_id: 1
-            currency_rate: 1
+            currency_rate: 1.284659006116532
             product_id: 7
             child_cat_id: 9
             sku: sku
             campaign_id: 5
-            subtotal_price: 9
+            subtotal_price: 9.369310271410669
             thumbnail: thumbnail
             quantity: 1
             is_slash_price: true
@@ -16177,8 +16177,8 @@ components:
             bundle_variant_id: bundle_variant_id
             condition: 6
             returnable: 8
-            insurance_price: 3
-            normal_price: 6
+            insurance_price: 3.5571952270680973
+            normal_price: 6.965117697638846
             bundle_id: 6
             min_order: 2
             order_id: 6
@@ -16187,17 +16187,17 @@ components:
           - prod_pic: prod_pic
             notes: notes
             product_weight: 5.025004791520295
-            product_price: 4
+            product_price: 4.965218492984954
             total_weight: 9.965781217890562
             oms_detail_data: oms_detail_data
             product_desc: product_desc
             order_dtl_id: 1
-            currency_rate: 1
+            currency_rate: 1.284659006116532
             product_id: 7
             child_cat_id: 9
             sku: sku
             campaign_id: 5
-            subtotal_price: 9
+            subtotal_price: 9.369310271410669
             thumbnail: thumbnail
             quantity: 1
             is_slash_price: true
@@ -16206,16 +16206,16 @@ components:
             bundle_variant_id: bundle_variant_id
             condition: 6
             returnable: 8
-            insurance_price: 3
-            normal_price: 6
+            insurance_price: 3.5571952270680973
+            normal_price: 6.965117697638846
             bundle_id: 6
             min_order: 2
             order_id: 6
             currency_id: 6
             must_insurance: 6
-          bundle_price: 7
+          bundle_price: 7.386281948385884
           bundle_variant_id: bundle_variant_id
-        - bundle_subtotal_price: 1
+        - bundle_subtotal_price: 1.0246457001441578
           bundle_id: 4
           bundle_quantity: 1
           bundle_name: bundle_name
@@ -16223,17 +16223,17 @@ components:
           - prod_pic: prod_pic
             notes: notes
             product_weight: 5.025004791520295
-            product_price: 4
+            product_price: 4.965218492984954
             total_weight: 9.965781217890562
             oms_detail_data: oms_detail_data
             product_desc: product_desc
             order_dtl_id: 1
-            currency_rate: 1
+            currency_rate: 1.284659006116532
             product_id: 7
             child_cat_id: 9
             sku: sku
             campaign_id: 5
-            subtotal_price: 9
+            subtotal_price: 9.369310271410669
             thumbnail: thumbnail
             quantity: 1
             is_slash_price: true
@@ -16242,8 +16242,8 @@ components:
             bundle_variant_id: bundle_variant_id
             condition: 6
             returnable: 8
-            insurance_price: 3
-            normal_price: 6
+            insurance_price: 3.5571952270680973
+            normal_price: 6.965117697638846
             bundle_id: 6
             min_order: 2
             order_id: 6
@@ -16252,17 +16252,17 @@ components:
           - prod_pic: prod_pic
             notes: notes
             product_weight: 5.025004791520295
-            product_price: 4
+            product_price: 4.965218492984954
             total_weight: 9.965781217890562
             oms_detail_data: oms_detail_data
             product_desc: product_desc
             order_dtl_id: 1
-            currency_rate: 1
+            currency_rate: 1.284659006116532
             product_id: 7
             child_cat_id: 9
             sku: sku
             campaign_id: 5
-            subtotal_price: 9
+            subtotal_price: 9.369310271410669
             thumbnail: thumbnail
             quantity: 1
             is_slash_price: true
@@ -16271,30 +16271,30 @@ components:
             bundle_variant_id: bundle_variant_id
             condition: 6
             returnable: 8
-            insurance_price: 3
-            normal_price: 6
+            insurance_price: 3.5571952270680973
+            normal_price: 6.965117697638846
             bundle_id: 6
             min_order: 2
             order_id: 6
             currency_id: 6
             must_insurance: 6
-          bundle_price: 7
+          bundle_price: 7.386281948385884
           bundle_variant_id: bundle_variant_id
         non_bundle:
         - prod_pic: prod_pic
           notes: notes
           product_weight: 6.519180951018382
-          product_price: 7
+          product_price: 7.058770351582356
           total_weight: 0.10263654006109402
           oms_detail_data: oms_detail_data
           product_desc: product_desc
           order_dtl_id: 3
-          currency_rate: 3
+          currency_rate: 3.2588565619047607
           product_id: 7
           child_cat_id: 3
           sku: sku
           campaign_id: 4
-          subtotal_price: 4
+          subtotal_price: 4.652396432933246
           thumbnail: thumbnail
           quantity: 0
           is_slash_price: true
@@ -16302,8 +16302,8 @@ components:
           product_name: product_name
           condition: 6
           returnable: 7
-          insurance_price: 7
-          normal_price: 5
+          insurance_price: 7.04836565559697
+          normal_price: 5.533258397034986
           min_order: 4
           order_id: 3
           currency_id: 3
@@ -16311,17 +16311,17 @@ components:
         - prod_pic: prod_pic
           notes: notes
           product_weight: 6.519180951018382
-          product_price: 7
+          product_price: 7.058770351582356
           total_weight: 0.10263654006109402
           oms_detail_data: oms_detail_data
           product_desc: product_desc
           order_dtl_id: 3
-          currency_rate: 3
+          currency_rate: 3.2588565619047607
           product_id: 7
           child_cat_id: 3
           sku: sku
           campaign_id: 4
-          subtotal_price: 4
+          subtotal_price: 4.652396432933246
           thumbnail: thumbnail
           quantity: 0
           is_slash_price: true
@@ -16329,8 +16329,8 @@ components:
           product_name: product_name
           condition: 6
           returnable: 7
-          insurance_price: 7
-          normal_price: 5
+          insurance_price: 7.04836565559697
+          normal_price: 5.533258397034986
           min_order: 4
           order_id: 3
           currency_id: 3
@@ -16480,37 +16480,37 @@ components:
       type: object
     getAllOrders_200_response_data_inner_amt:
       example:
-        toppoints_amount: 1
-        insurance_cost: 3
-        shipping_cost: 4
-        ttl_product_price: 8
-        ttl_amount: 0
-        voucher_amount: 2
+        toppoints_amount: 1.7325933120207193
+        insurance_cost: 3.901545264248647
+        shipping_cost: 4.459605034958679
+        ttl_product_price: 8.251625748923757
+        ttl_amount: 0.43431398824148815
+        voucher_amount: 2.9409642974827896
       properties:
         ttl_product_price:
           description: Total Product Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         shipping_cost:
           description: Shipping Cost
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_cost:
           description: Insurance Cost
-          format: int64
-          type: integer
+          format: double
+          type: number
         ttl_amount:
           description: Total Amount
-          format: int64
-          type: integer
+          format: double
+          type: number
         voucher_amount:
           description: Voucher Amount
-          format: int64
-          type: integer
+          format: double
+          type: number
         toppoints_amount:
           description: Toppoints Amount
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     getAllOrders_200_response_data_inner_voucher_info:
       example:
@@ -16781,9 +16781,9 @@ components:
     getAllOrders_200_response_data_inner_pof_info:
       example:
         create_by: 3
-        shipping_price: 3
+        shipping_price: 3.1497903714250555
         update_time: update_time
-        insurance_price: 2
+        insurance_price: 2.380090174313445
         create_time: create_time
         pof_status: 0
         update_by: 4
@@ -16801,12 +16801,12 @@ components:
           type: integer
         shipping_price:
           description: Shipping Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_price:
           description: Insurance Price
-          format: int64
-          type: integer
+          format: double
+          type: number
         create_time:
           description: "POF Request Create Timestamp (format: 2017-07-20T17:50:58.061156Z)"
           type: string
@@ -16847,12 +16847,12 @@ components:
           district_id: 5
           city_id: 4
         amt:
-          toppoints_amount: 1
-          insurance_cost: 3
-          shipping_cost: 4
-          ttl_product_price: 8
-          ttl_amount: 0
-          voucher_amount: 2
+          toppoints_amount: 1.7325933120207193
+          insurance_cost: 3.901545264248647
+          shipping_cost: 4.459605034958679
+          ttl_product_price: 8.251625748923757
+          ttl_amount: 0.43431398824148815
+          voucher_amount: 2.9409642974827896
         promo_order_detail:
           total_discount: 9
           summary_promo:
@@ -16933,8 +16933,8 @@ components:
         - is_wholesale: true
           quantity: 1
           notes: notes
-          total_price: 7
-          price: 2
+          total_price: 7.061401241503109
+          price: 2.3021358869347655
           weight: 5.962133916683182
           currency: currency
           id: 6
@@ -16944,8 +16944,8 @@ components:
         - is_wholesale: true
           quantity: 1
           notes: notes
-          total_price: 7
-          price: 2
+          total_price: 7.061401241503109
+          price: 2.3021358869347655
           weight: 5.962133916683182
           currency: currency
           id: 6
@@ -16976,7 +16976,7 @@ components:
         bundle_detail:
           total_product: 1
           bundle:
-          - bundle_subtotal_price: 1
+          - bundle_subtotal_price: 1.0246457001441578
             bundle_id: 4
             bundle_quantity: 1
             bundle_name: bundle_name
@@ -16984,17 +16984,17 @@ components:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 5.025004791520295
-              product_price: 4
+              product_price: 4.965218492984954
               total_weight: 9.965781217890562
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 1
-              currency_rate: 1
+              currency_rate: 1.284659006116532
               product_id: 7
               child_cat_id: 9
               sku: sku
               campaign_id: 5
-              subtotal_price: 9
+              subtotal_price: 9.369310271410669
               thumbnail: thumbnail
               quantity: 1
               is_slash_price: true
@@ -17003,8 +17003,8 @@ components:
               bundle_variant_id: bundle_variant_id
               condition: 6
               returnable: 8
-              insurance_price: 3
-              normal_price: 6
+              insurance_price: 3.5571952270680973
+              normal_price: 6.965117697638846
               bundle_id: 6
               min_order: 2
               order_id: 6
@@ -17013,17 +17013,17 @@ components:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 5.025004791520295
-              product_price: 4
+              product_price: 4.965218492984954
               total_weight: 9.965781217890562
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 1
-              currency_rate: 1
+              currency_rate: 1.284659006116532
               product_id: 7
               child_cat_id: 9
               sku: sku
               campaign_id: 5
-              subtotal_price: 9
+              subtotal_price: 9.369310271410669
               thumbnail: thumbnail
               quantity: 1
               is_slash_price: true
@@ -17032,16 +17032,16 @@ components:
               bundle_variant_id: bundle_variant_id
               condition: 6
               returnable: 8
-              insurance_price: 3
-              normal_price: 6
+              insurance_price: 3.5571952270680973
+              normal_price: 6.965117697638846
               bundle_id: 6
               min_order: 2
               order_id: 6
               currency_id: 6
               must_insurance: 6
-            bundle_price: 7
+            bundle_price: 7.386281948385884
             bundle_variant_id: bundle_variant_id
-          - bundle_subtotal_price: 1
+          - bundle_subtotal_price: 1.0246457001441578
             bundle_id: 4
             bundle_quantity: 1
             bundle_name: bundle_name
@@ -17049,17 +17049,17 @@ components:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 5.025004791520295
-              product_price: 4
+              product_price: 4.965218492984954
               total_weight: 9.965781217890562
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 1
-              currency_rate: 1
+              currency_rate: 1.284659006116532
               product_id: 7
               child_cat_id: 9
               sku: sku
               campaign_id: 5
-              subtotal_price: 9
+              subtotal_price: 9.369310271410669
               thumbnail: thumbnail
               quantity: 1
               is_slash_price: true
@@ -17068,8 +17068,8 @@ components:
               bundle_variant_id: bundle_variant_id
               condition: 6
               returnable: 8
-              insurance_price: 3
-              normal_price: 6
+              insurance_price: 3.5571952270680973
+              normal_price: 6.965117697638846
               bundle_id: 6
               min_order: 2
               order_id: 6
@@ -17078,17 +17078,17 @@ components:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 5.025004791520295
-              product_price: 4
+              product_price: 4.965218492984954
               total_weight: 9.965781217890562
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 1
-              currency_rate: 1
+              currency_rate: 1.284659006116532
               product_id: 7
               child_cat_id: 9
               sku: sku
               campaign_id: 5
-              subtotal_price: 9
+              subtotal_price: 9.369310271410669
               thumbnail: thumbnail
               quantity: 1
               is_slash_price: true
@@ -17097,30 +17097,30 @@ components:
               bundle_variant_id: bundle_variant_id
               condition: 6
               returnable: 8
-              insurance_price: 3
-              normal_price: 6
+              insurance_price: 3.5571952270680973
+              normal_price: 6.965117697638846
               bundle_id: 6
               min_order: 2
               order_id: 6
               currency_id: 6
               must_insurance: 6
-            bundle_price: 7
+            bundle_price: 7.386281948385884
             bundle_variant_id: bundle_variant_id
           non_bundle:
           - prod_pic: prod_pic
             notes: notes
             product_weight: 6.519180951018382
-            product_price: 7
+            product_price: 7.058770351582356
             total_weight: 0.10263654006109402
             oms_detail_data: oms_detail_data
             product_desc: product_desc
             order_dtl_id: 3
-            currency_rate: 3
+            currency_rate: 3.2588565619047607
             product_id: 7
             child_cat_id: 3
             sku: sku
             campaign_id: 4
-            subtotal_price: 4
+            subtotal_price: 4.652396432933246
             thumbnail: thumbnail
             quantity: 0
             is_slash_price: true
@@ -17128,8 +17128,8 @@ components:
             product_name: product_name
             condition: 6
             returnable: 7
-            insurance_price: 7
-            normal_price: 5
+            insurance_price: 7.04836565559697
+            normal_price: 5.533258397034986
             min_order: 4
             order_id: 3
             currency_id: 3
@@ -17137,17 +17137,17 @@ components:
           - prod_pic: prod_pic
             notes: notes
             product_weight: 6.519180951018382
-            product_price: 7
+            product_price: 7.058770351582356
             total_weight: 0.10263654006109402
             oms_detail_data: oms_detail_data
             product_desc: product_desc
             order_dtl_id: 3
-            currency_rate: 3
+            currency_rate: 3.2588565619047607
             product_id: 7
             child_cat_id: 3
             sku: sku
             campaign_id: 4
-            subtotal_price: 4
+            subtotal_price: 4.652396432933246
             thumbnail: thumbnail
             quantity: 0
             is_slash_price: true
@@ -17155,8 +17155,8 @@ components:
             product_name: product_name
             condition: 6
             returnable: 7
-            insurance_price: 7
-            normal_price: 5
+            insurance_price: 7.04836565559697
+            normal_price: 5.533258397034986
             min_order: 4
             order_id: 3
             currency_id: 3
@@ -17165,9 +17165,9 @@ components:
           key: ""
         pof_info:
           create_by: 3
-          shipping_price: 3
+          shipping_price: 3.1497903714250555
           update_time: update_time
-          insurance_price: 2
+          insurance_price: 2.380090174313445
           create_time: create_time
           pof_status: 0
           update_by: 4
@@ -17299,12 +17299,12 @@ components:
             district_id: 5
             city_id: 4
           amt:
-            toppoints_amount: 1
-            insurance_cost: 3
-            shipping_cost: 4
-            ttl_product_price: 8
-            ttl_amount: 0
-            voucher_amount: 2
+            toppoints_amount: 1.7325933120207193
+            insurance_cost: 3.901545264248647
+            shipping_cost: 4.459605034958679
+            ttl_product_price: 8.251625748923757
+            ttl_amount: 0.43431398824148815
+            voucher_amount: 2.9409642974827896
           promo_order_detail:
             total_discount: 9
             summary_promo:
@@ -17385,8 +17385,8 @@ components:
           - is_wholesale: true
             quantity: 1
             notes: notes
-            total_price: 7
-            price: 2
+            total_price: 7.061401241503109
+            price: 2.3021358869347655
             weight: 5.962133916683182
             currency: currency
             id: 6
@@ -17396,8 +17396,8 @@ components:
           - is_wholesale: true
             quantity: 1
             notes: notes
-            total_price: 7
-            price: 2
+            total_price: 7.061401241503109
+            price: 2.3021358869347655
             weight: 5.962133916683182
             currency: currency
             id: 6
@@ -17428,7 +17428,7 @@ components:
           bundle_detail:
             total_product: 1
             bundle:
-            - bundle_subtotal_price: 1
+            - bundle_subtotal_price: 1.0246457001441578
               bundle_id: 4
               bundle_quantity: 1
               bundle_name: bundle_name
@@ -17436,17 +17436,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17455,8 +17455,8 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
@@ -17465,17 +17465,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17484,16 +17484,16 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
                 currency_id: 6
                 must_insurance: 6
-              bundle_price: 7
+              bundle_price: 7.386281948385884
               bundle_variant_id: bundle_variant_id
-            - bundle_subtotal_price: 1
+            - bundle_subtotal_price: 1.0246457001441578
               bundle_id: 4
               bundle_quantity: 1
               bundle_name: bundle_name
@@ -17501,17 +17501,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17520,8 +17520,8 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
@@ -17530,17 +17530,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17549,30 +17549,30 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
                 currency_id: 6
                 must_insurance: 6
-              bundle_price: 7
+              bundle_price: 7.386281948385884
               bundle_variant_id: bundle_variant_id
             non_bundle:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 6.519180951018382
-              product_price: 7
+              product_price: 7.058770351582356
               total_weight: 0.10263654006109402
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 3
-              currency_rate: 3
+              currency_rate: 3.2588565619047607
               product_id: 7
               child_cat_id: 3
               sku: sku
               campaign_id: 4
-              subtotal_price: 4
+              subtotal_price: 4.652396432933246
               thumbnail: thumbnail
               quantity: 0
               is_slash_price: true
@@ -17580,8 +17580,8 @@ components:
               product_name: product_name
               condition: 6
               returnable: 7
-              insurance_price: 7
-              normal_price: 5
+              insurance_price: 7.04836565559697
+              normal_price: 5.533258397034986
               min_order: 4
               order_id: 3
               currency_id: 3
@@ -17589,17 +17589,17 @@ components:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 6.519180951018382
-              product_price: 7
+              product_price: 7.058770351582356
               total_weight: 0.10263654006109402
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 3
-              currency_rate: 3
+              currency_rate: 3.2588565619047607
               product_id: 7
               child_cat_id: 3
               sku: sku
               campaign_id: 4
-              subtotal_price: 4
+              subtotal_price: 4.652396432933246
               thumbnail: thumbnail
               quantity: 0
               is_slash_price: true
@@ -17607,8 +17607,8 @@ components:
               product_name: product_name
               condition: 6
               returnable: 7
-              insurance_price: 7
-              normal_price: 5
+              insurance_price: 7.04836565559697
+              normal_price: 5.533258397034986
               min_order: 4
               order_id: 3
               currency_id: 3
@@ -17617,9 +17617,9 @@ components:
             key: ""
           pof_info:
             create_by: 3
-            shipping_price: 3
+            shipping_price: 3.1497903714250555
             update_time: update_time
-            insurance_price: 2
+            insurance_price: 2.380090174313445
             create_time: create_time
             pof_status: 0
             update_by: 4
@@ -17659,12 +17659,12 @@ components:
             district_id: 5
             city_id: 4
           amt:
-            toppoints_amount: 1
-            insurance_cost: 3
-            shipping_cost: 4
-            ttl_product_price: 8
-            ttl_amount: 0
-            voucher_amount: 2
+            toppoints_amount: 1.7325933120207193
+            insurance_cost: 3.901545264248647
+            shipping_cost: 4.459605034958679
+            ttl_product_price: 8.251625748923757
+            ttl_amount: 0.43431398824148815
+            voucher_amount: 2.9409642974827896
           promo_order_detail:
             total_discount: 9
             summary_promo:
@@ -17745,8 +17745,8 @@ components:
           - is_wholesale: true
             quantity: 1
             notes: notes
-            total_price: 7
-            price: 2
+            total_price: 7.061401241503109
+            price: 2.3021358869347655
             weight: 5.962133916683182
             currency: currency
             id: 6
@@ -17756,8 +17756,8 @@ components:
           - is_wholesale: true
             quantity: 1
             notes: notes
-            total_price: 7
-            price: 2
+            total_price: 7.061401241503109
+            price: 2.3021358869347655
             weight: 5.962133916683182
             currency: currency
             id: 6
@@ -17788,7 +17788,7 @@ components:
           bundle_detail:
             total_product: 1
             bundle:
-            - bundle_subtotal_price: 1
+            - bundle_subtotal_price: 1.0246457001441578
               bundle_id: 4
               bundle_quantity: 1
               bundle_name: bundle_name
@@ -17796,17 +17796,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17815,8 +17815,8 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
@@ -17825,17 +17825,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17844,16 +17844,16 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
                 currency_id: 6
                 must_insurance: 6
-              bundle_price: 7
+              bundle_price: 7.386281948385884
               bundle_variant_id: bundle_variant_id
-            - bundle_subtotal_price: 1
+            - bundle_subtotal_price: 1.0246457001441578
               bundle_id: 4
               bundle_quantity: 1
               bundle_name: bundle_name
@@ -17861,17 +17861,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17880,8 +17880,8 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
@@ -17890,17 +17890,17 @@ components:
               - prod_pic: prod_pic
                 notes: notes
                 product_weight: 5.025004791520295
-                product_price: 4
+                product_price: 4.965218492984954
                 total_weight: 9.965781217890562
                 oms_detail_data: oms_detail_data
                 product_desc: product_desc
                 order_dtl_id: 1
-                currency_rate: 1
+                currency_rate: 1.284659006116532
                 product_id: 7
                 child_cat_id: 9
                 sku: sku
                 campaign_id: 5
-                subtotal_price: 9
+                subtotal_price: 9.369310271410669
                 thumbnail: thumbnail
                 quantity: 1
                 is_slash_price: true
@@ -17909,30 +17909,30 @@ components:
                 bundle_variant_id: bundle_variant_id
                 condition: 6
                 returnable: 8
-                insurance_price: 3
-                normal_price: 6
+                insurance_price: 3.5571952270680973
+                normal_price: 6.965117697638846
                 bundle_id: 6
                 min_order: 2
                 order_id: 6
                 currency_id: 6
                 must_insurance: 6
-              bundle_price: 7
+              bundle_price: 7.386281948385884
               bundle_variant_id: bundle_variant_id
             non_bundle:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 6.519180951018382
-              product_price: 7
+              product_price: 7.058770351582356
               total_weight: 0.10263654006109402
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 3
-              currency_rate: 3
+              currency_rate: 3.2588565619047607
               product_id: 7
               child_cat_id: 3
               sku: sku
               campaign_id: 4
-              subtotal_price: 4
+              subtotal_price: 4.652396432933246
               thumbnail: thumbnail
               quantity: 0
               is_slash_price: true
@@ -17940,8 +17940,8 @@ components:
               product_name: product_name
               condition: 6
               returnable: 7
-              insurance_price: 7
-              normal_price: 5
+              insurance_price: 7.04836565559697
+              normal_price: 5.533258397034986
               min_order: 4
               order_id: 3
               currency_id: 3
@@ -17949,17 +17949,17 @@ components:
             - prod_pic: prod_pic
               notes: notes
               product_weight: 6.519180951018382
-              product_price: 7
+              product_price: 7.058770351582356
               total_weight: 0.10263654006109402
               oms_detail_data: oms_detail_data
               product_desc: product_desc
               order_dtl_id: 3
-              currency_rate: 3
+              currency_rate: 3.2588565619047607
               product_id: 7
               child_cat_id: 3
               sku: sku
               campaign_id: 4
-              subtotal_price: 4
+              subtotal_price: 4.652396432933246
               thumbnail: thumbnail
               quantity: 0
               is_slash_price: true
@@ -17967,8 +17967,8 @@ components:
               product_name: product_name
               condition: 6
               returnable: 7
-              insurance_price: 7
-              normal_price: 5
+              insurance_price: 7.04836565559697
+              normal_price: 5.533258397034986
               min_order: 4
               order_id: 3
               currency_id: 3
@@ -17977,9 +17977,9 @@ components:
             key: ""
           pof_info:
             create_by: 3
-            shipping_price: 3
+            shipping_price: 3.1497903714250555
             update_time: update_time
-            insurance_price: 2
+            insurance_price: 2.380090174313445
             create_time: create_time
             pof_status: 0
             update_by: 4
@@ -18751,8 +18751,8 @@ components:
           type: integer
         new_price:
           description: New price to be set
-          format: int64
-          type: integer
+          format: double
+          type: number
       required:
       - stock_value
       type: object
@@ -18760,7 +18760,7 @@ components:
       example:
         product_url: product_url
         product_id: 1
-        new_price: 5
+        new_price: 5.962133916683182
         sku: sku
         message: message
       properties:
@@ -18772,8 +18772,8 @@ components:
         product_url:
           type: string
         new_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         message:
           type: string
       type: object
@@ -18784,12 +18784,12 @@ components:
         failed_rows_data:
         - product_url: product_url
           product_id: 1
-          new_price: 5
+          new_price: 5.962133916683182
           sku: sku
           message: message
         - product_url: product_url
           product_id: 1
-          new_price: 5
+          new_price: 5.962133916683182
           sku: sku
           message: message
       properties:
@@ -18812,12 +18812,12 @@ components:
           failed_rows_data:
           - product_url: product_url
             product_id: 1
-            new_price: 5
+            new_price: 5.962133916683182
             sku: sku
             message: message
           - product_url: product_url
             product_id: 1
-            new_price: 5
+            new_price: 5.962133916683182
             sku: sku
             message: message
         header:
@@ -18953,8 +18953,8 @@ components:
           format: int64
           type: integer
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     editProductV3_request_products_inner_preorder:
       description: |
@@ -18966,6 +18966,9 @@ components:
           format: int64
           type: integer
         time_unit:
+          default: DAY
+          enum:
+          - DAY
           type: string
       type: object
     editProductV3_request_products_inner_videos_inner:
@@ -18993,8 +18996,8 @@ components:
         status:
           type: string
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         stock:
           format: int64
           type: integer
@@ -19080,10 +19083,10 @@ components:
           description: "The possible value between 100 to 100.000.000. If the product\
             \ variant is added, the price parameter is automatically set to the lowest\
             \ price among the variant products"
-          format: int64
+          format: double
           maximum: 100000000
           minimum: 100
-          type: integer
+          type: number
         status:
           description: "Status for the product with the following available values\
             \ UNLIMITED, LIMITED, and EMPTY"
@@ -19198,8 +19201,8 @@ components:
         product_name:
           type: string
         product_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         sku:
           type: string
         error:
@@ -19618,15 +19621,6 @@ components:
       - length
       - width
       type: object
-    createProductV3_request_inner_wholesale_inner:
-      properties:
-        min_qty:
-          format: int64
-          type: integer
-        price:
-          format: double
-          type: number
-      type: object
     createProductV3_request_inner_preorder:
       description: "Preorder information. The object keys includes: is_active, duration,\
         \ and time_unit"
@@ -19809,7 +19803,7 @@ components:
           description: "Wholesale price and quantity of the product. The object keys\
             \ includes: min_qty and price"
           items:
-            $ref: '#/components/schemas/createProductV3_request_inner_wholesale_inner'
+            $ref: '#/components/schemas/editProductV3_request_products_inner_wholesale_inner'
           type: array
         preorder:
           $ref: '#/components/schemas/createProductV3_request_inner_preorder'
@@ -20105,7 +20099,7 @@ components:
           description: "Wholesale price and quantity of the product. The object keys\
             \ includes: min_qty and price"
           items:
-            $ref: '#/components/schemas/createProductV3_request_inner_wholesale_inner'
+            $ref: '#/components/schemas/editProductV3_request_products_inner_wholesale_inner'
           required:
           - min_qty
           - price
@@ -20174,12 +20168,12 @@ components:
           type: number
         price:
           description: Product price
-          format: int64
-          type: integer
+          format: double
+          type: number
         total_price:
           description: Total price
-          format: int64
-          type: integer
+          format: double
+          type: number
         currency:
           description: Currency code
           type: string
@@ -20289,28 +20283,28 @@ components:
       properties:
         ttl_product_price:
           description: Total product price
-          format: int64
-          type: integer
+          format: double
+          type: number
         shipping_cost:
           description: Shipping rate
-          format: int64
-          type: integer
+          format: double
+          type: number
         insurance_cost:
           description: Insurance price
-          format: int64
-          type: integer
+          format: double
+          type: number
         ttl_amount:
           description: Total amount
-          format: int64
-          type: integer
+          format: double
+          type: number
         voucher_amount:
           description: Voucher amount
-          format: int64
-          type: integer
+          format: double
+          type: number
         toppoints_amount:
           description: Toppoints amount
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     WebhookOrderNotification_dropshipper_info:
       description: Dropshipper information
@@ -20354,8 +20348,8 @@ components:
           format: int64
           type: integer
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         weight:
           format: double
           type: number
@@ -20363,8 +20357,8 @@ components:
           format: double
           type: number
         subtotal_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         notes:
           type: string
         Currency:
@@ -20388,14 +20382,14 @@ components:
         bundle_name:
           type: string
         bundle_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         bundle_quantity:
           format: int64
           type: integer
         bundle_subtotal_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         order_detail:
           items:
             $ref: '#/components/schemas/WebhookOrderNotification_bundle_detail_bundle_inner_order_detail_inner'
@@ -20420,11 +20414,11 @@ components:
           format: double
           type: number
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         total_price:
-          format: int64
-          type: integer
+          format: double
+          type: number
         currency:
           type: string
         sku:
@@ -20781,7 +20775,7 @@ components:
       example:
         productID: 5
         warehouseID: 2
-        price: 3
+        price: 3.616076749251911
         shopID: 7
         stock: 9
       properties:
@@ -20798,8 +20792,8 @@ components:
           format: int64
           type: integer
         price:
-          format: int64
-          type: integer
+          format: double
+          type: number
       type: object
     IncreaseStockResponse_data:
       example:
@@ -20815,12 +20809,12 @@ components:
         succeed_rows_data:
         - productID: 5
           warehouseID: 2
-          price: 3
+          price: 3.616076749251911
           shopID: 7
           stock: 9
         - productID: 5
           warehouseID: 2
-          price: 3
+          price: 3.616076749251911
           shopID: 7
           stock: 9
       properties:

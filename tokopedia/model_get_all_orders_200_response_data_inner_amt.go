@@ -21,17 +21,17 @@ var _ MappedNullable = &GetAllOrders200ResponseDataInnerAmt{}
 // GetAllOrders200ResponseDataInnerAmt struct for GetAllOrders200ResponseDataInnerAmt
 type GetAllOrders200ResponseDataInnerAmt struct {
 	// Total Product Price
-	TtlProductPrice *int64 `json:"ttl_product_price,omitempty"`
+	TtlProductPrice *float64 `json:"ttl_product_price,omitempty"`
 	// Shipping Cost
-	ShippingCost *int64 `json:"shipping_cost,omitempty"`
+	ShippingCost *float64 `json:"shipping_cost,omitempty"`
 	// Insurance Cost
-	InsuranceCost *int64 `json:"insurance_cost,omitempty"`
+	InsuranceCost *float64 `json:"insurance_cost,omitempty"`
 	// Total Amount
-	TtlAmount *int64 `json:"ttl_amount,omitempty"`
+	TtlAmount *float64 `json:"ttl_amount,omitempty"`
 	// Voucher Amount
-	VoucherAmount *int64 `json:"voucher_amount,omitempty"`
+	VoucherAmount *float64 `json:"voucher_amount,omitempty"`
 	// Toppoints Amount
-	ToppointsAmount *int64 `json:"toppoints_amount,omitempty"`
+	ToppointsAmount *float64 `json:"toppoints_amount,omitempty"`
 }
 
 // NewGetAllOrders200ResponseDataInnerAmt instantiates a new GetAllOrders200ResponseDataInnerAmt object
@@ -52,9 +52,9 @@ func NewGetAllOrders200ResponseDataInnerAmtWithDefaults() *GetAllOrders200Respon
 }
 
 // GetTtlProductPrice returns the TtlProductPrice field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlProductPrice() int64 {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlProductPrice() float64 {
 	if o == nil || IsNil(o.TtlProductPrice) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TtlProductPrice
@@ -62,7 +62,7 @@ func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlProductPrice() int64 {
 
 // GetTtlProductPriceOk returns a tuple with the TtlProductPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlProductPriceOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlProductPriceOk() (*float64, bool) {
 	if o == nil || IsNil(o.TtlProductPrice) {
 		return nil, false
 	}
@@ -78,15 +78,15 @@ func (o *GetAllOrders200ResponseDataInnerAmt) HasTtlProductPrice() bool {
 	return false
 }
 
-// SetTtlProductPrice gets a reference to the given int64 and assigns it to the TtlProductPrice field.
-func (o *GetAllOrders200ResponseDataInnerAmt) SetTtlProductPrice(v int64) {
+// SetTtlProductPrice gets a reference to the given float64 and assigns it to the TtlProductPrice field.
+func (o *GetAllOrders200ResponseDataInnerAmt) SetTtlProductPrice(v float64) {
 	o.TtlProductPrice = &v
 }
 
 // GetShippingCost returns the ShippingCost field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetShippingCost() int64 {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetShippingCost() float64 {
 	if o == nil || IsNil(o.ShippingCost) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ShippingCost
@@ -94,7 +94,7 @@ func (o *GetAllOrders200ResponseDataInnerAmt) GetShippingCost() int64 {
 
 // GetShippingCostOk returns a tuple with the ShippingCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetShippingCostOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetShippingCostOk() (*float64, bool) {
 	if o == nil || IsNil(o.ShippingCost) {
 		return nil, false
 	}
@@ -110,15 +110,15 @@ func (o *GetAllOrders200ResponseDataInnerAmt) HasShippingCost() bool {
 	return false
 }
 
-// SetShippingCost gets a reference to the given int64 and assigns it to the ShippingCost field.
-func (o *GetAllOrders200ResponseDataInnerAmt) SetShippingCost(v int64) {
+// SetShippingCost gets a reference to the given float64 and assigns it to the ShippingCost field.
+func (o *GetAllOrders200ResponseDataInnerAmt) SetShippingCost(v float64) {
 	o.ShippingCost = &v
 }
 
 // GetInsuranceCost returns the InsuranceCost field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetInsuranceCost() int64 {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetInsuranceCost() float64 {
 	if o == nil || IsNil(o.InsuranceCost) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.InsuranceCost
@@ -126,7 +126,7 @@ func (o *GetAllOrders200ResponseDataInnerAmt) GetInsuranceCost() int64 {
 
 // GetInsuranceCostOk returns a tuple with the InsuranceCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetInsuranceCostOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetInsuranceCostOk() (*float64, bool) {
 	if o == nil || IsNil(o.InsuranceCost) {
 		return nil, false
 	}
@@ -142,15 +142,15 @@ func (o *GetAllOrders200ResponseDataInnerAmt) HasInsuranceCost() bool {
 	return false
 }
 
-// SetInsuranceCost gets a reference to the given int64 and assigns it to the InsuranceCost field.
-func (o *GetAllOrders200ResponseDataInnerAmt) SetInsuranceCost(v int64) {
+// SetInsuranceCost gets a reference to the given float64 and assigns it to the InsuranceCost field.
+func (o *GetAllOrders200ResponseDataInnerAmt) SetInsuranceCost(v float64) {
 	o.InsuranceCost = &v
 }
 
 // GetTtlAmount returns the TtlAmount field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlAmount() int64 {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlAmount() float64 {
 	if o == nil || IsNil(o.TtlAmount) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.TtlAmount
@@ -158,7 +158,7 @@ func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlAmount() int64 {
 
 // GetTtlAmountOk returns a tuple with the TtlAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlAmountOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetTtlAmountOk() (*float64, bool) {
 	if o == nil || IsNil(o.TtlAmount) {
 		return nil, false
 	}
@@ -174,15 +174,15 @@ func (o *GetAllOrders200ResponseDataInnerAmt) HasTtlAmount() bool {
 	return false
 }
 
-// SetTtlAmount gets a reference to the given int64 and assigns it to the TtlAmount field.
-func (o *GetAllOrders200ResponseDataInnerAmt) SetTtlAmount(v int64) {
+// SetTtlAmount gets a reference to the given float64 and assigns it to the TtlAmount field.
+func (o *GetAllOrders200ResponseDataInnerAmt) SetTtlAmount(v float64) {
 	o.TtlAmount = &v
 }
 
 // GetVoucherAmount returns the VoucherAmount field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetVoucherAmount() int64 {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetVoucherAmount() float64 {
 	if o == nil || IsNil(o.VoucherAmount) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.VoucherAmount
@@ -190,7 +190,7 @@ func (o *GetAllOrders200ResponseDataInnerAmt) GetVoucherAmount() int64 {
 
 // GetVoucherAmountOk returns a tuple with the VoucherAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetVoucherAmountOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetVoucherAmountOk() (*float64, bool) {
 	if o == nil || IsNil(o.VoucherAmount) {
 		return nil, false
 	}
@@ -206,15 +206,15 @@ func (o *GetAllOrders200ResponseDataInnerAmt) HasVoucherAmount() bool {
 	return false
 }
 
-// SetVoucherAmount gets a reference to the given int64 and assigns it to the VoucherAmount field.
-func (o *GetAllOrders200ResponseDataInnerAmt) SetVoucherAmount(v int64) {
+// SetVoucherAmount gets a reference to the given float64 and assigns it to the VoucherAmount field.
+func (o *GetAllOrders200ResponseDataInnerAmt) SetVoucherAmount(v float64) {
 	o.VoucherAmount = &v
 }
 
 // GetToppointsAmount returns the ToppointsAmount field value if set, zero value otherwise.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetToppointsAmount() int64 {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetToppointsAmount() float64 {
 	if o == nil || IsNil(o.ToppointsAmount) {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.ToppointsAmount
@@ -222,7 +222,7 @@ func (o *GetAllOrders200ResponseDataInnerAmt) GetToppointsAmount() int64 {
 
 // GetToppointsAmountOk returns a tuple with the ToppointsAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetAllOrders200ResponseDataInnerAmt) GetToppointsAmountOk() (*int64, bool) {
+func (o *GetAllOrders200ResponseDataInnerAmt) GetToppointsAmountOk() (*float64, bool) {
 	if o == nil || IsNil(o.ToppointsAmount) {
 		return nil, false
 	}
@@ -238,8 +238,8 @@ func (o *GetAllOrders200ResponseDataInnerAmt) HasToppointsAmount() bool {
 	return false
 }
 
-// SetToppointsAmount gets a reference to the given int64 and assigns it to the ToppointsAmount field.
-func (o *GetAllOrders200ResponseDataInnerAmt) SetToppointsAmount(v int64) {
+// SetToppointsAmount gets a reference to the given float64 and assigns it to the ToppointsAmount field.
+func (o *GetAllOrders200ResponseDataInnerAmt) SetToppointsAmount(v float64) {
 	o.ToppointsAmount = &v
 }
 

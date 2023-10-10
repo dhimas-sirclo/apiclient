@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **Notes** | Pointer to **string** | Product Order Notes | [optional] 
 **Weight** | Pointer to **float64** | Product Weight | [optional] 
 **TotalWeight** | Pointer to **float64** | Product Order Total Weight | [optional] 
-**Price** | Pointer to **int64** | Product Price | [optional] 
-**TotalPrice** | Pointer to **int64** | Product Order Total Price | [optional] 
+**Price** | Pointer to **float64** | Product Price | [optional] 
+**TotalPrice** | Pointer to **float64** | Product Order Total Price | [optional] 
 **Currency** | Pointer to **string** | Product Price Currency | [optional] 
 **Sku** | Pointer to **string** | Product SKU | [optional] 
 **IsWholesale** | Pointer to **bool** | Is product wholesale? | [optional] 
@@ -187,20 +187,20 @@ HasTotalWeight returns a boolean if a field has been set.
 
 ### GetPrice
 
-`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPrice() float64`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetPriceOk() (*float64, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrice
 
-`func (o *GetAllOrders200ResponseDataInnerProductsInner) SetPrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerProductsInner) SetPrice(v float64)`
 
 SetPrice sets Price field to given value.
 
@@ -212,20 +212,20 @@ HasPrice returns a boolean if a field has been set.
 
 ### GetTotalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPrice() int64`
+`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPrice() float64`
 
 GetTotalPrice returns the TotalPrice field if non-nil, zero value otherwise.
 
 ### GetTotalPriceOk
 
-`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPriceOk() (*int64, bool)`
+`func (o *GetAllOrders200ResponseDataInnerProductsInner) GetTotalPriceOk() (*float64, bool)`
 
 GetTotalPriceOk returns a tuple with the TotalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalPrice
 
-`func (o *GetAllOrders200ResponseDataInnerProductsInner) SetTotalPrice(v int64)`
+`func (o *GetAllOrders200ResponseDataInnerProductsInner) SetTotalPrice(v float64)`
 
 SetTotalPrice sets TotalPrice field to given value.
 
