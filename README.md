@@ -49,6 +49,18 @@ GOPROXY=proxy.golang.org go list -m github.com/dhimas-sirclo/apiclient/connector
 docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 author template -g go -o /local/template/go
 ```
 
+## Generate Tokopedia API K6 Test
+
+```sh
+docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generate -i /local/oas/tokopedia.yml -g k6 -o /local/tests/tokopedia
+```
+
+## Run Tokopedia API K6 Test
+
+```sh
+cd tests/tokopedia && docker run --rm -i grafana/k6 run - <script.js
+```
+
 ## Generate Tokopedia API Client Library
 
 ```sh
@@ -65,6 +77,18 @@ docker compose --file ./docker/tokopedia.mock.docker-compose.yml up -d
 
 ```sh
 docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generate -i /local/oas/sirclo.yml -g go -o /local/sirclo -t /local/template/go --git-host github.com --git-user-id dhimas-sirclo --git-repo-id apiclient/sirclo --package-name sirclo --additional-properties=packageName=sirclo,generateInterfaces=true,enumClassPrefix=true && cd sirclo && go mod tidy && cd ..
+```
+
+## Generate SIRCLO API K6 Test
+
+```sh
+docker run --rm -v $PWD:/local openapitools/openapi-generator-cli:v7.0.0 generate -i /local/oas/sirclo.yml -g k6 -o /local/tests/sirclo
+```
+
+## Run SIRCLO API K6 Test
+
+```sh
+cd tests/sirclo && docker run --rm -i grafana/k6 run - <script.js
 ```
 
 ## Run SIRCLO Mock API
